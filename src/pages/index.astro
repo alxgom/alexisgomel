@@ -1,107 +1,125 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+// Imports available for other pages
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// Your GTM ID
+const GTM_ID = 'GTM-WDZK7ZFX'; 
 ---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+
+        <script is:inline>
+            // 1. Define dataLayer and the gtag function immediately
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            
+            // 2. Set default consent to 'denied' so nothing tracks yet
+            gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+            });
+        </script>
+
+        <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
         
+        <script is:inline src="/cookie-banner/silktide-consent-manager.js"></script>
+        
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof silktideCookieBannerManager !== 'undefined') {
+                    silktideCookieBannerManager.updateCookieBannerConfig({
+                        background: { showBackground: true },
+                        cookieIcon: { position: "bottomLeft" },
+                        cookieTypes: [
+                            {
+                                id: "necessary",
+                                name: "Necessary",
+                                description: "<p>These cookies are necessary for the website to function properly.</p>",
+                                required: true,
+                                onAccept: function() { console.log('Necessary cookies accepted'); }
+                            },
+                            {
+                                id: "analytics",
+                                name: "Analytics",
+                                description: "<p>These cookies help us improve the site by tracking which pages are most popular.</p>",
+                                defaultValue: true,
+                                // WHEN USER ACCEPTS:
+                                onAccept: function() {
+                                    gtag('consent', 'update', { analytics_storage: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_analytics' });
+                                },
+                                // WHEN USER REJECTS:
+                                onReject: function() {
+                                    gtag('consent', 'update', { analytics_storage: 'denied' });
+                                }
+                            },
+                            {
+                                id: "advertising",
+                                name: "Advertising",
+                                description: "<p>These cookies provide extra features and personalization.</p>",
+                                // WHEN USER ACCEPTS:
+                                onAccept: function() {
+                                    gtag('consent', 'update', {
+                                        ad_storage: 'granted',
+                                        ad_user_data: 'granted',
+                                        ad_personalization: 'granted',
+                                    });
+                                    dataLayer.push({ 'event': 'consent_accepted_advertising' });
+                                },
+                                // WHEN USER REJECTS:
+                                onReject: function() {
+                                    gtag('consent', 'update', {
+                                        ad_storage: 'denied',
+                                        ad_user_data: 'denied',
+                                        ad_personalization: 'denied',
+                                    });
+                                }
+                            }
+                        ],
+                        text: {
+                            banner: {
+                                description: "<p>We use cookies to improve your experience. <a href='#'>Cookie Policy.</a></p>",
+                                acceptAllButtonText: "Accept all",
+                                rejectNonEssentialButtonText: "Reject non-essential",
+                                preferencesButtonText: "Preferences"
+                            },
+                            preferences: {
+                                title: "Customize preferences",
+                                description: "<p>Manage your cookie settings here.</p>",
+                            }
+                        }
+                    });
+                }
+            });
+        </script>
+
+        <script is:inline define:vars={{ GTM_ID }}>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer', GTM_ID);
+        </script>
         <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
         <link rel="stylesheet" href="/assets/css/steller.css">
-
-		<link rel="stylesheet" id="silktide-consent-manager-css" href="path-to-css/silktide-consent-manager.css">
-		
-		<!-- cookie banner -->
-		<script src="path-to-js/silktide-consent-manager.js"></script>
-		<script>
-		silktideCookieBannerManager.updateCookieBannerConfig({
-		background: {
-			showBackground: true
-		},
-		cookieIcon: {
-			position: "bottomLeft"
-		},
-		cookieTypes: [
-			{
-			id: "necessary",
-			name: "Necessary",
-			description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
-			required: true,
-			onAccept: function() {
-				console.log('Add logic for the required Necessary here');
-			}
-			},
-			{
-			id: "analytics",
-			name: "Analytics",
-			description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
-			defaultValue: true,
-			onAccept: function() {
-				gtag('consent', 'update', {
-				analytics_storage: 'granted',
-				});
-				dataLayer.push({
-				'event': 'consent_accepted_analytics',
-				});
-			},
-			onReject: function() {
-				gtag('consent', 'update', {
-				analytics_storage: 'denied',
-				});
-			}
-			},
-			{
-			id: "advertising",
-			name: "Advertising",
-			description: "<p>These cookies provide extra features and personalization to improve your experience. They may be set by us or by partners whose services we use.</p>",
-			onAccept: function() {
-				gtag('consent', 'update', {
-				ad_storage: 'granted',
-				ad_user_data: 'granted',
-				ad_personalization: 'granted',
-				});
-				dataLayer.push({
-				'event': 'consent_accepted_advertising',
-				});
-			},
-			onReject: function() {
-				gtag('consent', 'update', {
-				ad_storage: 'denied',
-				ad_user_data: 'denied',
-				ad_personalization: 'denied',
-				});
-			}
-			}
-		],
-		text: {
-			banner: {
-			description: "<p>We use cookies on our site to enhance your user experience, provide personalized content, and analyze our traffic. <a href=\"https://your-website.com/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
-			acceptAllButtonText: "Accept all",
-			acceptAllButtonAccessibleLabel: "Accept all cookies",
-			rejectNonEssentialButtonText: "Reject non-essential",
-			rejectNonEssentialButtonAccessibleLabel: "Reject non-essential",
-			preferencesButtonText: "Preferences",
-			preferencesButtonAccessibleLabel: "Toggle preferences"
-			},
-			preferences: {
-			title: "Customize your cookie preferences",
-			description: "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
-			creditLinkText: "Get this banner for free",
-			creditLinkAccessibleLabel: "Get this banner for free"
-			}
-		}
-		});
-		</script>
-
 	</head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-
+        
+        <noscript>
+            <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
             <div class="container">
                 <a class="navbar-brand" href="#"><img src="/assets/imgs/icon_website.png" alt=""></a>
@@ -130,6 +148,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                 </div>
             </div>          
         </nav>
+
         <header class="header" id="home">
             <div class="bg-image bg-image-white">
                 <div class=" bg-image-white">
@@ -152,10 +171,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                                 <a class="social-item" href="https://www.researchgate.net/profile/Alexis-Gomel" target="_blank"><i class="ai ai-researchgate"></i></a>
                             </div>
                         </div>              
-                        </div>   
+                    </div>   
                 </div>   
             </div>
         </header>
+
         <section id="about" class="section mt-3">
             <div class="container mt-5">
                 <div class="row text-center text-md-left">
@@ -177,8 +197,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
             <div class="container text-center">
                 <h6 class="section-title mb-4">What I Do</h6>
                 <p class="mb-5 pb-4">  </p>
-
-                
                 <div class="row">
                     <div class="col-sm-6 col-md-3 mb-4">
                         <div class="custom-card card border">
@@ -214,14 +232,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                             </div>
                         </div>
                     </div>
-                    
-                    
                 </div>
             </div>
         </section>
+
         <section id="portfolio" class="section">
             <div class="container text-center">
-                  <h6 class="section-title mb-4">Check My Works</h6>
+                <h6 class="section-title mb-4">Check My Works</h6>
                 <p class="mb-5 pb-4">Here is a list of some of my projects.</p>
 
                 <div class="row">
@@ -294,6 +311,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                 </div>
             </div>
         </section>
+
         <section id="contact" class="position-relative section">
             <div class="container text-center">
                 <h6 class="subtitle">Contact</h6>
@@ -308,6 +326,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                 </div>      
             </div>
         </section>
+
         <footer class="page-footer">
             <div class="container">
                 <div class="row align-items-center">
@@ -325,10 +344,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
                 </div>
             </div>
         </footer> 
+
         <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
         <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
         <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
-
         <script is:inline src="/assets/js/steller.js"></script>
 
 	</body>
