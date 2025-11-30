@@ -1,0 +1,424 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// GTM ID for Tracking
+const GTM_ID = 'GTM-WDZK7ZFX'; 
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Projects - ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+            });
+        </script>
+
+        <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
+        <script is:inline src="/cookie-banner/silktide-consent-manager.js"></script>
+        
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof silktideCookieBannerManager !== 'undefined') {
+                    silktideCookieBannerManager.updateCookieBannerConfig({
+                        background: { showBackground: true },
+                        cookieIcon: { position: "bottomLeft" },
+                        cookieTypes: [
+                            { id: "necessary", name: "Necessary", required: true },
+                            {
+                                id: "analytics", name: "Analytics", defaultValue: true,
+                                onAccept: function() {
+                                    gtag('consent', 'update', { analytics_storage: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_analytics' });
+                                },
+                                onReject: function() { gtag('consent', 'update', { analytics_storage: 'denied' }); }
+                            },
+                            {
+                                id: "advertising", name: "Advertising",
+                                onAccept: function() {
+                                    gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_advertising' });
+                                },
+                                onReject: function() {
+                                    gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+        </script>
+
+        <script is:inline define:vars={{ GTM_ID }}>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer', GTM_ID);
+        </script>
+
+        <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="/assets/css/steller.css">
+	</head>
+
+	<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+        
+        <noscript>
+            <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
+		<Header />
+		
+        <section id="Data Projects"  class="section mt-3">
+            <div class="container text-center" style="padding-bottom:30px;">
+                <h1 class="section-title mb-4">Projects</h1>
+            </div>
+                
+            <div class="container text-left">
+                <div class="row2">
+                    <div class="col-sm-6"  style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/PopulationByDistrict_NiceColormap.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Rentals</h5>
+                                    <a href="https://www.kaggle.com/code/alexisgomel/apartment-rental-offers-munich"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://www.kaggle.com/code/alexisgomel/apartment-rental-offers-munich"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Historical rent analysis:</strong>Analysis of historical rental data in Germany and price outlier detection (ongoing). <p>
+                            <p>The purpose of this project is to study the evolution of rental princes and the detection of outliers.
+                                Eventually i'd like it to be a tool for people to estimate if a property of their interest is reasonably priced. <p>
+                            <p><strong>Tech & skills:</strong> Data analytics, Data science, Python, Scikit-learn, Pandas, geopandas, Jupyter-notebook. <p>     
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/birds.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Bird migration</h5>
+                                    <a href="/assets/imgs/Projects/birds.png"><i class="ti-zoom-in"></i></a>
+                                    <a href=" "><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Bird migration:</strong>Visualization of bird migration data. (needs updating) <p>
+                                <p><strong>Tech & skills: </strong> SQL, Tableau , Data visualization.<p>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </section>
+        
+        <section id="Apps"  class="section mt-3">          
+            <div class="container text-left">
+                <div class="row2">
+                    <div class="col-sm-6"  style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/sac_web_app.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>SHared Appartment REnt Calculator (SHARE)</h5>
+                                    <a href="/sac"><i class="ti-zoom-in"></i></a>
+                                    <a href="/sac"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>SHared Appartment REnt Calculator (SHARE):</strong>Simple calculator to approximate the share of rent each tenant should pay, 
+                                given the area of their room and the total rent of the appartment. It is also possible to add extra shared taxes like intenet or council tax to the calculation for budgeting purposes.
+    
+                                The app Is inspired by my experience trying to find a accomodation in cities where rent is very high and sharing accomodation is commonplace. It is meant to be a first guess at what a fare share of rent would be for each flatmate. 
+                                It doesn't take into account features like insuite bathrooms, balcony, etc..<p>
+                            <p><strong>Tech & skills: </strong> Javascript, HTML <p>        
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/tracking_app.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Task tracker</h5>
+                                    <a href="/assets/imgs/Projects/tracking_app.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/Tracking_app"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Task Tracker: </strong>Python app to track time spent on tasks. One can add what taks it wished to track, and the amount to time spent on each task each day. It is meant to be a tracking app for desktop only, to avoid interactig with a phone.
+    
+                                It also allows to plot time spent on each task, to be able to visualize progress and consistance.<p>
+                                    <p><strong>Tech & skills: </strong> Full stack, Python, Pandas, json <p>        
+    
+                        </div>
+                    </div>
+    
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/mixxx_screenshot.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>MIXX swing dj set extension</h5>
+                                    <a href="/assets/imgs/Projects/mixxx_screenshot.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/mixx_addon"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>MIXX swing dj set extension: </strong>It is meant to complement my use of MIXXX as a tool for DJ-ing at swing and blues social dance events, as a ways to explore and analyze my library and my sets, and reflect on my choices and posibly give me new ideas to explore.
+                                This program uses SQlite and Dash to generate a dashboard from a query of "mixxxdb.sqlite", a file that contains the metadata of my MIXXX library and playlists. <p>
+                                    <p><strong>Tech & skills: </strong> Data analysis, data visualization, Python, Dash, Plotly, SQL. <p>       
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="Plots and visualizations"  class="section mt-3">
+            <div class="container text-center" style="padding-bottom:30px;">
+                <h1 class="section-title mb-4">Plots and visualizations</h1>
+            </div>
+                
+            <div class="container text-left">
+                <div class="row2">
+                    <div class="col-sm-6"  style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/wordcloud.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Nonlinar Systems Wordcloud</h5>
+                                    <a href="/assets/imgs/wordcloud.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/NL-Dynamics-wordcloud"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Nonlinear Systems Worldcloud: </strong> Wordcloud of keywords appearing in all the articles of the journal of nonlinear dynamics since 2020. Click on the image link to access the Github project with the source code. This project is inspired by this quote: <p>
+                            <p class="mb-2 pb-2"> “Using a term like nonlinear science is like referring to the bulk of zoology as the study of non-elephant animals.” – Stanislaw Ulam.</p>
+                            <p><strong>Tech & skills: </strong> Webscrapping, Python, Worldsoup, storytelling.<p>       
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/giffy.gif" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Spring pendulum</h5>
+                                    <a href="/assets/imgs/giffy.gif"><i class="ti-zoom-in"></i></a>
+                                    <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Spring Pendulum: </strong> Visualization of the dynamics of the spring pendulum system<p>
+                                <p><strong>Tech & skills: </strong> Data visualization, Python, Matplotlib.<p>      
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-4"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/3_WAVE.gif" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>3 wave stabilization</h5>
+                                    <a href="/assets/imgs/3_WAVE.gif"><i class="ti-zoom-in"></i></a>
+                                    <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>3 Wave stabilization: </strong> Modulational instability animation. Showing the nonlinear interation between frequencies of a propagating wave in a self-focusing regime. <p>
+                                <p><strong>Tech & skills: </strong> Data visualization, Differential equations.<p>      
+    
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-4"></h6>
+                </div>
+            
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/jet_example.png" alt="">
+                            <img src="/assets/imgs/topoexample.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Stiched colormaps</h5>
+                                    <a href="/assets/imgs/jet_example.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/-stitched_colorbars/wiki/Stiched-Colormaps"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Custom colormaps code: </strong> This is a Python and Matlab code to make a new colormap by stitching together two pre-existing colormaps. It allows joining two diverging colormaps, but being able to change the colorbar limits and the pivot point of the divergence.
+                                <p>It is usefull for data that has relevant information in very different ranges, or has a natural threshold that divides the data (For example topography with a water level.)     
+                                    Click on the image link to access the github repository.<p>
+                            <p><strong>Tech & skills: </strong> Data visualization, Python, Matlab.<p>      
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/filament_scheme2.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Filamentation scheme</h5>
+                                    <a href="/assets/imgs/jet_example.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/Filamentation_scheme/wiki/Filamentation-Scheme"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Laser filamentation scheme </strong>3d Laser filamentation scheme made in Python.<p>
+                                <p><strong>Tech & skills: </strong> Data visualization, Dessign, Python, Matplotlib.<p>    
+    
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="instas" class="section">
+            <div class="container text-center">
+                <h6 class="section-title mb-4">My photography social media</h6>
+                <p class="mb-4 pb-4"> You can peep a bit of my photography on my instagrams</p>
+        
+                <div class="row mx-auto">
+                    <div class="col-sm-5 col-md-4 mb-3">
+                        <div class="custom-card card border">
+                            <div class="card-body">
+                             <a href=https://www.instagram.com/lookn_around/ target="_blank">   <i  class="icon ti-instagram"> </i></a>
+                                <h5><a href=https://www.instagram.com/lookn_around/ target="_blank">  General photography</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-4 mb-3">
+                        <div class="custom-card card border">
+                            <div class="card-body">
+                             <a href=https://www.instagram.com/lookn_around_world/ target="_blank">   <i  class="icon ti-instagram"> </i></a>
+                                <h5><a href=https://www.instagram.com/lookn_around_world/ target="_blank">Travel photography</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-4 mb-3">
+                        <div class="custom-card card border">
+                            <div class="card-body">
+                             <a href=https://www.instagram.com/lookn_around_dreams/ target="_blank">   <i  class="icon ti-instagram"> </i></a>
+                                <h5> <a href=https://www.instagram.com/lookn_around_dreams/ target="_blank">Experimental photography </a></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gurushots" class="section mt-3">
+            <div class="container text-center">
+                <h2>Gurushots</h2>
+                <a href="https://gurushots.com/lookn_around/photos" target="_blank">Gurushots profile</a>
+            </div>       
+         </section>
+
+        <section id="resources" class="section mt-3">
+            <div class="bg-image bg-image-white"  style="  background-image: url(/assets/imgs/DSC02718-2.jpg); "  >
+                <div class=" bg-image-white"   style=" background-color: rgba(255, 255, 255, 0.7); "  >
+                     <div class="container text-left">
+                         
+                        <h6 class="mb-6 pb-4"></h6>
+            
+                        <h2>Visualization resources</h2>
+                        <h5>
+                        <a href="https://www.simplifiedsciencepublishing.com/resources/best-color-palettes-for-scientific-figures-and-data-visualizations" target="_blank"  style="color: #ff625b";> simplifiedsciencepublishing.com: Choosing palettes for scientific visualization</a>
+                        </h5>
+            
+                        <h5>
+                        <a 
+                        href="https://matplotlib.org/cmocean/" target="_blank" style="color: #ff625b";>CMocean colormaps for earth sciences </a>
+                        </h5>
+                    
+                        <h5>
+                        <a href="https://onlinelibrary.wiley.com/doi/10.1002/rth2.12308" target="_blank" style="color: #ff625b";>Choosing color palettes for scientific figures. Timothy B. Plante MD, MHS, Mary Cushman MD, MSc </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html" target="_blank" style="color: #ff625b";> Turbo, An Improved Rainbow Colormap for Visualization  </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://www.fabiocrameri.ch/colourmaps/" target="_blank" style="color: #ff625b";> Fabio crameri's scientific colormaps </a>
+                        </h5>
+                        
+                        <h5>                    
+                        <a href="https://www.nature.com/articles/s41467-020-19160-7 " target="_blank" style="color: #ff625b";> The misuse of colour in science communication. Fabio Crameri, Grace E. Shephard & Philip J. Heron  </a>
+                        </h5>
+            
+                        <h5>
+                        <a href="https://economicsfromthetopdown.com/2020/07/23/10-tips-for-making-beautiful-charts/" target="_blank" style="color: #ff625b";> 10 Tips for Making Beautiful Charts  </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833" target="_blank" style="color: #ff625b";> Ten Simple Rules for Better Figures.   Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://www.youtube.com/watch?v=Qj1FK8n7WgY&" target="_blank" style="color: #ff625b";> Youtube: Understanding color. Blender Guru </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://www.edwardtufte.com/tufte/" target="_blank" style="color: #ff625b";> Edward Tufte website </a>
+                        </h5>
+                        
+                        <h2>Blender for plots</h2>
+                        
+                    </div>              
+                </div>
+            </div>
+        </section>
+
+		<Footer />
+        
+        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+        <script is:inline src="/assets/js/steller.js"></script>
+	</body>
+</html>
