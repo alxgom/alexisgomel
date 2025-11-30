@@ -1,0 +1,132 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// GTM ID
+const GTM_ID = 'GTM-WDZK7ZFX'; 
+
+// --------------------------------------------------------
+// 👇 UPDATE YOUR PLAYLIST IDs HERE
+// --------------------------------------------------------
+// Go to Spotify -> Share -> Copy link to playlist. 
+// The ID is the part after /playlist/ and before the ?
+// Example: https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M
+// ID is: 37i9dQZF1DXcBWIGoYBM5M
+
+const PLAYLIST_IDS = [
+    "0J4qeq2hJbGkhBqM7Wpl8P", // Replace with your real IDs
+    "37i9dQZF1DX0XUsuxWHRQd",
+    "37i9dQZF1DX1lVhptIYRda",
+    "37i9dQZF1DWWQRwui0ExPn",
+    "37i9dQZF1DX4WYpdgoIcn6",
+    "37i9dQZF1DX5Ejj0wGpE9G"
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Playlists - ${SITE_TITLE}`} description="My Spotify Playlists" />
+
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+            });
+        </script>
+
+        <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
+        <script is:inline src="/cookie-banner/silktide-consent-manager.js"></script>
+        
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof silktideCookieBannerManager !== 'undefined') {
+                    silktideCookieBannerManager.updateCookieBannerConfig({
+                        background: { showBackground: true },
+                        cookieIcon: { position: "bottomLeft" },
+                        cookieTypes: [
+                            { id: "necessary", name: "Necessary", required: true },
+                            {
+                                id: "analytics", name: "Analytics", defaultValue: true,
+                                onAccept: function() {
+                                    gtag('consent', 'update', { analytics_storage: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_analytics' });
+                                },
+                                onReject: function() { gtag('consent', 'update', { analytics_storage: 'denied' }); }
+                            },
+                            {
+                                id: "advertising", name: "Advertising",
+                                onAccept: function() {
+                                    gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_advertising' });
+                                },
+                                onReject: function() {
+                                    gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+        </script>
+
+        <script is:inline define:vars={{ GTM_ID }}>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer', GTM_ID);
+        </script>
+
+        <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="/assets/css/steller.css">
+	</head>
+
+	<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+        
+        <noscript>
+            <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
+		<Header />
+		
+        <div class="container mt-5 pt-5 mb-5">
+            <div class="text-center mb-5">
+                <h1 class="section-title">Spotify Playlists</h1>
+                <p>These are my playlists. Please enjoy ;)</p>
+            </div>
+
+            <div class="row">
+                {PLAYLIST_IDS.map((id) => (
+                    <div class="col-md-6 mb-4">
+                        <iframe 
+                            style="border-radius:12px" 
+                            src={`https://open.spotify.com/embed/playlist/${id}?utm_source=generator`} 
+                            width="100%" 
+                            height="352" 
+                            frameborder="0" 
+                            allowfullscreen="" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+		<Footer />
+        
+        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+        <script is:inline src="/assets/js/steller.js"></script>
+	</body>
+</html>
