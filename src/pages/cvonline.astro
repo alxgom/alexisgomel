@@ -1,0 +1,531 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// GTM ID
+const GTM_ID = 'GTM-WDZK7ZFX'; 
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`CV - ${SITE_TITLE}`} description="Alexis Gomel - CV" />
+
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+            });
+        </script>
+
+        <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
+        <script is:inline src="/cookie-banner/silktide-consent-manager.js"></script>
+        
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof silktideCookieBannerManager !== 'undefined') {
+                    silktideCookieBannerManager.updateCookieBannerConfig({
+                        background: { showBackground: true },
+                        cookieIcon: { position: "bottomLeft" },
+                        cookieTypes: [
+                            { id: "necessary", name: "Necessary", required: true },
+                            {
+                                id: "analytics", name: "Analytics", defaultValue: true,
+                                onAccept: function() {
+                                    gtag('consent', 'update', { analytics_storage: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_analytics' });
+                                },
+                                onReject: function() { gtag('consent', 'update', { analytics_storage: 'denied' }); }
+                            },
+                            {
+                                id: "advertising", name: "Advertising",
+                                onAccept: function() {
+                                    gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_advertising' });
+                                },
+                                onReject: function() {
+                                    gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+        </script>
+
+        <script is:inline define:vars={{ GTM_ID }}>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer', GTM_ID);
+        </script>
+
+        <script is:inline type="text/javascript" src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"></script>
+        <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="/assets/css/steller.css">
+	</head>
+
+	<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+        
+        <noscript>
+            <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
+		<Header />
+		
+        <div class="container mt-5 pt-5">
+            
+            <section id="Current" class="section mt-3">
+                <div class="container text-center">
+                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;" >What I Do</h1>
+                    <p class="mb-2 pb-2">I am a physicist with a passion for nonlinear dynamics, data science, complex systems, early warnings, statistical mechanics and its applications to many systems. My research interests also extend to education and the fields of generative AI and data science.</p>
+                    <p class="mb-5 pb-4">My last position was as post-doc researcher at the university of Reading as part of the <a  href="https://www.tipes.dk/tipping-points/" > TiPES project</a>. </p>
+                    <div class="general-img-holder">
+                        <img src="/assets/imgs/wordcloud.png" alt="Image generated by webscraping the keywords from all the articles since 2020 in the jouirnal of nonlinear dynamics" >
+                    </div> 
+                    <p class="mb-2 pb-2"> “Using a term like nonlinear science is like referring to the bulk of zoology as the study of non-elephant animals.” – Stanislaw Ulam.</p>
+                </div>
+            </section>
+           
+            <section id="Skills" class="section mt-3">
+                <div class="container text-center">
+                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;">Skills</h1>
+                    <h6 class="mb-2 pb-4"></h6>
+                </div>
+           
+                <div class="container text-center">
+                    <div class="row mx-auto">
+                        <div class="col-sm-4 col-md-4 mb-3 d-flex align-items-end">
+                            <div class="rotated-text" style="color: #ff7a57; margin-right: -65px;">
+                                <span>Advanced</span>
+                            </div>
+                            <div class="left-bar" style="height: 150px; background-color: #ff7a57;"></div>
+                            <div class="text-content" >
+                                <h3 class="section-title mb-2">
+                                     <div class="skill-item">
+                                        <span class="skill">Python</span>
+                                        <span class="experience">+8yrs</span>
+                                    </div>
+                                </h3>
+                                <h3 class="section-title mb-2">
+                                     <div class="skill-item">
+                                        <span class="skill">Matlab</span>
+                                        <span class="experience">+7yrs</span>
+                                     </div>
+                                </h3>
+                                <h3 class="section-title mb-2">
+                                     <div class="skill-item">
+                                        <span class="skill">Git</span>
+                                        <span class="experience">+5yrs</span>
+                                     </div>
+                                </h3>
+                             </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-4 mb-3 d-flex align-items-end">
+                            <div class="rotated-text" style="color: #ffa189; margin-right: -85px;">
+                                <span>Intermediate</span>
+                            </div>
+                            <div class="left-bar" style="height: 100px; background-color: #ffa189;"></div>
+                                <div class="text-content">
+                                    <h3 class="section-title mb-2">
+                                         <div class="skill-item">
+                                            <span class="skill">Latex</span>
+                                            <span class="experience">+6yrs</span>
+                                         </div>
+                                    </h3>
+                                    <h3 class="section-title mb-2">
+                                         <div class="skill-item">
+                                            <span class="skill">SQL</span>
+                                            <span class="experience">New</span>
+                                         </div>
+                                    </h3>
+                                 </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-4 mb-3 d-flex align-items-end">
+                            <div class="rotated-text" style="color: #ffc9bb; margin-right: -60px;">
+                                <span>Begginer</span>
+                            </div>
+                            <div class="left-bar" style="height: 60px; background-color: #ffc9bb;"></div>
+                                <div class="text-content">
+                                    <h3 class="section-title mb-2">
+                                         <div class="skill-item">
+                                            <span class="skill">HTML</span>
+                                            <span class="experience">+1yrs</span>
+                                        </div>
+                                    </h3>
+                                    <h3 class="section-title mb-2">
+                                         <div class="skill-item">
+                                            <span class="skill">Spark</span>
+                                            <span class="experience">New</span>
+                                        </div>
+                                    </h3>
+                                    <h3 class="section-title mb-2">
+                                         <div class="skill-item">
+                                            <span class="skill">Tableau</span>
+                                            <span class="experience">New</span>
+                                        </div>
+                                    </h3>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h6 class="mb-2 pb-4"></h6>
+                
+                <div class="container text-left">
+                    <section>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="rectangle"></div>
+                                <div class="text">
+                                    <h3>Data Science</h3>
+                                    <p>Data Analysis, Data Storytelling, Data Visualizations, Statistics, Mathematical Modelling, Numerical Simulations Time Series Analysis.</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="rectangle"></div>
+                                <div class="text">
+                                    <h3>Mathematics</h3>
+                                    <p>Regressions, Fourier analysis, numerical integration, extrapolation, interpolation, wavelet analysis, stochastic simulations, nonlinear differential equations, linear algebra, modelling.</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="rectangle"></div>
+                                <div class="text">
+                                    <h3>Statistics</h3>
+                                    <p>Ensemble statistics, uncertainty estimation, PCA, k-means, correlation, mutual information, unbiased statistical moments.</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="rectangle"></div>
+                                <div class="text">
+                                    <h3>Physics</h3>
+                                    <p>Non-linear dynamics, Laser physics, Fluid Mechanics, Statistical Physics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <h6 class="mb-2 pb-4"></h6>
+                <div class="bar-plot-container">
+                    <canvas id="langChart"></canvas>
+                </div>
+            </section>
+           
+            <section id="Formation" class="section mt-3">
+                <div class="container text-center">
+                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;">Academic Formation</h1>
+                    <h6 class="mb-2 pb-4"></h6>
+            
+                    <div class="row mx-auto">
+                        <div class="col-sm-6 col-md-6 mb-3">
+                            <h2 class="section-title mb-3" style="font-weight: bold; font-size: 34px;" >PHD in Physical sciences</h2>
+                            <h3 class="section-title mb-2">Behavior of self-modulated waves in nonlinear systems</h3>
+                            <div class="img-holder">
+                                <style>
+                                  .imagefac {
+                                    width: auto;
+                                    height: 100px;
+                                  }
+                                </style>
+                                <img src="/assets/imgs/fac_sciences_noir.png" alt=""   class="imagefac" />
+                                <h6 class="mb-3 pb-2" style="font-size: 20px;">University of Geneva</h6>
+                                <h6 class="mb-1 pb-2">Advisors</h6>
+                                <p> Advisor: Jérôme Kasparian</p>
+                                <p> Co-advisor: Maura Brunetti</p>
+                            </div>            
+                        </div>  
+                        <div class="col-sm-6 col-md-6 mb-3">
+                            <h2 class="section-title mb-3" style="font-weight: bold; font-size: 34px;">Master in Physical sciences</h2>
+                            <h3 class="section-title mb-2">Rogue waves en lasers modulados en fase</h3>
+                            <h3 class="section-title mb-2">(Rogue waves in phase modulated lasers)</h3>
+                            <div class="img-holder">
+                                <img src="/assets/imgs/600px-UBA.png" alt="" class="imagefac" />
+                                <h6 class="mb-3 pb-2" style="font-size: 20px;">University of Buenos Aires</h6>
+                                <h6 class="mb-1 pb-2">Advisors</h6>
+                                <p> Advisor: Jorge Tredicce</p>
+                                <p> Co-advisor: Pablo Mininni</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="container text-center">
+                <h1 class="section-title mb-4">Other formation</h1>
+                <p> June 2022 - Introduction to Machine Learning, University of Lausanne (UNIL)</p>
+            </div>
+           
+            <section id="Teaching" class="section mt-3">
+                <div class="container text-center">
+                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;">Teaching Experience</h1>
+                    <h6 class="mb-2 pb-4"></h6>
+                    <div class="row mx-auto">
+                        <div class="col-sm-6 col-md-6 mb-3">
+                            <h2 class="section-title mb-4" style="font-weight: bold; font-size: 34px;" >University level</h2>
+                            <h6 class="mb-5 pb-2"></h6>
+            
+                            <h3 class="mb-3 pb-3"> University of Geneva</h3>
+                                <p style="font-weight: bold;"> Teaching assistant</p>
+                                <h6 class="mb-2 pb-2"> February 2019 - July 2022</h6>
+                                <p> Courses: Physics lab for biologist, Nonlinear Dynamics (in charge of the whole practice)</p>
+                                
+                                <h6 class="mb-5 pb-3"></h6>
+                                <h3 class="mb-2 pb-3">University of Buenos Aires</h3>
+                                <p style="font-weight: bold;"> Teaching assistant</p>
+                                <h6 class="mb-2 pb-2">February 2016 - April 2016</h6>
+                                <p> Courses: Introduction to thermodynamics and quantum mechanics.</p>
+                        </div>
+                    
+                        <div class="col-sm-6 col-md-6 mb-3">
+                            <h1 class="section-title mb-4" style="font-weight: bold; font-size: 34px;">High school level</h1>   
+                            <h6 class="mb-5 pb-3"></h6>
+                            <h3 class="mb-3 pb-3">Paidea School</h3>
+                                <p style="font-weight: bold;" > Physics replacement teacher</p>
+                                <h6 class="mb-2 pb-2">October 2017 - November 2017</h6>
+                                <p> Short physics replacement for the 16-17yrs old students.</p>
+                                <h6 class="mb-5 pb-3"></h6>
+                                <h3 class="mb-3 pb-3">River Plate High School</h3>
+                                <p style="font-weight: bold;"> Math replacement teacher</p>
+                                <h6 class="mb-2 pb-2">July 2015 - February 2016</h6>
+                                <p> In charge of math for the 14-17yrs old students.</p>
+                                <h6 class="mb-5 pb-3"></h6>
+                                <h3 class="mb-3 pb-3">Boston High shcool</h3>
+                                <p style="font-weight: bold;"> Math replacement teacher</p>
+                                <h6 class="mb-2 pb-2">September 2015 - Dicember 2015</h6>
+                                <p> In charge of math for the 16yrs old students.</p>
+                                <h6 class="mb-5 pb-2"></h6>                 
+                        </div>
+                    </div>
+                </div>
+            </section>
+           
+            <section id="Publications" class="section mt-3">
+                <div class="container text-center">
+                  
+                    <div class="bibtex_template">
+                        <div style="margin-left: 10px; margin-bottom:5px;">
+                            <span class="title " style="font-size: 28px;  font-family: American Typewriter;" ></span>
+                        </div>
+                        <div class="if author" >
+                            <span class="if year">
+                              <span class="year" style="font-size: 20px"></span>, 
+                            </span>
+                            <span class="author"  style="font-size: 20px"></span>
+                            <span class="if url" style="margin-left: 20px">
+                              <a class="url" style="color:black; font-size:10px">(view online)</a>
+                            </span>
+                            <h6 class="mb-1 pb-1"></h6>
+                        </div>
+                    </div>
+                
+                    <h1 class="section-title mb-6 pb-3" style="font-weight: bold; font-size: 40px;">Publications</h1>
+                    
+                    <bibtex src="/mybib.bib"></bibtex>
+                    
+                    <div class="bibtex_display" bibtexkey="Gomel2023"></div>
+                    <div class="bibtex_display" bibtexkey="Gomel2021"></div>
+                    <div class="bibtex_display" bibtexkey="Marconi2020a"></div>
+                    <div class="bibtex_display" bibtexkey="Armaroli2020"></div>
+                    <div class="bibtex_display" bibtexkey="Gomel2019"></div>
+                </div>
+            </section>
+           
+            <section id="Presentations and congresses" class="section mt-3">
+                <div class="container text-center">
+                    <h1 class="section-title mb-6 pb-3" style="font-weight: bold; font-size: 40px;">Presentations and congresses</h1>
+                        
+                    <div class="bibtex_display mb-6" bibtexkey="Gomel2022"></div>
+                    <p>Conference: EGU 2022. Vienna, Austria. </p>  
+                    <p> Format: Talk. Speaker: Alexis Gomel. </p>   
+                    
+                    <h1 class="mb-6 pb-2" style="font-size: 28px;">Freezing of Unsteady Nonlinear Waves over an uneven bottom by Phase-Space   Manipulation.</h1>
+                    <p>  Authors: Debbie Eeltink, Hubert Branger, Christopher Luneau, Andrea Armaroli,
+                    Maura Brunetti, Jérôme Kasparian, Alexis Gomel</p>  
+                    <p> Conference: Enoc 2022. Lyon, France. </p>   
+                    <p> Format: Talk. Speaker: Alexis Gomel. </p>   
+                </div>
+            </section>
+            
+            <section id="Past_jobs" class="section mt-3">
+                <div class="container text-center">
+                    <h1 class="section-title mb-6" style="font-weight: bold; font-size: 30px;">Other jobs</h1>
+                    <h6 class="mb-5 pb-2"></h6>
+                    <h3 class="mb-3 pb-4">Techopolis</h3>
+                    <p> Exhibitos</p>
+                    <h6 class="mb-2 pb-2">Agoust 2014 - October 2014</h6>
+                    <p> Physics related divulgation</p>
+                    <h6 class="mb-5 pb-2"></h6>
+                    <h3 class="mb-3 pb-4">Hacoaj</h3>
+                    <p> Security</p>
+                    <h6 class="mb-2 pb-2">July 2010 - November 2010</h6>
+                    <p> Security at Club Náutico Hacoaj, Tigre, Buenos Aires</p>
+                    <h6 class="mb-5 pb-2"></h6>
+                    <h3 class="mb-3 pb-4">Mi Cuba linda</h3>
+                    <p> Call center </p>
+                    <h6 class="mb-2 pb-2">May 2006 - September 2006</h6>
+                    <p> Call Center operator</p>
+                    <h6 class="mb-5 pb-2"></h6>
+                </div>
+            </section>
+
+        </div>
+
+		<Footer />
+        
+        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+        <script is:inline src="/assets/js/steller.js"></script>
+
+        <script is:inline>
+            // Define a function to generate a color gradient
+            function lightenColor(color, percent) {
+                const num = parseInt(color.slice(1), 16),
+                    amt = Math.round(2.55 * percent),
+                    R = (num >> 16) + amt,
+                    G = (num >> 8 & 0x00FF) + amt,
+                    B = (num & 0x0000FF) + amt;
+                return `#${(0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + 
+                        (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + 
+                        (B < 255 ? B < 1 ? 0 : B : 255))
+                        .toString(16).slice(1).toUpperCase()}`;
+            }
+
+            // Base color
+            const baseColor = '#ff7a57';
+
+            // Generate a gradient of colors
+            const colors = [
+                baseColor,
+                lightenColor(baseColor, 0),
+                lightenColor(baseColor, 10),
+                lightenColor(baseColor, 20),
+                lightenColor(baseColor, 20),
+                lightenColor(baseColor, 30),
+                lightenColor(baseColor, 35),
+                lightenColor(baseColor, 35),
+                lightenColor(baseColor, 35),
+            ];
+
+            // Data for the Language bar plot
+            const data_lang = {
+                labels: ['Spanish', 'English', 'French', 'German'],
+                datasets: [{
+                    label: 'Skill Level',
+                    data: [100, 90, 40, 30],
+                    backgroundColor: colors,  // Uniform bar color
+                    borderColor: colors, 
+                    borderWidth: 1
+                }]
+            };
+
+            // Configuration options
+            const config_lang = {
+                type: 'bar',  // Bar chart type
+                data: data_lang,
+                options: {
+                    indexAxis: 'y',  // Horizontal bars
+                    scales: {
+                        x: {
+                            display: false  // Remove x axis completely
+                        },
+                        y: {
+                            grid: {
+                                display: false  // Remove grid lines
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false  // Hide the legend
+                        }
+                    }
+                }
+            };
+            
+            // Render the bar plot
+            // Note: I removed skillsChart because its HTML container was commented out in your code
+            // Only langChart had a visible container.
+            const langChart = new Chart(
+                document.getElementById('langChart'),
+                config_lang
+            );
+        </script>
+	</body>
+</html>
+
+<style>
+    .left-bar {
+        width: 48px;
+        margin-right: 10px; /* Space between the bar and the text */
+        margin-left: 0px; 
+        /* margin-down: 0px; Invalid property */
+        flex-shrink: 0; /* Prevent the bar from shrinking */
+        align-self: flex-end; /* Ensure the bar starts from the bottom */
+    }
+
+    .d-flex {
+        display: flex;
+        align-items: flex-end; /* Align items at the top */
+    }
+
+    .rotated-text {
+        display: flex;
+        align-items: flex-end ;
+        justify-content: center;
+        height: 100%; /* Ensure the rotated text spans the height of the column */
+        font-weight: bold;
+    }
+
+    .rotated-text span {
+        display: inline-block;
+        transform: rotate(-90deg); /* Rotate the text 90 degrees */
+        transform-origin:  bottom left ;
+        font-size: 14px; /* Adjust the font size as needed */
+        white-space: nowrap; /* Prevent the text from wrapping */
+        padding: 0; /* Remove any padding */
+    }
+
+    .text-content {
+        flex: 1; /* Allows the text content to fill the remaining space */
+        margin-left: 0px; /* Reduced space between the text content and the bar */
+        align-self: flex-end; /* Ensure the bar starts from the bottom */
+        margin-bottom: -10px; /* Slightly decrease bottom margin to bring lines closer */
+
+    }
+    
+    .skill-item {
+        display: flex;
+        justify-content: flex-start; /* Align skill and experience on the same line */
+        margin-bottom: 4px; /* Slightly decrease bottom margin to bring lines closer */
+        gap: 2px; /* Control the space between skill and experience */
+    }
+
+    .skill {
+       flex: 1; /* Ensure skill name takes available space */
+        margin-right: 0px; /* Remove space between skill name and experience */
+        text-align: left; /* Align skill name to the left */
+        font-size: 16px; /* Adjust font size as needed */
+    }
+
+    .experience {
+        flex-shrink: 0;
+        text-align: right;
+        font-size: 16px; /* Adjust font size as needed */
+    }
+</style>
