@@ -1,0 +1,65 @@
+---
+interface Skill {
+    name: string;
+    experience: string;
+}
+
+interface Props {
+    title: string; // "Advanced", "Intermediate", etc.
+    color: string; // Hex color code
+    height: string; // Height of the bar
+    skills: Skill[];
+}
+
+const { title, color, height, skills } = Astro.props;
+---
+
+<div class="col-sm-4 col-md-4 mb-3 d-flex align-items-end">
+    <div class="rotated-text" style={`color: ${color}; margin-right: -65px;`}>
+        <span>{title}</span>
+    </div>
+    <div class="left-bar" style={`height: ${height}; background-color: ${color};`}></div>
+    
+    <div class="text-content">
+        {skills.map((skill) => (
+            <h3 class="section-title mb-2">
+                <div class="skill-item">
+                    <span class="skill">{skill.name}</span>
+                    <span class="experience">{skill.experience}</span>
+                </div>
+            </h3>
+        ))}
+    </div>
+</div>
+
+<style>
+    /* Moved all that messy CSS here, scoped to this component! */
+    .left-bar {
+        width: 48px;
+        margin-right: 10px; 
+        margin-left: 0px; 
+        flex-shrink: 0; 
+        align-self: flex-end; 
+    }
+    .d-flex { display: flex; align-items: flex-end; }
+    .rotated-text {
+        display: flex; align-items: flex-end; justify-content: center;
+        height: 100%; font-weight: bold;
+    }
+    .rotated-text span {
+        display: inline-block; transform: rotate(-90deg); transform-origin: bottom left;
+        font-size: 14px; white-space: nowrap; padding: 0;
+    }
+    .text-content {
+        flex: 1; margin-left: 0px; align-self: flex-end; margin-bottom: -10px;
+    }
+    .skill-item {
+        display: flex; justify-content: flex-start; margin-bottom: 4px; gap: 2px;
+    }
+    .skill {
+       flex: 1; margin-right: 0px; text-align: left; font-size: 16px;
+    }
+    .experience {
+        flex-shrink: 0; text-align: right; font-size: 16px;
+    }
+</style>

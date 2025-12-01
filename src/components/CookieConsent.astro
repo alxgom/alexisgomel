@@ -1,0 +1,89 @@
+---
+interface Props {
+  currentLang: string;
+}
+
+const { currentLang } = Astro.props;
+const GTM_ID = 'GTM-WDZK7ZFX';
+
+// Define translations for the banner
+const i18n = {
+  en: {
+    bannerTitle: 'Your privacy matters to us',
+    accept: 'Accept custom cookies',
+    reject: 'Reject custom cookies',
+  },
+  es: {
+    bannerTitle: 'Tu privacidad nos importa',
+    accept: 'Aceptar cookies',
+    reject: 'Rechazar',
+  }
+};
+
+// Select text based on current language
+const text = currentLang === 'es' ? i18n.es : i18n.en;
+---
+
+<script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+    });
+</script>
+
+<link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
+<script is:inline src="/cookie-banner/silktide-consent-manager.js"></script>
+
+<script is:inline define:vars={{ text }}>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof silktideCookieBannerManager !== 'undefined') {
+            silktideCookieBannerManager.updateCookieBannerConfig({
+                background: { showBackground: true },
+                cookieIcon: { position: "bottomLeft" },
+                text: {
+                    bannerTitle: text.bannerTitle,
+                    acceptButtonText: text.accept,
+                    rejectButtonText: text.reject,
+                },
+                cookieTypes: [
+                    { id: "necessary", name: "Necessary", required: true },
+                    {
+                        id: "analytics", name: "Analytics", defaultValue: true,
+                        onAccept: function() {
+                            gtag('consent', 'update', { analytics_storage: 'granted' });
+                            dataLayer.push({ 'event': 'consent_accepted_analytics' });
+                        },
+                        onReject: function() { gtag('consent', 'update', { analytics_storage: 'denied' }); }
+                    },
+                    {
+                        id: "advertising", name: "Advertising",
+                        onAccept: function() {
+                            gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+                            dataLayer.push({ 'event': 'consent_accepted_advertising' });
+                        },
+                        onReject: function() {
+                            gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+                        }
+                    }
+                ]
+            });
+        }
+    });
+</script>
+
+<script is:inline define:vars={{ GTM_ID }}>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer', GTM_ID);
+</script>
+
+<noscript>
+    <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>

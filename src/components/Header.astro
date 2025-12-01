@@ -1,3 +1,21 @@
+---
+// Existing Frontmatter and Imports
+import { SITE_TITLE } from '../consts';
+const { pathname } = Astro.url; // Get the current path (e.g., /projects)
+const isSpanish = pathname.startsWith('/es/'); // Check if we are currently in /es/
+
+// Determine the URL for the opposite language
+// This logic handles both the root (/) and subpages (/projects)
+const esUrl = isSpanish ? pathname.replace('/es/', '/') : `/es${pathname}`;
+
+// Determine the label to display in the switcher
+const label = isSpanish ? 'EN' : 'ES';
+
+// Set the flag for the current language
+const lang = isSpanish ? 'es' : 'en';
+
+---
+
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
     <div class="container">
         <a class="navbar-brand" href="/"><img src="/assets/imgs/icon_website.png" alt=""></a>

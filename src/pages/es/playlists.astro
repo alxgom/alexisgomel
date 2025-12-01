@@ -1,17 +1,17 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE } from '../consts';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
 
-// Import Cookie Consent (Handles GTM + Silktide)
-import CookieConsent from '../components/CookieConsent.astro';
+// Import Cookie Consent Component
+import CookieConsent from '../../components/CookieConsent.astro';
 
 // MULTILINGUAL SETTINGS
-const currentLang = 'en';
-const alternateHref = '/es/playlists'; // Links to Spanish version
+const currentLang = 'es';
+const alternateHref = '/playlists'; // Links back to English
 
-// PLAYLIST IDs
+// PLAYLIST IDs (Same as English)
 const PLAYLIST_IDS = [
     "0J4qeq2hJbGkhBqM7Wpl8P", 
     "1WCwPvPwrhr3qL1j0Ifspw",
@@ -27,9 +27,9 @@ const PLAYLIST_IDS = [
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
-        <BaseHead title={`Playlists - ${SITE_TITLE}`} description="My Spotify Playlists" currentLang={currentLang} alternateHref={alternateHref} />
+        <BaseHead title={`Listas de Música - ${SITE_TITLE}`} description="Mis listas de Spotify" currentLang={currentLang} alternateHref={alternateHref} />
 
         <CookieConsent currentLang={currentLang} />
 
@@ -44,8 +44,8 @@ const PLAYLIST_IDS = [
         
         <div class="container mt-5 pt-5 mb-5">
             <div class="text-center mb-5">
-                <h1 class="section-title">Spotify Playlists</h1>
-                <p>These are my playlists. Please enjoy ;)</p>
+                <h1 class="section-title">Listas de Reproducción de Spotify</h1>
+                <p>Estas son mis listas. ¡Que las disfrutes! ;)</p>
             </div>
 
             <div class="row">
