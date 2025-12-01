@@ -158,7 +158,7 @@ const GTM_ID = 'GTM-WDZK7ZFX';
                             <h6 class="title">Alexis Gomel</h6>
                             <p>Physicist | Data scientist</p>
                             <div class="buttons pt- ">
-                                <a href="mailto:alexis.gomel@gmail.com" target="_blank"> <button class="btn btn-primary rounded"> <i class="ti-email "></i></button>  </a> 
+                                <a href="mailto:alexis.gomel@gmail.com" > <button class="btn btn-primary rounded"> <i class="ti-email "></i></button>  </a> 
                                 <a href="/assets/files/CV_Alexis_Gomel_web.pdf" download>                   
                                 <button class="btn btn-dark rounded">DOWNLOAD CV</button>
                                 </a>
@@ -315,11 +315,13 @@ const GTM_ID = 'GTM-WDZK7ZFX';
         <section id="contact" class="position-relative section">
             <div class="container text-center">
                 <h6 class="subtitle">Contact</h6>
-                <h5 class="section-title mb-4"><a  href="mailto:alexis.gomel@gmail.com" target="_blank"> Send me an email: alexis.gomel@gmail.com </a></h5>
+                <h5 class="section-title mb-4"><a  href="mailto:alexis.gomel@gmail.com" > Send me an email: alexis.gomel@gmail.com </a></h5>
                 <h6 class="subtitle"></h6>
                 
-                <textarea name="message"></textarea>
-                <input type="submit">
+                <form action="mailto:alexis.gomel@gmail.com" method="post" enctype="text/plain">
+    			<textarea name="message" placeholder="Write your message here..." class="form-control mb-3" rows="3"></textarea>
+    			<input type="submit" value="Send Message" class="btn btn-primary">
+				</form>
 
                  <div id="map">
                     <iframe src="https://snazzymaps.com/embed/458460"></iframe>
