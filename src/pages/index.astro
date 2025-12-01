@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION,EMAIL,INSTAGRAM_LINK,LINKEDIN_LINK,GITHUB_LINK,RESEARCHGATE_LINK } from '../consts';
 
 // TRACKING ID
 const GTM_ID = 'GTM-WDZK7ZFX'; 
@@ -16,7 +16,7 @@ const alternateHref = '/es/'; // Links to Spanish version
 <html lang="en">
 	<head>
 		<BaseHead 
-            title={SITE_TITLE} 
+            title={"Homepage"} 
             description={SITE_DESCRIPTION} 
             currentLang={currentLang} 
             alternateHref={alternateHref} 
@@ -107,8 +107,8 @@ const alternateHref = '/es/'; // Links to Spanish version
                             </div>      
 
                             <div class="socials mt-4 ">
-                                <a class="social-item" href="https://www.instagram.com/lookn_around/" target="_blank"><i class="fa-brands fa-instagram fa-1x"></i></a>
-                                <a class="social-item" href="https://www.linkedin.com/in/alexis-gomel-95484278/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                <a class="social-item" href=INSTAGRAM_LINK target="_blank"><i class="fa-brands fa-instagram fa-1x"></i></a>
+                                <a class="social-item" href=LINKEDIN_LINK target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                                 <a class="social-item" href="https://github.com/alxgom" target="_blank"><i class="fa-brands fa-github"></i></a>
                                 <a class="social-item" href="https://www.researchgate.net/profile/Alexis-Gomel" target="_blank"><i class="ai ai-researchgate"></i></a>
                             </div>
