@@ -1,0 +1,79 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+import CookieConsent from '../../components/CookieConsent.astro';
+
+const currentLang = 'es';
+const alternateHref = '/sac'; 
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={`Calculadora SAC - ${SITE_TITLE}`} description="Calculadora de Alquiler Compartido" currentLang={currentLang} alternateHref={alternateHref} />
+        <CookieConsent currentLang={currentLang} />
+
+        <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="/assets/css/steller.css">
+        <link rel="stylesheet" href="/assets/css/sac_styles.css">
+	</head>
+
+	<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+        
+		<Header />
+		
+        <div class="container mt-5 pt-5">
+            <h1>Calculadora de Alquiler Compartido (SHARE)</h1>
+            <form id="rent-form">
+                <div class="inline-inputs">
+                    <div>
+                        <label for="rent">Precio del Alquiler:</label>
+                        <input type="number" id="rent" name="rent" required>
+                    </div>
+                    <div>
+                        <label for="total_area">Área total del apartamento:</label>
+                        <input type="number" id="total_area" name="total_area" required>
+                    </div>
+                    <div id="price-per-unit-area"></div>
+                </div>
+                
+                <label for="num_rooms">Número de habitaciones:</label>
+                <input type="number" id="num_rooms" name="num_rooms" required>
+    
+                <label for="alpha">Valor del espacio compartido (entre 0 y 1):
+                    <div class="tooltip">
+                        0 si el espacio compartido no se cuenta.<br>
+                        1 si el valor por área del espacio compartido es igual al de las habitaciones.<br>
+                        Por defecto: 0.75.
+                    </div>
+                </label>
+                <div class="inline-inputs">
+                    <input type="range" id="alpha" name="alpha" min="0" max="1" step="0.01" value="0.75" style="width: 150px;">
+                    <span id="alpha-value">0.75</span>
+                </div>
+    
+                <div id="room-dimensions-container"></div>
+    
+                <label for="bills">Gastos mensuales (opcional):</label>
+                <input type="number" id="bills" name="bills">
+    
+                <button type="submit">Calcular</button>
+            </form>
+    
+            <div id="warning"></div>
+            <div id="result"></div>
+            <div class="room-visualization" id="room-visualization"></div>
+        </div>
+
+		<Footer />
+        
+        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+        <script is:inline src="/assets/js/steller.js"></script>
+        <script is:inline src="/assets/js/sac_script.js"></script>
+	</body>
+</html>
