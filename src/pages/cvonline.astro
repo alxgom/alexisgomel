@@ -11,6 +11,22 @@ import CookieConsent from '../components/CookieConsent.astro';
 
 const currentLang = 'en';
 const alternateHref = '/es/cvonline'; 
+const advancedSkills = [
+    { name: 'Python', experience: '+8yrs' },
+    { name: 'Matlab', experience: '+7yrs' },
+    { name: 'Git', experience: '+5yrs' }
+];
+
+const intermediateSkills = [
+    { name: 'Latex', experience: '+6yrs' },
+    { name: 'SQL', experience: 'New' }
+];
+
+const beginnerSkills = [
+    { name: 'HTML', experience: '+1yrs' },
+    { name: 'Spark', experience: 'New' },
+    { name: 'Tableau', experience: 'New' }
+];
 ---
 
 <!doctype html>
@@ -57,32 +73,21 @@ const alternateHref = '/es/cvonline';
                             title="Advanced" 
                             color="#ff7a57" 
                             height="150px"
-                            skills={[
-                                { name: 'Python', experience: '+8yrs' },
-                                { name: 'Matlab', experience: '+7yrs' },
-                                { name: 'Git', experience: '+5yrs' }
-                            ]}
+                            skills={advancedSkills}
                         />
 
                         <SkillGroup 
                             title="Intermediate" 
                             color="#ffa189" 
                             height="100px"
-                            skills={[
-                                { name: 'Latex', experience: '+6yrs' },
-                                { name: 'SQL', experience: 'New' }
-                            ]}
+                            skills={intermediateSkills}
                         />
 
                         <SkillGroup 
                             title="Beginner" 
                             color="#ffc9bb" 
                             height="60px"
-                            skills={[
-                                { name: 'HTML', experience: '+1yrs' },
-                                { name: 'Spark', experience: 'New' },
-                                { name: 'Tableau', experience: 'New' }
-                            ]}
+                            skills={beginnerSkills}
                         />
                     </div>
                 </div>
