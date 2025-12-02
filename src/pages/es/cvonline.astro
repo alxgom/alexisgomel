@@ -12,6 +12,23 @@ import SkillGroup from '../../components/cv/SkillGroup.astro';
 const GTM_ID = 'GTM-WDZK7ZFX'; 
 const currentLang = 'es';
 const alternateHref = '/cvonline'; 
+
+const advancedSkills = [
+    { name: 'Python', experience: '+8 años' },
+    { name: 'Matlab', experience: '+7 años' },
+    { name: 'Git', experience: '+5 años' }
+];
+
+const intermediateSkills = [
+    { name: 'Latex', experience: '+6 años' },
+    { name: 'SQL', experience: 'Nuevo' }
+];
+
+const beginnerSkills = [
+    { name: 'HTML', experience: '+1 año' },
+    { name: 'Spark', experience: 'Nuevo' },
+    { name: 'Tableau', experience: 'Nuevo' }
+]; 
 ---
 
 <!doctype html>
@@ -55,32 +72,21 @@ const alternateHref = '/cvonline';
                             title="Avanzado" 
                             color="#ff7a57" 
                             height="150px"
-                            skills={[
-                                { name: 'Python', experience: '+8 años' },
-                                { name: 'Matlab', experience: '+7 años' },
-                                { name: 'Git', experience: '+5 años' }
-                            ]}
+                            skills={advancedSkills}
                         />
 
                         <SkillGroup 
                             title="Intermedio" 
                             color="#ffa189" 
                             height="100px"
-                            skills={[
-                                { name: 'Latex', experience: '+6 años' },
-                                { name: 'SQL', experience: 'Nuevo' }
-                            ]}
+                            skills={intermediateSkills}
                         />
 
                         <SkillGroup 
                             title="Principiante" 
                             color="#ffc9bb" 
                             height="60px"
-                            skills={[
-                                { name: 'HTML', experience: '+1 año' },
-                                { name: 'Spark', experience: 'Nuevo' },
-                                { name: 'Tableau', experience: 'Nuevo' }
-                            ]}
+                            skills={beginnerSkills}
                         />
                     </div>
                 </div>
