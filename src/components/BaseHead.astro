@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, INSTAGRAM_LINK, LINKEDIN_LINK, GITHUB_LINK, RESEARCHGATE_LINK } from '../consts';
 
 interface Props {
 	title: string;
@@ -26,6 +26,22 @@ const alternateLang = currentLang === 'en' ? 'es' : 'en';
 
 // 3. Set the base URL for the 'x-default' (fallback) link
 const enUrl = currentLang === 'en' ? canonicalURL.href : alternateHref;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	"name": "Alexis Gomel",
+	"url": Astro.site,
+	"image": new URL(image, Astro.url),
+	"sameAs": [
+		LINKEDIN_LINK,
+		GITHUB_LINK,
+		RESEARCHGATE_LINK,
+		INSTAGRAM_LINK
+	],
+	"jobTitle": "Physicist | Data Scientist",
+	"description": description
+};
 ---
 
 <meta charset="utf-8" />
@@ -54,3 +70,5 @@ const enUrl = currentLang === 'en' ? canonicalURL.href : alternateHref;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

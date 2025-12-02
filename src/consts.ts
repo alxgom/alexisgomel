@@ -2,7 +2,7 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = "Alexis Gomel";
-export const SITE_DESCRIPTION = "Welcome to my website!";
+export const SITE_DESCRIPTION = "Personal website of Alexis Gomel, Physicist and Data Scientist. Discover my projects, publications, and photography.";
 export const EMAIL = "alexis.gomel@gmail.com";
 export const INSTAGRAM_LINK = "https://www.instagram.com/lookn_around/";
 export const LINKEDIN_LINK = "https://www.linkedin.com/in/alexis-gomel-95484278/";
