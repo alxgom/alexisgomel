@@ -2,19 +2,74 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { SITE_TITLE } from '../../consts';
-import CookieConsent from '../../components/CookieConsent.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+
+// GTM ID for Tracking
+const GTM_ID = 'GTM-WDZK7ZFX'; 
 
 // MULTILINGUAL SETTINGS
 const currentLang = 'es';
-const alternateHref = '/projects'; 
+const alternateHref = '/projects'; // Links to English version
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<BaseHead title={`Proyectos - ${SITE_TITLE}`} description="Mis Proyectos" currentLang={currentLang} alternateHref={alternateHref} />
-        <CookieConsent currentLang={currentLang} />
+
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied'
+            });
+        </script>
+
+        <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
+        <script is:inline src="/cookie-banner/silktide-consent-manager.js"></script>
+        
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", function() {
+                if (typeof silktideCookieBannerManager !== 'undefined') {
+                    silktideCookieBannerManager.updateCookieBannerConfig({
+                        background: { showBackground: true },
+                        cookieIcon: { position: "bottomLeft" },
+                        cookieTypes: [
+                            { id: "necessary", name: "Necesario", required: true },
+                            {
+                                id: "analytics", name: "Analítica", defaultValue: true,
+                                onAccept: function() {
+                                    gtag('consent', 'update', { analytics_storage: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_analytics' });
+                                },
+                                onReject: function() { gtag('consent', 'update', { analytics_storage: 'denied' }); }
+                            },
+                            {
+                                id: "advertising", name: "Publicidad",
+                                onAccept: function() {
+                                    gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+                                    dataLayer.push({ 'event': 'consent_accepted_advertising' });
+                                },
+                                onReject: function() {
+                                    gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+                                }
+                            }
+                        ]
+                    });
+                }
+            });
+        </script>
+
+        <script is:inline define:vars={{ GTM_ID }}>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer', GTM_ID);
+        </script>
 
         <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -23,61 +78,345 @@ const alternateHref = '/projects';
 
 	<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
         
+        <noscript>
+            <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
 		<Header />
 		
-        <div class="container mt-5 pt-5">
-            <div class="header-title" style="text-align: center;">
-                <h2>Proyectos personales, Recursos y Otros</h2>
+        <section id="Data Projects"  class="section mt-3">
+            <div class="container text-center" style="padding-bottom:30px;">
+                <h1 class="section-title mb-4">Proyectos de Datos</h1>
             </div>
-
-            <section id="Data Projects" class="section mt-3">
-                <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 30px;">Ciencia de Datos</h1>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card border mb-4">
-                                <img src="/assets/imgs/wordcloud.png" alt="" class="card-img-top w-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nube de Palabras de Dinámica No Lineal</h5>
-                                    <p>Web scraping del journal Nonlinear Dynamics. Extracción de palabras clave y análisis de frecuencia.</p>
-                                    <a href="https://github.com/alxgom/NL-Dynamics-wordcloud" target="_blank">Ver código</a>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-            </section>
-            
-            <section id="Apps" class="section mt-3">
-                 <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 30px;">Aplicaciones Web</h1>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card border mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Calculadora de Alquiler (SAC)</h5>
-                                    <p>Una herramienta justa para dividir el alquiler basada en el tamaño de las habitaciones y espacios comunes.</p>
-                                    <a href="/es/sac">Ir a la App</a>
-                                </div>
+                
+            <div class="container text-left">
+                <div class="row2">
+                    <div class="col-sm-6"  style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/PopulationByDistrict_NiceColormap.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Alquileres</h5>
+                                    <a href="https://www.kaggle.com/code/alexisgomel/apartment-rental-offers-munich"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://www.kaggle.com/code/alexisgomel/apartment-rental-offers-munich"><i class="ti-link"></i></a>
+                                </div>  
                             </div>
                         </div>
                     </div>
-                 </div>
-            </section>
-
-            <section id="Resources" class="section mt-3">
-                <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 30px;">Recursos</h1>
-                    <div class="bg-image bg-image-white" style="background-image: url(/assets/imgs/DSC02718-2.jpg);">
-                        <div class="overlay-content text-white p-4">
-                           <h3>Recursos de Fotografía</h3>
-                           <p>Colección de fotos de mis viajes.</p>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Análisis histórico de alquileres:</strong> Análisis de datos históricos de alquiler en Alemania y detección de valores atípicos de precios (en curso). <p>
+                            <p>El propósito de este proyecto es estudiar la evolución de los precios de alquiler y la detección de valores atípicos.
+                                Eventualmente me gustaría que fuera una herramienta para que la gente estime si una propiedad de su interés tiene un precio razonable. <p>
+                            <p><strong>Tecnología y habilidades:</strong> Analítica de datos, Ciencia de datos, Python, Scikit-learn, Pandas, geopandas, Jupyter-notebook. <p>     
                         </div>
-                     </div>
+                    </div>
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/birds.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Migración de aves</h5>
+                                    <a href="/assets/imgs/Projects/birds.png"><i class="ti-zoom-in"></i></a>
+                                    <a href=" "><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Migración de aves:</strong> Visualización de datos de migración de aves. (necesita actualización) <p>
+                                <p><strong>Tecnología y habilidades: </strong> SQL, Tableau , Visualización de datos.<p>
+                        </div>
+                    </div>
                 </div>
-            </section>
+            </div>    
+        </section>
+        
+        <section id="Apps"  class="section mt-3">          
+            <div class="container text-left">
+                <div class="row2">
+                    <div class="col-sm-6"  style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/sac_web_app.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Calculadora de Alquiler de Apartamento Compartido (SHARE)</h5>
+                                    <a href="/es/sac"><i class="ti-zoom-in"></i></a>
+                                    <a href="/es/sac"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Calculadora de Alquiler de Apartamento Compartido (SHARE):</strong> Calculadora simple para aproximar la parte del alquiler que debe pagar cada inquilino, 
+                                dada el área de su habitación y el alquiler total del apartamento. También es posible agregar impuestos compartidos adicionales como internet o impuestos municipales al cálculo para fines presupuestarios.
+    
+                                La aplicación está inspirada en mi experiencia tratando de encontrar alojamiento en ciudades donde el alquiler es muy alto y compartir alojamiento es común. Está destinado a ser una primera estimación de lo que sería una parte justa del alquiler para cada compañero de piso. 
+                                No tiene en cuenta características como baños en suite, balcón, etc..<p>
+                            <p><strong>Tecnología y habilidades: </strong> Javascript, HTML <p>        
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/tracking_app.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Rastreador de Tareas</h5>
+                                    <a href="/assets/imgs/Projects/tracking_app.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/Tracking_app"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Rastreador de Tareas: </strong> Aplicación Python para rastrear el tiempo dedicado a las tareas. Uno puede agregar qué tareas desea rastrear y la cantidad de tiempo dedicado a cada tarea cada día. Está destinado a ser una aplicación de seguimiento solo para escritorio, para evitar interactuar con un teléfono.
+    
+                                También permite graficar el tiempo dedicado a cada tarea, para poder visualizar el progreso y la consistencia.<p>
+                                    <p><strong>Tecnología y habilidades: </strong> Full stack, Python, Pandas, json <p>        
+    
+                        </div>
+                    </div>
+    
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/Projects/mixxx_screenshot.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Extensión de set de DJ de swing MIXX</h5>
+                                    <a href="/assets/imgs/Projects/mixxx_screenshot.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/mixx_addon"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Extensión de set de DJ de swing MIXX: </strong> Está destinado a complementar mi uso de MIXXX como herramienta para pinchar en eventos de baile social de swing y blues, como una forma de explorar y analizar mi biblioteca y mis sets, y reflexionar sobre mis elecciones y posiblemente darme nuevas ideas para explorar.
+                                Este programa utiliza SQlite y Dash para generar un tablero a partir de una consulta de "mixxxdb.sqlite", un archivo que contiene los metadatos de mi biblioteca y listas de reproducción de MIXXX. <p>
+                                    <p><strong>Tecnología y habilidades: </strong> Análisis de datos, visualización de datos, Python, Dash, Plotly, SQL. <p>       
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="Plots and visualizations"  class="section mt-3">
+            <div class="container text-center" style="padding-bottom:30px;">
+                <h1 class="section-title mb-4">Gráficos y visualizaciones</h1>
+            </div>
+                
+            <div class="container text-left">
+                <div class="row2">
+                    <div class="col-sm-6"  style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/wordcloud.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Nube de Palabras de Sistemas No Lineales</h5>
+                                    <a href="/assets/imgs/wordcloud.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/NL-Dynamics-wordcloud"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Nube de Palabras de Sistemas No Lineales: </strong> Nube de palabras de palabras clave que aparecen en todos los artículos de la revista de dinámica no lineal desde 2020. Haga clic en el enlace de la imagen para acceder al proyecto de Github con el código fuente. Este proyecto está inspirado en esta cita: <p>
+                            <p class="mb-2 pb-2"> “Using a term like nonlinear science is like referring to the bulk of zoology as the study of non-elephant animals.” – Stanislaw Ulam.</p>
+                            <p><strong>Tecnología y habilidades: </strong> Webscrapping, Python, Worldsoup, storytelling.<p>       
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/giffy.gif" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Péndulo de Resorte</h5>
+                                    <a href="/assets/imgs/giffy.gif"><i class="ti-zoom-in"></i></a>
+                                    <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Péndulo de Resorte: </strong> Visualización de la dinámica del sistema de péndulo de resorte<p>
+                                <p><strong>Tecnología y habilidades: </strong> Visualización de datos, Python, Matplotlib.<p>      
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-4"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/3_WAVE.gif" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Estabilización de 3 Ondas</h5>
+                                    <a href="/assets/imgs/3_WAVE.gif"><i class="ti-zoom-in"></i></a>
+                                    <a href="javascript:void(0)"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Estabilización de 3 Ondas: </strong> Animación de inestabilidad modulacional. Mostrando la interacción no lineal entre frecuencias de una onda que se propaga en un régimen de autoenfoque. <p>
+                                <p><strong>Tecnología y habilidades: </strong> Visualización de datos, Ecuaciones diferenciales.<p>      
+    
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-4"></h6>
+                </div>
+            
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/jet_example.png" alt="">
+                            <img src="/assets/imgs/topoexample.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Mapas de colores unidos</h5>
+                                    <a href="/assets/imgs/jet_example.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/-stitched_colorbars/wiki/Stiched-Colormaps"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Código de mapas de colores unidos: </strong> Este es un código de Python y Matlab para hacer un nuevo mapa de colores uniendo dos mapas de colores preexistentes. Permite unir dos mapas de colores divergentes, pero pudiendo cambiar los límites de la barra de colores y el punto de pivote de la divergencia.
+                                <p>Es útil para datos que tienen información relevante en rangos muy diferentes, o tienen un umbral natural que divide los datos (por ejemplo, topografía con un nivel de agua).     
+                                    Haga clic en el enlace de la imagen para acceder al repositorio de github.<p>
+                            <p><strong>Tecnología y habilidades: </strong> Visualización de datos, Python, Matlab.<p>      
+                        </div>
+                    </div>
+                    <h6 class="mb-4 pb-6"></h6>
+                    <div class="col-sm-6" style="padding-bottom:30px;">
+                        <div class="general-img-holder">
+                            <img src="/assets/imgs/filament_scheme2.png" alt="">
+                            <div class="overlay">
+                                <div class="overlay-infos">
+                                    <h5>Esquema de filamentación</h5>
+                                    <a href="/assets/imgs/jet_example.png"><i class="ti-zoom-in"></i></a>
+                                    <a href="https://github.com/alxgom/Filamentation_scheme/wiki/Filamentation-Scheme"><i class="ti-link"></i></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="container text-left">
+                            <p><strong>Esquema de filamentación láser </strong> Esquema de filamentación láser 3d hecho en Python.<p>
+                                <p><strong>Tecnología y habilidades: </strong> Visualización de datos, Diseño, Python, Matplotlib.<p>    
+    
+                        </div>
+                    </div>
+            </div>
+        </section>
 
-        </div>
+        <section id="instas" class="section">
+            <div class="container text-center">
+                <h6 class="section-title mb-4">Mis redes sociales de fotografía</h6>
+                <p class="mb-4 pb-4"> Puedes echar un vistazo a mi fotografía en mis instagrams</p>
+        
+                <div class="row mx-auto">
+                    <div class="col-sm-5 col-md-4 mb-3">
+                        <div class="custom-card card border">
+                            <div class="card-body">
+                             <a href=https://www.instagram.com/lookn_around/ target="_blank">   <i  class="icon ti-instagram"> </i></a>
+                                <h5><a href=https://www.instagram.com/lookn_around/ target="_blank">  Fotografía general</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-4 mb-3">
+                        <div class="custom-card card border">
+                            <div class="card-body">
+                             <a href=https://www.instagram.com/lookn_around_world/ target="_blank">   <i  class="icon ti-instagram"> </i></a>
+                                <h5><a href=https://www.instagram.com/lookn_around_world/ target="_blank">Fotografía de viajes</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-md-4 mb-3">
+                        <div class="custom-card card border">
+                            <div class="card-body">
+                             <a href=https://www.instagram.com/lookn_around_dreams/ target="_blank">   <i  class="icon ti-instagram"> </i></a>
+                                <h5> <a href=https://www.instagram.com/lookn_around_dreams/ target="_blank">Fotografía experimental </a></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gurushots" class="section mt-3">
+            <div class="container text-center">
+                <h2>Gurushots</h2>
+                <a href="https://gurushots.com/lookn_around/photos" target="_blank">Perfil de Gurushots</a>
+            </div>       
+         </section>
+
+        <section id="resources" class="section mt-3">
+            <div class="bg-image bg-image-white"  style="  background-image: url(/assets/imgs/DSC02718-2.jpg); "  >
+                <div class=" bg-image-white"   style=" background-color: rgba(255, 255, 255, 0.7); "  >
+                     <div class="container text-left">
+                         
+                        <h6 class="mb-6 pb-4"></h6>
+            
+                        <h2>Recursos de visualización</h2>
+                        <h5>
+                        <a href="https://www.simplifiedsciencepublishing.com/resources/best-color-palettes-for-scientific-figures-and-data-visualizations" target="_blank"  style="color: #ff625b";> simplifiedsciencepublishing.com: Elegir paletas para visualización científica</a>
+                        </h5>
+            
+                        <h5>
+                        <a 
+                        href="https://matplotlib.org/cmocean/" target="_blank" style="color: #ff625b";>Mapas de colores CMocean para ciencias de la tierra </a>
+                        </h5>
+                    
+                        <h5>
+                        <a href="https://onlinelibrary.wiley.com/doi/10.1002/rth2.12308" target="_blank" style="color: #ff625b";>Elegir paletas de colores para figuras científicas. Timothy B. Plante MD, MHS, Mary Cushman MD, MSc </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html" target="_blank" style="color: #ff625b";> Turbo, Un mapa de colores arcoíris mejorado para visualización  </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://www.fabiocrameri.ch/colourmaps/" target="_blank" style="color: #ff625b";> Mapas de colores científicos de Fabio Crameri </a>
+                        </h5>
+                        
+                        <h5>                    
+                        <a href="https://www.nature.com/articles/s41467-020-19160-7 " target="_blank" style="color: #ff625b";> El mal uso del color en la comunicación científica. Fabio Crameri, Grace E. Shephard & Philip J. Heron  </a>
+                        </h5>
+            
+                        <h5>
+                        <a href="https://economicsfromthetopdown.com/2020/07/23/10-tips-for-making-beautiful-charts/" target="_blank" style="color: #ff625b";> 10 Consejos para hacer gráficos hermosos  </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833" target="_blank" style="color: #ff625b";> Diez reglas simples para mejores figuras.   Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://www.youtube.com/watch?v=Qj1FK8n7WgY&" target="_blank" style="color: #ff625b";> Youtube: Entendiendo el color. Blender Guru </a>
+                        </h5>
+                        
+                        <h5>
+                        <a href="https://www.edwardtufte.com/tufte/" target="_blank" style="color: #ff625b";> Sitio web de Edward Tufte </a>
+                        </h5>
+                        
+                        <h2>Blender para gráficos</h2>
+                        
+                    </div>              
+                </div>
+            </div>
+        </section>
 
 		<Footer />
         
