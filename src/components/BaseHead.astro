@@ -1,46 +1,50 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION, INSTAGRAM_LINK, LINKEDIN_LINK, GITHUB_LINK, RESEARCHGATE_LINK } from '../consts';
+import {
+	SITE_TITLE,
+	SITE_DESCRIPTION,
+	INSTAGRAM_LINK,
+	LINKEDIN_LINK,
+	GITHUB_LINK,
+	RESEARCHGATE_LINK,
+} from "../consts";
 
 interface Props {
 	title: string;
 	description: string;
-    image?: string;
-    // New Multilingual Props
-    currentLang: string; 
-    alternateHref: string; 
+	image?: string;
+	// New Multilingual Props
+	currentLang: string;
+	alternateHref: string;
 }
 
-const { 
-    title, 
-    description, 
-    image = '/assets/imgs/avatar.png', // I updated this default to point to your avatar instead of a placeholder
-    currentLang, 
-    alternateHref 
+const {
+	title,
+	description,
+	image = "/assets/imgs/avatar.png", // I updated this default to point to your avatar instead of a placeholder
+	currentLang,
+	alternateHref,
 } = Astro.props;
 
 // 1. Determine the canonical URL for the current page
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // 2. Determine the alternate language tag for SEO
-const alternateLang = currentLang === 'en' ? 'es' : 'en';
+const alternateLang = currentLang === "en" ? "es" : "en";
 
 // 3. Set the base URL for the 'x-default' (fallback) link
-const enUrl = currentLang === 'en' ? canonicalURL.href : alternateHref;
+// Ensure alternateHref is absolute
+const alternateUrl = new URL(alternateHref, Astro.site);
+const enUrl = currentLang === "en" ? canonicalURL.href : alternateUrl.href;
 
 const schema = {
 	"@context": "https://schema.org",
 	"@type": "Person",
-	"name": "Alexis Gomel",
-	"url": Astro.site,
-	"image": new URL(image, Astro.url),
-	"sameAs": [
-		LINKEDIN_LINK,
-		GITHUB_LINK,
-		RESEARCHGATE_LINK,
-		INSTAGRAM_LINK
-	],
-	"jobTitle": "Physicist | Data Scientist",
-	"description": description
+	name: "Alexis Gomel",
+	url: Astro.site,
+	image: new URL(image, Astro.url),
+	sameAs: [LINKEDIN_LINK, GITHUB_LINK, RESEARCHGATE_LINK, INSTAGRAM_LINK],
+	jobTitle: "Physicist | Data Scientist",
+	description: description,
 };
 ---
 
@@ -52,8 +56,8 @@ const schema = {
 <link rel="canonical" href={canonicalURL} />
 
 <link rel="alternate" hreflang={currentLang} href={canonicalURL.href} />
-<link rel="alternate" hreflang={alternateLang} href={alternateHref} />
-<link rel="alternate" hreflang="x-default" href={enUrl} /> 
+<link rel="alternate" hreflang={alternateLang} href={alternateUrl.href} />
+<link rel="alternate" hreflang="x-default" href={enUrl} />
 
 <title>{title}</title>
 <meta name="title" content={title} />
