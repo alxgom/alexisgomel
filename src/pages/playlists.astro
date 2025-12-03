@@ -13,6 +13,7 @@ const alternateHref = "/es/playlists"; // Links to Spanish version
 
 // PLAYLIST IDs
 const PLAYLIST_IDS = [
+    "0YK2vEkciJpMCK4zNlpU9Y", // Dr. Beat Backup Set
     "0J4qeq2hJbGkhBqM7Wpl8P",
     "1WCwPvPwrhr3qL1j0Ifspw",
     "2l9gpXmsLtF29bj6JIhhii",
@@ -52,15 +53,59 @@ const PLAYLIST_IDS = [
     <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
         <Header />
 
-        <div class="container mt-5 pt-5 mb-5">
+        <!-- Hero Section for Dr. Beat -->
+        <section class="header" style="padding: 120px 0 60px;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <img
+                            src="/assets/imgs/dj_photo.jpg"
+                            alt="Dr. Beat DJ Photo"
+                            class="img-fluid rounded-circle"
+                            style="max-width: 250px; width: 100%; box-shadow: 0 8px 24px rgba(0,0,0,0.15);"
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <h6 class="subtitle" style="color: var(--primary);">
+                            Introducing
+                        </h6>
+                        <h1 class="section-title mb-3">Dr. Beat</h1>
+                        <p class="lead mb-4">
+                            When I'm not working, dancing, or taking photos, I'm
+                            DJing for socials on my local scene as <strong
+                                >Dr. Beat</strong
+                            >.
+                        </p>
+                        <p class="mb-4">
+                            Here's a little taste of my backup set:
+                        </p>
+                        <div class="mb-4">
+                            <iframe
+                                style="border-radius:12px"
+                                src="https://open.spotify.com/embed/playlist/0YK2vEkciJpMCK4zNlpU9Y?utm_source=generator"
+                                width="100%"
+                                height="352"
+                                frameborder="0"
+                                allowfullscreen=""
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                loading="lazy"
+                                title="Dr. Beat Backup Set Playlist"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Playlists -->
+        <div class="container mb-5 pb-5">
             <div class="text-center mb-5">
-                <h1 class="section-title">Spotify Playlists</h1>
-                <p>These are my playlists. Please enjoy ;)</p>
+                <h2 class="section-title">More Playlists</h2>
+                <p>Here are more of my curated playlists. Enjoy!</p>
             </div>
 
             <div class="row">
                 {
-                    PLAYLIST_IDS.map((id) => (
+                    PLAYLIST_IDS.slice(1).map((id) => (
                         <div class="col-md-6 mb-4">
                             <iframe
                                 style="border-radius:12px"
@@ -71,7 +116,8 @@ const PLAYLIST_IDS = [
                                 allowfullscreen=""
                                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                                 loading="lazy"
-                            ></iframe>
+                                title="Spotify Playlist"
+                            />
                         </div>
                     ))
                 }
