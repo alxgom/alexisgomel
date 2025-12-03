@@ -18,6 +18,8 @@ const alternateHref = "/es/projects"; // Links to Spanish version
         <BaseHead
             title={`Data Science & Physics Projects | ${SITE_TITLE}`}
             description={SITE_DESCRIPTION}
+            currentLang={currentLang}
+            alternateHref={alternateHref}
         />
 
         <script is:inline>
@@ -1197,6 +1199,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://www.simplifiedsciencepublishing.com/resources/best-color-palettes-for-scientific-figures-and-data-visualizations"
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Read about choosing palettes for scientific visualization on simplifiedsciencepublishing.com"
                                                                                                                                                                         ;
                                                                                                                                                                     >
                                                                                                                                                                         simplifiedsciencepublishing.com:
@@ -1211,10 +1214,6 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                 <h5
                                                                                                                                                                 >
                                                                                                                                                                     <a
-                                                                                                                                                                        href="https://matplotlib.org/cmocean/"
-                                                                                                                                                                        target="_blank"
-                                                                                                                                                                        style="color: #ff625b"
-                                                                                                                                                                        ;
                                                                                                                                                                         >CMocean
                                                                                                                                                                         colormaps
                                                                                                                                                                         for
@@ -1229,6 +1228,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://onlinelibrary.wiley.com/doi/10.1002/rth2.12308"
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Read the article 'Choosing color palettes for scientific figures' by Timothy B. Plante and Mary Cushman"
                                                                                                                                                                         ;
                                                                                                                                                                         >Choosing
                                                                                                                                                                         color
@@ -1254,6 +1254,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://ai.googleblog.com/2019/08/turbo-improved-rainbow-colormap-for.html"
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Read about Turbo, an improved rainbow colormap for visualization on Google AI Blog"
                                                                                                                                                                         ;
                                                                                                                                                                     >
                                                                                                                                                                         Turbo,
@@ -1272,6 +1273,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://www.fabiocrameri.ch/colourmaps/"
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Visit Fabio Crameri's scientific colormaps website"
                                                                                                                                                                         ;
                                                                                                                                                                     >
                                                                                                                                                                         Fabio
@@ -1287,6 +1289,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://www.nature.com/articles/s41467-020-19160-7 "
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Read the article 'The misuse of colour in science communication' by Fabio Crameri, Grace E. Shephard, and Philip J. Heron"
                                                                                                                                                                         ;
                                                                                                                                                                     >
                                                                                                                                                                         The
@@ -1314,6 +1317,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://economicsfromthetopdown.com/2020/07/23/10-tips-for-making-beautiful-charts/"
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Read '10 Tips for Making Beautiful Charts' on economicsfromthetopdown.com"
                                                                                                                                                                         ;
                                                                                                                                                                     >
                                                                                                                                                                         10
@@ -1331,6 +1335,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833"
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Read 'Ten Simple Rules for Better Figures' by Nicolas P. Rougier, Michael Droettboom, and Philip E. Bourne"
                                                                                                                                                                         ;
                                                                                                                                                                     >
                                                                                                                                                                         Ten
@@ -1356,6 +1361,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://www.youtube.com/watch?v=Qj1FK8n7WgY&"
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Watch 'Understanding color' by Blender Guru on YouTube"
                                                                                                                                                                         ;
                                                                                                                                                                     >
                                                                                                                                                                         Youtube:
@@ -1372,6 +1378,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                                         href="https://www.edwardtufte.com/tufte/"
                                                                                                                                                                         target="_blank"
                                                                                                                                                                         style="color: #ff625b"
+                                                                                                                                                                        aria-label="Visit Edward Tufte's website"
                                                                                                                                                                         ;
                                                                                                                                                                     >
                                                                                                                                                                         Edward
@@ -1397,19 +1404,23 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                                                                                                                                                 <script
                                                                                                                                                     is:inline
                                                                                                                                                     src="/assets/vendors/jquery/jquery-3.4.1.js"
-                                                                                                                                                ></script>
+                                                                                                                                                >
+                                                                                                                                                </script>
                                                                                                                                                 <script
                                                                                                                                                     is:inline
                                                                                                                                                     src="/assets/vendors/bootstrap/bootstrap.bundle.js"
-                                                                                                                                                ></script>
+                                                                                                                                                >
+                                                                                                                                                </script>
                                                                                                                                                 <script
                                                                                                                                                     is:inline
                                                                                                                                                     src="/assets/vendors/bootstrap/bootstrap.affix.js"
-                                                                                                                                                ></script>
+                                                                                                                                                >
+                                                                                                                                                </script>
                                                                                                                                                 <script
                                                                                                                                                     is:inline
                                                                                                                                                     src="/assets/js/steller.js"
-                                                                                                                                                ></script>
+                                                                                                                                                >
+                                                                                                                                                </script>
                                                                                                                                             </div>
                                                                                                                                         </div>
                                                                                                                                     </p>

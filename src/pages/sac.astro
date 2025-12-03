@@ -6,6 +6,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 // GTM ID
 const GTM_ID = "GTM-WDZK7ZFX";
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/es/sac"; // Links to Spanish version
 ---
 
 <!doctype html>
@@ -14,6 +17,8 @@ const GTM_ID = "GTM-WDZK7ZFX";
         <BaseHead
             title="SHARE Calculator - Shared Apartment Rent Splitter | Alexis Gomel"
             description="Shared Appartment REnt Calculator"
+            currentLang={currentLang}
+            alternateHref={alternateHref}
         />
 
         <script is:inline>
@@ -129,6 +134,7 @@ const GTM_ID = "GTM-WDZK7ZFX";
                 src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
                 height="0"
                 width="0"
+                title="Google Tag Manager"
                 style="display:none;visibility:hidden"></iframe>
         </noscript>
 
