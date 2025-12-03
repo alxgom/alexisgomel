@@ -94,6 +94,7 @@ const alternateHref = "/"; // Links back to English
                 src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
                 height="0"
                 width="0"
+                title="Google Tag Manager"
                 style="display:none;visibility:hidden"></iframe>
         </noscript>
 
@@ -112,7 +113,10 @@ const alternateHref = "/"; // Links back to English
                                     href="mailto:alexis.gomel@gmail.com"
                                     target="_blank"
                                 >
-                                    <button class="btn btn-primary rounded">
+                                    <button
+                                        class="btn btn-primary rounded"
+                                        aria-label="Enviar correo"
+                                    >
                                         <i class="ti-email"></i></button
                                     >
                                 </a>
@@ -120,7 +124,9 @@ const alternateHref = "/"; // Links back to English
                                     href="/assets/files/CV_Alexis_Gomel_web.pdf"
                                     download
                                 >
-                                    <button class="btn btn-dark rounded"
+                                    <button
+                                        class="btn btn-dark rounded"
+                                        aria-label="Descargar CV"
                                         >DESCARGAR CV</button
                                     >
                                 </a>
@@ -131,6 +137,7 @@ const alternateHref = "/"; // Links back to English
                                     class="social-item"
                                     href="https://www.instagram.com/lookn_around/"
                                     target="_blank"
+                                    aria-label="Instagram"
                                     ><i class="fa-brands fa-instagram fa-1x"
                                     ></i></a
                                 >
@@ -138,18 +145,21 @@ const alternateHref = "/"; // Links back to English
                                     class="social-item"
                                     href="https://www.linkedin.com/in/alexis-gomel-95484278/"
                                     target="_blank"
+                                    aria-label="LinkedIn"
                                     ><i class="fa-brands fa-linkedin"></i></a
                                 >
                                 <a
                                     class="social-item"
                                     href="https://github.com/alxgom"
                                     target="_blank"
+                                    aria-label="GitHub"
                                     ><i class="fa-brands fa-github"></i></a
                                 >
                                 <a
                                     class="social-item"
                                     href="https://www.researchgate.net/profile/Alexis-Gomel"
                                     target="_blank"
+                                    aria-label="ResearchGate"
                                     ><i class="ai ai-researchgate"></i></a
                                 >
                             </div>
@@ -187,8 +197,9 @@ const alternateHref = "/"; // Links back to English
                             href="/assets/files/CV_Alexis_Gomel_web.pdf"
                             download
                         >
-                            <button class="btn btn-primary rounded mt-3"
-                                >DESCARGAR CV</button
+                            <button
+                                class="btn btn-primary rounded mt-3"
+                                aria-label="Descargar CV">DESCARGAR CV</button
                             >
                         </a>
                     </div>
@@ -203,7 +214,10 @@ const alternateHref = "/"; // Links back to English
                     <div class="col-sm-6 col-md-3 mb-4">
                         <div class="custom-card card border">
                             <div class="card-body">
-                                <a href="/es/cvonline">
+                                <a
+                                    href="/es/cvonline"
+                                    aria-label="Ver CV Online"
+                                >
                                     <i class="icon ti-user"></i></a
                                 >
                                 <h5><a href="/es/cvonline"> CV Online </a></h5>
@@ -213,7 +227,10 @@ const alternateHref = "/"; // Links back to English
                     <div class="col-sm-6 col-md-3 mb-4">
                         <div class="custom-card card border">
                             <div class="card-body">
-                                <a href="/es/projects">
+                                <a
+                                    href="/es/projects"
+                                    aria-label="Ver Proyectos Personales"
+                                >
                                     <i class="icon ti-gallery"> </i></a
                                 >
                                 <h5>
@@ -230,6 +247,7 @@ const alternateHref = "/"; // Links back to English
                                 <a
                                     href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
                                     target="_blank"
+                                    aria-label="Ver Publicaciones en Google Scholar"
                                 >
                                     <i class="ai ai-google-scholar ai-3x"
                                     ></i></a
@@ -247,7 +265,10 @@ const alternateHref = "/"; // Links back to English
                         <div class="col-sm-6 col-md-3 mb-4">
                             <div class="custom-card card border">
                                 <div class="card-body">
-                                    <a href="/es/playlists">
+                                    <a
+                                        href="/es/playlists"
+                                        aria-label="Ver Listas de Música"
+                                    >
                                         <i class="icon ti-music-alt"></i></a
                                     >
                                     <h5>
@@ -280,10 +301,12 @@ const alternateHref = "/"; // Links back to English
                                         <h5>Rogue wave freezing</h5>
                                         <a
                                             href="/assets/imgs/3d_hamiltonian.png"
+                                            aria-label="Zoom en Rogue wave freezing"
                                             ><i class="ti-zoom-in"></i></a
                                         >
                                         <a
                                             href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501"
+                                            aria-label="Ver proyecto Rogue wave freezing"
                                             ><i class="ti-link"></i></a
                                         >
                                     </div>
@@ -299,10 +322,12 @@ const alternateHref = "/"; // Links back to English
                                         <h5>ADHONLS</h5>
                                         <a
                                             href="/assets/imgs/wave_scheme_flows.png"
+                                            aria-label="Zoom en ADHONLS"
                                             ><i class="ti-zoom-in"></i></a
                                         >
                                         <a
                                             href="https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear"
+                                            aria-label="Ver proyecto ADHONLS"
                                             ><i class="ti-link"></i></a
                                         >
                                     </div>
@@ -325,11 +350,14 @@ const alternateHref = "/"; // Links back to English
                                 <div class="overlay">
                                     <div class="overlay-infos">
                                         <h5>Worldcloud Jounal webscrapping</h5>
-                                        <a href="/assets/imgs/wordcloud.png"
+                                        <a
+                                            href="/assets/imgs/wordcloud.png"
+                                            aria-label="Zoom en Worldcloud Journal webscrapping"
                                             ><i class="ti-zoom-in"></i></a
                                         >
                                         <a
                                             href="https://github.com/alxgom/NL-Dynamics-wordcloud"
+                                            aria-label="Ver proyecto Worldcloud Journal webscrapping"
                                             ><i class="ti-link"></i></a
                                         >
                                     </div>
@@ -347,10 +375,12 @@ const alternateHref = "/"; // Links back to English
                                         <h5>Custom colormaps</h5>
                                         <a
                                             href="/assets/imgs/PopulationByDistrict_NiceColormap.png"
+                                            aria-label="Zoom en Custom colormaps"
                                             ><i class="ti-zoom-in"></i></a
                                         >
                                         <a
                                             href="https://github.com/alxgom/-stitched_colorbars"
+                                            aria-label="Ver proyecto Custom colormaps"
                                             ><i class="ti-link"></i></a
                                         >
                                     </div>
@@ -369,6 +399,7 @@ const alternateHref = "/"; // Links back to English
                                         <span><i class="ti-zoom-in"></i></span>
                                         <a
                                             href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180"
+                                            aria-label="Ver proyecto Filamentation statistical regimes"
                                             ><i class="ti-link"></i></a
                                         >
                                     </div>
@@ -388,12 +419,13 @@ const alternateHref = "/"; // Links back to English
                         </a>
                     </h5>
 
-                    <textarea name="message"></textarea>
-                    <input type="submit" />
+                    <textarea name="message" aria-label="Mensaje"></textarea>
+                    <input type="submit" value="Enviar Mensaje" />
 
                     <div id="map">
-                        <iframe src="https://snazzymaps.com/embed/458460"
-                        ></iframe>
+                        <iframe
+                            src="https://snazzymaps.com/embed/458460"
+                            title="Ubicación en Google Maps"></iframe>
                     </div>
                 </div>
             </section>

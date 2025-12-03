@@ -145,6 +145,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                 src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
                 height="0"
                 width="0"
+                title="Google Tag Manager"
                 style="display:none;visibility:hidden"></iframe>
         </noscript>
 
@@ -163,7 +164,10 @@ const alternateHref = "/es/"; // Links to Spanish version
                                     href="mailto:alexis.gomel@gmail.com"
                                     target="_blank"
                                 >
-                                    <button class="btn btn-primary rounded">
+                                    <button
+                                        class="btn btn-primary rounded"
+                                        aria-label="Send email"
+                                    >
                                         <i class="ti-email"></i></button
                                     >
                                 </a>
@@ -171,7 +175,9 @@ const alternateHref = "/es/"; // Links to Spanish version
                                     href="/assets/files/CV_Alexis_Gomel_web.pdf"
                                     download
                                 >
-                                    <button class="btn btn-dark rounded"
+                                    <button
+                                        class="btn btn-dark rounded"
+                                        aria-label="Download CV"
                                         >DOWNLOAD CV</button
                                     >
                                 </a>
@@ -182,6 +188,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                                     class="social-item"
                                     href="INSTAGRAM_LINK"
                                     target="_blank"
+                                    aria-label="Instagram"
                                     ><i class="fa-brands fa-instagram fa-1x"
                                     ></i></a
                                 >
@@ -189,18 +196,21 @@ const alternateHref = "/es/"; // Links to Spanish version
                                     class="social-item"
                                     href="LINKEDIN_LINK"
                                     target="_blank"
+                                    aria-label="LinkedIn"
                                     ><i class="fa-brands fa-linkedin"></i></a
                                 >
                                 <a
                                     class="social-item"
                                     href="https://github.com/alxgom"
                                     target="_blank"
+                                    aria-label="GitHub"
                                     ><i class="fa-brands fa-github"></i></a
                                 >
                                 <a
                                     class="social-item"
                                     href="https://www.researchgate.net/profile/Alexis-Gomel"
                                     target="_blank"
+                                    aria-label="ResearchGate"
                                     ><i class="ai ai-researchgate"></i></a
                                 >
                             </div>
@@ -241,8 +251,9 @@ const alternateHref = "/es/"; // Links to Spanish version
                             href="/assets/files/CV_Alexis_Gomel_web.pdf"
                             download
                         >
-                            <button class="btn btn-primary rounded mt-3"
-                                >DOWNLOAD CV</button
+                            <button
+                                class="btn btn-primary rounded mt-3"
+                                aria-label="Download CV">DOWNLOAD CV</button
                             >
                         </a>
                     </div>
@@ -258,7 +269,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                     <div class="col-sm-6 col-md-3 mb-4">
                         <div class="custom-card card border">
                             <div class="card-body">
-                                <a href="/cvonline">
+                                <a href="/cvonline" aria-label="View Online CV">
                                     <i class="icon ti-user"></i></a
                                 >
                                 <h5><a href="/cvonline"> Online cv </a></h5>
@@ -268,7 +279,10 @@ const alternateHref = "/es/"; // Links to Spanish version
                     <div class="col-sm-6 col-md-3 mb-4">
                         <div class="custom-card card border">
                             <div class="card-body">
-                                <a href="/projects">
+                                <a
+                                    href="/projects"
+                                    aria-label="View Personal Projects"
+                                >
                                     <i class="icon ti-gallery"> </i></a
                                 >
                                 <h5>
@@ -285,6 +299,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                                 <a
                                     href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
                                     target="_blank"
+                                    aria-label="View Publications on Google Scholar"
                                 >
                                     <i class="ai ai-google-scholar ai-3x"
                                     ></i></a
@@ -302,7 +317,10 @@ const alternateHref = "/es/"; // Links to Spanish version
                         <div class="col-sm-6 col-md-3 mb-4">
                             <div class="custom-card card border">
                                 <div class="card-body">
-                                    <a href="/playlists">
+                                    <a
+                                        href="/playlists"
+                                        aria-label="View Playlists"
+                                    >
                                         <i class="icon ti-music-alt"></i></a
                                     >
                                     <h5>
@@ -334,10 +352,12 @@ const alternateHref = "/es/"; // Links to Spanish version
                                         <h5>Rogue wave freezing</h5>
                                         <a
                                             href="/assets/imgs/3d_hamiltonian.png"
+                                            aria-label="Zoom in on Rogue wave freezing"
                                             ><i class="ti-zoom-in"></i></a
                                         >
                                         <a
                                             href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501"
+                                            aria-label="View Rogue wave freezing project"
                                             ><i class="ti-link"></i></a
                                         >
                                     </div>
@@ -353,10 +373,12 @@ const alternateHref = "/es/"; // Links to Spanish version
                                         <h5>ADHONLS</h5>
                                         <a
                                             href="/assets/imgs/wave_scheme_flows.png"
+                                            aria-label="Zoom in on ADHONLS"
                                             ><i class="ti-zoom-in"></i></a
                                         >
                                         <a
                                             href="https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear"
+                                            aria-label="View ADHONLS project"
                                             ><i class="ti-link"></i></a
                                         >
                                     </div>
@@ -366,11 +388,14 @@ const alternateHref = "/es/"; // Links to Spanish version
                         <div class="col-sm-4">
                             <div class="overlay-infos">
                                 <h5>Worldcloud Jounal webscrapping</h5>
-                                <a href="/assets/imgs/wordcloud.png"
+                                <a
+                                    href="/assets/imgs/wordcloud.png"
+                                    aria-label="Zoom in on Worldcloud Journal webscrapping"
                                     ><i class="ti-zoom-in"></i></a
                                 >
                                 <a
                                     href="https://github.com/alxgom/NL-Dynamics-wordcloud"
+                                    aria-label="View Worldcloud Journal webscrapping project"
                                     ><i class="ti-link"></i></a
                                 >
                             </div>
@@ -388,10 +413,12 @@ const alternateHref = "/es/"; // Links to Spanish version
                                 <h5>Custom colormaps</h5>
                                 <a
                                     href="/assets/imgs/PopulationByDistrict_NiceColormap.png"
+                                    aria-label="Zoom in on Custom colormaps"
                                     ><i class="ti-zoom-in"></i></a
                                 >
                                 <a
                                     href="https://github.com/alxgom/-stitched_colorbars"
+                                    aria-label="View Custom colormaps project"
                                     ><i class="ti-link"></i></a
                                 >
                             </div>
@@ -405,6 +432,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                                 <span><i class="ti-zoom-in"></i></span>
                                 <a
                                     href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180"
+                                    aria-label="View Filamentation statistical regimes project"
                                     ><i class="ti-link"></i></a
                                 >
                             </div>
@@ -424,11 +452,13 @@ const alternateHref = "/es/"; // Links to Spanish version
                 </h5>
                 <h6 class="subtitle"></h6>
 
-                <textarea name="message"></textarea>
-                <input type="submit" />
+                <textarea name="message" aria-label="Message"></textarea>
+                <input type="submit" value="Send Message" />
 
                 <div id="map">
-                    <iframe src="https://snazzymaps.com/embed/458460"></iframe>
+                    <iframe
+                        src="https://snazzymaps.com/embed/458460"
+                        title="Google Maps Location"></iframe>
                 </div>
             </div>
         </section>
