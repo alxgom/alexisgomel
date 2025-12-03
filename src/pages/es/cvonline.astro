@@ -1,122 +1,144 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE } from '../../consts';
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE } from "../../consts";
 
 // Import our new "Nice" components
-import LanguageChart from '../../components/cv/LanguageChart.astro';
-import SkillGroup from '../../components/cv/SkillGroup.astro';
+import LanguageChart from "../../components/cv/LanguageChart.astro";
+import SkillGroup from "../../components/cv/SkillGroup.astro";
 
 // GTM ID
-const GTM_ID = 'GTM-WDZK7ZFX'; 
-const currentLang = 'es';
-const alternateHref = '/cvonline'; 
+const GTM_ID = "GTM-WDZK7ZFX";
+const currentLang = "es";
+const alternateHref = "/cvonline";
 
 const advancedSkills = [
-    { name: 'Python', experience: '+8 años' },
-    { name: 'Matlab', experience: '+7 años' },
-    { name: 'Git', experience: '+5 años' }
+    { name: "Python", experience: "+8 años" },
+    { name: "Matlab", experience: "+7 años" },
+    { name: "Git", experience: "+5 años" },
 ];
 
 const intermediateSkills = [
-    { name: 'Latex', experience: '+6 años' },
-    { name: 'SQL', experience: 'Nuevo' }
+    { name: "Latex", experience: "+6 años" },
+    { name: "SQL", experience: "Nuevo" },
 ];
 
 const beginnerSkills = [
-    { name: 'HTML', experience: '+1 año' },
-    { name: 'Spark', experience: 'Nuevo' },
-    { name: 'Tableau', experience: 'Nuevo' }
-]; 
+    { name: "HTML", experience: "+1 año" },
+    { name: "Spark", experience: "Nuevo" },
+    { name: "Tableau", experience: "Nuevo" },
+];
 ---
 
 <!doctype html>
 <html lang="es">
     <head>
-        <BaseHead title={`CV - ${SITE_TITLE}`} description="Alexis Gomel - CV" currentLang={currentLang} alternateHref={alternateHref} />
-        
-        <script is:inline define:vars={{ GTM_ID }}>
-             // ... your GTM code ...
-        </script>
-        <script is:inline type="text/javascript" src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"></script>
+        <BaseHead
+            title="Curriculum Vitae (CV) | Alexis Gomel - Físico y Científico de Datos"
+            description="Alexis Gomel - CV"
+            currentLang={currentLang}
+            alternateHref={alternateHref}
+        />
 
-        <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="/assets/css/steller.css">
+        <script is:inline define:vars={{ GTM_ID }}>
+            // ... your GTM code ...
+        </script>
+        <script
+            is:inline
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"
+        ></script>
+
+        <link
+            rel="stylesheet"
+            href="/assets/vendors/themify-icons/css/themify-icons.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <link rel="stylesheet" href="/assets/css/steller.css" />
     </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-        
         <Header />
-        
+
         <div class="container mt-5 pt-5">
-            
             <section id="Current" class="section mt-3">
                 <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;" >Lo Que Hago</h1>
-                    <p class="mb-2 pb-2">Soy físico con pasión por la dinámica no lineal...</p>
-                    </div>
+                    <h1
+                        class="section-title mb-4"
+                        style="font-weight: bold; font-size: 40px;"
+                    >
+                        Lo Que Hago
+                    </h1>
+                    <p class="mb-2 pb-2">
+                        Soy físico con pasión por la dinámica no lineal...
+                    </p>
+                </div>
             </section>
-           
+
             <section id="Skills" class="section mt-3">
                 <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;">Habilidades</h1>
+                    <h1
+                        class="section-title mb-4"
+                        style="font-weight: bold; font-size: 40px;"
+                    >
+                        Habilidades
+                    </h1>
                     <h6 class="mb-2 pb-4"></h6>
                 </div>
-           
+
                 <div class="container text-center">
                     <div class="row mx-auto">
-                        
-                        <SkillGroup 
-                            title="Avanzado" 
-                            color="#ff7a57" 
+                        <SkillGroup
+                            title="Avanzado"
+                            color="#ff7a57"
                             height="150px"
                             skills={advancedSkills}
                         />
 
-                        <SkillGroup 
-                            title="Intermedio" 
-                            color="#ffa189" 
+                        <SkillGroup
+                            title="Intermedio"
+                            color="#ffa189"
                             height="100px"
                             skills={intermediateSkills}
                         />
 
-                        <SkillGroup 
-                            title="Principiante" 
-                            color="#ffc9bb" 
+                        <SkillGroup
+                            title="Principiante"
+                            color="#ffc9bb"
                             height="60px"
                             skills={beginnerSkills}
                         />
                     </div>
                 </div>
-                
+
                 <h6 class="mb-2 pb-4"></h6>
-                
+
                 <div class="container text-left">
                     <section>
-                        <div class="columns">
-                            </div>
+                        <div class="columns"></div>
                     </section>
                 </div>
-                
+
                 <h6 class="mb-2 pb-4"></h6>
-                
-                <LanguageChart 
-                    labels={['Español', 'Inglés', 'Francés', 'Alemán']} 
+
+                <LanguageChart
+                    labels={["Español", "Inglés", "Francés", "Alemán"]}
                     datasetLabel="Nivel"
                 />
-
             </section>
-           
-            </div>
+        </div>
 
         <Footer />
-        
-        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
-        <script is:inline src="/assets/js/steller.js"></script>
 
-        </body>
+        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"
+        ></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"
+        ></script>
+        <script is:inline src="/assets/js/steller.js"></script>
+    </body>
 </html>

@@ -1,48 +1,55 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 
 // TRACKING ID
-const GTM_ID = 'GTM-WDZK7ZFX'; 
+const GTM_ID = "GTM-WDZK7ZFX";
 
 // MULTILINGUAL SETTINGS
-const currentLang = 'es';
-const alternateHref = '/'; // Links back to English
+const currentLang = "es";
+const alternateHref = "/"; // Links back to English
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<BaseHead 
-            title={`Inicio - ${SITE_TITLE}`} 
-            description={SITE_DESCRIPTION} 
-            currentLang={currentLang} 
-            alternateHref={alternateHref} 
+    <head>
+        <BaseHead
+            title="Alexis Gomel | Portafolio de Físico y Científico de Datos"
+            description={SITE_DESCRIPTION}
+            currentLang={currentLang}
+            alternateHref={alternateHref}
         />
-        
+
         <script is:inline>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied',
-                'analytics_storage': 'denied'
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("consent", "default", {
+                ad_storage: "denied",
+                ad_user_data: "denied",
+                ad_personalization: "denied",
+                analytics_storage: "denied",
             });
         </script>
 
-        <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
-        <script is:inline src="/cookie-banner/silktide-consent-manager.js"></script>
+        <link
+            rel="stylesheet"
+            id="silktide-consent-manager-css"
+            href="/cookie-banner/silktide-consent-manager.css"
+        />
+        <script is:inline src="/cookie-banner/silktide-consent-manager.js"
+        ></script>
         <script is:inline>
-            document.addEventListener("DOMContentLoaded", function() {
-                if (typeof silktideCookieBannerManager !== 'undefined') {
+            document.addEventListener("DOMContentLoaded", function () {
+                if (typeof silktideCookieBannerManager !== "undefined") {
                     silktideCookieBannerManager.updateCookieBannerConfig({
                         text: {
-                            bannerTitle: 'Tu privacidad nos importa',
-                            acceptButtonText: 'Aceptar cookies',
-                            rejectButtonText: 'Rechazar',
+                            bannerTitle: "Tu privacidad nos importa",
+                            acceptButtonText: "Aceptar cookies",
+                            rejectButtonText: "Rechazar",
                         },
                         // ... your other Silktide settings ...
                     });
@@ -51,52 +58,104 @@ const alternateHref = '/'; // Links back to English
         </script>
 
         <script is:inline define:vars={{ GTM_ID }}>
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer', GTM_ID);
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    "gtm.start": new Date().getTime(),
+                    event: "gtm.js",
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", GTM_ID);
         </script>
 
-        <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-        <link rel="stylesheet" href="/assets/css/steller.css">
-	</head>
+        <link
+            rel="stylesheet"
+            href="/assets/vendors/themify-icons/css/themify-icons.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+        />
+        <link rel="stylesheet" href="/assets/css/steller.css" />
+    </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-        
         <noscript>
-            <iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"></iframe>
         </noscript>
 
         <Header />
 
         <header class="header" id="home">
             <div class="bg-image bg-image-white">
-                <div class=" bg-image-white">
+                <div class="bg-image-white">
                     <div class="container">
                         <div class="infos">
                             <h6 class="subtitle">Hola, soy</h6>
                             <h6 class="title">Alexis Gomel</h6>
                             <p>Físico | Científico de Datos</p>
-                            <div class="buttons pt- ">
-                                <a href="mailto:alexis.gomel@gmail.com" target="_blank"> <button class="btn btn-primary rounded"> <i class="ti-email "></i></button>  </a> 
-                                <a href="/assets/files/CV_Alexis_Gomel_web.pdf" download>                   
-                                <button class="btn btn-dark rounded">DESCARGAR CV</button>
+                            <div class="buttons pt-">
+                                <a
+                                    href="mailto:alexis.gomel@gmail.com"
+                                    target="_blank"
+                                >
+                                    <button class="btn btn-primary rounded">
+                                        <i class="ti-email"></i></button
+                                    >
                                 </a>
-                            </div>      
-
-                            <div class="socials mt-4 ">
-                                <a class="social-item" href="https://www.instagram.com/lookn_around/" target="_blank"><i class="fa-brands fa-instagram fa-1x"></i></a>
-                                <a class="social-item" href="https://www.linkedin.com/in/alexis-gomel-95484278/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                                <a class="social-item" href="https://github.com/alxgom" target="_blank"><i class="fa-brands fa-github"></i></a>
-                                <a class="social-item" href="https://www.researchgate.net/profile/Alexis-Gomel" target="_blank"><i class="ai ai-researchgate"></i></a>
+                                <a
+                                    href="/assets/files/CV_Alexis_Gomel_web.pdf"
+                                    download
+                                >
+                                    <button class="btn btn-dark rounded"
+                                        >DESCARGAR CV</button
+                                    >
+                                </a>
                             </div>
-                        </div>              
-                    </div>   
-                </div>   
+
+                            <div class="socials mt-4">
+                                <a
+                                    class="social-item"
+                                    href="https://www.instagram.com/lookn_around/"
+                                    target="_blank"
+                                    ><i class="fa-brands fa-instagram fa-1x"
+                                    ></i></a
+                                >
+                                <a
+                                    class="social-item"
+                                    href="https://www.linkedin.com/in/alexis-gomel-95484278/"
+                                    target="_blank"
+                                    ><i class="fa-brands fa-linkedin"></i></a
+                                >
+                                <a
+                                    class="social-item"
+                                    href="https://github.com/alxgom"
+                                    target="_blank"
+                                    ><i class="fa-brands fa-github"></i></a
+                                >
+                                <a
+                                    class="social-item"
+                                    href="https://www.researchgate.net/profile/Alexis-Gomel"
+                                    target="_blank"
+                                    ><i class="ai ai-researchgate"></i></a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -104,14 +163,34 @@ const alternateHref = '/'; // Links back to English
             <div class="container mt-5">
                 <div class="row text-center text-md-left">
                     <div class="col-md-3">
-                        <img src="/assets/imgs/avatar.png" alt="" class="img-thumbnail mb-4">
+                        <img
+                            src="/assets/imgs/avatar.png"
+                            alt=""
+                            class="img-thumbnail mb-4"
+                        />
                     </div>
                     <div class="pl-md-4 col-md-9">
                         <h6 class="title">Alexis Gomel</h6>
                         <p class="subtitle">Físico / Investigador</p>
-                        <p>¡Bienvenido a mi sitio web personal! Soy un físico apasionado por la dinámica no lineal, sistemas complejos, señales de alerta temprana, mecánica estadística y sus aplicaciones...</p>
-                        <p>Cuando no estoy investigando, me encanta capturar la vida a través de la fotografía, bailar swing, tocar la batería y viajar a dedo.</p>
-                        <a href="/assets/files/CV_Alexis_Gomel_web.pdf" download>   <button class="btn btn-primary rounded mt-3">DESCARGAR CV</button>   </a>                
+                        <p>
+                            ¡Bienvenido a mi sitio web personal! Soy un físico
+                            apasionado por la dinámica no lineal, sistemas
+                            complejos, señales de alerta temprana, mecánica
+                            estadística y sus aplicaciones...
+                        </p>
+                        <p>
+                            Cuando no estoy investigando, me encanta capturar la
+                            vida a través de la fotografía, bailar swing, tocar
+                            la batería y viajar a dedo.
+                        </p>
+                        <a
+                            href="/assets/files/CV_Alexis_Gomel_web.pdf"
+                            download
+                        >
+                            <button class="btn btn-primary rounded mt-3"
+                                >DESCARGAR CV</button
+                            >
+                        </a>
                     </div>
                 </div>
             </div>
@@ -124,136 +203,216 @@ const alternateHref = '/'; // Links back to English
                     <div class="col-sm-6 col-md-3 mb-4">
                         <div class="custom-card card border">
                             <div class="card-body">
-                             <a href="/es/cvonline">    <i class="icon ti-user"></i></a>
-                                <h5> <a href="/es/cvonline"> CV Online </a></h5>
+                                <a href="/es/cvonline">
+                                    <i class="icon ti-user"></i></a
+                                >
+                                <h5><a href="/es/cvonline"> CV Online </a></h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-4">
                         <div class="custom-card card border">
                             <div class="card-body">
-                             <a href="/es/projects">   <i  class="icon ti-gallery"> </i></a>
-                                <h5> <a href="/es/projects"> Proyectos Personales</a></h5>
+                                <a href="/es/projects">
+                                    <i class="icon ti-gallery"> </i></a
+                                >
+                                <h5>
+                                    <a href="/es/projects">
+                                        Proyectos Personales</a>
+                                </h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3 mb-4">
                         <div class="custom-card card border">
                             <div class="card-body">
-                                <a  href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao" target="_blank">  <i class="ai ai-google-scholar ai-3x"></i></a>
-                               <h5><a  href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao" target="_blank"> <h5>Publicaciones</a></h5>
+                                <a
+                                    href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
+                                    target="_blank"
+                                >
+                                    <i class="ai ai-google-scholar ai-3x"
+                                    ></i></a
+                                >
+                                <h5>
+                                    <a
+                                        href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
+                                        target="_blank"
+                                    >
+                                        <h5>Publicaciones</h5></a
+                                    >
+                                </h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3 mb-4">
-                        <div class="custom-card card border">
-                            <div class="card-body">
-                                <a href="/es/playlists"> <i class="icon ti-music-alt"></i></a>
-                                <h5><a href="/es/playlists">  
-                                 Listas de Música
-                                </a></h5>
+                        <div class="col-sm-6 col-md-3 mb-4">
+                            <div class="custom-card card border">
+                                <div class="card-body">
+                                    <a href="/es/playlists">
+                                        <i class="icon ti-music-alt"></i></a
+                                    >
+                                    <h5>
+                                        <a href="/es/playlists">
+                                            Listas de Música
+                                        </a>
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="portfolio" class="section">
-            <div class="container text-center">
-                <h6 class="section-title mb-4">Mis Trabajos</h6>
-                <p class="mb-5 pb-4">Aquí hay una lista de algunos de mis proyectos.</p>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="img-wrapper">
-                            <img src="/assets/imgs/3d_hamiltonian.png" alt="">
-                            <div class="overlay">
-                                <div class="overlay-infos">
-                                    <h5>Rogue wave freezing</h5>
-                                    <a href="/assets/imgs/3d_hamiltonian.png"><i class="ti-zoom-in"></i></a>
-                                    <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501"><i class="ti-link"></i></a>
-                                </div>  
+            <section id="portfolio" class="section">
+                <div class="container text-center">
+                    <h6 class="section-title mb-4">Mis Trabajos</h6>
+                    <p class="mb-5 pb-4">
+                        Aquí hay una lista de algunos de mis proyectos.
+                    </p>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="img-wrapper">
+                                <img
+                                    src="/assets/imgs/3d_hamiltonian.png"
+                                    alt=""
+                                />
+                                <div class="overlay">
+                                    <div class="overlay-infos">
+                                        <h5>Rogue wave freezing</h5>
+                                        <a
+                                            href="/assets/imgs/3d_hamiltonian.png"
+                                            ><i class="ti-zoom-in"></i></a
+                                        >
+                                        <a
+                                            href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501"
+                                            ><i class="ti-link"></i></a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="img-wrapper">
+                                <img
+                                    src="/assets/imgs/wave_scheme_flows.png"
+                                    alt=""
+                                />
+                                <div class="overlay">
+                                    <div class="overlay-infos">
+                                        <h5>ADHONLS</h5>
+                                        <a
+                                            href="/assets/imgs/wave_scheme_flows.png"
+                                            ><i class="ti-zoom-in"></i></a
+                                        >
+                                        <a
+                                            href="https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear"
+                                            ><i class="ti-link"></i></a
+                                        >
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="img-wrapper">
-                            <img src="/assets/imgs/wave_scheme_flows.png" alt="">
-                            <div class="overlay">
-                                <div class="overlay-infos">
-                                    <h5>ADHONLS</h5>
-                                    <a href="/assets/imgs/wave_scheme_flows.png"><i class="ti-zoom-in"></i></a>
-                                    <a href="https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear"><i class="ti-link"></i></a>
-                                </div>                           
+                        <div class="col-sm-4">
+                            <div class="img-wrapper">
+                                <img src="/assets/imgs/tippings.png" alt="" />
+                                <div class="overlay">
+                                    <div class="overlay-infos">
+                                        <h5>Tipping points</h5>
+                                        <a href="javascript:void(0)"
+                                            ><i class="ti-zoom-in"></i></a
+                                        >
+                                        <a href="javascript:void(0)"
+                                            ><i class="ti-link"></i></a
+                                        >
+                                    </div>
+                                </div>
                             </div>
-                        </div>                  
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="img-wrapper">
-                            <img src="/assets/imgs/tippings.png" alt="">
-                            <div class="overlay">
-                                <div class="overlay-infos">
-                                    <h5>Tipping points</h5>
-                                    <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
-                                    <a href="javascript:void(0)"><i class="ti-link"></i></a>
-                                </div>  
-                            </div>
-                        </div>
-                        <div class="img-wrapper">
-                            <img src="/assets/imgs/wordcloud.png" alt="">
-                            <div class="overlay">
-                                <div class="overlay-infos">
-                                    <h5>Worldcloud Jounal webscrapping</h5>
-                                    <a href="/assets/imgs/wordcloud.png"><i class="ti-zoom-in"></i></a>
-                                    <a href="https://github.com/alxgom/NL-Dynamics-wordcloud"><i class="ti-link"></i></a>
-                                </div>                           
-                            </div>
-                        </div>                  
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="img-wrapper">
-                            <img src="/assets/imgs/PopulationByDistrict_NiceColormap_mini.png" alt="">
-                            <div class="overlay">
-                                <div class="overlay-infos">
-                                    <h5>Custom colormaps</h5>
-                                    <a href="/assets/imgs/PopulationByDistrict_NiceColormap.png"><i class="ti-zoom-in"></i></a>
-                                    <a href="https://github.com/alxgom/-stitched_colorbars"><i class="ti-link"></i></a>
-                                </div>  
+                            <div class="img-wrapper">
+                                <img src="/assets/imgs/wordcloud.png" alt="" />
+                                <div class="overlay">
+                                    <div class="overlay-infos">
+                                        <h5>Worldcloud Jounal webscrapping</h5>
+                                        <a href="/assets/imgs/wordcloud.png"
+                                            ><i class="ti-zoom-in"></i></a
+                                        >
+                                        <a
+                                            href="https://github.com/alxgom/NL-Dynamics-wordcloud"
+                                            ><i class="ti-link"></i></a
+                                        >
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="img-wrapper">
-                            <img src="/assets/imgs/filament_scheme2.png" alt="">
-                            <div class="overlay">
-                                <div class="overlay-infos">
-                                    <h5>Filamentation statistical regimes</h5>
-                                    <a href="javascript:void(0)"><i class="ti-zoom-in"></i></a>
-                                    <a href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180"><i class="ti-link"></i></a>
-                                </div>                           
+                        <div class="col-sm-4">
+                            <div class="img-wrapper">
+                                <img
+                                    src="/assets/imgs/PopulationByDistrict_NiceColormap_mini.png"
+                                    alt=""
+                                />
+                                <div class="overlay">
+                                    <div class="overlay-infos">
+                                        <h5>Custom colormaps</h5>
+                                        <a
+                                            href="/assets/imgs/PopulationByDistrict_NiceColormap.png"
+                                            ><i class="ti-zoom-in"></i></a
+                                        >
+                                        <a
+                                            href="https://github.com/alxgom/-stitched_colorbars"
+                                            ><i class="ti-link"></i></a
+                                        >
+                                    </div>
+                                </div>
                             </div>
-                        </div>                  
+                            <div class="img-wrapper">
+                                <img
+                                    src="/assets/imgs/filament_scheme2.png"
+                                    alt=""
+                                />
+                                <div class="overlay">
+                                    <div class="overlay-infos">
+                                        <h5>
+                                            Filamentation statistical regimes
+                                        </h5>
+                                        <a href="javascript:void(0)"
+                                            ><i class="ti-zoom-in"></i></a
+                                        >
+                                        <a
+                                            href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180"
+                                            ><i class="ti-link"></i></a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <section id="contact" class="position-relative section">
+                <div class="container text-center">
+                    <h6 class="subtitle">Contacto</h6>
+                    <h5 class="section-title mb-4">
+                        <a href="mailto:alexis.gomel@gmail.com" target="_blank">
+                            Envíame un correo: alexis.gomel@gmail.com
+                        </a>
+                    </h5>
+
+                    <textarea name="message"></textarea>
+                    <input type="submit" />
+
+                    <div id="map">
+                        <iframe src="https://snazzymaps.com/embed/458460"
+                        ></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <Footer />
+
+            <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"
+            ></script>
+            <script
+                is:inline
+                src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+            <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"
+            ></script>
+            <script is:inline src="/assets/js/steller.js"></script>
         </section>
-
-        <section id="contact" class="position-relative section">
-            <div class="container text-center">
-                <h6 class="subtitle">Contacto</h6>
-                <h5 class="section-title mb-4"><a  href="mailto:alexis.gomel@gmail.com" target="_blank"> Envíame un correo: alexis.gomel@gmail.com </a></h5>
-                
-                <textarea name="message"></textarea>
-                <input type="submit">
-
-                 <div id="map">
-                    <iframe src="https://snazzymaps.com/embed/458460"></iframe>
-                </div>      
-            </div>
-        </section>
-
-        <Footer />
-
-        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
-        <script is:inline src="/assets/js/steller.js"></script>
-
-	</body>
+    </body>
 </html>

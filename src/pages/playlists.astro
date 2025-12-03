@@ -1,19 +1,19 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE } from "../consts";
 
 // Import Cookie Consent (Handles GTM + Silktide)
-import CookieConsent from '../components/CookieConsent.astro';
+import CookieConsent from "../components/CookieConsent.astro";
 
 // MULTILINGUAL SETTINGS
-const currentLang = 'en';
-const alternateHref = '/es/playlists'; // Links to Spanish version
+const currentLang = "en";
+const alternateHref = "/es/playlists"; // Links to Spanish version
 
 // PLAYLIST IDs
 const PLAYLIST_IDS = [
-    "0J4qeq2hJbGkhBqM7Wpl8P", 
+    "0J4qeq2hJbGkhBqM7Wpl8P",
     "1WCwPvPwrhr3qL1j0Ifspw",
     "2l9gpXmsLtF29bj6JIhhii",
     "4JLSbszHq3pm7h2v7MVe9U",
@@ -22,26 +22,36 @@ const PLAYLIST_IDS = [
     "6NweKUuX2PaZF3ivoDrNwz",
     "6gp0IOSYv8aI3LHmeYvZJO",
     "0TUB9IKkLDhnLZLXEVPplN",
-    "6cqbMT2aiE6OyxsFRftgqx"
+    "6cqbMT2aiE6OyxsFRftgqx",
 ];
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
-        <BaseHead title={`Playlists - ${SITE_TITLE}`} description="My Spotify Playlists" currentLang={currentLang} alternateHref={alternateHref} />
+        <BaseHead
+            title="Spotify Playlists | Alexis Gomel"
+            description="My Spotify Playlists"
+            currentLang={currentLang}
+            alternateHref={alternateHref}
+        />
 
         <CookieConsent currentLang={currentLang} />
 
-        <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="/assets/css/steller.css">
+        <link
+            rel="stylesheet"
+            href="/assets/vendors/themify-icons/css/themify-icons.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <link rel="stylesheet" href="/assets/css/steller.css" />
     </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-        
         <Header />
-        
+
         <div class="container mt-5 pt-5 mb-5">
             <div class="text-center mb-5">
                 <h1 class="section-title">Spotify Playlists</h1>
@@ -49,28 +59,32 @@ const PLAYLIST_IDS = [
             </div>
 
             <div class="row">
-                {PLAYLIST_IDS.map((id) => (
-                    <div class="col-md-6 mb-4">
-                        <iframe 
-                            style="border-radius:12px" 
-                            src={`https://open.spotify.com/embed/playlist/${id}?utm_source=generator`} 
-                            width="100%" 
-                            height="352" 
-                            frameborder="0" 
-                            allowfullscreen="" 
-                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                ))}
+                {
+                    PLAYLIST_IDS.map((id) => (
+                        <div class="col-md-6 mb-4">
+                            <iframe
+                                style="border-radius:12px"
+                                src={`https://open.spotify.com/embed/playlist/${id}?utm_source=generator`}
+                                width="100%"
+                                height="352"
+                                frameborder="0"
+                                allowfullscreen=""
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                loading="lazy"
+                            ></iframe>
+                        </div>
+                    ))
+                }
             </div>
         </div>
 
         <Footer />
-        
+
         <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"
+        ></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"
+        ></script>
         <script is:inline src="/assets/js/steller.js"></script>
     </body>
 </html>

@@ -1,99 +1,142 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE } from "../consts";
 
 // Import Components
-import LanguageChart from '../components/cv/LanguageChart.astro';
-import SkillGroup from '../components/cv/SkillGroup.astro';
-import CookieConsent from '../components/CookieConsent.astro';
+import LanguageChart from "../components/cv/LanguageChart.astro";
+import SkillGroup from "../components/cv/SkillGroup.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 
-const currentLang = 'en';
-const alternateHref = '/es/cvonline'; 
+const currentLang = "en";
+const alternateHref = "/es/cvonline";
 const advancedSkills = [
-    { name: 'Python', experience: '+8yrs' },
-    { name: 'Matlab', experience: '+7yrs' },
-    { name: 'Git', experience: '+5yrs' }
+    { name: "Python", experience: "+8yrs" },
+    { name: "Matlab", experience: "+7yrs" },
+    { name: "Git", experience: "+5yrs" },
 ];
 
 const intermediateSkills = [
-    { name: 'Latex', experience: '+6yrs' },
-    { name: 'SQL', experience: 'New' }
+    { name: "Latex", experience: "+6yrs" },
+    { name: "SQL", experience: "New" },
 ];
 
 const beginnerSkills = [
-    { name: 'HTML', experience: '+1yrs' },
-    { name: 'Spark', experience: 'New' },
-    { name: 'Tableau', experience: 'New' }
+    { name: "HTML", experience: "+1yrs" },
+    { name: "Spark", experience: "New" },
+    { name: "Tableau", experience: "New" },
 ];
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
-        <BaseHead title={`CV - ${SITE_TITLE}`} description="Alexis Gomel - CV" currentLang={currentLang} alternateHref={alternateHref} />
+        <BaseHead
+            title="Curriculum Vitae (CV) | Alexis Gomel - Physicist & Data Scientist"
+            description="Alexis Gomel - CV"
+            currentLang={currentLang}
+            alternateHref={alternateHref}
+        />
 
         <CookieConsent currentLang={currentLang} />
 
-        <script is:inline type="text/javascript" src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"></script>
+        <script
+            is:inline
+            type="text/javascript"
+            src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"
+        ></script>
 
-        <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="/assets/css/steller.css">
+        <link
+            rel="stylesheet"
+            href="/assets/vendors/themify-icons/css/themify-icons.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+        <link rel="stylesheet" href="/assets/css/steller.css" />
     </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-        
         <Header />
-        
+
         <div class="container mt-5 pt-5">
-            
             <section id="Current" class="section mt-3">
                 <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;" >What I Do</h1>
-                    <p class="mb-2 pb-2">I am a physicist with a passion for nonlinear dynamics, data science, complex systems, early warnings, statistical mechanics and its applications to many systems. My research interests also extend to education and the fields of generative AI and data science.</p>
-                    <p class="mb-5 pb-4">My last position was as post-doc researcher at the university of Reading as part of the <a  href="https://www.tipes.dk/tipping-points/" > TiPES project</a>. </p>
+                    <h1
+                        class="section-title mb-4"
+                        style="font-weight: bold; font-size: 40px;"
+                    >
+                        What I Do
+                    </h1>
+                    <p class="mb-2 pb-2">
+                        I am a physicist with a passion for nonlinear dynamics,
+                        data science, complex systems, early warnings,
+                        statistical mechanics and its applications to many
+                        systems. My research interests also extend to education
+                        and the fields of generative AI and data science.
+                    </p>
+                    <p class="mb-5 pb-4">
+                        My last position was as post-doc researcher at the
+                        university of Reading as part of the <a
+                            href="https://www.tipes.dk/tipping-points/"
+                        >
+                            TiPES project</a
+                        >.
+                    </p>
                     <div class="general-img-holder">
-                        <img src="/assets/imgs/wordcloud.png" alt="Image generated by webscraping the keywords from all the articles since 2020 in the jouirnal of nonlinear dynamics" >
-                    </div> 
-                    <p class="mb-2 pb-2"> “Using a term like nonlinear science is like referring to the bulk of zoology as the study of non-elephant animals.” – Stanislaw Ulam.</p>
+                        <img
+                            src="/assets/imgs/wordcloud.png"
+                            alt="Image generated by webscraping the keywords from all the articles since 2020 in the jouirnal of nonlinear dynamics"
+                        />
+                    </div>
+                    <p class="mb-2 pb-2">
+                        “Using a term like nonlinear science is like referring
+                        to the bulk of zoology as the study of non-elephant
+                        animals.” – Stanislaw Ulam.
+                    </p>
                 </div>
             </section>
-           
+
             <section id="Skills" class="section mt-3">
                 <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;">Skills</h1>
+                    <h1
+                        class="section-title mb-4"
+                        style="font-weight: bold; font-size: 40px;"
+                    >
+                        Skills
+                    </h1>
                     <h6 class="mb-2 pb-4"></h6>
                 </div>
-           
+
                 <div class="container text-center">
                     <div class="row mx-auto">
-                        <SkillGroup 
-                            title="Advanced" 
-                            color="#ff7a57" 
+                        <SkillGroup
+                            title="Advanced"
+                            color="#ff7a57"
                             height="150px"
                             skills={advancedSkills}
                         />
 
-                        <SkillGroup 
-                            title="Intermediate" 
-                            color="#ffa189" 
+                        <SkillGroup
+                            title="Intermediate"
+                            color="#ffa189"
                             height="100px"
                             skills={intermediateSkills}
                         />
 
-                        <SkillGroup 
-                            title="Beginner" 
-                            color="#ffc9bb" 
+                        <SkillGroup
+                            title="Beginner"
+                            color="#ffc9bb"
                             height="60px"
                             skills={beginnerSkills}
                         />
                     </div>
                 </div>
-                
+
                 <h6 class="mb-2 pb-4"></h6>
-                
+
                 <div class="container text-left">
                     <section>
                         <div class="columns">
@@ -101,154 +144,262 @@ const beginnerSkills = [
                                 <div class="rectangle"></div>
                                 <div class="text">
                                     <h3>Data Science</h3>
-                                    <p>Data Analysis, Data Storytelling, Data Visualizations, Statistics, Mathematical Modelling, Numerical Simulations Time Series Analysis.</p>
+                                    <p>
+                                        Data Analysis, Data Storytelling, Data
+                                        Visualizations, Statistics, Mathematical
+                                        Modelling, Numerical Simulations Time
+                                        Series Analysis.
+                                    </p>
                                 </div>
                             </div>
                             <div class="column">
                                 <div class="rectangle"></div>
                                 <div class="text">
                                     <h3>Mathematics</h3>
-                                    <p>Regressions, Fourier analysis, numerical integration, extrapolation, interpolation, wavelet analysis, stochastic simulations, nonlinear differential equations, linear algebra, modelling.</p>
+                                    <p>
+                                        Regressions, Fourier analysis, numerical
+                                        integration, extrapolation,
+                                        interpolation, wavelet analysis,
+                                        stochastic simulations, nonlinear
+                                        differential equations, linear algebra,
+                                        modelling.
+                                    </p>
                                 </div>
                             </div>
                             <div class="column">
                                 <div class="rectangle"></div>
                                 <div class="text">
                                     <h3>Statistics</h3>
-                                    <p>Ensemble statistics, uncertainty estimation, PCA, k-means, correlation, mutual information, unbiased statistical moments.</p>
+                                    <p>
+                                        Ensemble statistics, uncertainty
+                                        estimation, PCA, k-means, correlation,
+                                        mutual information, unbiased statistical
+                                        moments.
+                                    </p>
                                 </div>
                             </div>
                             <div class="column">
                                 <div class="rectangle"></div>
                                 <div class="text">
                                     <h3>Physics</h3>
-                                    <p>Non-linear dynamics, Laser physics, Fluid Mechanics, Statistical Physics</p>
+                                    <p>
+                                        Non-linear dynamics, Laser physics,
+                                        Fluid Mechanics, Statistical Physics
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div>
-                
+
                 <h6 class="mb-2 pb-4"></h6>
-                
-                <LanguageChart 
-                    labels={['Spanish', 'English', 'French', 'German']} 
+
+                <LanguageChart
+                    labels={["Spanish", "English", "French", "German"]}
                     datasetLabel="Skill Level"
                 />
-
             </section>
-           
+
             <section id="Formation" class="section mt-3">
                 <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;">Academic Formation</h1>
+                    <h1
+                        class="section-title mb-4"
+                        style="font-weight: bold; font-size: 40px;"
+                    >
+                        Academic Formation
+                    </h1>
                     <h6 class="mb-2 pb-4"></h6>
-            
+
                     <div class="row mx-auto">
                         <div class="col-sm-6 col-md-6 mb-3">
-                            <h2 class="section-title mb-3" style="font-weight: bold; font-size: 34px;" >PHD in Physical sciences</h2>
-                            <h3 class="section-title mb-2">Behavior of self-modulated waves in nonlinear systems</h3>
+                            <h2
+                                class="section-title mb-3"
+                                style="font-weight: bold; font-size: 34px;"
+                            >
+                                PHD in Physical sciences
+                            </h2>
+                            <h3 class="section-title mb-2">
+                                Behavior of self-modulated waves in nonlinear
+                                systems
+                            </h3>
                             <div class="img-holder">
                                 <style>
-                                  .imagefac {
-                                    width: auto;
-                                    height: 100px;
-                                  }
+                                    .imagefac {
+                                        width: auto;
+                                        height: 100px;
+                                    }
                                 </style>
-                                <img src="/assets/imgs/fac_sciences_noir.png" alt=""   class="imagefac" />
-                                <h6 class="mb-3 pb-2" style="font-size: 20px;">University of Geneva</h6>
+                                <img
+                                    src="/assets/imgs/fac_sciences_noir.png"
+                                    alt=""
+                                    class="imagefac"
+                                />
+                                <h6 class="mb-3 pb-2" style="font-size: 20px;">
+                                    University of Geneva
+                                </h6>
                                 <h6 class="mb-1 pb-2">Advisors</h6>
-                                <p> Advisor: Jérôme Kasparian</p>
-                                <p> Co-advisor: Maura Brunetti</p>
-                            </div>            
-                        </div>  
+                                <p>Advisor: Jérôme Kasparian</p>
+                                <p>Co-advisor: Maura Brunetti</p>
+                            </div>
+                        </div>
                         <div class="col-sm-6 col-md-6 mb-3">
-                            <h2 class="section-title mb-3" style="font-weight: bold; font-size: 34px;">Master in Physical sciences</h2>
-                            <h3 class="section-title mb-2">Rogue waves en lasers modulados en fase</h3>
-                            <h3 class="section-title mb-2">(Rogue waves in phase modulated lasers)</h3>
+                            <h2
+                                class="section-title mb-3"
+                                style="font-weight: bold; font-size: 34px;"
+                            >
+                                Master in Physical sciences
+                            </h2>
+                            <h3 class="section-title mb-2">
+                                Rogue waves en lasers modulados en fase
+                            </h3>
+                            <h3 class="section-title mb-2">
+                                (Rogue waves in phase modulated lasers)
+                            </h3>
                             <div class="img-holder">
-                                <img src="/assets/imgs/600px-UBA.png" alt="" class="imagefac" />
-                                <h6 class="mb-3 pb-2" style="font-size: 20px;">University of Buenos Aires</h6>
+                                <img
+                                    src="/assets/imgs/600px-UBA.png"
+                                    alt=""
+                                    class="imagefac"
+                                />
+                                <h6 class="mb-3 pb-2" style="font-size: 20px;">
+                                    University of Buenos Aires
+                                </h6>
                                 <h6 class="mb-1 pb-2">Advisors</h6>
-                                <p> Advisor: Jorge Tredicce</p>
-                                <p> Co-advisor: Pablo Mininni</p>
+                                <p>Advisor: Jorge Tredicce</p>
+                                <p>Co-advisor: Pablo Mininni</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            
+
             <div class="container text-center">
                 <h1 class="section-title mb-4">Other formation</h1>
-                <p> June 2022 - Introduction to Machine Learning, University of Lausanne (UNIL)</p>
+                <p>
+                    June 2022 - Introduction to Machine Learning, University of
+                    Lausanne (UNIL)
+                </p>
             </div>
-           
+
             <section id="Teaching" class="section mt-3">
                 <div class="container text-center">
-                    <h1 class="section-title mb-4" style="font-weight: bold; font-size: 40px;">Teaching Experience</h1>
+                    <h1
+                        class="section-title mb-4"
+                        style="font-weight: bold; font-size: 40px;"
+                    >
+                        Teaching Experience
+                    </h1>
                     <h6 class="mb-2 pb-4"></h6>
                     <div class="row mx-auto">
                         <div class="col-sm-6 col-md-6 mb-3">
-                            <h2 class="section-title mb-4" style="font-weight: bold; font-size: 34px;" >University level</h2>
+                            <h2
+                                class="section-title mb-4"
+                                style="font-weight: bold; font-size: 34px;"
+                            >
+                                University level
+                            </h2>
                             <h6 class="mb-5 pb-2"></h6>
-            
-                            <h3 class="mb-3 pb-3"> University of Geneva</h3>
-                                <p style="font-weight: bold;"> Teaching assistant</p>
-                                <h6 class="mb-2 pb-2"> February 2019 - July 2022</h6>
-                                <p> Courses: Physics lab for biologist, Nonlinear Dynamics (in charge of the whole practice)</p>
-                                
-                                <h6 class="mb-5 pb-3"></h6>
-                                <h3 class="mb-2 pb-3">University of Buenos Aires</h3>
-                                <p style="font-weight: bold;"> Teaching assistant</p>
-                                <h6 class="mb-2 pb-2">February 2016 - April 2016</h6>
-                                <p> Courses: Introduction to thermodynamics and quantum mechanics.</p>
+
+                            <h3 class="mb-3 pb-3">University of Geneva</h3>
+                            <p style="font-weight: bold;">Teaching assistant</p>
+                            <h6 class="mb-2 pb-2">February 2019 - July 2022</h6>
+                            <p>
+                                Courses: Physics lab for biologist, Nonlinear
+                                Dynamics (in charge of the whole practice)
+                            </p>
+
+                            <h6 class="mb-5 pb-3"></h6>
+                            <h3 class="mb-2 pb-3">
+                                University of Buenos Aires
+                            </h3>
+                            <p style="font-weight: bold;">Teaching assistant</p>
+                            <h6 class="mb-2 pb-2">
+                                February 2016 - April 2016
+                            </h6>
+                            <p>
+                                Courses: Introduction to thermodynamics and
+                                quantum mechanics.
+                            </p>
                         </div>
-                    
+
                         <div class="col-sm-6 col-md-6 mb-3">
-                            <h1 class="section-title mb-4" style="font-weight: bold; font-size: 34px;">High school level</h1>   
+                            <h1
+                                class="section-title mb-4"
+                                style="font-weight: bold; font-size: 34px;"
+                            >
+                                High school level
+                            </h1>
                             <h6 class="mb-5 pb-3"></h6>
                             <h3 class="mb-3 pb-3">Paidea School</h3>
-                                <p style="font-weight: bold;" > Physics replacement teacher</p>
-                                <h6 class="mb-2 pb-2">October 2017 - November 2017</h6>
-                                <p> Short physics replacement for the 16-17yrs old students.</p>
-                                <h6 class="mb-5 pb-3"></h6>
-                                <h3 class="mb-3 pb-3">River Plate High School</h3>
-                                <p style="font-weight: bold;"> Math replacement teacher</p>
-                                <h6 class="mb-2 pb-2">July 2015 - February 2016</h6>
-                                <p> In charge of math for the 14-17yrs old students.</p>
-                                <h6 class="mb-5 pb-3"></h6>
-                                <h3 class="mb-3 pb-3">Boston High shcool</h3>
-                                <p style="font-weight: bold;"> Math replacement teacher</p>
-                                <h6 class="mb-2 pb-2">September 2015 - Dicember 2015</h6>
-                                <p> In charge of math for the 16yrs old students.</p>
-                                <h6 class="mb-5 pb-2"></h6>                 
+                            <p style="font-weight: bold;">
+                                Physics replacement teacher
+                            </p>
+                            <h6 class="mb-2 pb-2">
+                                October 2017 - November 2017
+                            </h6>
+                            <p>
+                                Short physics replacement for the 16-17yrs old
+                                students.
+                            </p>
+                            <h6 class="mb-5 pb-3"></h6>
+                            <h3 class="mb-3 pb-3">River Plate High School</h3>
+                            <p style="font-weight: bold;">
+                                Math replacement teacher
+                            </p>
+                            <h6 class="mb-2 pb-2">July 2015 - February 2016</h6>
+                            <p>
+                                In charge of math for the 14-17yrs old students.
+                            </p>
+                            <h6 class="mb-5 pb-3"></h6>
+                            <h3 class="mb-3 pb-3">Boston High shcool</h3>
+                            <p style="font-weight: bold;">
+                                Math replacement teacher
+                            </p>
+                            <h6 class="mb-2 pb-2">
+                                September 2015 - Dicember 2015
+                            </h6>
+                            <p>In charge of math for the 16yrs old students.</p>
+                            <h6 class="mb-5 pb-2"></h6>
                         </div>
                     </div>
                 </div>
             </section>
-           
+
             <section id="Publications" class="section mt-3">
                 <div class="container text-center">
-                  
                     <div class="bibtex_template">
                         <div style="margin-left: 10px; margin-bottom:5px;">
-                            <span class="title " style="font-size: 28px;  font-family: American Typewriter;" ></span>
+                            <span
+                                class="title"
+                                style="font-size: 28px;  font-family: American Typewriter;"
+                            ></span>
                         </div>
-                        <div class="if author" >
+                        <div class="if author">
                             <span class="if year">
-                              <span class="year" style="font-size: 20px"></span>, 
+                                <span class="year" style="font-size: 20px"
+                                ></span>,
                             </span>
-                            <span class="author"  style="font-size: 20px"></span>
+                            <span class="author" style="font-size: 20px"></span>
                             <span class="if url" style="margin-left: 20px">
-                              <a class="url" style="color:black; font-size:10px">(view online)</a>
+                                <a
+                                    class="url"
+                                    style="color:black; font-size:10px"
+                                    >(view online)</a
+                                >
                             </span>
                             <h6 class="mb-1 pb-1"></h6>
                         </div>
                     </div>
-                
-                    <h1 class="section-title mb-6 pb-3" style="font-weight: bold; font-size: 40px;">Publications</h1>
-                    
+
+                    <h1
+                        class="section-title mb-6 pb-3"
+                        style="font-weight: bold; font-size: 40px;"
+                    >
+                        Publications
+                    </h1>
+
                     <bibtex src="/mybib.bib"></bibtex>
-                    
+
                     <div class="bibtex_display" bibtexkey="Gomel2023"></div>
                     <div class="bibtex_display" bibtexkey="Gomel2021"></div>
                     <div class="bibtex_display" bibtexkey="Marconi2020a"></div>
@@ -256,52 +407,70 @@ const beginnerSkills = [
                     <div class="bibtex_display" bibtexkey="Gomel2019"></div>
                 </div>
             </section>
-           
+
             <section id="Presentations and congresses" class="section mt-3">
                 <div class="container text-center">
-                    <h1 class="section-title mb-6 pb-3" style="font-weight: bold; font-size: 40px;">Presentations and congresses</h1>
-                        
-                    <div class="bibtex_display mb-6" bibtexkey="Gomel2022"></div>
-                    <p>Conference: EGU 2022. Vienna, Austria. </p>  
-                    <p> Format: Talk. Speaker: Alexis Gomel. </p>   
-                    
-                    <h1 class="mb-6 pb-2" style="font-size: 28px;">Freezing of Unsteady Nonlinear Waves over an uneven bottom by Phase-Space   Manipulation.</h1>
-                    <p>  Authors: Debbie Eeltink, Hubert Branger, Christopher Luneau, Andrea Armaroli,
-                    Maura Brunetti, Jérôme Kasparian, Alexis Gomel</p>  
-                    <p> Conference: Enoc 2022. Lyon, France. </p>   
-                    <p> Format: Talk. Speaker: Alexis Gomel. </p>   
-                </div>
-            </section>
-            
-            <section id="Past_jobs" class="section mt-3">
-                <div class="container text-center">
-                    <h1 class="section-title mb-6" style="font-weight: bold; font-size: 30px;">Other jobs</h1>
-                    <h6 class="mb-5 pb-2"></h6>
-                    <h3 class="mb-3 pb-4">Techopolis</h3>
-                    <p> Exhibitos</p>
-                    <h6 class="mb-2 pb-2">Agoust 2014 - October 2014</h6>
-                    <p> Physics related divulgation</p>
-                    <h6 class="mb-5 pb-2"></h6>
-                    <h3 class="mb-3 pb-4">Hacoaj</h3>
-                    <p> Security</p>
-                    <h6 class="mb-2 pb-2">July 2010 - November 2010</h6>
-                    <p> Security at Club Náutico Hacoaj, Tigre, Buenos Aires</p>
-                    <h6 class="mb-5 pb-2"></h6>
-                    <h3 class="mb-3 pb-4">Mi Cuba linda</h3>
-                    <p> Call center </p>
-                    <h6 class="mb-2 pb-2">May 2006 - September 2006</h6>
-                    <p> Call Center operator</p>
-                    <h6 class="mb-5 pb-2"></h6>
+                    <h1
+                        class="section-title mb-6 pb-3"
+                        style="font-weight: bold; font-size: 40px;"
+                    >
+                        Presentations and congresses
+                    </h1>
+
+                    <div class="bibtex_display mb-6" bibtexkey="Gomel2022">
+                    </div>
+                    <p>Conference: EGU 2022. Vienna, Austria.</p>
+                    <p>Format: Talk. Speaker: Alexis Gomel.</p>
+
+                    <h1 class="mb-6 pb-2" style="font-size: 28px;">
+                        Freezing of Unsteady Nonlinear Waves over an uneven
+                        bottom by Phase-Space Manipulation.
+                    </h1>
+                    <p>
+                        Authors: Debbie Eeltink, Hubert Branger, Christopher
+                        Luneau, Andrea Armaroli, Maura Brunetti, Jérôme
+                        Kasparian, Alexis Gomel
+                    </p>
+                    <p>Conference: Enoc 2022. Lyon, France.</p>
+                    <p>Format: Talk. Speaker: Alexis Gomel.</p>
                 </div>
             </section>
 
+            <section id="Past_jobs" class="section mt-3">
+                <div class="container text-center">
+                    <h1
+                        class="section-title mb-6"
+                        style="font-weight: bold; font-size: 30px;"
+                    >
+                        Other jobs
+                    </h1>
+                    <h6 class="mb-5 pb-2"></h6>
+                    <h3 class="mb-3 pb-4">Techopolis</h3>
+                    <p>Exhibitos</p>
+                    <h6 class="mb-2 pb-2">Agoust 2014 - October 2014</h6>
+                    <p>Physics related divulgation</p>
+                    <h6 class="mb-5 pb-2"></h6>
+                    <h3 class="mb-3 pb-4">Hacoaj</h3>
+                    <p>Security</p>
+                    <h6 class="mb-2 pb-2">July 2010 - November 2010</h6>
+                    <p>Security at Club Náutico Hacoaj, Tigre, Buenos Aires</p>
+                    <h6 class="mb-5 pb-2"></h6>
+                    <h3 class="mb-3 pb-4">Mi Cuba linda</h3>
+                    <p>Call center</p>
+                    <h6 class="mb-2 pb-2">May 2006 - September 2006</h6>
+                    <p>Call Center operator</p>
+                    <h6 class="mb-5 pb-2"></h6>
+                </div>
+            </section>
         </div>
 
         <Footer />
-        
+
         <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"
+        ></script>
+        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"
+        ></script>
         <script is:inline src="/assets/js/steller.js"></script>
     </body>
 </html>
