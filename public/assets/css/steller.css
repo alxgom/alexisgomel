@@ -11805,3 +11805,7 @@ pre {
 
 
 @media (max-width
+/* Fix for card hover text color */
+.custom-card:hover a, .custom-card:active a {
+  color: #fff;
+}
