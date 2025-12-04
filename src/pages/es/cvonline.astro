@@ -14,131 +14,432 @@ const currentLang = "es";
 const alternateHref = "/cvonline";
 
 const advancedSkills = [
-    { name: "Python", experience: "+8 años" },
-    { name: "Matlab", experience: "+7 años" },
-    { name: "Git", experience: "+5 años" },
+  { name: "Python", experience: "+8 años" },
+  { name: "Matlab", experience: "+7 años" },
+  { name: "Git", experience: "+5 años" },
 ];
 
 const intermediateSkills = [
-    { name: "Latex", experience: "+6 años" },
-    { name: "SQL", experience: "Nuevo" },
+  { name: "Latex", experience: "+6 años" },
+  { name: "SQL", experience: "Nuevo" },
 ];
 
 const beginnerSkills = [
-    { name: "HTML", experience: "+1 año" },
-    { name: "Spark", experience: "Nuevo" },
-    { name: "Tableau", experience: "Nuevo" },
+  { name: "HTML", experience: "+1 año" },
+  { name: "Spark", experience: "Nuevo" },
+  { name: "Tableau", experience: "Nuevo" },
 ];
 ---
 
 <!doctype html>
 <html lang="es">
-    <head>
-        <BaseHead
-            title="Curriculum Vitae (CV) | Alexis Gomel - Físico y Científico de Datos"
-            description="Alexis Gomel - CV"
-            currentLang={currentLang}
-            alternateHref={alternateHref}
-        />
+  <head>
+    <BaseHead
+      title="Curriculum Vitae (CV) | Alexis Gomel - Físico y Científico de Datos"
+      description="Alexis Gomel - CV"
+      currentLang={currentLang}
+      alternateHref={alternateHref}
+    />
 
-        <script is:inline define:vars={{ GTM_ID }}>
-            // ... your GTM code ...
-        </script>
-        <script
-            is:inline
-            type="text/javascript"
-            src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"
-        ></script>
+    <script is:inline define:vars={{ GTM_ID }}>
+      // ... your GTM code ...
+    </script>
+    <script
+      is:inline
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/gh/pcooksey/bibtex-js@1.0.0/src/bibtex_js.min.js"
+    ></script>
 
-        <link
-            rel="stylesheet"
-            href="/assets/vendors/themify-icons/css/themify-icons.css"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        />
-        <link rel="stylesheet" href="/assets/css/steller.css" />
-    </head>
+    <link
+      rel="stylesheet"
+      href="/assets/vendors/themify-icons/css/themify-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/steller.css" />
+  </head>
 
-    <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-        <Header />
+  <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <Header />
 
-        <div class="container mt-5 pt-5">
-            <section id="Current" class="section mt-3">
-                <div class="container text-center">
-                    <h1
-                        class="section-title mb-4"
-                        style="font-weight: bold; font-size: 40px;"
-                    >
-                        Lo Que Hago
-                    </h1>
-                    <p class="mb-2 pb-2">
-                        Soy físico con pasión por la dinámica no lineal...
-                    </p>
-                </div>
-            </section>
+    <div class="container mt-5 pt-5">
+      <section id="Current" class="section mt-3">
+        <div class="container text-center">
+          <h1
+            class="section-title mb-4"
+            style="font-weight: bold; font-size: 40px;"
+          >
+            Lo Que Hago
+          </h1>
+          <p class="mb-2 pb-2">
+            Soy físico con pasión por la dinámica no lineal, ciencia de datos,
+            sistemas complejos, alertas tempranas, mecánica estadística y sus
+            aplicaciones a muchos sistemas. Mis intereses de investigación
+            también se extienden a la educación y los campos de la IA generativa
+            y la ciencia de datos.
+          </p>
+          <p class="mb-5 pb-4">
+            Mi último puesto fue como investigador post-doc en la universidad de
+            Reading como parte del <a
+              href="https://www.tipes.dk/tipping-points/"
+            >
+              proyecto TiPES</a
+            >.
+          </p>
+          <div class="general-img-holder">
+            <img
+              src="/assets/imgs/wordcloud.png"
+              alt="Imagen generada por webscraping de las palabras clave de todos los artículos desde 2020 en la revista de dinámica no lineal"
+            />
+          </div>
+          <p class="mb-2 pb-2">
+            “Usar un término como ciencia no lineal es como referirse a la mayor
+            parte de la zoología como el estudio de los animales que no son
+            elefantes.” – Stanislaw Ulam.
+          </p>
+        </div>
+      </section>
 
-            <section id="Skills" class="section mt-3">
-                <div class="container text-center">
-                    <h1
-                        class="section-title mb-4"
-                        style="font-weight: bold; font-size: 40px;"
-                    >
-                        Habilidades
-                    </h1>
-                    <h6 class="mb-2 pb-4"></h6>
-                </div>
-
-                <div class="container text-center">
-                    <div class="row mx-auto">
-                        <SkillGroup
-                            title="Avanzado"
-                            color="#ff7a57"
-                            height="150px"
-                            skills={advancedSkills}
-                        />
-
-                        <SkillGroup
-                            title="Intermedio"
-                            color="#ffa189"
-                            height="100px"
-                            skills={intermediateSkills}
-                        />
-
-                        <SkillGroup
-                            title="Principiante"
-                            color="#ffc9bb"
-                            height="60px"
-                            skills={beginnerSkills}
-                        />
-                    </div>
-                </div>
-
-                <h6 class="mb-2 pb-4"></h6>
-
-                <div class="container text-left">
-                    <section>
-                        <div class="columns"></div>
-                    </section>
-                </div>
-
-                <h6 class="mb-2 pb-4"></h6>
-
-                <LanguageChart
-                    labels={["Español", "Inglés", "Francés", "Alemán"]}
-                    datasetLabel="Nivel"
-                />
-            </section>
+      <section id="Skills" class="section mt-3">
+        <div class="container text-center">
+          <h1
+            class="section-title mb-4"
+            style="font-weight: bold; font-size: 40px;"
+          >
+            Habilidades
+          </h1>
+          <h6 class="mb-2 pb-4"></h6>
         </div>
 
-        <Footer />
+        <div class="container text-center">
+          <div class="row mx-auto">
+            <SkillGroup
+              title="Avanzado"
+              color="#ff7a57"
+              height="150px"
+              skills={advancedSkills}
+            />
 
-        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"
-        ></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"
-        ></script>
-        <script is:inline src="/assets/js/steller.js"></script>
-    </body>
+            <SkillGroup
+              title="Intermedio"
+              color="#ffa189"
+              height="100px"
+              skills={intermediateSkills}
+            />
+
+            <SkillGroup
+              title="Principiante"
+              color="#ffc9bb"
+              height="60px"
+              skills={beginnerSkills}
+            />
+          </div>
+        </div>
+
+        <h6 class="mb-2 pb-4"></h6>
+
+        <div class="container text-left">
+          <section>
+            <div class="columns">
+              <div class="column">
+                <div class="rectangle"></div>
+                <div class="text">
+                  <h3>Ciencia de Datos</h3>
+                  <p>
+                    Análisis de Datos, Narración de Datos, Visualización de
+                    Datos, Estadística, Modelado Matemático, Simulaciones
+                    Numéricas, Análisis de Series Temporales.
+                  </p>
+                </div>
+              </div>
+              <div class="column">
+                <div class="rectangle"></div>
+                <div class="text">
+                  <h3>Matemáticas</h3>
+                  <p>
+                    Regresiones, Análisis de Fourier, integración numérica,
+                    extrapolación, interpolación, análisis de wavelets,
+                    simulaciones estocásticas, ecuaciones diferenciales no
+                    lineales, álgebra lineal, modelado.
+                  </p>
+                </div>
+              </div>
+              <div class="column">
+                <div class="rectangle"></div>
+                <div class="text">
+                  <h3>Estadística</h3>
+                  <p>
+                    Estadística de conjuntos, estimación de incertidumbre, PCA,
+                    k-means, correlación, información mutua, momentos
+                    estadísticos imparciales.
+                  </p>
+                </div>
+              </div>
+              <div class="column">
+                <div class="rectangle"></div>
+                <div class="text">
+                  <h3>Física</h3>
+                  <p>
+                    Dinámica no lineal, Física láser, Mecánica de Fluidos,
+                    Física Estadística
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <h6 class="mb-2 pb-4"></h6>
+
+        <LanguageChart
+          labels={["Español", "Inglés", "Francés", "Alemán"]}
+          datasetLabel="Nivel"
+        />
+      </section>
+
+      <section id="Formation" class="section mt-3">
+        <div class="container text-center">
+          <h1
+            class="section-title mb-4"
+            style="font-weight: bold; font-size: 40px;"
+          >
+            Formación Académica
+          </h1>
+          <h6 class="mb-2 pb-4"></h6>
+
+          <div class="row mx-auto">
+            <div class="col-sm-6 col-md-6 mb-3">
+              <h2
+                class="section-title mb-3"
+                style="font-weight: bold; font-size: 34px;"
+              >
+                Doctorado en Ciencias Físicas
+              </h2>
+              <h3 class="section-title mb-2">
+                Comportamiento de ondas automoduladas en sistemas no lineales
+              </h3>
+              <div class="img-holder">
+                <style>
+                  .imagefac {
+                    width: auto;
+                    height: 100px;
+                  }
+                </style>
+                <img
+                  src="/assets/imgs/fac_sciences_noir.png"
+                  alt=""
+                  class="imagefac"
+                />
+                <h6 class="mb-3 pb-2" style="font-size: 20px;">
+                  Universidad de Ginebra
+                </h6>
+                <h6 class="mb-1 pb-2">Asesores</h6>
+                <p>Asesor: Jérôme Kasparian</p>
+                <p>Co-asesor: Maura Brunetti</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6 mb-3">
+              <h2
+                class="section-title mb-3"
+                style="font-weight: bold; font-size: 34px;"
+              >
+                Máster en Ciencias Físicas
+              </h2>
+              <h3 class="section-title mb-2">
+                Rogue waves en lasers modulados en fase
+              </h3>
+              <h3 class="section-title mb-2">
+                (Rogue waves in phase modulated lasers)
+              </h3>
+              <div class="img-holder">
+                <img src="/assets/imgs/600px-UBA.png" alt="" class="imagefac" />
+                <h6 class="mb-3 pb-2" style="font-size: 20px;">
+                  Universidad de Buenos Aires
+                </h6>
+                <h6 class="mb-1 pb-2">Asesores</h6>
+                <p>Asesor: Jorge Tredicce</p>
+                <p>Co-asesor: Pablo Mininni</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container text-center">
+        <h1 class="section-title mb-4">Otra formación</h1>
+        <p>
+          Junio 2022 - Introducción al Machine Learning, Universidad de Lausana
+          (UNIL)
+        </p>
+      </div>
+
+      <section id="Teaching" class="section mt-3">
+        <div class="container text-center">
+          <h1
+            class="section-title mb-4"
+            style="font-weight: bold; font-size: 40px;"
+          >
+            Experiencia Docente
+          </h1>
+          <h6 class="mb-2 pb-4"></h6>
+          <div class="row mx-auto">
+            <div class="col-sm-6 col-md-6 mb-3">
+              <h2
+                class="section-title mb-4"
+                style="font-weight: bold; font-size: 34px;"
+              >
+                Nivel Universitario
+              </h2>
+              <h6 class="mb-5 pb-2"></h6>
+
+              <h3 class="mb-3 pb-3">Universidad de Ginebra</h3>
+              <p style="font-weight: bold;">Asistente de enseñanza</p>
+              <h6 class="mb-2 pb-2">Febrero 2019 - Julio 2022</h6>
+              <p>
+                Cursos: Laboratorio de física para biólogos, Dinámica No Lineal
+                (a cargo de toda la práctica)
+              </p>
+
+              <h6 class="mb-5 pb-3"></h6>
+              <h3 class="mb-2 pb-3">Universidad de Buenos Aires</h3>
+              <p style="font-weight: bold;">Asistente de enseñanza</p>
+              <h6 class="mb-2 pb-2">Febrero 2016 - Abril 2016</h6>
+              <p>
+                Cursos: Introducción a la termodinámica y mecánica cuántica.
+              </p>
+            </div>
+
+            <div class="col-sm-6 col-md-6 mb-3">
+              <h1
+                class="section-title mb-4"
+                style="font-weight: bold; font-size: 34px;"
+              >
+                Nivel Secundario
+              </h1>
+              <h6 class="mb-5 pb-3"></h6>
+              <h3 class="mb-3 pb-3">Escuela Paidea</h3>
+              <p style="font-weight: bold;">Profesor suplente de física</p>
+              <h6 class="mb-2 pb-2">Octubre 2017 - Noviembre 2017</h6>
+              <p>Suplencia corta de física para estudiantes de 16-17 años.</p>
+              <h6 class="mb-5 pb-3"></h6>
+              <h3 class="mb-3 pb-3">Escuela Secundaria River Plate</h3>
+              <p style="font-weight: bold;">Profesor suplente de matemáticas</p>
+              <h6 class="mb-2 pb-2">Julio 2015 - Febrero 2016</h6>
+              <p>A cargo de matemáticas para estudiantes de 14-17 años.</p>
+              <h6 class="mb-5 pb-3"></h6>
+              <h3 class="mb-3 pb-3">Escuela Secundaria Boston</h3>
+              <p style="font-weight: bold;">Profesor suplente de matemáticas</p>
+              <h6 class="mb-2 pb-2">Septiembre 2015 - Diciembre 2015</h6>
+              <p>A cargo de matemáticas para estudiantes de 16 años.</p>
+              <h6 class="mb-5 pb-2"></h6>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="Publications" class="section mt-3">
+        <div class="container text-center">
+          <div class="bibtex_template">
+            <div style="margin-left: 10px; margin-bottom:5px;">
+              <span
+                class="title"
+                style="font-size: 28px;  font-family: American Typewriter;"
+              ></span>
+            </div>
+            <div class="if author">
+              <span class="if year">
+                <span class="year" style="font-size: 20px"></span>,
+              </span>
+              <span class="author" style="font-size: 20px"></span>
+              <span class="if url" style="margin-left: 20px">
+                <a class="url" style="color:black; font-size:10px"
+                  >(ver online)</a
+                >
+              </span>
+              <h6 class="mb-1 pb-1"></h6>
+            </div>
+          </div>
+
+          <h1
+            class="section-title mb-6 pb-3"
+            style="font-weight: bold; font-size: 40px;"
+          >
+            Publicaciones
+          </h1>
+
+          <bibtex src="/mybib.bib"></bibtex>
+
+          <div class="bibtex_display" bibtexkey="Gomel2023"></div>
+          <div class="bibtex_display" bibtexkey="Gomel2021"></div>
+          <div class="bibtex_display" bibtexkey="Marconi2020a"></div>
+          <div class="bibtex_display" bibtexkey="Armaroli2020"></div>
+          <div class="bibtex_display" bibtexkey="Gomel2019"></div>
+        </div>
+      </section>
+
+      <section id="Presentations and congresses" class="section mt-3">
+        <div class="container text-center">
+          <h1
+            class="section-title mb-6 pb-3"
+            style="font-weight: bold; font-size: 40px;"
+          >
+            Presentaciones y congresos
+          </h1>
+
+          <div class="bibtex_display mb-6" bibtexkey="Gomel2022"></div>
+          <p>Conferencia: EGU 2022. Viena, Austria.</p>
+          <p>Formato: Charla. Orador: Alexis Gomel.</p>
+
+          <h1 class="mb-6 pb-2" style="font-size: 28px;">
+            Freezing of Unsteady Nonlinear Waves over an uneven bottom by
+            Phase-Space Manipulation.
+          </h1>
+          <p>
+            Autores: Debbie Eeltink, Hubert Branger, Christopher Luneau, Andrea
+            Armaroli, Maura Brunetti, Jérôme Kasparian, Alexis Gomel
+          </p>
+          <p>Conferencia: Enoc 2022. Lyon, Francia.</p>
+          <p>Formato: Charla. Orador: Alexis Gomel.</p>
+        </div>
+      </section>
+
+      <section id="Past_jobs" class="section mt-3">
+        <div class="container text-center">
+          <h1
+            class="section-title mb-6"
+            style="font-weight: bold; font-size: 30px;"
+          >
+            Otros trabajos
+          </h1>
+          <h6 class="mb-5 pb-2"></h6>
+          <h3 class="mb-3 pb-4">Techopolis</h3>
+          <p>Expositor</p>
+          <h6 class="mb-2 pb-2">Agosto 2014 - Octubre 2014</h6>
+          <p>Divulgación relacionada con la física</p>
+          <h6 class="mb-5 pb-2"></h6>
+          <h3 class="mb-3 pb-4">Hacoaj</h3>
+          <p>Seguridad</p>
+          <h6 class="mb-2 pb-2">Julio 2010 - Noviembre 2010</h6>
+          <p>Seguridad en Club Náutico Hacoaj, Tigre, Buenos Aires</p>
+          <h6 class="mb-5 pb-2"></h6>
+          <h3 class="mb-3 pb-4">Mi Cuba linda</h3>
+          <p>Call center</p>
+          <h6 class="mb-2 pb-2">Mayo 2006 - Septiembre 2006</h6>
+          <p>Operador de Call Center</p>
+          <h6 class="mb-5 pb-2"></h6>
+        </div>
+      </section>
+    </div>
+
+    <Footer />
+
+    <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"
+    ></script>
+    <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"
+    ></script>
+    <script is:inline src="/assets/js/steller.js"></script>
+  </body>
 </html>
