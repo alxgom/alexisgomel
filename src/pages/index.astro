@@ -2,6 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import {
     SITE_TITLE,
     SITE_DESCRIPTION,
@@ -49,70 +50,7 @@ const alternateHref = "/es/"; // Links to Spanish version
             });
         </script>
 
-        <link
-            rel="stylesheet"
-            id="silktide-consent-manager-css"
-            href="/cookie-banner/silktide-consent-manager.css"
-        />
-        <script is:inline src="/cookie-banner/silktide-consent-manager.js"
-        ></script>
-
-        <script is:inline>
-            document.addEventListener("DOMContentLoaded", function () {
-                if (typeof silktideCookieBannerManager !== "undefined") {
-                    silktideCookieBannerManager.updateCookieBannerConfig({
-                        background: { showBackground: true },
-                        cookieIcon: { position: "bottomLeft" },
-                        cookieTypes: [
-                            {
-                                id: "necessary",
-                                name: "Necessary",
-                                required: true,
-                            },
-                            {
-                                id: "analytics",
-                                name: "Analytics",
-                                defaultValue: true,
-                                onAccept: function () {
-                                    gtag("consent", "update", {
-                                        analytics_storage: "granted",
-                                    });
-                                    dataLayer.push({
-                                        event: "consent_accepted_analytics",
-                                    });
-                                },
-                                onReject: function () {
-                                    gtag("consent", "update", {
-                                        analytics_storage: "denied",
-                                    });
-                                },
-                            },
-                            {
-                                id: "advertising",
-                                name: "Advertising",
-                                onAccept: function () {
-                                    gtag("consent", "update", {
-                                        ad_storage: "granted",
-                                        ad_user_data: "granted",
-                                        ad_personalization: "granted",
-                                    });
-                                    dataLayer.push({
-                                        event: "consent_accepted_advertising",
-                                    });
-                                },
-                                onReject: function () {
-                                    gtag("consent", "update", {
-                                        ad_storage: "denied",
-                                        ad_user_data: "denied",
-                                        ad_personalization: "denied",
-                                    });
-                                },
-                            },
-                        ],
-                    });
-                }
-            });
-        </script>
+        <CookieConsent currentLang={currentLang} />
 
         <script is:inline define:vars={{ GTM_ID }}>
             (function (w, d, s, l, i) {
@@ -295,7 +233,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                                 <a
                                     href="/cvonline"
                                     aria-label="View Online CV"
-                                    class="gtm-track-click"
+                                    class="gtm-track-click stretched-link"
                                     data-event-category="Home Card"
                                     data-event-label="Online CV"
                                 >
@@ -320,7 +258,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                                 <a
                                     href="/projects"
                                     aria-label="View Personal Projects"
-                                    class="gtm-track-click"
+                                    class="gtm-track-click stretched-link"
                                     data-event-category="Home Card"
                                     data-event-label="Personal Projects"
                                 >
@@ -346,7 +284,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                                     href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
                                     target="_blank"
                                     aria-label="View Publications on Google Scholar"
-                                    class="gtm-track-click"
+                                    class="gtm-track-click stretched-link"
                                     data-event-category="Home Card"
                                     data-event-label="Publications"
                                 >
@@ -373,7 +311,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                                 <a
                                     href="/playlists"
                                     aria-label="View Playlists"
-                                    class="gtm-track-click"
+                                    class="gtm-track-click stretched-link"
                                     data-event-category="Home Card"
                                     data-event-label="Playlists"
                                 >
