@@ -1,11 +1,6 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 import { SITE_TITLE } from "../consts";
-
-// Import Cookie Consent (Handles GTM + Silktide)
-import CookieConsent from "../components/CookieConsent.astro";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
@@ -13,124 +8,88 @@ const alternateHref = "/es/playlists"; // Links to Spanish version
 
 // PLAYLIST IDs
 const PLAYLIST_IDS = [
-    "0YK2vEkciJpMCK4zNlpU9Y", // Dr. Beat Backup Set
-    "0J4qeq2hJbGkhBqM7Wpl8P",
-    "1WCwPvPwrhr3qL1j0Ifspw",
-    "2l9gpXmsLtF29bj6JIhhii",
-    "4JLSbszHq3pm7h2v7MVe9U",
-    "78fPWbnVlo0o1IFal8Pul2",
-    "02srcTRlfp7w4oojH33XbZ",
-    "6NweKUuX2PaZF3ivoDrNwz",
-    "6gp0IOSYv8aI3LHmeYvZJO",
-    "0TUB9IKkLDhnLZLXEVPplN",
-    "6cqbMT2aiE6OyxsFRftgqx",
+  "0YK2vEkciJpMCK4zNlpU9Y", // Dr. Beat Backup Set
+  "0J4qeq2hJbGkhBqM7Wpl8P",
+  "1WCwPvPwrhr3qL1j0Ifspw",
+  "2l9gpXmsLtF29bj6JIhhii",
+  "4JLSbszHq3pm7h2v7MVe9U",
+  "78fPWbnVlo0o1IFal8Pul2",
+  "02srcTRlfp7w4oojH33XbZ",
+  "6NweKUuX2PaZF3ivoDrNwz",
+  "6gp0IOSYv8aI3LHmeYvZJO",
+  "0TUB9IKkLDhnLZLXEVPplN",
+  "6cqbMT2aiE6OyxsFRftgqx",
 ];
 ---
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <BaseHead
-            title="Spotify Playlists | Alexis Gomel"
-            description="My Spotify Playlists"
-            currentLang={currentLang}
-            alternateHref={alternateHref}
-        />
-
-        <CookieConsent currentLang={currentLang} />
-
-        <link
-            rel="stylesheet"
-            href="/assets/vendors/themify-icons/css/themify-icons.css"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        />
-        <link rel="stylesheet" href="/assets/css/steller.css" />
-    </head>
-
-    <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-        <Header />
-
-        <!-- Hero Section for Dr. Beat -->
-        <section class="header" style="padding: 120px 0 60px;">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-4 text-center mb-4 mb-md-0">
-                        <img
-                            src="/assets/imgs/dj_photo.jpg"
-                            alt="Dr. Beat DJ Photo"
-                            class="img-fluid rounded-circle"
-                            style="max-width: 250px; width: 100%; box-shadow: 0 8px 24px rgba(0,0,0,0.15);"
-                        />
-                    </div>
-                    <div class="col-md-8">
-                        <h6 class="subtitle" style="color: var(--primary);">
-                            Introducing
-                        </h6>
-                        <h1 class="section-title mb-3">Dr. Beat</h1>
-                        <p class="lead mb-4">
-                            When I'm not working, dancing, or taking photos, I'm
-                            DJing for socials on my local scene as <strong
-                                >Dr. Beat</strong
-                            >.
-                        </p>
-                        <p class="mb-4">
-                            Here's a little taste of my backup set:
-                        </p>
-                        <div class="mb-4">
-                            <iframe
-                                style="border-radius:12px"
-                                src="https://open.spotify.com/embed/playlist/0YK2vEkciJpMCK4zNlpU9Y?utm_source=generator"
-                                width="100%"
-                                height="352"
-                                frameborder="0"
-                                allowfullscreen=""
-                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                loading="lazy"
-                                title="Dr. Beat Backup Set Playlist"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Other Playlists -->
-        <div class="container mb-5 pb-5">
-            <div class="text-center mb-5">
-                <h2 class="section-title">More Playlists</h2>
-                <p>Here are more of my curated playlists. Enjoy!</p>
-            </div>
-
-            <div class="row">
-                {
-                    PLAYLIST_IDS.slice(1).map((id) => (
-                        <div class="col-md-6 mb-4">
-                            <iframe
-                                style="border-radius:12px"
-                                src={`https://open.spotify.com/embed/playlist/${id}?utm_source=generator`}
-                                width="100%"
-                                height="352"
-                                frameborder="0"
-                                allowfullscreen=""
-                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                loading="lazy"
-                                title="Spotify Playlist"
-                            />
-                        </div>
-                    ))
-                }
-            </div>
+<MainLayout
+  title="Spotify Playlists | Alexis Gomel"
+  description="My Spotify Playlists"
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <!-- Hero Section for Dr. Beat -->
+  <section class="header" style="padding: 120px 0 60px;">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+          <img
+            src="/assets/imgs/dj_photo.jpg"
+            alt="Dr. Beat DJ Photo"
+            class="img-fluid rounded-circle"
+            style="max-width: 250px; width: 100%; box-shadow: 0 8px 24px rgba(0,0,0,0.15);"
+          />
         </div>
+        <div class="col-md-8">
+          <h6 class="subtitle" style="color: var(--primary);">Introducing</h6>
+          <h1 class="section-title mb-3">Dr. Beat</h1>
+          <p class="lead mb-4">
+            When I'm not working, dancing, or taking photos, I'm DJing for
+            socials on my local scene as <strong>Dr. Beat</strong>.
+          </p>
+          <p class="mb-4">Here's a little taste of my backup set:</p>
+          <div class="mb-4">
+            <iframe
+              style="border-radius:12px"
+              src="https://open.spotify.com/embed/playlist/0YK2vEkciJpMCK4zNlpU9Y?utm_source=generator"
+              width="100%"
+              height="352"
+              frameborder="0"
+              allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="Dr. Beat Backup Set Playlist"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <Footer />
+  <!-- Other Playlists -->
+  <div class="container mb-5 pb-5">
+    <div class="text-center mb-5">
+      <h2 class="section-title">More Playlists</h2>
+      <p>Here are more of my curated playlists. Enjoy!</p>
+    </div>
 
-        <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"
-        ></script>
-        <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"
-        ></script>
-        <script is:inline src="/assets/js/steller.js"></script>
-    </body>
-</html>
+    <div class="row">
+      {
+        PLAYLIST_IDS.slice(1).map((id) => (
+          <div class="col-md-6 mb-4">
+            <iframe
+              style="border-radius:12px"
+              src={`https://open.spotify.com/embed/playlist/${id}?utm_source=generator`}
+              width="100%"
+              height="352"
+              frameborder="0"
+              allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="Spotify Playlist"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</MainLayout>

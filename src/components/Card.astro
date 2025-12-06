@@ -1,0 +1,104 @@
+---
+interface Props {
+  href: string;
+  icon?: string;
+  title: string;
+  ariaLabel?: string;
+  target?: string;
+  gtmCategory?: string;
+  gtmLabel?: string;
+}
+
+const {
+  href,
+  icon,
+  title,
+  ariaLabel,
+  target = "_self",
+  gtmCategory,
+  gtmLabel,
+} = Astro.props;
+---
+
+<div class="custom-card card border">
+  <div class="card-body">
+    <a
+      href={href}
+      target={target}
+      aria-label={ariaLabel || title}
+      class={`stretched-link ${gtmCategory ? "gtm-track-click" : ""}`}
+      data-event-category={gtmCategory}
+      data-event-label={gtmLabel}
+    >
+      {icon && <i class={icon} />}
+    </a>
+    <h5>
+      <a
+        href={href}
+        target={target}
+        class={gtmCategory ? "gtm-track-click" : ""}
+        data-event-category={gtmCategory}
+        data-event-label={gtmLabel}
+      >
+        {title}
+      </a>
+    </h5>
+  </div>
+</div>
+
+<style>
+  .custom-card {
+    border-radius: 0.25rem;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .custom-card .card-body {
+    padding: 55px 0;
+  }
+
+  .custom-card .card-body i {
+    display: block;
+    font-size: 40px;
+    margin-bottom: 18px;
+    color: #ff7a57;
+  }
+
+  .custom-card:hover,
+  .custom-card:active {
+    background: #ff7a57;
+    color: #fff;
+  }
+
+  .custom-card:hover i,
+  .custom-card:active i {
+    color: #fff;
+  }
+
+  /* Fix for card hover text color */
+  .custom-card:hover a,
+  .custom-card:active a,
+  .custom-card:hover h5 a,
+  .custom-card:active h5 a {
+    color: #fff !important;
+    text-decoration: none;
+  }
+
+  .stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+  }
+
+  /* Responsive card padding */
+  @media (max-width: 1200px) {
+    .custom-card .card-body {
+      padding: 30px 0;
+    }
+  }
+</style>

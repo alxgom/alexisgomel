@@ -1,0 +1,123 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  currentLang: string;
+  alternateHref: string;
+  bodyId?: string;
+  bodyClass?: string;
+  bodyData?: Record<string, string>;
+}
+
+const {
+  title,
+  description,
+  currentLang,
+  alternateHref,
+  bodyId = "home",
+  bodyClass = "",
+  bodyData = {},
+} = Astro.props;
+
+const GTM_ID = "GTM-WDZK7ZFX";
+---
+
+<!doctype html>
+<html lang={currentLang}>
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      currentLang={currentLang}
+      alternateHref={alternateHref}
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/css/wavesss.png"
+      fetchpriority="high"
+    />
+
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+      });
+    </script>
+
+    <CookieConsent currentLang={currentLang} />
+
+    <script is:inline define:vars={{ GTM_ID }}>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", GTM_ID);
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="/assets/vendors/themify-icons/css/themify-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/steller.css" />
+  </head>
+
+  <body
+    data-spy="scroll"
+    data-target=".navbar"
+    data-offset="40"
+    id={bodyId}
+    class={bodyClass}
+    {...bodyData}
+  >
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+        height="0"
+        width="0"
+        title="Google Tag Manager"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+
+    <Header />
+
+    <slot />
+
+    <Footer />
+
+    <!-- Core Scripts -->
+    <script is:inline src="/assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script is:inline src="/assets/vendors/bootstrap/bootstrap.bundle.js"
+    ></script>
+    <script is:inline src="/assets/vendors/bootstrap/bootstrap.affix.js"
+    ></script>
+    <script is:inline src="/assets/js/steller.js"></script>
+  </body>
+</html>
