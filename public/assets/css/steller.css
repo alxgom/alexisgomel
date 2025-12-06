@@ -11529,6 +11529,13 @@ pre {
 
 }
 
+@media (max-width: 767.98px) {
+  .header .bg-image {
+    background-position: center top; /* Adjust focus to top center */
+    background-size: cover;
+  }
+}
+
 .header .bg-image-white {
   position: relative;
   z-index: 0; 
