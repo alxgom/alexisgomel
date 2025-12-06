@@ -1,28 +1,29 @@
 ---
+import { SEO } from "astro-seo";
 import {
-	SITE_TITLE,
-	SITE_DESCRIPTION,
-	INSTAGRAM_LINK,
-	LINKEDIN_LINK,
-	GITHUB_LINK,
-	RESEARCHGATE_LINK,
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  INSTAGRAM_LINK,
+  LINKEDIN_LINK,
+  GITHUB_LINK,
+  RESEARCHGATE_LINK,
 } from "../consts";
 
 interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	// New Multilingual Props
-	currentLang: string;
-	alternateHref: string;
+  title: string;
+  description: string;
+  image?: string;
+  // New Multilingual Props
+  currentLang: string;
+  alternateHref: string;
 }
 
 const {
-	title,
-	description,
-	image = "/assets/imgs/curvy_logo.svg", // Updated to use curvy_logo.svg for social media previews
-	currentLang,
-	alternateHref,
+  title,
+  description,
+  image = "/assets/imgs/curvy_logo.svg", // Updated to use curvy_logo.svg for social media previews
+  currentLang,
+  alternateHref,
 } = Astro.props;
 
 // 1. Determine the canonical URL for the current page
@@ -37,42 +38,60 @@ const alternateUrl = new URL(alternateHref, Astro.site);
 const enUrl = currentLang === "en" ? canonicalURL.href : alternateUrl.href;
 
 const schema = {
-	"@context": "https://schema.org",
-	"@type": "Person",
-	name: "Alexis Gomel",
-	url: Astro.site,
-	image: new URL(image, Astro.url),
-	sameAs: [LINKEDIN_LINK, GITHUB_LINK, RESEARCHGATE_LINK, INSTAGRAM_LINK],
-	jobTitle: "Physicist | Data Scientist",
-	description: description,
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Alexis Gomel",
+  url: Astro.site,
+  image: new URL(image, Astro.url),
+  sameAs: [LINKEDIN_LINK, GITHUB_LINK, RESEARCHGATE_LINK, INSTAGRAM_LINK],
+  jobTitle: "Physicist | Data Scientist",
+  description: description,
 };
 ---
 
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/assets/imgs/curvy_logo.svg" />
-<meta name="generator" content={Astro.generator} />
-
-<link rel="canonical" href={canonicalURL} />
-
-<link rel="alternate" hreflang={currentLang} href={canonicalURL.href} />
-<link rel="alternate" hreflang={alternateLang} href={alternateUrl.href} />
-<link rel="alternate" hreflang="x-default" href={enUrl} />
-
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
-
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
-
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<SEO
+  title={title}
+  description={description}
+  canonical={canonicalURL.href}
+  charset="utf-8"
+  openGraph={{
+    basic: {
+      title: title,
+      type: "website",
+      image: new URL(image, Astro.url).href,
+    },
+    optional: {
+      description: description,
+    },
+  }}
+  twitter={{
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    image: new URL(image, Astro.url).href,
+  }}
+  languageAlternates={[
+    { href: canonicalURL.href, hrefLang: currentLang },
+    { href: alternateUrl.href, hrefLang: alternateLang },
+    { href: enUrl, hrefLang: "x-default" },
+  ]}
+  extend={{
+    meta: [
+      { name: "viewport", content: "width=device-width,initial-scale=1" },
+      { name: "generator", content: Astro.generator },
+      { name: "HandheldFriendly", content: "True" },
+      { name: "MobileOptimized", content: "320" },
+      { name: "geo.region", content: "ES-CT" },
+      { name: "geo.placename", content: "Barcelona" },
+    ],
+    link: [
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/assets/imgs/curvy_logo.svg",
+      },
+    ],
+  }}
+/>
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
