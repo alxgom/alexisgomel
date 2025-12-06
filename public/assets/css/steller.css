@@ -11114,6 +11114,7 @@ pre {
 .img-wrapper img {
   position: relative;
   width: 100%;
+  height: auto;
   z-index: 8;
 }
 
