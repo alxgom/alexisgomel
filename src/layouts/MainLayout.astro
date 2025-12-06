@@ -58,7 +58,7 @@ const GTM_ID = "GTM-WDZK7ZFX";
 
     <CookieConsent currentLang={currentLang} />
 
-    <script is:inline define:vars={{ GTM_ID }}>
+    <script type="text/partytown">
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
@@ -71,7 +71,7 @@ const GTM_ID = "GTM-WDZK7ZFX";
         j.async = true;
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", GTM_ID);
+      })(window, document, "script", "dataLayer", "GTM-WDZK7ZFX");
     </script>
 
     <link

@@ -2,13 +2,22 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
+import partytown from "@astrojs/partytown";
 
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
 	site: "https://alexisgomel.com",
-	integrations: [mdx(), sitemap()],
+	integrations: [
+		mdx(),
+		sitemap(),
+		partytown({
+			config: {
+				forward: ["dataLayer.push"],
+			},
+		}),
+	],
 	adapter: cloudflare({
 		platformProxy: {
 			enabled: true,

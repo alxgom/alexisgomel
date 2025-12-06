@@ -118,7 +118,7 @@ const alternateHref = "/es/sac"; // Links to Spanish version
       });
     </script>
 
-    <script is:inline define:vars={{ GTM_ID }}>
+    <script type="text/partytown">
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
@@ -131,9 +131,8 @@ const alternateHref = "/es/sac"; // Links to Spanish version
         j.async = true;
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", GTM_ID);
+      })(window, document, "script", "dataLayer", "GTM-WDZK7ZFX");
     </script>
-
     <link
       rel="stylesheet"
       href="/assets/vendors/themify-icons/css/themify-icons.css"
@@ -156,7 +155,6 @@ const alternateHref = "/es/sac"; // Links to Spanish version
         title="Google Tag Manager"
         style="display:none;visibility:hidden"></iframe>
     </noscript>
-
     <Header />
 
     <div class="container mt-5 pt-5">
