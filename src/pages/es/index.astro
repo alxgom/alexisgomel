@@ -1,6 +1,14 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import Card from "../../components/Card.astro";
+import { Image } from "astro:assets";
+import avatarLiviano from "../../assets/imgs/avatar_liviano.png";
+import hamiltonian3d from "../../assets/imgs/3d_hamiltonian.png";
+import waveSchemeFlows from "../../assets/imgs/wave_scheme_flows.png";
+import tippings from "../../assets/imgs/tippings.png";
+import wordcloud from "../../assets/imgs/wordcloud.png";
+import populationMap from "../../assets/imgs/PopulationByDistrict_NiceColormap_mini.png";
+import filamentScheme from "../../assets/imgs/filament_scheme2.png";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 
 // MULTILINGUAL SETTINGS
@@ -95,9 +103,9 @@ const alternateHref = "/"; // Links back to English
     <div class="container mt-5">
       <div class="row text-center text-md-left">
         <div class="col-md-3">
-          <img
-            src="/assets/imgs/avatar_liviano.png"
-            alt=""
+          <Image
+            src={avatarLiviano}
+            alt="Alexis Gomel Avatar"
             class="img-thumbnail mb-4"
           />
         </div>
@@ -185,7 +193,7 @@ const alternateHref = "/"; // Links back to English
         <div class="row">
           <div class="col-sm-4">
             <div class="img-wrapper">
-              <img src="/assets/imgs/3d_hamiltonian.png" alt="" />
+              <Image src={hamiltonian3d} alt="Rogue wave freezing" />
               <div class="overlay">
                 <div class="overlay-infos">
                   <h5>Rogue wave freezing</h5>
@@ -209,7 +217,7 @@ const alternateHref = "/"; // Links back to English
               </div>
             </div>
             <div class="img-wrapper">
-              <img src="/assets/imgs/wave_scheme_flows.png" alt="" />
+              <Image src={waveSchemeFlows} alt="ADHONLS" />
               <div class="overlay">
                 <div class="overlay-infos">
                   <h5>ADHONLS</h5>
@@ -234,7 +242,7 @@ const alternateHref = "/"; // Links back to English
           </div>
           <div class="col-sm-4">
             <div class="img-wrapper">
-              <img src="/assets/imgs/tippings.png" alt="" />
+              <Image src={tippings} alt="Tipping points" />
               <div class="overlay">
                 <div class="overlay-infos">
                   <h5>Tipping points</h5>
@@ -244,7 +252,7 @@ const alternateHref = "/"; // Links back to English
               </div>
             </div>
             <div class="img-wrapper">
-              <img src="/assets/imgs/wordcloud.png" alt="" />
+              <Image src={wordcloud} alt="Wordcloud Journal webscrapping" />
               <div class="overlay">
                 <div class="overlay-infos">
                   <h5>Worldcloud Jounal webscrapping</h5>
@@ -270,10 +278,7 @@ const alternateHref = "/"; // Links back to English
           </div>
           <div class="col-sm-4">
             <div class="img-wrapper">
-              <img
-                src="/assets/imgs/PopulationByDistrict_NiceColormap_mini.png"
-                alt=""
-              />
+              <Image src={populationMap} alt="Custom colormaps" />
               <div class="overlay">
                 <div class="overlay-infos">
                   <h5>Custom colormaps</h5>
@@ -297,7 +302,10 @@ const alternateHref = "/"; // Links back to English
               </div>
             </div>
             <div class="img-wrapper">
-              <img src="/assets/imgs/filament_scheme2.png" alt="" />
+              <Image
+                src={filamentScheme}
+                alt="Filamentation statistical regimes"
+              />
               <div class="overlay">
                 <div class="overlay-infos">
                   <h5>Filamentation statistical regimes</h5>
