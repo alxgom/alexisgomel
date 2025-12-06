@@ -11604,6 +11604,13 @@ pre {
   }
   .header .container .infos {
     margin-top: 0;
+    text-align: center;
+  }
+  .header .container .infos .socials {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .header .container .img-holder {
     display: none;
@@ -11804,7 +11811,7 @@ pre {
 }
 
 
-@media (max-width
+
 /* Fix for card hover text color */
 .custom-card:hover a, .custom-card:active a {
   color: #fff;
