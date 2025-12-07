@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Card from "../components/Card.astro";
+import Lightbox from "../components/Lightbox.astro";
 import { Image } from "astro:assets";
 import avatarLiviano from "../assets/imgs/avatar_liviano.png";
 import hamiltonian3d from "../assets/imgs/3d_hamiltonian.png";
@@ -213,7 +214,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="Rogue wave freezing - Zoom"
-                  ><i class="ti-zoom-in"></i></a
+                   data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501"
@@ -237,7 +238,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="ADHONLS - Zoom"
-                  ><i class="ti-zoom-in"></i></a
+                   data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear"
@@ -262,7 +263,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="Wordcloud - Zoom"
-                  ><i class="ti-zoom-in"></i></a
+                   data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://github.com/alxgom/NL-Dynamics-wordcloud"
@@ -287,7 +288,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="Custom colormaps - Zoom"
-                  ><i class="ti-zoom-in"></i></a
+                   data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://github.com/alxgom/-stitched_colorbars"
@@ -314,7 +315,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="Filamentation - Zoom"
-                  ><i class="ti-zoom-in"></i></a
+                   data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180"
@@ -368,4 +369,6 @@ const alternateHref = "/es/"; // Links to Spanish version
       </div>
     </div>
   </section>
+
+  <Lightbox />
 </MainLayout>
