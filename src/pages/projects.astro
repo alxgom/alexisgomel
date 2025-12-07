@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Card from "../components/Card.astro";
+import Lightbox from "../components/Lightbox.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 // MULTILINGUAL SETTINGS
@@ -35,7 +36,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                 <h5>Rentals</h5>
                 <a
                   href="/assets/imgs/Projects/PopulationByDistrict_NiceColormap.png"
-                  aria-label="Zoom in on Rentals"><i class="ti-zoom-in"></i></a
+                  aria-label="Zoom in on Rentals" data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://www.kaggle.com/code/alexisgomel/apartment-rental-offers-munich"
@@ -116,7 +117,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                 <h5>SHared Appartment REnt Calculator (SHARE)</h5>
                 <a
                   href="/assets/imgs/Projects/sac_web_app.png"
-                  aria-label="Zoom in on SHARE"><i class="ti-zoom-in"></i></a
+                  aria-label="Zoom in on SHARE" data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a href="/sac" aria-label="View SHARE project"
                   ><i class="ti-link"></i></a
@@ -201,7 +202,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
                 <h5>MIXX swing dj set extension</h5>
                 <a
                   href="/assets/imgs/Projects/mixxx_screenshot.png"
-                  aria-label="Zoom in on MIXX"><i class="ti-zoom-in"></i></a
+                  aria-label="Zoom in on MIXX" data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://github.com/alxgom/mixx_addon"
@@ -349,8 +350,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
           <h4>Laser filamentation scheme</h4>
           <p>3d Laser filamentation scheme made in Python.</p>
           <p>
-            <strong>Tech & skills:</strong> Data visualization, Dessign, Python,
-            Matplotlib.
+            <strong>Tech & skills:</strong> Data visualization, Dessign, Python, Matplotlib.
           </p>
         </div>
       </div>
@@ -539,4 +539,6 @@ const alternateHref = "/es/projects"; // Links to Spanish version
       </div>
     </div>
   </section>
+
+  <Lightbox />
 </MainLayout>
