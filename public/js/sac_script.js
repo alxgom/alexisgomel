@@ -38,6 +38,16 @@ document.getElementById('num_rooms').addEventListener('input', function() {
 
 document.getElementById('rent-form').addEventListener('submit', function(event) {
     event.preventDefault();
+    
+    // Push GTM event for calculate button click
+    if (window.dataLayer) {
+        window.dataLayer.push({
+            'event': 'sac_calculate',
+            'event_category': 'SAC Calculator',
+            'event_label': 'Calculate Rent Split'
+        });
+    }
+    
     const formData = new FormData(event.target);
     const rent = parseFloat(formData.get('rent'));
     const totalArea = parseFloat(formData.get('total_area'));
