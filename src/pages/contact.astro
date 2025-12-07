@@ -1,0 +1,48 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ContactForm from "../components/ContactForm.astro";
+
+const currentLang = "en";
+const alternateHref = "/es/contact";
+---
+
+<MainLayout
+  title="Contact - Alexis Gomel | Get in Touch"
+  description="Contact Alexis Gomel. Send a message to discuss physics, data science, research collaborations, or projects."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <section class="section mt-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h6 class="subtitle">Get in Touch</h6>
+        <h1 class="section-title">Contact Me</h1>
+        <p class="mb-4">
+          Have a question or want to work together? Feel free to reach out!
+        </p>
+      </div>
+
+      <ContactForm
+        formId="2887131933274275138"
+        turnstileSiteKey="0x4AAAAAACFRCmkjExcAkZaD"
+      />
+
+      <div class="text-center mt-5">
+        <p>Or reach me directly at:</p>
+        <a
+          href="mailto:alexis.gomel@gmail.com"
+          class="text-primary"
+          style="font-size: 1.2rem;"
+        >
+          alexis.gomel@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Load Cloudflare Turnstile Script -->
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer></script>
+</MainLayout>
