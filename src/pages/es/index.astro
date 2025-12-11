@@ -348,14 +348,32 @@ const alternateHref = "/"; // Links back to English
           </a>
         </h5>
 
-        <textarea name="message" aria-label="Mensaje"></textarea>
-        <input
-          type="submit"
-          value="Enviar Mensaje"
-          class="gtm-track-click"
-          data-event-category="Contact"
-          data-event-label="Submit Form"
-        />
+        <form
+          action="https://formspree.io/f/xldqpzqd"
+          method="POST"
+          class="contact-form"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="Tu correo electrónico"
+            aria-label="Correo electrónico"
+            required
+          />
+          <textarea
+            name="message"
+            placeholder="Tu mensaje"
+            aria-label="Mensaje"
+            required></textarea>
+          <button
+            type="submit"
+            class="btn btn-primary rounded gtm-track-click"
+            data-event-category="Contact"
+            data-event-label="Submit Form"
+          >
+            Enviar Mensaje
+          </button>
+        </form>
 
         <div id="map">
           <iframe

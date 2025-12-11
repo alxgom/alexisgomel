@@ -214,7 +214,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="Rogue wave freezing - Zoom"
-                   data-lightbox="true"><i class="ti-zoom-in"></i></a
+                  data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501"
@@ -238,7 +238,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="ADHONLS - Zoom"
-                   data-lightbox="true"><i class="ti-zoom-in"></i></a
+                  data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear"
@@ -263,7 +263,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="Wordcloud - Zoom"
-                   data-lightbox="true"><i class="ti-zoom-in"></i></a
+                  data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://github.com/alxgom/NL-Dynamics-wordcloud"
@@ -288,7 +288,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="Custom colormaps - Zoom"
-                   data-lightbox="true"><i class="ti-zoom-in"></i></a
+                  data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://github.com/alxgom/-stitched_colorbars"
@@ -315,7 +315,7 @@ const alternateHref = "/es/"; // Links to Spanish version
                   class="gtm-track-click"
                   data-event-category="Portfolio Item"
                   data-event-label="Filamentation - Zoom"
-                   data-lightbox="true"><i class="ti-zoom-in"></i></a
+                  data-lightbox="true"><i class="ti-zoom-in"></i></a
                 >
                 <a
                   href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180"
@@ -347,16 +347,32 @@ const alternateHref = "/es/"; // Links to Spanish version
           Send me an email: alexis.gomel@gmail.com
         </a>
       </h5>
-      <h6 class="subtitle"></h6>
-
-      <textarea name="message" aria-label="Message"></textarea>
-      <input
-        type="submit"
-        value="Send Message"
-        class="gtm-track-click"
-        data-event-category="Contact"
-        data-event-label="Submit Form"
-      />
+      <form
+        action="https://formspree.io/f/xldqpzqd"
+        method="POST"
+        class="contact-form"
+      >
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email"
+          aria-label="Email"
+          required
+        />
+        <textarea
+          name="message"
+          placeholder="Your message"
+          aria-label="Message"
+          required></textarea>
+        <button
+          type="submit"
+          class="btn btn-primary rounded gtm-track-click"
+          data-event-category="Contact"
+          data-event-label="Submit Form"
+        >
+          Send Message
+        </button>
+      </form>
 
       <div id="map">
         <iframe
