@@ -130,6 +130,35 @@ const alternateHref = "/font-test";
     .font-arial {
       font-family: Arial, Helvetica, sans-serif;
     }
+    .font-georgia {
+      font-family: Georgia, serif;
+    }
+
+    /* Plot styles */
+    .plot-container {
+      margin-top: 30px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 20px;
+      background: white;
+    }
+    .plot-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .plot-svg {
+      width: 100%;
+      height: 300px;
+      overflow: visible;
+    }
+    .axis-label {
+      font-size: 0.9rem;
+    }
+    .tick text {
+      font-size: 0.8rem;
+    }
 
     /* Combo styles */
     .combo-montalt-mont .hero-sample,
@@ -221,6 +250,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- Montserrat Alternates -->
@@ -252,6 +282,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- Times New Roman -->
@@ -283,6 +314,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- Arial -->
@@ -314,6 +346,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- Alegreya -->
@@ -345,6 +378,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- Alegreya Sans -->
@@ -376,6 +410,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- COMBO: Montserrat Alternates Headings + Montserrat Body -->
@@ -409,6 +444,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- COMBO: Montserrat Headings + Alegreya Body -->
@@ -442,6 +478,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- COMBO: Alegreya Headings + Alegreya Sans Body -->
@@ -475,6 +512,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- COMBO: Times New Roman Headings + Alegreya Sans Body -->
@@ -508,6 +546,7 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
     </div>
 
     <!-- COMBO: Times New Roman Headings + Montserrat Body -->
@@ -541,6 +580,211 @@ const alternateHref = "/font-test";
         </p>
         <p>Readability test: 1iIljJoO0</p>
       </div>
+      <div class="plot-container" id="plot-montserrat"></div>
+    </div>
+    <!-- Georgia -->
+    <div class="font-section font-georgia">
+      <div class="font-label">Georgia (System Serif)</div>
+      <div class="hero-sample">
+        <p class="subtitle">Hello, I'm</p>
+        <h1 class="title">Alexis Gomel</h1>
+        <p class="tagline">Physicist | Data scientist</p>
+      </div>
+      <div class="headings-sample">
+        <h2>What I Do</h2>
+        <h3>Check My Works</h3>
+        <h4>Section Title Example</h4>
+      </div>
+      <div class="body-sample">
+        <p>
+          Welcome to my personal website! I am a <strong>physicist</strong> with a
+          passion for
+          <strong>nonlinear dynamics</strong>, complex systems, early warnings,
+          statistical mechanics and its applications to many systems.
+        </p>
+        <p>
+          When I'm not delving into <strong>scientific pursuits</strong>, I love
+          to capture life through photography, move to the rhythm of swing
+          dances, beat the drums, and hit the road for <strong
+            >spontaneous hitchhiking adventures</strong
+          >.
+        </p>
+        <p>Readability test: 1iIljJoO0</p>
+      </div>
+      <div class="plot-container" id="plot-georgia"></div>
     </div>
   </div>
+
+  <script is:inline src="https://d3js.org/d3.v7.min.js"></script>
+  <script is:inline>
+    // Data for the plot
+    const data = Array.from({ length: 20 }, (_, i) => ({
+      x: i,
+      y: Math.sin(i / 2) * 10 + i + Math.random() * 5,
+    }));
+
+    function drawPlot(containerId, headingFontClass, bodyFontClass) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      // Get computed styles to match fonts
+      // We need to find the parent .font-section to know which font to use
+      const parentSection = container.closest(".font-section");
+
+      // Determine fonts based on the section class
+      let headingFont = "inherit";
+      let bodyFont = "inherit";
+
+      if (parentSection) {
+        // This is a bit of a hack to get the font family from the CSS classes
+        // In a real app we might pass these explicitly
+        const computedStyle = window.getComputedStyle(parentSection);
+        // For combos, we might need to be more specific, but inheriting from container usually works
+        // if we set the class on the text elements correctly
+      }
+
+      const margin = { top: 40, right: 30, bottom: 40, left: 50 };
+      const width = container.clientWidth - margin.left - margin.right;
+      const height = 300 - margin.top - margin.bottom;
+
+      // Clear previous
+      container.innerHTML = "";
+
+      // Add title
+      const title = document.createElement("div");
+      title.className = "plot-title";
+      title.textContent = "Sample Data Distribution";
+      // Title inherits heading font from parent section automatically via CSS
+      container.appendChild(title);
+
+      const svg = d3
+        .select(container)
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      const x = d3
+        .scaleLinear()
+        .domain(d3.extent(data, (d) => d.x))
+        .range([0, width]);
+
+      const y = d3
+        .scaleLinear()
+        .domain([0, d3.max(data, (d) => d.y)])
+        .range([height, 0]);
+
+      // X Axis
+      svg
+        .append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(x))
+        .attr("class", "axis x-axis")
+        .style("font-family", "inherit"); // Inherit from parent
+
+      // Y Axis
+      svg
+        .append("g")
+        .call(d3.axisLeft(y))
+        .attr("class", "axis y-axis")
+        .style("font-family", "inherit"); // Inherit from parent
+
+      // Line
+      svg
+        .append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "#ff7a57")
+        .attr("stroke-width", 2)
+        .attr(
+          "d",
+          d3
+            .line()
+            .x((d) => x(d.x))
+            .y((d) => y(d.y))
+        );
+
+      // Dots
+      svg
+        .selectAll(".dot")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("cx", (d) => x(d.x))
+        .attr("cy", (d) => y(d.y))
+        .attr("r", 4)
+        .attr("fill", "#ff7a57");
+
+      // X Label
+      svg
+        .append("text")
+        .attr("class", "axis-label")
+        .attr("text-anchor", "middle")
+        .attr("x", width / 2)
+        .attr("y", height + 35)
+        .text("Time (s)")
+        .style("font-family", "inherit"); // Inherit from parent
+
+      // Y Label
+      svg
+        .append("text")
+        .attr("class", "axis-label")
+        .attr("text-anchor", "middle")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -35)
+        .attr("x", -height / 2)
+        .text("Amplitude (a.u.)")
+        .style("font-family", "inherit"); // Inherit from parent
+    }
+
+    // Render all plots
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = [
+        "montserrat",
+        "montserrat-alt",
+        "times",
+        "arial",
+        "alegreya",
+        "alegreya-sans",
+        "combo-montalt-mont",
+        "combo-mont-alegreya",
+        "combo-alegreya-mix",
+        "combo-times-alegreyas",
+        "combo-times-mont",
+        "georgia",
+      ];
+
+      sections.forEach((id) => {
+        // For combos, we need to handle the font inheritance carefully
+        // The plot container is inside the .font-section, so it inherits the body font by default
+        // The title is a div inside plot-container, so it also inherits body font by default
+        // We need to explicitly set the title font for combos
+
+        drawPlot(`plot-${id}`);
+
+        // Fix title fonts for combos
+        const container = document.getElementById(`plot-${id}`);
+        if (container) {
+          const section = container.closest(".font-section");
+          const title = container.querySelector(".plot-title");
+
+          if (section && title) {
+            if (section.classList.contains("combo-montalt-mont")) {
+              title.style.fontFamily = '"Montserrat Alternates", sans-serif';
+            } else if (section.classList.contains("combo-mont-alegreya")) {
+              title.style.fontFamily = '"Montserrat", sans-serif';
+            } else if (section.classList.contains("combo-alegreya-mix")) {
+              title.style.fontFamily = '"Alegreya", serif';
+            } else if (
+              section.classList.contains("combo-times-alegreyas") ||
+              section.classList.contains("combo-times-mont")
+            ) {
+              title.style.fontFamily = '"Times New Roman", Times, serif';
+            }
+          }
+        }
+      });
+    });
+  </script>
 </MainLayout>
