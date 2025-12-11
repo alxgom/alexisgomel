@@ -276,6 +276,7 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+  appearance: button;
 }
 
 button:not(:disabled),
@@ -304,6 +305,7 @@ input[type="time"],
 input[type="datetime-local"],
 input[type="month"] {
   -webkit-appearance: listbox;
+  appearance: listbox;
 }
 
 textarea {
@@ -342,6 +344,7 @@ progress {
 [type="search"] {
   outline-offset: -2px;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 [type="search"]::-webkit-search-decoration {
@@ -11848,7 +11851,10 @@ pre {
 .contact-form {
   max-width: 500px;
   margin: 30px auto;
+  margin-bottom: 280px;
   text-align: left;
+  position: relative;
+  z-index: 10;
 }
 
 .contact-form input[type="email"],
