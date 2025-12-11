@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /font-test
 
 Sitemap: https://alexisgomel.com/sitemap-index.xml

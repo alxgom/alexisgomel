@@ -1,0 +1,367 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/font-test";
+---
+
+<MainLayout
+  title="Font Testing Page"
+  description="Internal font testing page"
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <meta name="robots" content="noindex, nofollow" slot="head" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head" />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+    slot="head"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Alegreya+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+    slot="head"
+  />
+
+  <style>
+    .font-test-container {
+      max-width: 1000px;
+      margin: 120px auto 60px;
+      padding: 0 20px;
+    }
+
+    .font-section {
+      margin-bottom: 60px;
+      padding: 30px;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .font-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ff7a57;
+      margin-bottom: 20px;
+      font-family: system-ui, sans-serif;
+    }
+
+    .hero-sample {
+      margin-bottom: 30px;
+    }
+
+    .hero-sample .subtitle {
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 0;
+      opacity: 0.8;
+    }
+
+    .hero-sample .title {
+      font-size: 74px;
+      font-weight: bold;
+      margin-bottom: 0;
+      line-height: 1.1;
+    }
+
+    .hero-sample .tagline {
+      font-size: 22px;
+      margin-top: -5px;
+    }
+
+    .headings-sample h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .headings-sample h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .headings-sample h3 {
+      font-size: 1.75rem;
+      margin-bottom: 10px;
+    }
+    .headings-sample h4 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .headings-sample h5 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+    .headings-sample h6 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .body-sample {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 700px;
+    }
+
+    .body-sample p {
+      margin-bottom: 1rem;
+    }
+
+    /* Font Families */
+    .font-montserrat {
+      font-family: "Montserrat", sans-serif;
+    }
+    .font-montserrat-alt {
+      font-family: "Montserrat Alternates", sans-serif;
+    }
+    .font-alegreya {
+      font-family: "Alegreya", serif;
+    }
+    .font-alegreya-sans {
+      font-family: "Alegreya Sans", sans-serif;
+    }
+
+    /* Combo styles */
+    .combo-montalt-mont .hero-sample,
+    .combo-montalt-mont .headings-sample {
+      font-family: "Montserrat Alternates", sans-serif;
+    }
+    .combo-montalt-mont .body-sample {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .combo-mont-alegreya .hero-sample,
+    .combo-mont-alegreya .headings-sample {
+      font-family: "Montserrat", sans-serif;
+    }
+    .combo-mont-alegreya .body-sample {
+      font-family: "Alegreya", serif;
+    }
+
+    .combo-alegreya-mix .hero-sample,
+    .combo-alegreya-mix .headings-sample {
+      font-family: "Alegreya", serif;
+    }
+    .combo-alegreya-mix .body-sample {
+      font-family: "Alegreya Sans", sans-serif;
+    }
+
+    @media (max-width: 768px) {
+      .hero-sample .title {
+        font-size: 40px;
+      }
+      .hero-sample .subtitle {
+        font-size: 18px;
+      }
+      .hero-sample .tagline {
+        font-size: 16px;
+      }
+    }
+  </style>
+
+  <div class="font-test-container">
+    <h1
+      style="font-family: system-ui; margin-bottom: 40px; text-align: center;"
+    >
+      Font Testing Page
+    </h1>
+
+    <!-- Montserrat -->
+    <div class="font-section font-montserrat">
+      <div class="font-label">Montserrat (All)</div>
+      <div class="hero-sample">
+        <p class="subtitle">Hello, I'm</p>
+        <h1 class="title">Alexis Gomel</h1>
+        <p class="tagline">Physicist | Data scientist</p>
+      </div>
+      <div class="headings-sample">
+        <h2>What I Do</h2>
+        <h3>Check My Works</h3>
+        <h4>Section Title Example</h4>
+      </div>
+      <div class="body-sample">
+        <p>
+          Welcome to my personal website! I am a physicist with a passion for
+          nonlinear dynamics, complex systems, early warnings, statistical
+          mechanics and its applications to many systems.
+        </p>
+        <p>
+          When I'm not delving into scientific pursuits, I love to capture life
+          through photography, move to the rhythm of swing dances, beat the
+          drums, and hit the road for spontaneous hitchhiking adventures.
+        </p>
+      </div>
+    </div>
+
+    <!-- Montserrat Alternates -->
+    <div class="font-section font-montserrat-alt">
+      <div class="font-label">Montserrat Alternates (All)</div>
+      <div class="hero-sample">
+        <p class="subtitle">Hello, I'm</p>
+        <h1 class="title">Alexis Gomel</h1>
+        <p class="tagline">Physicist | Data scientist</p>
+      </div>
+      <div class="headings-sample">
+        <h2>What I Do</h2>
+        <h3>Check My Works</h3>
+        <h4>Section Title Example</h4>
+      </div>
+      <div class="body-sample">
+        <p>
+          Welcome to my personal website! I am a physicist with a passion for
+          nonlinear dynamics, complex systems, early warnings, statistical
+          mechanics and its applications to many systems.
+        </p>
+        <p>
+          When I'm not delving into scientific pursuits, I love to capture life
+          through photography, move to the rhythm of swing dances, beat the
+          drums, and hit the road for spontaneous hitchhiking adventures.
+        </p>
+      </div>
+    </div>
+
+    <!-- Alegreya -->
+    <div class="font-section font-alegreya">
+      <div class="font-label">Alegreya (All - Serif)</div>
+      <div class="hero-sample">
+        <p class="subtitle">Hello, I'm</p>
+        <h1 class="title">Alexis Gomel</h1>
+        <p class="tagline">Physicist | Data scientist</p>
+      </div>
+      <div class="headings-sample">
+        <h2>What I Do</h2>
+        <h3>Check My Works</h3>
+        <h4>Section Title Example</h4>
+      </div>
+      <div class="body-sample">
+        <p>
+          Welcome to my personal website! I am a physicist with a passion for
+          nonlinear dynamics, complex systems, early warnings, statistical
+          mechanics and its applications to many systems.
+        </p>
+        <p>
+          When I'm not delving into scientific pursuits, I love to capture life
+          through photography, move to the rhythm of swing dances, beat the
+          drums, and hit the road for spontaneous hitchhiking adventures.
+        </p>
+      </div>
+    </div>
+
+    <!-- Alegreya Sans -->
+    <div class="font-section font-alegreya-sans">
+      <div class="font-label">Alegreya Sans (All)</div>
+      <div class="hero-sample">
+        <p class="subtitle">Hello, I'm</p>
+        <h1 class="title">Alexis Gomel</h1>
+        <p class="tagline">Physicist | Data scientist</p>
+      </div>
+      <div class="headings-sample">
+        <h2>What I Do</h2>
+        <h3>Check My Works</h3>
+        <h4>Section Title Example</h4>
+      </div>
+      <div class="body-sample">
+        <p>
+          Welcome to my personal website! I am a physicist with a passion for
+          nonlinear dynamics, complex systems, early warnings, statistical
+          mechanics and its applications to many systems.
+        </p>
+        <p>
+          When I'm not delving into scientific pursuits, I love to capture life
+          through photography, move to the rhythm of swing dances, beat the
+          drums, and hit the road for spontaneous hitchhiking adventures.
+        </p>
+      </div>
+    </div>
+
+    <!-- COMBO: Montserrat Alternates Headings + Montserrat Body -->
+    <div class="font-section combo-montalt-mont">
+      <div class="font-label">
+        Combo: Montserrat Alternates (Headings) + Montserrat (Body)
+      </div>
+      <div class="hero-sample">
+        <p class="subtitle">Hello, I'm</p>
+        <h1 class="title">Alexis Gomel</h1>
+        <p class="tagline">Physicist | Data scientist</p>
+      </div>
+      <div class="headings-sample">
+        <h2>What I Do</h2>
+        <h3>Check My Works</h3>
+        <h4>Section Title Example</h4>
+      </div>
+      <div class="body-sample">
+        <p>
+          Welcome to my personal website! I am a physicist with a passion for
+          nonlinear dynamics, complex systems, early warnings, statistical
+          mechanics and its applications to many systems.
+        </p>
+        <p>
+          When I'm not delving into scientific pursuits, I love to capture life
+          through photography, move to the rhythm of swing dances, beat the
+          drums, and hit the road for spontaneous hitchhiking adventures.
+        </p>
+      </div>
+    </div>
+
+    <!-- COMBO: Montserrat Headings + Alegreya Body -->
+    <div class="font-section combo-mont-alegreya">
+      <div class="font-label">
+        Combo: Montserrat (Headings) + Alegreya (Body)
+      </div>
+      <div class="hero-sample">
+        <p class="subtitle">Hello, I'm</p>
+        <h1 class="title">Alexis Gomel</h1>
+        <p class="tagline">Physicist | Data scientist</p>
+      </div>
+      <div class="headings-sample">
+        <h2>What I Do</h2>
+        <h3>Check My Works</h3>
+        <h4>Section Title Example</h4>
+      </div>
+      <div class="body-sample">
+        <p>
+          Welcome to my personal website! I am a physicist with a passion for
+          nonlinear dynamics, complex systems, early warnings, statistical
+          mechanics and its applications to many systems.
+        </p>
+        <p>
+          When I'm not delving into scientific pursuits, I love to capture life
+          through photography, move to the rhythm of swing dances, beat the
+          drums, and hit the road for spontaneous hitchhiking adventures.
+        </p>
+      </div>
+    </div>
+
+    <!-- COMBO: Alegreya Headings + Alegreya Sans Body -->
+    <div class="font-section combo-alegreya-mix">
+      <div class="font-label">
+        Combo: Alegreya (Headings) + Alegreya Sans (Body)
+      </div>
+      <div class="hero-sample">
+        <p class="subtitle">Hello, I'm</p>
+        <h1 class="title">Alexis Gomel</h1>
+        <p class="tagline">Physicist | Data scientist</p>
+      </div>
+      <div class="headings-sample">
+        <h2>What I Do</h2>
+        <h3>Check My Works</h3>
+        <h4>Section Title Example</h4>
+      </div>
+      <div class="body-sample">
+        <p>
+          Welcome to my personal website! I am a physicist with a passion for
+          nonlinear dynamics, complex systems, early warnings, statistical
+          mechanics and its applications to many systems.
+        </p>
+        <p>
+          When I'm not delving into scientific pursuits, I love to capture life
+          through photography, move to the rhythm of swing dances, beat the
+          drums, and hit the road for spontaneous hitchhiking adventures.
+        </p>
+      </div>
+    </div>
+  </div>
+</MainLayout>
