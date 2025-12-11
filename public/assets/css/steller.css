@@ -11618,6 +11618,7 @@ pre {
   }
   .header .container .infos {
     margin-top: 0;
+    padding-top: 100px;
     text-align: center;
   }
   .header .container .infos .socials {
