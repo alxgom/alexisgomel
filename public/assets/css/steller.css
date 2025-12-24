@@ -11952,11 +11952,15 @@ pre {
     z-index: 1050; /* Ensure it stays above other content */
     background-color: #fff; /* Use white or theme color */
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1); /* Subtle shadow */
-    padding: 10px 0;
+    padding: 5px 0;
+}
+
+.page-footer p {
+  margin-bottom: 0;
 }
 
 body {
-    padding-bottom: 80px; /* Adjust based on footer height */
+    padding-bottom: 60px; /* Adjust based on footer height */
 }
 
 /* CV Subheader - Sticky Navigation */
