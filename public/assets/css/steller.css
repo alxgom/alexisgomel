@@ -11943,3 +11943,62 @@ pre {
 .section-arrow:hover {
   color: var(--secondary);
 }
+
+/* Sticky/Fixed Footer */
+.page-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1050; /* Ensure it stays above other content */
+    background-color: #fff; /* Use white or theme color */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1); /* Subtle shadow */
+    padding: 10px 0;
+}
+
+body {
+    padding-bottom: 80px; /* Adjust based on footer height */
+}
+
+/* CV Subheader - Sticky Navigation */
+.cv-subheader {
+    position: sticky;
+    top: 70px; /* Adjust based on main navbar height */
+    z-index: 1040;
+    background-color: #fff; /* Or theme secondary color */
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.cv-subheader .container {
+    display: flex;
+    justify-content: center; /* Center on desktop */
+}
+
+.cv-nav-link {
+    display: inline-block;
+    padding: 8px 15px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+.cv-nav-link:hover, .cv-nav-link.active {
+    color: #fff;
+    background-color: var(--primary);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .cv-subheader .container {
+        justify-content: flex-start; /* Alignment start for scrolling on mobile */
+    }
+}
+
