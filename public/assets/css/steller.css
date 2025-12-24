@@ -11913,3 +11913,33 @@ pre {
     transform: translateX(-50%) translateY(-5px);
   }
 }
+
+.scroll-down span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #fff; /* Initial text color */
+}
+
+.scroll-down:hover span {
+  color: var(--primary);
+}
+
+.scroll-down i {
+  color: var(--primary); /* Highlight the arrow */
+}
+
+.section-arrow {
+  display: block;
+  margin: 2rem auto;
+  text-align: center;
+  color: var(--primary);
+  font-size: 2rem;
+  animation: bounce 2s infinite;
+  width: fit-content;
+}
+
+.section-arrow:hover {
+  color: var(--secondary);
+}
