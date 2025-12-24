@@ -11945,6 +11945,7 @@ pre {
 }
 
 /* Sticky/Fixed Footer */
+/* Sticky/Fixed Footer */
 .page-footer {
     position: fixed;
     bottom: 0;
@@ -11952,15 +11953,20 @@ pre {
     z-index: 1050; /* Ensure it stays above other content */
     background-color: #fff; /* Use white or theme color */
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1); /* Subtle shadow */
-    padding: 5px 0;
+    padding: 2px 0;
+    font-size: 0.8rem;
 }
 
 .page-footer p {
   margin-bottom: 0;
 }
 
+.page-footer .social-item {
+    font-size: 0.9rem; /* Slightly smaller icons */
+}
+
 body {
-    padding-bottom: 60px; /* Adjust based on footer height */
+    padding-bottom: 50px; /* Adjust based on footer height */
 }
 
 /* CV Subheader - Sticky Navigation */
