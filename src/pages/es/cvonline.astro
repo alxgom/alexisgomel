@@ -41,37 +41,43 @@ const beginnerSkills = [
 
   <div class="container mt-5 pt-5">
     <section id="Current" class="section mt-3">
-      <div class="container text-center">
+      <div class="container">
         <h1
-          class="section-title mb-4"
+          class="section-title mb-4 text-center"
           style="font-weight: bold; font-size: 40px;"
         >
-          Lo Que Hago
+          Sobre mí
         </h1>
-        <p class="mb-2 pb-2">
-          Soy físico con pasión por la dinámica no lineal, ciencia de datos,
-          sistemas complejos, alertas tempranas, mecánica estadística y sus
-          aplicaciones a muchos sistemas. Mis intereses de investigación también
-          se extienden a la educación y los campos de la IA generativa y la
-          ciencia de datos.
-        </p>
-        <p class="mb-5 pb-4">
-          Mi último puesto fue como investigador post-doc en la universidad de
-          Reading como parte del <a href="https://www.tipes.dk/tipping-points/">
-            proyecto TiPES</a
-          >.
-        </p>
-        <div class="general-img-holder">
-          <img
-            src="/assets/imgs/wordcloud.png"
-            alt="Imagen generada por webscraping de las palabras clave de todos los artículos desde 2020 en la revista de dinámica no lineal"
-          />
+        <div class="row">
+          <div class="col-md-8 text-left">
+            <p class="mb-2 pb-2">
+              Soy físico con pasión por la dinámica no lineal, ciencia de datos,
+              sistemas complejos, alertas tempranas, mecánica estadística y sus
+              aplicaciones a muchos sistemas. Mis intereses de investigación
+              también se extienden a la educación y los campos de la IA
+              generativa y la ciencia de datos.
+            </p>
+            <p class="mb-5 pb-4">
+              Mi viaje profesional incluye investigación en dinámica no lineal y
+              ciencia de datos, con roles recientes aplicando estas habilidades
+              a la analítica digital.
+            </p>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="general-img-holder mb-3">
+              <img
+                src="/assets/imgs/wordcloud.png"
+                alt="Imagen generada por webscraping de las palabras clave de todos los artículos desde 2020 en la revista de dinámica no lineal"
+                class="img-fluid"
+              />
+            </div>
+            <p class="mb-2 pb-2" style="font-style: italic; font-size: 0.9em;">
+              “Usar un término como ciencia no lineal es como referirse a la
+              mayor parte de la zoología como el estudio de los animales que no
+              son elefantes.” – Stanislaw Ulam.
+            </p>
+          </div>
         </div>
-        <p class="mb-2 pb-2">
-          “Usar un término como ciencia no lineal es como referirse a la mayor
-          parte de la zoología como el estudio de los animales que no son
-          elefantes.” – Stanislaw Ulam.
-        </p>
       </div>
     </section>
 
@@ -172,6 +178,90 @@ const beginnerSkills = [
       />
     </section>
 
+    <section id="Experience" class="section mt-3">
+      <div class="container text-center">
+        <h1
+          class="section-title mb-4"
+          style="font-weight: bold; font-size: 40px;"
+        >
+          Experiencia Profesional
+        </h1>
+        <h6 class="mb-2 pb-4"></h6>
+
+        <div class="row mx-auto">
+          <div class="col-sm-6 col-md-6 mb-3">
+            <h2
+              class="section-title mb-2"
+              style="font-weight: bold; font-size: 30px;"
+            >
+              Analista de Datos
+            </h2>
+            <h3 class="mb-2" style="font-size: 20px; font-weight: normal;">
+              I+D para BI y marketing digital
+            </h3>
+            <h3 class="mb-2">
+              <a
+                href="https://lamagnetica.com"
+                target="_blank"
+                style="text-decoration: underline;">LaMagnetica</a
+              >
+            </h3>
+            <h6 class="mb-2 pb-2">
+              Junio 2025 - Noviembre 2025 | Barcelona, España
+            </h6>
+            <p>
+              <strong>Impacto:</strong> Reduje el volumen de datos en un 64% y aceleré
+              el procesamiento x3 al diseñar arquitecturas escalables en Google Cloud.
+            </p>
+            <p>
+              <strong>Visualización:</strong> Integré gráficos D3.js personalizados
+              en Power BI para una visualización avanzada de datos (Sankey, Radar,
+              etc.).
+            </p>
+            <p>
+              <strong>Eficiencia:</strong> Automaticé los scripts de procesamiento,
+              reduciendo los costos operativos mensuales en un 97%.
+            </p>
+            <p>
+              <strong>Carta de recomendación:</strong>
+              <a
+                href="/assets/files/Referencia Alexis LM_Joana.pdf"
+                download
+                target="_blank"
+                style="text-decoration: underline;"
+              >
+                Descargar <i class="ti-download"></i>
+              </a>
+            </p>
+            <h1 class="mb-5 pb-2"></h1>
+
+            <h2
+              class="section-title mb-2"
+              style="font-weight: bold; font-size: 30px;"
+            >
+              Investigador Posdoctoral
+            </h2>
+            <h3 class="mb-2" style="font-size: 20px; font-weight: normal;">
+              Matemáticas del Planeta Tierra
+            </h3>
+            <h3 class="mb-2">Universidad de Reading | Reino Unido</h3>
+            <h6 class="mb-2 pb-2">Abril 2023 - Febrero 2024</h6>
+            <p>
+              Investigación en "Puntos de Inflexión" en el sistema climático,
+              desarrollando algoritmos de alerta temprana en Python y Matlab.
+            </p>
+            <p>
+              Colaboración internacional dentro del proyecto TiPES (Tipping
+              Points in the Earth System).
+            </p>
+            <p>
+              Evaluación del impacto de políticas y estrategias de mitigación.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="Formation" class="section mt-3">
       <div class="container text-center">
         <h1
@@ -206,7 +296,12 @@ const beginnerSkills = [
                 class="imagefac"
               />
               <h6 class="mb-3 pb-2" style="font-size: 20px;">
-                Universidad de Ginebra
+                Universidad de Ginebra <br />
+                <a
+                  href="https://www.unige.ch/gap/nonlinear/"
+                  target="_blank"
+                  style="font-size: 16px;">Nonlinearity and Climate Group</a
+                >
               </h6>
               <h6 class="mb-1 pb-2">Asesores</h6>
               <p>Asesor: Jérôme Kasparian</p>
