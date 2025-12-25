@@ -12012,3 +12012,9 @@ body {
     }
 }
 
+
+@media (max-width: 768px) {
+  .scroll-down {
+    display: none !important;
+  }
+}
