@@ -15,7 +15,7 @@ const { title, color, height, skills } = Astro.props;
 ---
 
 <div class="col-sm-4 col-md-4 mb-3 d-flex align-items-end">
-  <div class="rotated-text" style={`color: ${color}; margin-right: -65px;`}>
+  <div class="rotated-label" style={`color: ${color};`}>
     <span>{title}</span>
   </div>
   <div
@@ -39,33 +39,51 @@ const { title, color, height, skills } = Astro.props;
 </div>
 
 <style>
-  /* Moved all that messy CSS here, scoped to this component! */
+  .col-sm-4 {
+    /* Ensure the column is a flex container */
+    display: flex;
+    flex-direction: row;
+  }
+
+  .rotated-label {
+    width: 30px; /* Fixed width for the label container */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-right: -5px; /* Slight adjustment to bring it closer to the bar */
+    flex-shrink: 0;
+  }
+
+  .rotated-label span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg); /* Rotate to read from bottom up */
+    white-space: nowrap;
+    font-weight: bold;
+    color: inherit; /* This will be overridden by inline style if passed? No, we used inline style on the parent div before. */
+  }
+
+  /* We need to apply the color to the span since we removed the inline style from the wrapper */
+  /* Actually better to keep inline style on wrapper for color but use class for layout */
+
   .left-bar {
     width: 48px;
     margin-right: 10px;
     margin-left: 0px;
     flex-shrink: 0;
     align-self: flex-end;
+    animation: growBar 1.5s ease-out forwards;
+    transform-origin: bottom;
   }
-  .d-flex {
-    display: flex;
-    align-items: flex-end;
+
+  @keyframes growBar {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
   }
-  .rotated-text {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    height: 100%;
-    font-weight: bold;
-  }
-  .rotated-text span {
-    display: inline-block;
-    transform: rotate(-90deg);
-    transform-origin: bottom left;
-    font-size: 14px;
-    white-space: nowrap;
-    padding: 0;
-  }
+
   .text-content {
     flex: 1;
     margin-left: 0px;
@@ -96,3 +114,4 @@ const { title, color, height, skills } = Astro.props;
     }
   }
 </style>
+```
