@@ -71,8 +71,13 @@ const { title, color, height, skills } = Astro.props;
     margin-left: 0px;
     flex-shrink: 0;
     align-self: flex-end;
-    animation: growBar 1.5s ease-out forwards;
+    transform: scaleY(0); /* Initial state: hidden (collapsed) */
     transform-origin: bottom;
+  }
+
+  /* This class triggers the animation */
+  .left-bar.animate {
+    animation: growBar 1.5s ease-out forwards;
   }
 
   @keyframes growBar {
@@ -90,6 +95,7 @@ const { title, color, height, skills } = Astro.props;
     align-self: flex-end;
     margin-bottom: -10px;
   }
+
   .skill-item {
     display: flex;
     justify-content: space-between;
@@ -114,3 +120,22 @@ const { title, color, height, skills } = Astro.props;
     }
   }
 </style>
+
+<script>
+  // Use IntersectionObserver to trigger animation when bars come into view
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+          observer.unobserve(entry.target); // Run only once
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll(".left-bar").forEach((bar) => {
+    observer.observe(bar);
+  });
+</script>
