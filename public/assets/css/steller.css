@@ -5085,7 +5085,7 @@ input[type="button"].btn-block {
           flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: var(--body-bg);
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -5408,14 +5408,14 @@ input[type="button"].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #A50034;
-  background-color: #fff;
+  color: var(--highlight-color);
+  background-color: var(--body-bg);
   border: 1px solid #dee2e6;
 }
 
 .page-link:hover {
   z-index: 2;
-  color: #85002a;
+  color: var(--hover-color);
   text-decoration: none;
   background-color: #eaf0fc;
   border-color: #dee2e6;
@@ -5440,17 +5440,17 @@ input[type="button"].btn-block {
 
 .page-item.active .page-link {
   z-index: 1;
-  color: #fff;
-  background-color: #A50034;
-  border-color: #A50034;
+  color: var(--white);
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
 }
 
 .page-item.disabled .page-link {
-  color: #6c757d;
+  color: var(--text-color);
   pointer-events: none;
   cursor: auto;
-  background-color: #fff;
-  border-color: #dee2e6;
+  background-color: var(--body-bg);
+  border-color: var(--border-color);
 }
 
 .pagination-lg .page-link {
@@ -5526,13 +5526,13 @@ a.badge:hover, a.badge:focus {
 }
 
 .badge-primary {
-  color: #212529;
-  background-color: #A50034;
+  color: var(--white);
+  background-color: var(--highlight-color);
 }
 
 a.badge-primary:hover, a.badge-primary:focus {
-  color: #212529;
-  background-color: #ff5224;
+  color: var(--white);
+  background-color: var(--hover-color);
 }
 
 a.badge-primary:focus, a.badge-primary.focus {
@@ -5541,12 +5541,12 @@ a.badge-primary:focus, a.badge-primary.focus {
 }
 
 .badge-secondary {
-  color: #fff;
-  background-color: #6c757d;
+  color: var(--white);
+  background-color: var(--text-color);
 }
 
 a.badge-secondary:hover, a.badge-secondary:focus {
-  color: #fff;
+  color: var(--white);
   background-color: #545b62;
 }
 
@@ -5601,13 +5601,13 @@ a.badge-warning:focus, a.badge-warning.focus {
 }
 
 .badge-danger {
-  color: #fff;
-  background-color: #F85C70;
+  color: var(--white);
+  background-color: var(--danger-color);
 }
 
 a.badge-danger:hover, a.badge-danger:focus {
-  color: #fff;
-  background-color: #f62b45;
+  color: var(--white);
+  background-color: var(--hover-color);
 }
 
 a.badge-danger:focus, a.badge-danger.focus {
@@ -5848,10 +5848,10 @@ a.badge-dark:focus, a.badge-dark.focus {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  color: #fff;
+  color: var(--white);
   text-align: center;
   white-space: nowrap;
-  background-color: #A50034;
+  background-color: var(--highlight-color);
   -webkit-transition: width 0.6s ease;
   transition: width 0.6s ease;
 }
