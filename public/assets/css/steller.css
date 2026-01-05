@@ -38,6 +38,18 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
+  /* Seville Palette */
+  --almegre-red: #A50034;
+  --triana-green: #115740;
+  --lapiz-lazuli-blue: #26619C;
+  --albero-pantone: #FFAB60;
+  
+  /* Seville Palette - Neutrals */
+  --cloud-dance-white: #F0EEE9;
+  --light-gray: #D4D4D4;
+  --dark-gray: #434343;
+  --black: #000000;
+  
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }

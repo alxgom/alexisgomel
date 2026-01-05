@@ -615,6 +615,164 @@ const alternateHref = "/font-test";
     </div>
   </div>
 
+  <!-- Color Palette Section -->
+  <div class="font-section color-palette-section" style="margin-top: 60px;">
+    <div class="font-label">Seville Color Palette</div>
+    <div
+      id="palette-swatches"
+      style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 40px;"
+    >
+      <!-- Swatches will be generated here -->
+    </div>
+
+    <h3 class="font-label" style="margin-top: 40px;">
+      Contrast Matrix Reference
+    </h3>
+    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+      Rows = Background Color | Columns = Text Color<br />
+      Values indicate WCAG Contrast Ratio. <br />
+      <strong>Bold (✓)</strong> = AA Compliant (>= 4.5)
+    </p>
+    <div style="overflow-x: auto;">
+      <table
+        id="contrast-matrix"
+        style="width: 100%; border-collapse: collapse; font-family: monospace; font-size: 12px; border: 1px solid #eee;"
+      >
+        <!-- Matrix generated here -->
+      </table>
+    </div>
+  </div>
+
+  <script is:inline>
+    // Palette Definition
+    const sevillePalette = [
+      { name: "Almegre Red", hex: "#A50034", var: "--almegre-red" },
+      { name: "Triana Green", hex: "#115740", var: "--triana-green" },
+      { name: "Lapiz Lazuli", hex: "#26619C", var: "--lapiz-lazuli-blue" },
+      { name: "Albero Pantone", hex: "#FFAB60", var: "--albero-pantone" },
+      { name: "White", hex: "#FFFFFF", var: "--white" },
+      { name: "Cloud Dance", hex: "#F0EEE9", var: "--cloud-dance-white" },
+      { name: "Light Gray", hex: "#D4D4D4", var: "--light-gray" },
+      { name: "Dark Gray", hex: "#434343", var: "--dark-gray" },
+      { name: "Black", hex: "#000000", var: "--black" },
+    ];
+
+    // --- Helper Functions for Contrast ---
+    function hexToRgb(hex) {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+        return r + r + g + g + b + b;
+      });
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result
+        ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16),
+          }
+        : null;
+    }
+
+    function luminance(r, g, b) {
+      const a = [r, g, b].map(function (v) {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    }
+
+    function calculateRatio(hex1, hex2) {
+      const rgb1 = hexToRgb(hex1);
+      const rgb2 = hexToRgb(hex2);
+      if (!rgb1 || !rgb2) return 0;
+      const lum1 = luminance(rgb1.r, rgb1.g, rgb1.b);
+      const lum2 = luminance(rgb2.r, rgb2.g, rgb2.b);
+      const brightest = Math.max(lum1, lum2);
+      const darkest = Math.min(lum1, lum2);
+      return (brightest + 0.05) / (darkest + 0.05);
+    }
+
+    // --- Render Logic ---
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Render Swatches
+      const swatchesContainer = document.getElementById("palette-swatches");
+      if (swatchesContainer) {
+        sevillePalette.forEach((color) => {
+          const swatch = document.createElement("div");
+          swatch.style.cssText = `
+                        width: 140px; 
+                        padding: 15px; 
+                        border-radius: 8px; 
+                        background-color: ${color.hex}; 
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                        display: flex; flex-direction: column; justify-content: flex-end;
+                        color: ${calculateRatio(color.hex, "#000000") > 4.5 ? "#000000" : "#FFFFFF"};
+                        border: 1px solid rgba(0,0,0,0.1);
+                    `;
+          swatch.innerHTML = `
+                        <div style="font-weight:bold; font-size:14px;">${color.name}</div>
+                        <div style="font-family:monospace; opacity:0.8;">${color.hex}</div>
+                        <div style="font-size:10px; opacity:0.6; margin-top:5px;">${color.var}</div>
+                    `;
+          swatchesContainer.appendChild(swatch);
+        });
+      }
+
+      // 2. Render Contrast Matrix
+      const table = document.getElementById("contrast-matrix");
+      if (table) {
+        // Header Row
+        const headerRow = document.createElement("tr");
+        headerRow.appendChild(document.createElement("th")); // Empty corner
+        sevillePalette.forEach((colColor) => {
+          const th = document.createElement("th");
+          th.textContent = colColor.name.split(" ")[0]; // Short name
+          th.style.padding = "10px";
+          th.style.writingMode = "vertical-rl";
+          th.style.transform = "rotate(180deg)";
+          th.style.height = "100px";
+          headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+
+        // Data Rows
+        sevillePalette.forEach((rowColor) => {
+          const tr = document.createElement("tr");
+
+          // Row Header
+          const th = document.createElement("th");
+          th.textContent = rowColor.name;
+          th.style.textAlign = "right";
+          th.style.padding = "5px 10px";
+          th.style.whiteSpace = "nowrap";
+          tr.appendChild(th);
+
+          sevillePalette.forEach((colColor) => {
+            const td = document.createElement("td");
+            const ratio = calculateRatio(rowColor.hex, colColor.hex);
+
+            td.textContent = ratio.toFixed(2);
+            td.style.backgroundColor = rowColor.hex;
+            td.style.color = colColor.hex;
+            td.style.padding = "10px";
+            td.style.textAlign = "center";
+            td.style.fontWeight = ratio >= 4.5 ? "900" : "400";
+            td.style.textDecoration = ratio >= 3.0 ? "none" : "none";
+            td.style.border = "1px solid rgba(255,255,255,0.1)"; // Subtle border
+
+            // Icon pass/fail
+            if (ratio >= 4.5) td.textContent += " ✓";
+
+            // Tooltip
+            td.title = `BG: ${rowColor.name}\nFG: ${colColor.name}\nRatio: ${ratio.toFixed(2)}`;
+
+            tr.appendChild(td);
+          });
+          table.appendChild(tr);
+        });
+      }
+    });
+  </script>
   <script is:inline src="https://d3js.org/d3.v7.min.js"></script>
   <script is:inline>
     // Data for the plot
