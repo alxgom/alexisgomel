@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import Card from "../../components/Card.astro";
+import Lightbox from "../../components/Lightbox.astro";
 import { Image } from "astro:assets";
 import avatarLiviano from "../../assets/imgs/avatar_liviano.png";
 import hamiltonian3d from "../../assets/imgs/3d_hamiltonian.png";
@@ -9,7 +10,7 @@ import tippings from "../../assets/imgs/tippings.png";
 import wordcloud from "../../assets/imgs/wordcloud.png";
 import populationMap from "../../assets/imgs/PopulationByDistrict_NiceColormap_mini.png";
 import filamentScheme from "../../assets/imgs/filament_scheme2.png";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { SITE_TITLE, SITE_DESCRIPTION_ES } from "../../consts";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
@@ -18,7 +19,7 @@ const alternateHref = "/"; // Links back to English
 
 <MainLayout
   title="Alexis Gomel | Portafolio de Físico y Científico de Datos"
-  description={SITE_DESCRIPTION}
+  description={SITE_DESCRIPTION_ES}
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
@@ -27,177 +28,131 @@ const alternateHref = "/"; // Links back to English
       <div class="bg-image-white">
         <div class="container">
           <div class="infos">
-            <h6 class="subtitle">Hola, soy</h6>
-            <h6 class="title">Alexis Gomel</h6>
-            <p>Físico | Científico de Datos</p>
-            <div class="buttons pt-">
-              <a
-                href="mailto:alexis.gomel@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="gtm-track-click"
-                data-event-category="Header"
-                data-event-label="Send Email"
-              >
-                <button
-                  class="btn btn-primary rounded"
-                  aria-label="Enviar correo"
-                >
-                  <i class="ti-email"></i></button
-                >
-              </a>
-              <a
-                href="/assets/files/CV_Alexis_Gomel_web.pdf"
-                download
-                class="gtm-track-click"
-                data-event-category="Header"
-                data-event-label="Download CV"
-              >
-                <button class="btn btn-dark rounded" aria-label="Descargar CV"
-                  >DESCARGAR CV</button
-                >
-              </a>
+            <div class="row mb-5">
+              <div class="col-12 text-center text-md-left">
+                <h1 class="title h6 mb-2">Alexis Gomel</h1>
+                <p class="subtitle font-weight-normal text-muted mb-0">
+                  Físico | Científico de Datos | Analista de Datos |
+                  Investigador
+                </p>
+              </div>
             </div>
 
-            <div class="socials mt-4">
-              <a
-                class="social-item gtm-track-click"
-                data-event-category="Header"
-                data-event-label="Instagram"
-                href="https://www.instagram.com/lookn_around/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                ><i class="fa-brands fa-instagram fa-1x"></i></a
-              >
-              <a
-                class="social-item gtm-track-click"
-                data-event-category="Header"
-                data-event-label="LinkedIn"
-                href="https://www.linkedin.com/in/alexis-gomel-95484278/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a
-              >
-              <a
-                class="social-item gtm-track-click"
-                data-event-category="Header"
-                data-event-label="GitHub"
-                href="https://github.com/alxgom"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"><i class="fa-brands fa-github"></i></a
-              >
-              <a
-                class="social-item gtm-track-click"
-                data-event-category="Header"
-                data-event-label="ResearchGate"
-                href="https://www.researchgate.net/profile/Alexis-Gomel"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="ResearchGate"><i class="ai ai-researchgate"></i></a
-              >
+            <div class="row align-items-center">
+              <div class="col-md-4 text-center">
+                <Image
+                  src={avatarLiviano}
+                  alt="Alexis Gomel Avatar"
+                  class="img-thumbnail mb-4"
+                  style="width: 100%; max-width: 250px; height: auto;"
+                />
+
+                <div class="buttons mb-4 mb-md-0">
+                  <a
+                    href="mailto:alexis.gomel@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="gtm-track-click"
+                    data-event-category="Header"
+                    data-event-label="Send Email"
+                  >
+                    <button
+                      class="btn btn-primary rounded mr-2"
+                      aria-label="Enviar correo"
+                    >
+                      <i class="ti-email"></i></button
+                    >
+                  </a>
+                  <a
+                    href="/assets/files/CV_Alexis_Gomel_web.pdf"
+                    download
+                    class="gtm-track-click"
+                    data-event-category="Header"
+                    data-event-label="Download CV"
+                  >
+                    <button
+                      class="btn btn-dark rounded"
+                      aria-label="Descargar CV">DESCARGAR CV</button
+                    >
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-md-8 text-center text-md-left pl-md-5">
+                <p class="lead">
+                  ¡Bienvenido a mi sitio web personal! Soy un físico apasionado
+                  por la dinámica no lineal, sistemas complejos, señales de
+                  alerta temprana, mecánica estadística y sus aplicaciones.
+                </p>
+                <p>
+                  Cuando no estoy investigando, me encanta capturar la vida a
+                  través de la fotografía, bailar swing, tocar la batería y
+                  viajar a dedo.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <a href="#about" class="scroll-down" aria-label="Scroll Down">
-      <span>Sobre mí</span>
+    <a href="#service" class="scroll-down" aria-label="Scroll Down">
+      <span>Secciones</span>
       <i class="ti-angle-down"></i>
     </a>
   </header>
-
-  <section id="about" class="section mt-3">
-    <div class="container mt-5">
-      <div class="row text-center text-md-left">
-        <div class="col-md-3">
-          <Image
-            src={avatarLiviano}
-            alt="Alexis Gomel Avatar"
-            class="img-thumbnail mb-4"
-          />
-        </div>
-        <div class="pl-md-4 col-md-9">
-          <h6 class="title">Alexis Gomel</h6>
-          <p class="subtitle">Físico / Investigador</p>
-          <p>
-            ¡Bienvenido a mi sitio web personal! Soy un físico apasionado por la
-            dinámica no lineal, sistemas complejos, señales de alerta temprana,
-            mecánica estadística y sus aplicaciones...
-          </p>
-          <p>
-            Cuando no estoy investigando, me encanta capturar la vida a través
-            de la fotografía, bailar swing, tocar la batería y viajar a dedo.
-          </p>
-          <a
-            href="/assets/files/CV_Alexis_Gomel_web.pdf"
-            download
-            class="gtm-track-click"
-            data-event-category="About"
-            data-event-label="Download CV"
-          >
-            <button
-              class="btn btn-primary rounded mt-3"
-              aria-label="Descargar CV">DESCARGAR CV</button
-            >
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="service" class="section">
-    <div class="container text-center">
-      <h6 class="section-title mb-4">Lo Que Hago</h6>
-      <div class="row">
-        <div class="col-sm-6 col-md-3 mb-4">
-          <Card
-            href="/es/cvonline"
-            icon="icon ti-user"
-            title="CV Online"
-            ariaLabel="Ver CV Online"
-            gtmCategory="Home Card"
-            gtmLabel="Online CV"
-          />
-        </div>
-        <div class="col-sm-6 col-md-3 mb-4">
-          <Card
-            href="/es/projects"
-            icon="icon ti-gallery"
-            title="Proyectos Personales"
-            ariaLabel="Ver Proyectos Personales"
-            gtmCategory="Home Card"
-            gtmLabel="Personal Projects"
-          />
-        </div>
-        <div class="col-sm-6 col-md-3 mb-4">
-          <Card
-            href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
-            target="_blank"
-            icon="ai ai-google-scholar ai-3x"
-            title="Publicaciones"
-            ariaLabel="Ver Publicaciones en Google Scholar"
-            gtmCategory="Home Card"
-            gtmLabel="Publications"
-          />
-        </div>
-        <div class="col-sm-6 col-md-3 mb-4">
-          <Card
-            href="/es/playlists"
-            icon="icon ti-music-alt"
-            title="Listas de Música"
-            ariaLabel="Ver Listas de Música"
-            gtmCategory="Home Card"
-            gtmLabel="Playlists"
-          />
+  <main>
+    <section id="service" class="section">
+      <div class="container text-center">
+        <h2 class="section-title mb-4">Lo Que Hago</h2>
+        <div class="row">
+          <div class="col-sm-6 col-md-3 mb-4">
+            <Card
+              href="/es/cvonline"
+              icon="icon ti-user"
+              title="CV Online"
+              ariaLabel="Ver CV Online"
+              gtmCategory="Home Card"
+              gtmLabel="Online CV"
+            />
+          </div>
+          <div class="col-sm-6 col-md-3 mb-4">
+            <Card
+              href="/es/projects"
+              icon="icon ti-gallery"
+              title="Proyectos Personales"
+              ariaLabel="Ver Proyectos Personales"
+              gtmCategory="Home Card"
+              gtmLabel="Personal Projects"
+            />
+          </div>
+          <div class="col-sm-6 col-md-3 mb-4">
+            <Card
+              href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
+              target="_blank"
+              icon="ai ai-google-scholar ai-3x"
+              title="Publicaciones"
+              ariaLabel="Ver Publicaciones en Google Scholar"
+              gtmCategory="Home Card"
+              gtmLabel="Publications"
+            />
+          </div>
+          <div class="col-sm-6 col-md-3 mb-4">
+            <Card
+              href="/es/playlists"
+              icon="icon ti-music-alt"
+              title="Listas de Música"
+              ariaLabel="Ver Listas de Música"
+              gtmCategory="Home Card"
+              gtmLabel="Playlists"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <section id="portfolio" class="section">
       <div class="container text-center">
-        <h6 class="section-title mb-4">Mis Trabajos</h6>
+        <h2 class="section-title mb-4">Mis Trabajos</h2>
         <p class="mb-5 pb-4">Aquí hay una lista de algunos de mis proyectos.</p>
         <div class="row">
           <div class="col-sm-4">
@@ -205,14 +160,14 @@ const alternateHref = "/"; // Links back to English
               <Image src={hamiltonian3d} alt="Rogue wave freezing" />
               <div class="overlay">
                 <div class="overlay-infos">
-                  <h5>Rogue wave freezing</h5>
+                  <h3>Rogue wave freezing</h3>
                   <a
                     href="/assets/imgs/3d_hamiltonian.png"
                     aria-label="Zoom en Rogue wave freezing"
                     class="gtm-track-click"
                     data-event-category="Portfolio Item"
                     data-event-label="Rogue wave freezing - Zoom"
-                    ><i class="ti-zoom-in"></i></a
+                    data-lightbox="true"><i class="ti-zoom-in"></i></a
                   >
                   <a
                     href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501"
@@ -229,14 +184,14 @@ const alternateHref = "/"; // Links back to English
               <Image src={waveSchemeFlows} alt="ADHONLS" />
               <div class="overlay">
                 <div class="overlay-infos">
-                  <h5>ADHONLS</h5>
+                  <h3>ADHONLS</h3>
                   <a
                     href="/assets/imgs/wave_scheme_flows.png"
                     aria-label="Zoom en ADHONLS"
                     class="gtm-track-click"
                     data-event-category="Portfolio Item"
                     data-event-label="ADHONLS - Zoom"
-                    ><i class="ti-zoom-in"></i></a
+                    data-lightbox="true"><i class="ti-zoom-in"></i></a
                   >
                   <a
                     href="https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear"
@@ -254,8 +209,15 @@ const alternateHref = "/"; // Links back to English
               <Image src={tippings} alt="Tipping points" />
               <div class="overlay">
                 <div class="overlay-infos">
-                  <h5>Tipping points</h5>
-                  <span><i class="ti-zoom-in"></i></span>
+                  <h3>Tipping points</h3>
+                  <a
+                    href="/assets/imgs/tippings.png"
+                    aria-label="Zoom en Tipping points"
+                    class="gtm-track-click"
+                    data-event-category="Portfolio Item"
+                    data-event-label="Tipping points - Zoom"
+                    data-lightbox="true"><i class="ti-zoom-in"></i></a
+                  >
                   <span><i class="ti-link"></i></span>
                 </div>
               </div>
@@ -264,14 +226,14 @@ const alternateHref = "/"; // Links back to English
               <Image src={wordcloud} alt="Wordcloud Journal webscrapping" />
               <div class="overlay">
                 <div class="overlay-infos">
-                  <h5>Worldcloud Jounal webscrapping</h5>
+                  <h3>Worldcloud Jounal webscrapping</h3>
                   <a
                     href="/assets/imgs/wordcloud.png"
                     aria-label="Zoom en Worldcloud Journal webscrapping"
                     class="gtm-track-click"
                     data-event-category="Portfolio Item"
                     data-event-label="Wordcloud - Zoom"
-                    ><i class="ti-zoom-in"></i></a
+                    data-lightbox="true"><i class="ti-zoom-in"></i></a
                   >
                   <a
                     href="https://github.com/alxgom/NL-Dynamics-wordcloud"
@@ -290,14 +252,14 @@ const alternateHref = "/"; // Links back to English
               <Image src={populationMap} alt="Custom colormaps" />
               <div class="overlay">
                 <div class="overlay-infos">
-                  <h5>Custom colormaps</h5>
+                  <h3>Custom colormaps</h3>
                   <a
                     href="/assets/imgs/PopulationByDistrict_NiceColormap.png"
                     aria-label="Zoom en Custom colormaps"
                     class="gtm-track-click"
                     data-event-category="Portfolio Item"
                     data-event-label="Custom colormaps - Zoom"
-                    ><i class="ti-zoom-in"></i></a
+                    data-lightbox="true"><i class="ti-zoom-in"></i></a
                   >
                   <a
                     href="https://github.com/alxgom/-stitched_colorbars"
@@ -317,14 +279,14 @@ const alternateHref = "/"; // Links back to English
               />
               <div class="overlay">
                 <div class="overlay-infos">
-                  <h5>Filamentation statistical regimes</h5>
+                  <h3>Filamentation statistical regimes</h3>
                   <a
                     href="/assets/imgs/filament_scheme2.png"
                     aria-label="Zoom en Filamentation statistical regimes"
                     class="gtm-track-click"
                     data-event-category="Portfolio Item"
                     data-event-label="Filamentation - Zoom"
-                    ><i class="ti-zoom-in"></i></a
+                    data-lightbox="true"><i class="ti-zoom-in"></i></a
                   >
                   <a
                     href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180"
@@ -344,18 +306,19 @@ const alternateHref = "/"; // Links back to English
 
     <section id="contact" class="position-relative section">
       <div class="container text-center">
-        <h6 class="subtitle">Contacto</h6>
-        <h5 class="section-title mb-4">
+        <p class="subtitle">Contacto</p>
+        <h2 class="section-title mb-4">
           <a
             href="mailto:alexis.gomel@gmail.com"
             target="_blank"
+            rel="noopener noreferrer"
             class="gtm-track-click"
             data-event-category="Contact"
             data-event-label="Send Email Link"
           >
             Envíame un correo: alexis.gomel@gmail.com
           </a>
-        </h5>
+        </h2>
 
         <form
           action="https://formspree.io/f/xldqpzqd"
@@ -395,5 +358,6 @@ const alternateHref = "/"; // Links back to English
         </div>
       </div>
     </section>
-  </section>
+  </main>
+  <Lightbox />
 </MainLayout>
