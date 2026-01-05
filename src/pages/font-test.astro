@@ -38,16 +38,16 @@ const alternateHref = "/font-test";
     .font-section {
       margin-bottom: 60px;
       padding: 30px;
-      border: 1px solid #eee;
+      border: 1px solid var(--light-gray);
       border-radius: 12px;
-      background: #fafafa;
+      background: var(--cloud-dance-white);
     }
 
     .font-label {
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: #ff7a57;
+      color: var(--highlight-color);
       margin-bottom: 20px;
       font-family: system-ui, sans-serif;
     }
@@ -137,10 +137,10 @@ const alternateHref = "/font-test";
     /* Plot styles */
     .plot-container {
       margin-top: 30px;
-      border: 1px solid #eee;
+      border: 1px solid var(--light-gray);
       border-radius: 8px;
       padding: 20px;
-      background: white;
+      background: var(--white);
     }
     .plot-title {
       font-size: 1.25rem;
@@ -628,7 +628,7 @@ const alternateHref = "/font-test";
     <h3 class="font-label" style="margin-top: 40px;">
       Contrast Matrix Reference
     </h3>
-    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+    <p style="font-size: 0.9rem; color: var(--dark-gray); margin-bottom: 20px;">
       Rows = Background Color | Columns = Text Color<br />
       Values indicate WCAG Contrast Ratio. <br />
       <strong>Bold (✓)</strong> = AA Compliant (>= 4.5)

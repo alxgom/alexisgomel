@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--cloud-dance-white);
     margin: 0;
     padding: 0;
 }
@@ -44,7 +44,7 @@ input {
 }
 
 input:focus {
-    border-color: #ff7a57;
+    border-color: var(--highlight-color);
     outline: none;
     box-shadow: 0 0 5px rgba(255, 122, 87, 0.5);
 }
@@ -52,15 +52,15 @@ input:focus {
 button {
     margin-top: 20px;
     padding: 10px;
-    background-color: #ff7a57;
-    color: #fff;
+    background-color: var(--highlight-color);
+    color: var(--white);
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #e66a4d;
+    background-color: var(--hover-color);
 }
 
 input[type="range"] {
@@ -85,7 +85,7 @@ input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
     height: 20px;
-    background: #ff7a57;
+    background: var(--highlight-color);
     cursor: pointer;
     border-radius: 50%;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
@@ -94,7 +94,7 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
     width: 20px;
     height: 20px;
-    background: #ff7a57;
+    background: var(--highlight-color);
     cursor: pointer;
     border-radius: 50%;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
@@ -111,7 +111,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 #warning {
-    color: red;
+    color: var(--red);
     margin-top: 10px;
 }
 
@@ -141,8 +141,8 @@ input[type="range"]::-moz-range-thumb {
 .tooltip {
     visibility: hidden;
     width: 300px;
-    background-color: #555;
-    color: #fff;
+    background-color: var(--dark-gray);
+    color: var(--white);
     text-align: center;
     border-radius: 5px;
     padding: 5px;
@@ -163,7 +163,7 @@ input[type="range"]::-moz-range-thumb {
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #555 transparent transparent transparent;
+    border-color: var(--dark-gray) transparent transparent transparent;
 }
 
 label:hover .tooltip {
@@ -226,8 +226,8 @@ label:hover .tooltip {
     #result p {
         font-size: 0.95rem;
         padding: 10px;
-        background: #f8f9fa;
-        border-left: 3px solid #ff7a57;
+        background: var(--cloud-dance-white);
+        border-left: 3px solid var(--highlight-color);
         margin: 8px 0;
     }
 
@@ -267,7 +267,7 @@ label:hover .tooltip {
     #price-per-unit-area {
         font-size: 0.85rem;
         padding: 8px;
-        background: #e7f3ff;
+        background: var(--cloud-dance-white);
         border-radius: 4px;
         margin-top: 10px;
     }
@@ -287,7 +287,7 @@ label:hover .tooltip {
 
 /* Header with Shadow (Static, Not Fixed) */
 .floating-header {
-    background: #fff;
+    background: var(--bg-color);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     margin-bottom: 20px;
 }
