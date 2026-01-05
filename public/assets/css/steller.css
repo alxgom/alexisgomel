@@ -2612,12 +2612,12 @@ textarea.form-control {
 }
 
 .was-validated .custom-control-input:invalid:checked ~ .custom-control-label::before, .custom-control-input.is-invalid:checked ~ .custom-control-label::before {
-  border-color: #fa8d9b;
-  background-color: #fa8d9b;
+  border-color: var(--highlight-color);
+  background-color: var(--highlight-color);
 }
 
 .was-validated .custom-control-input:invalid:focus ~ .custom-control-label::before, .custom-control-input.is-invalid:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 0.2rem rgba(248, 92, 112, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(var(--highlight-color), 0.25);
 }
 
 .was-validated .custom-control-input:invalid:focus:not(:checked) ~ .custom-control-label::before, .custom-control-input.is-invalid:focus:not(:checked) ~ .custom-control-label::before {
@@ -2781,7 +2781,7 @@ textarea.form-control {
 
 .btn:focus, .btn.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 122, 87, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(var(--highlight-color), 0.25);
 }
 
 .btn.disabled, .btn:disabled {
@@ -2809,7 +2809,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary:focus{
-  box-shadow: 0 0 0 0.2rem rgba(222, 109, 80, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(var(--highlight-color), 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -2971,32 +2971,32 @@ fieldset:disabled a.btn {
 }
 
 .btn-danger {
-  color: #fff;
-  background-color: #F85C70;
-  border-color: #F85C70;
+  color: var(--body-bg);
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
 }
 
 .btn-danger:hover {
-  color: #fff;
-  background-color: #f63750;
-  border-color: #f62b45;
+  color: var(--body-bg);
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
 }
 
 .btn-danger:focus, .btn-danger.focus {
-  box-shadow: 0 0 0 0.2rem rgba(249, 116, 133, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(var(--highlight-color), 0.5);
 }
 
 .btn-danger.disabled, .btn-danger:disabled {
-  color: #fff;
-  background-color: #F85C70;
-  border-color: #F85C70;
+  color: var(--body-bg);
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
 }
 
 .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active,
 .show > .btn-danger.dropdown-toggle {
-  color: #fff;
-  background-color: #f62b45;
-  border-color: #f51f3a;
+  color: var(--body-bg);
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
 }
 
 .btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger:not(:disabled):not(.disabled).active:focus,
@@ -3238,9 +3238,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-danger:hover {
-  color: #fff;
-  background-color: #F85C70;
-  border-color: #F85C70;
+  color: var(--body-bg);
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
 }
 
 .btn-outline-danger:focus, .btn-outline-danger.focus {
@@ -3254,9 +3254,9 @@ fieldset:disabled a.btn {
 
 .btn-outline-danger:not(:disabled):not(.disabled):active, .btn-outline-danger:not(:disabled):not(.disabled).active,
 .show > .btn-outline-danger.dropdown-toggle {
-  color: #fff;
-  background-color: #F85C70;
-  border-color: #F85C70;
+  color: var(--body-bg);
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
 }
 
 .btn-outline-danger:not(:disabled):not(.disabled):active:focus, .btn-outline-danger:not(:disabled):not(.disabled).active:focus,
@@ -3330,12 +3330,12 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #A50034;
+  color: var(--highlight-color);
   text-decoration: none;
 }
 
 .btn-link:hover {
-  color: #85002a;
+  color: var(--hover-color);
   text-decoration: underline;
 }
 
@@ -3631,9 +3631,9 @@ input[type="button"].btn-block {
 }
 
 .dropdown-item.active, .dropdown-item:active {
-  color: #fff;
+  color: var(--body-bg);
   text-decoration: none;
-  background-color: #A50034;
+  background-color: var(--highlight-color);
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -4038,9 +4038,9 @@ input[type="button"].btn-block {
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  color: #fff;
-  border-color: #A50034;
-  background-color: #A50034;
+  color: var(--body-bg);
+  border-color: var(--highlight-color);
+  background-color: var(--highlight-color);
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {
@@ -4052,7 +4052,7 @@ input[type="button"].btn-block {
 }
 
 .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
-  color: #fff;
+  color: var(--body-bg);
   background-color: white;
   border-color: white;
 }
@@ -4080,7 +4080,7 @@ input[type="button"].btn-block {
   height: 1rem;
   pointer-events: none;
   content: "";
-  background-color: #fff;
+  background-color: var(--body-bg);
   border: #adb5bd solid 1px;
 }
 
@@ -4104,8 +4104,8 @@ input[type="button"].btn-block {
 }
 
 .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::before {
-  border-color: #A50034;
-  background-color: #A50034;
+  border-color: var(--highlight-color);
+  background-color: var(--highlight-color);
 }
 
 .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::after {
@@ -4113,11 +4113,11 @@ input[type="button"].btn-block {
 }
 
 .custom-checkbox .custom-control-input:disabled:checked ~ .custom-control-label::before {
-  background-color: rgba(255, 122, 87, 0.5);
+  background-color: rgba(var(--highlight-color), 0.5);
 }
 
 .custom-checkbox .custom-control-input:disabled:indeterminate ~ .custom-control-label::before {
-  background-color: rgba(255, 122, 87, 0.5);
+  background-color: rgba(var(--highlight-color), 0.5);
 }
 
 .custom-radio .custom-control-label::before {
@@ -4129,7 +4129,7 @@ input[type="button"].btn-block {
 }
 
 .custom-radio .custom-control-input:disabled:checked ~ .custom-control-label::before {
-  background-color: rgba(255, 122, 87, 0.5);
+  background-color: rgba(var(--highlight-color), 0.5);
 }
 
 .custom-switch {
@@ -4171,7 +4171,7 @@ input[type="button"].btn-block {
 }
 
 .custom-switch .custom-control-input:disabled:checked ~ .custom-control-label::before {
-  background-color: rgba(255, 122, 87, 0.5);
+  background-color: rgba(var(--highlight-color), 0.5);
 }
 
 .custom-select {
@@ -4185,7 +4185,7 @@ input[type="button"].btn-block {
   color: #495057;
   vertical-align: middle;
   background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.9rem center/8px 10px;
-  background-color: #fff;
+  background-color: var(--body-bg);
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   -webkit-appearance: none;
@@ -4194,14 +4194,15 @@ input[type="button"].btn-block {
 }
 
 .custom-select:focus {
-  border-color: #ffdfd7;
+  border-color: var(--highlight-color);
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 122, 87, 0.25);
+  filter: brightness(1.2);
+  box-shadow: 0 0 0 0.2rem rgba(var(--highlight-color), 0.5);
 }
 
 .custom-select:focus::-ms-value {
   color: #495057;
-  background-color: #fff;
+  background-color: var(--body-bg);
 }
 
 .custom-select[multiple], .custom-select[size]:not([size="1"]) {
@@ -4253,8 +4254,9 @@ input[type="button"].btn-block {
 }
 
 .custom-file-input:focus ~ .custom-file-label {
-  border-color: #ffdfd7;
-  box-shadow: 0 0 0 0.2rem rgba(255, 122, 87, 0.25);
+  border-color: var(--highlight-color);
+  filter: brightness(1.2);
+  box-shadow: 0 0 0 0.2rem rgba(var(--highlight-color), 0.5);
 }
 
 .custom-file-input:disabled ~ .custom-file-label {
@@ -4317,15 +4319,15 @@ input[type="button"].btn-block {
 }
 
 .custom-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(255, 122, 87, 0.25);
+box-shadow: 0 0 0 1px var(--white), 0 0 0 0.2rem color-mix(in srgb, var(--highlight-color) 25%, transparent);
 }
 
 .custom-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(255, 122, 87, 0.25);
+box-shadow: 0 0 0 1px var(--white), 0 0 0 0.2rem color-mix(in srgb, var(--highlight-color) 25%, transparent);
 }
 
 .custom-range:focus::-ms-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(255, 122, 87, 0.25);
+box-shadow: 0 0 0 1px var(--white), 0 0 0 0.2rem color-mix(in srgb, var(--highlight-color) 25%, transparent);
 }
 
 .custom-range::-moz-focus-outer {
@@ -4336,7 +4338,7 @@ input[type="button"].btn-block {
   width: 1rem;
   height: 1rem;
   margin-top: -0.25rem;
-  background-color: #A50034;
+  background-color: var(--highlight-color);
   border: 0;
   border-radius: 1rem;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -4369,7 +4371,7 @@ input[type="button"].btn-block {
 .custom-range::-moz-range-thumb {
   width: 1rem;
   height: 1rem;
-  background-color: #A50034;
+  background-color: var(--highlight-color);
   border: 0;
   border-radius: 1rem;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -4405,7 +4407,7 @@ input[type="button"].btn-block {
   margin-top: 0;
   margin-right: 0.2rem;
   margin-left: 0.2rem;
-  background-color: #A50034;
+  background-color: var(--highlight-color);
   border: 0;
   border-radius: 1rem;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -4552,8 +4554,8 @@ input[type="button"].btn-block {
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #A50034;
+  color: var(--white);
+  background-color: var(--highlight-color);
 }
 
 .nav-fill .nav-item {
@@ -5424,7 +5426,7 @@ input[type="button"].btn-block {
 .page-link:focus {
   z-index: 2;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 122, 87, 0.25);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--highlight-color), transparent 50%);
 }
 
 .page-item:first-child .page-link {
@@ -5537,7 +5539,7 @@ a.badge-primary:hover, a.badge-primary:focus {
 
 a.badge-primary:focus, a.badge-primary.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 122, 87, 0.5);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--highlight-color), transparent 50%);
 }
 
 .badge-secondary {
