@@ -25,6 +25,7 @@ const {
     <a
       href={href}
       target={target}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
       aria-label={ariaLabel || title}
       class={`stretched-link ${gtmCategory ? "gtm-track-click" : ""}`}
       data-event-category={gtmCategory}
@@ -36,6 +37,7 @@ const {
       <a
         href={href}
         target={target}
+        rel={target === "_blank" ? "noopener noreferrer" : undefined}
         class={gtmCategory ? "gtm-track-click" : ""}
         data-event-category={gtmCategory}
         data-event-label={gtmLabel}

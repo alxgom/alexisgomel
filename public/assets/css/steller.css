@@ -12017,4 +12017,33 @@ body {
   .scroll-down {
     display: none !important;
   }
+  
+  /* Fix header to keep hamburger and logo on same line */
+  .navbar-expand-lg > .container {
+    flex-wrap: nowrap !important;
+  }
+  
+  .navbar-brand {
+    margin-right: auto !important;
+  }
+  
+  .navbar-toggler {
+    margin-left: auto !important;
+  }
+  
+  /* Ensure collapsed menu doesn't break the layout */
+  .navbar-collapse {
+    flex-basis: 100% !important;
+  }
+  
+  /* Fix SAC page clipping on mobile */
+  .container.mt-5.pt-5 {
+    margin-top: 5rem !important;
+    padding-top: 5rem !important;
+  }
+  
+  /* Add extra padding to first content section on SAC pages */
+  body .container.mt-5.pt-5:first-of-type {
+    padding-top: 6rem !important;
+  }
 }
