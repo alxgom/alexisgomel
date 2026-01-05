@@ -11564,7 +11564,7 @@ pre {
 .header .container .infos {
   position: relative;
   z-index: 2; 
-  margin-top: 120px;
+  margin-top: 80px;
 }
 
 .header .container .infos .subtitle {
@@ -11633,7 +11633,7 @@ pre {
   }
   .header .container .infos {
     margin-top: 0;
-    padding-top: 100px;
+    padding-top: 60px;
     text-align: center;
   }
   .header .container .infos .socials {
@@ -11908,6 +11908,7 @@ pre {
   z-index: 100;
   text-decoration: none;
   cursor: pointer;
+  text-align: center;
 }
 
 .scroll-down:hover {
@@ -11931,7 +11932,7 @@ pre {
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 5px;
-  color: #fff; /* Initial text color */
+  color: var(--primary); /* Initial text color */
 }
 
 .scroll-down:hover span {
