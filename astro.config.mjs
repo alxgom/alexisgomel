@@ -11,7 +11,9 @@ export default defineConfig({
 	site: "https://alexisgomel.com",
 	integrations: [
 		mdx(),
-		sitemap(),
+		sitemap({
+			filter: (page) => !page.includes('/font-test'),
+		}),
 		partytown({
 			config: {
 				forward: ["dataLayer.push"],
