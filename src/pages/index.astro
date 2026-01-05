@@ -34,124 +34,117 @@ const alternateHref = "/es/"; // Links to Spanish version
     <div class="bg-image bg-image-white">
       <div class="bg-image-white">
         <div class="container">
-          <div class="infos">
-            <p class="subtitle h6">Hello, I'm</p>
-            <h1 class="title h6">Alexis Gomel</h1>
-            <p>Physics | Data science | Data analyst | Researcher</p>
-            <div class="buttons pt-">
-              <a
-                href="mailto:alexis.gomel@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="gtm-track-click"
-                data-event-category="Header"
-                data-event-label="Send Email"
-              >
-                <button class="btn btn-primary rounded" aria-label="Send email">
-                  <i class="ti-email"></i></button
-                >
-              </a>
-              <a
-                href="/assets/files/CV_Alexis_Gomel_web.pdf"
-                download
-                class="gtm-track-click"
-                data-event-category="Header"
-                data-event-label="Download CV"
-              >
-                <button class="btn btn-dark rounded" aria-label="Download CV"
-                  >DOWNLOAD CV</button
-                >
-              </a>
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center text-md-left">
+              <div class="infos">
+                <Image
+                  src={avatarLiviano}
+                  alt="Alexis Gomel Avatar"
+                  class="img-thumbnail mb-4"
+                  style="width: 100%; max-width: 250px; height: auto;"
+                />
+              </div>
             </div>
+            <div class="col-md-9 text-center text-md-left">
+              <div class="infos pl-md-4">
+                <p class="subtitle h6">Hello, I'm</p>
+                <h1 class="title h6">Alexis Gomel</h1>
+                <p class="subtitle">Curiosity, Depth, and Innovation</p>
+                <p>
+                  I get inspired by connecting the dots between different
+                  worlds. From physics and education to photography, I use my
+                  diverse background to look past the obvious and create
+                  innovative solutions.
+                </p>
+                <p>
+                  Outside of my professional pursuits, I love to capture life
+                  through photography, move to the rhythm of swing dances, the
+                  beat the drums, and hit the road for spontaneous hitchhiking
+                  adventures.
+                </p>
 
-            <div class="socials mt-4">
-              <a
-                class="social-item gtm-track-click"
-                data-event-category="Header"
-                data-event-label="Instagram"
-                href={INSTAGRAM_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                ><i class="fa-brands fa-instagram fa-1x"></i></a
-              >
-              <a
-                class="social-item gtm-track-click"
-                data-event-category="Header"
-                data-event-label="LinkedIn"
-                href={LINKEDIN_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a
-              >
-              <a
-                class="social-item gtm-track-click"
-                data-event-category="Header"
-                data-event-label="GitHub"
-                href={GITHUB_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"><i class="fa-brands fa-github"></i></a
-              >
-              <a
-                class="social-item gtm-track-click"
-                data-event-category="Header"
-                data-event-label="ResearchGate"
-                href={RESEARCHGATE_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="ResearchGate"><i class="ai ai-researchgate"></i></a
-              >
+                <div class="buttons pt-3">
+                  <a
+                    href="mailto:alexis.gomel@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="gtm-track-click"
+                    data-event-category="Header"
+                    data-event-label="Send Email"
+                  >
+                    <button
+                      class="btn btn-primary rounded"
+                      aria-label="Send email"
+                    >
+                      <i class="ti-email"></i></button
+                    >
+                  </a>
+                  <a
+                    href="/assets/files/CV_Alexis_Gomel_web.pdf"
+                    download
+                    class="gtm-track-click"
+                    data-event-category="Header"
+                    data-event-label="Download CV"
+                  >
+                    <button
+                      class="btn btn-dark rounded"
+                      aria-label="Download CV">DOWNLOAD CV</button
+                    >
+                  </a>
+                </div>
+
+                <div class="socials mt-4">
+                  <a
+                    class="social-item gtm-track-click"
+                    data-event-category="Header"
+                    data-event-label="Instagram"
+                    href={INSTAGRAM_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    ><i class="fa-brands fa-instagram fa-1x"></i></a
+                  >
+                  <a
+                    class="social-item gtm-track-click"
+                    data-event-category="Header"
+                    data-event-label="LinkedIn"
+                    href={LINKEDIN_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    ><i class="fa-brands fa-linkedin"></i></a
+                  >
+                  <a
+                    class="social-item gtm-track-click"
+                    data-event-category="Header"
+                    data-event-label="GitHub"
+                    href={GITHUB_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"><i class="fa-brands fa-github"></i></a
+                  >
+                  <a
+                    class="social-item gtm-track-click"
+                    data-event-category="Header"
+                    data-event-label="ResearchGate"
+                    href={RESEARCHGATE_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="ResearchGate"
+                    ><i class="ai ai-researchgate"></i></a
+                  >
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <a href="#about" class="scroll-down" aria-label="Scroll Down">
-      <span>About</span>
+    <a href="#service" class="scroll-down" aria-label="Scroll Down">
+      <span>Sections</span>
       <i class="ti-angle-down"></i>
     </a>
   </header>
-
-  <section id="about" class="section mt-3">
-    <div class="container mt-5">
-      <div class="row text-center text-md-left">
-        <div class="col-md-3">
-          <Image
-            src={avatarLiviano}
-            alt="Alexis Gomel Avatar"
-            class="img-thumbnail mb-4"
-          />
-        </div>
-        <div class="pl-md-4 col-md-9">
-          <h6 class="title">Alexis Gomel</h6>
-          <p class="subtitle">Curiosity, Depth, and Innovation</p>
-          <p>
-            I get inspired by connecting the dots between different worlds. From
-            physics and education to photography, I use my diverse background to
-            look past the obvious and create innovative solutions.
-          </p>
-          <p>
-            Outside of my professional pursuits, I love to capture life through
-            photography, move to the rhythm of swing dances, the beat the drums,
-            and hit the road for spontaneous hitchhiking adventures.
-          </p>
-          <a
-            href="/assets/files/CV_Alexis_Gomel_web.pdf"
-            download
-            class="gtm-track-click"
-            data-event-category="About"
-            data-event-label="Download CV"
-          >
-            <button
-              class="btn btn-primary rounded mt-3"
-              aria-label="Download CV">DOWNLOAD CV</button
-            >
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section id="service" class="section">
     <div class="container text-center">
