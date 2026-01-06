@@ -5,6 +5,7 @@ import {
   LINKEDIN_LINK,
   GITHUB_LINK,
   RESEARCHGATE_LINK,
+  EMAIL,
 } from "../consts";
 ---
 
@@ -36,6 +37,11 @@ import {
             href={RESEARCHGATE_LINK}
             target="_blank"
             rel="noopener noreferrer"><i class="ai ai-researchgate"></i></a
+          >
+          <a
+            class="social-item"
+            href={`mailto:${EMAIL}`}
+            aria-label="Send email"><i class="ti-email"></i></a
           >
         </div>
       </div>
