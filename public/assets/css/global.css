@@ -11238,9 +11238,10 @@ pre {
 }
 
 /* Override .socials alignment to left */
+/* Override .socials alignment to right */
 .page-footer .socials {
-    margin-left: 0 !important;
-    margin-right: auto !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
 }
 
 body {
