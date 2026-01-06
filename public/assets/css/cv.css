@@ -1,0 +1,56 @@
+/* CV Subheader - Sticky Navigation */
+.cv-subheader {
+    position: sticky;
+    top: 70px; /* Adjust based on main navbar height */
+    z-index: 1040;
+    background-color: #fff; /* Or theme secondary color */
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.cv-subheader .container {
+    display: flex;
+    justify-content: center; /* Center on desktop */
+}
+
+.cv-nav-link {
+    display: inline-block;
+    padding: 8px 15px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+.cv-nav-link:hover, .cv-nav-link.active {
+    color: #fff;
+    background-color: var(--primary);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .cv-subheader .container {
+        justify-content: flex-start; /* Alignment start for scrolling on mobile */
+    }
+}
+
+.section-arrow {
+  display: block;
+  margin: 2rem auto;
+  text-align: center;
+  color: var(--primary); /* Replaced highlight-color with primary */
+  font-size: 2rem;
+  animation: bounce 2s infinite;
+  width: fit-content;
+}
+
+.section-arrow:hover {
+  color: var(--secondary);
+}
