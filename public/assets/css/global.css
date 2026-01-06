@@ -31,8 +31,14 @@
   --hover-color: #85002a;
   --primary: var(--almegre-red);
   --secondary: var(--light-gray);
-  --gray-dark: var(--dark-gray);
 
+  --gray-dark: var(--dark-gray);
+  
+  --footer-bg: var(--white);
+  --header-bg: var(--white);
+  --header-text-color: var(--dark-gray);
+ 
+  
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -11228,22 +11234,126 @@ pre {
 }
 
 .page-footer .social-item {
-    font-size: 0.9rem; /* Slightly smaller icons */
+    font-size: 0.9rem; 
 }
 
 body {
-    padding-bottom: 50px; /* Adjust based on footer height */
+    padding-bottom: 50px; 
 }
 
 
 
+
+
+/* Navbar Styles (Migrated from steller.css) */
+.navbar {
+  padding: 0;
+  min-height: 80px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  background: var(--header-bg);
+}
+
+.navbar .navbar-brand img {
+  width: 75px;
+  -webkit-filter: drop-shadow(1px 2px 25px rgba(206, 212, 218, 0.9));
+          filter: drop-shadow(1px 2px 25px rgba(206, 212, 218, 0.9));
+}
+
+.navbar .navbar-nav {
+  height: auto;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0 10px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: var(--header-text-color);
+}
+
+.navbar .navbar-nav .nav-link.active {
+  color: var(--primary);
+}
+
+.navbar .navbar-nav .btn {
+  min-width: 120px;
+}
+
+.navbar.affix {
+  box-shadow: 0 6px 15px rgba(206, 212, 218, 0.3);
+  background: var(--header-bg);
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    padding: 0 20px;
+  }
+}
+
+/* Header Widget Styles */
+.header .widget {
+  position: relative;
+  max-width: 650px;
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  border: 1px solid #dee2e6;
+  padding: 20px 0;
+  margin-top: -50px;
+  z-index: 999;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(173, 181, 189, 0.4);
+}
+
+.header .widget .widget-item {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+  text-align: center;
+  border-right: 1px solid #dee2e6;
+}
+
+.header .widget .widget-item:last-child {
+  border-right: 0;
+}
+
+.header .widget .widget-item h2, .header .widget .widget-item p {
+  margin: 0;
+}
+
+.header .widget .widget-item p {
+  opacity: .7;
+  font-size: 14px;
+}
+
+@media (max-width: 767.98px) {
+  .header .widget {
+    padding: 10px;
+    margin-top: -32px;
+  }
+  .header .widget .widget-item h2 {
+    font-size: 20px;
+  }
+  .header .widget .widget-item p {
+    font-size: 13px;
+  }
+}
 
 @media (max-width: 768px) {
   .scroll-down {
     display: none !important;
   }
   
-  /* Fix header to keep hamburger and logo on same line */
   .navbar-expand-lg > .container {
     flex-wrap: nowrap !important;
   }
@@ -11256,12 +11366,10 @@ body {
     margin-left: auto !important;
   }
   
-  /* Ensure collapsed menu doesn't break the layout */
   .navbar-collapse {
     flex-basis: 100% !important;
   }
   
-  /* Fix SAC page clipping on mobile */
   .container.mt-5.pt-5 {
     margin-top: 5rem !important;
     padding-top: 5rem !important;
