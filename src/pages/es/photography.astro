@@ -1,0 +1,155 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { SITE_TITLE } from "../../consts";
+
+const currentLang = "es";
+const alternateHref = "/photography";
+---
+
+<MainLayout
+  title="Fotografía | Alexis Gomel - Fotógrafo"
+  description="Explora mi trabajo fotográfico a través de diferentes cuentas de Instagram y GuruShots. Desde fotografía general hasta viajes y tomas experimentales."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <Fragment slot="head">
+    <meta
+      name="keywords"
+      content="fotografía, fotógrafo, instagram, gurushots, fotografía de viajes, fotografía experimental, alexis gomel, barcelona"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Alexis Gomel",
+          "alternateName": "lookn_around",
+          "description": "Físico, Científico de Datos y Fotógrafo con sede en Barcelona.",
+          "image": "https://alexisgomel.com/assets/imgs/avatar_liviano.png",
+          "sameAs": [
+            "https://www.instagram.com/lookn_around/",
+            "https://www.instagram.com/lookn_around_world/",
+            "https://www.instagram.com/lookn_around_dreams/",
+            "https://gurushots.com/lookn_around/photos"
+          ]
+        }
+      }
+    </script>
+  </Fragment>
+  <div class="container mt-5 pt-5">
+    <section id="photography" class="section mt-3">
+      <div class="container text-center">
+        <h2
+          class="section-title mb-4"
+          style="font-weight: bold; font-size: 40px;"
+        >
+          Fotografía
+        </h2>
+        <p class="subtitle mb-5">
+          Capturando momentos a través de diferentes lentes y perspectivas
+        </p>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <!-- Instagram - General -->
+          <div class="col-md-4 mb-4">
+            <div class="custom-card card border text-center">
+              <div class="card-body">
+                <i
+                  class="ti-instagram"
+                  style="--highlight-color: var(--primary);"></i>
+                <h5 class="card-title mb-3">Fotografía General</h5>
+                <p class="card-text mb-4">
+                  Una mezcla de diferentes sujetos y estilos. Mi cuenta
+                  principal de fotografía.
+                </p>
+                <a
+                  href="https://www.instagram.com/lookn_around/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary rounded"
+                  aria-label="Visitar Instagram Fotografía General"
+                >
+                  @lookn_around
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Instagram - Viajes -->
+          <div class="col-md-4 mb-4">
+            <div class="custom-card card border text-center">
+              <div class="card-body">
+                <i
+                  class="ti-instagram"
+                  style="--highlight-color: var(--primary);"></i>
+                <h5 class="card-title mb-3">Fotografía de Viajes</h5>
+                <p class="card-text mb-4">
+                  Paisajes, escenas urbanas y momentos de alrededor del mundo.
+                </p>
+                <a
+                  href="https://www.instagram.com/lookn_around_world/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary rounded"
+                  aria-label="Visitar Instagram Fotografía de Viajes"
+                >
+                  @lookn_around_world
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Instagram - Experimental -->
+          <div class="col-md-4 mb-4">
+            <div class="custom-card card border text-center">
+              <div class="card-body">
+                <i
+                  class="ti-instagram"
+                  style="--highlight-color: var(--primary);"></i>
+                <h5 class="card-title mb-3">Fotografía Experimental</h5>
+                <p class="card-text mb-4">
+                  Ediciones creativas, tomas abstractas y experimentos
+                  artísticos.
+                </p>
+                <a
+                  href="https://www.instagram.com/lookn_around_dreams/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary rounded"
+                  aria-label="Visitar Instagram Fotografía Experimental"
+                >
+                  @lookn_around_dreams
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección GuruShots -->
+        <div class="row mt-5">
+          <div class="col-12 text-center">
+            <h3 class="mb-4" style="font-weight: bold; font-size: 32px;">
+              GuruShots
+            </h3>
+            <p class="mb-4">
+              Únete a mí en desafíos y competiciones de fotografía en GuruShots,
+              donde participo en varios concursos fotográficos.
+            </p>
+            <a
+              href="https://gurushots.com/lookn_around/photos"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-lg rounded"
+              aria-label="Visitar Perfil de GuruShots"
+            >
+              <i class="ti-camera"></i> Ver Perfil de GuruShots
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</MainLayout>
