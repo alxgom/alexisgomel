@@ -166,3 +166,27 @@
 .general-img-holder:hover .overlay .overlay-infos, .img-wrapper:active .overlay .overlay-infos {
   top: 50%;
 }
+
+/* Header Background Image (Waves) */
+.header .bg-image {
+  position: relative;
+  z-index: -1;
+  background-image: url(../imgs/wavesss_webp.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .header .bg-image {
+    background-position: center top; 
+    background-size: cover;
+  }
+}
+
+.header .bg-image-white {
+  position: relative;
+  z-index: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+}
