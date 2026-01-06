@@ -3,6 +3,8 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Card from "../components/Card.astro";
 import Lightbox from "../components/Lightbox.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { Image } from "astro:assets";
+import wordcloud from "../assets/imgs/wordcloud.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
@@ -230,6 +232,44 @@ const alternateHref = "/es/projects"; // Links to Spanish version
       </div>
 
       <div class="container">
+        <!-- Project: Wordcloud -->
+        <div class="row mb-5 align-items-center">
+          <div class="col-md-6 mb-3 mb-md-0">
+            <div class="general-img-holder">
+              <Image
+                src={wordcloud}
+                alt="Wordcloud Journal webscrapping"
+                class="img-fluid"
+              />
+              <div class="overlay">
+                <div class="overlay-infos">
+                  <h5>Wordcloud Journal webscrapping</h5>
+                  <a
+                    href="/assets/imgs/wordcloud.png"
+                    aria-label="Zoom in on Wordcloud"
+                    data-lightbox="true"><i class="ti-zoom-in"></i></a
+                  >
+                  <a
+                    href="https://github.com/alxgom/NL-Dynamics-wordcloud"
+                    aria-label="View Wordcloud project"
+                    ><i class="ti-link"></i></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h4>Wordcloud Journal webscrapping</h4>
+            <p>
+              Web scraping project to visualize journal keywords from Nonlinear
+              Dynamics journals.
+            </p>
+            <p>
+              <strong>Tech & skills:</strong> Web scraping, Data visualization, Python.
+            </p>
+          </div>
+        </div>
+
         <!-- Project: Stitched Colormaps -->
         <div class="row mb-5 align-items-center">
           <div class="col-md-6 mb-3 mb-md-0">
