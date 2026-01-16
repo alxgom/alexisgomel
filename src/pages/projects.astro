@@ -637,3 +637,38 @@ const alternateHref = "/es/projects"; // Links to Spanish version
 
   <Lightbox />
 </MainLayout>
+
+<script>
+  // Sticky Sub-header Active State
+  const navLinks = document.querySelectorAll(".cv-nav-link");
+  const sections = document.querySelectorAll("section");
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "-20% 0px -60% 0px", // Highlighting when section is near top/center
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Remove active class from all links
+        navLinks.forEach((link) => link.classList.remove("active"));
+        // Add active class to corresponding link
+        const id = entry.target.getAttribute("id");
+        if (id) {
+          const activeLink = document.querySelector(
+            `.cv-nav-link[href="#${id}"]`
+          );
+          if (activeLink) {
+            activeLink.classList.add("active");
+          }
+        }
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
+</script>

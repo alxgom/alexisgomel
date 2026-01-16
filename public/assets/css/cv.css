@@ -29,7 +29,7 @@
     margin: 0 5px;
 }
 
-.cv-nav-link:hover, .cv-nav-link.active {
+.cv-nav-link:hover {
     color: #fff;
     background-color: var(--primary);
     text-decoration: none;

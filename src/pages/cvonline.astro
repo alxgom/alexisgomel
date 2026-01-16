@@ -618,4 +618,43 @@ const beginnerSkills = [
       </div>
     </section>
   </div>
+  <Lightbox />
 </MainLayout>
+
+<script>
+  // Sticky Sub-header Active State
+  const navLinks = document.querySelectorAll(".cv-nav-link");
+  const sections = document.querySelectorAll("section");
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "-20% 0px -60% 0px", // Highlighting when section is near top/center
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Remove active class from all links
+        navLinks.forEach((link) => link.classList.remove("active"));
+        // Add active class to corresponding link
+        const id = entry.target.getAttribute("id");
+        if (id) {
+          // Special case for ID with spaces (if any, though not recommended, but handling just in case)
+          // Ideally IDs should not have spaces.
+          // Using CSS.escape or just attribute selector with quotes handles most standard IDs.
+          const activeLink = document.querySelector(
+            `.cv-nav-link[href="#${id}"]`
+          );
+          if (activeLink) {
+            activeLink.classList.add("active");
+          }
+        }
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
+</script>
