@@ -198,6 +198,12 @@ const link = (path) => `${homeBase}${path}`;
     }
   }
 
+  /* Highlight Top Level Items on Hover */
+  .nav-link:hover,
+  .nav-item.dropdown:hover > .nav-link {
+    color: var(--primary) !important;
+  }
+
   /* Highlight Dropdown Items on Hover */
   .dropdown-item:hover,
   .dropdown-item:focus {
