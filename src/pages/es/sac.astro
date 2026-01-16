@@ -7,20 +7,24 @@ const alternateHref = "/sac"; // Links to English version
 ---
 
 <MainLayout
-  title="Calculadora SHARE - División de Alquiler de Pisos | Alexis Gomel"
-  description="Calculadora de Alquiler Compartido. Divide el alquiler de tu piso de forma justa basándote en el tamaño de las habitaciones y espacios comunes."
+  title="Calculadora SHARE - Divide el Alquiler Justamente | Alexis Gomel"
+  description="Calculadora SHARE gratuita para dividir el alquiler de forma justa entre compañeros de piso. Calcula la parte de cada inquilino según el tamaño de la habitación y espacios compartidos."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
   <link rel="stylesheet" href="/assets/css/sac_styles.css" slot="head" />
+
+  <!-- WebApplication Schema -->
   <script slot="head" type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Calculadora de Alquiler Compartido",
-      "description": "Una herramienta gratuita para calcular la división justa del alquiler en pisos compartidos.",
+      "name": "Calculadora SHARE - SHared Appartment REnt Calculator",
+      "description": "Herramienta gratuita para calcular la división justa del alquiler en pisos compartidos basándose en el tamaño de las habitaciones.",
+      "url": "https://alexisgomel.com/es/sac",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
+      "inLanguage": "es",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -28,69 +32,104 @@ const alternateHref = "/sac"; // Links to English version
       },
       "author": {
         "@type": "Person",
-        "name": "Alexis Gomel"
-      }
+        "name": "Alexis Gomel",
+        "url": "https://alexisgomel.com"
+      },
+      "featureList": [
+        "Calcula el alquiler según el tamaño de la habitación",
+        "Ajusta el valor del espacio compartido",
+        "Incluye gastos mensuales en el cálculo",
+        "Comparación visual del tamaño de habitaciones"
+      ]
     }
   </script>
 
-  <div class="container mt-5 pt-5">
-    <h1 class="title">Calculadora de Alquiler Compartido (SHARE)</h1>
-    <p class="subtitle">
-      Calcula cómo dividir el alquiler de forma justa basándote en el tamaño de
-      las habitaciones y el espacio compartido.
-    </p>
+  <!-- FAQ Schema for better search visibility -->
+  <script slot="head" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo dividir el alquiler de forma justa en un piso compartido?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La forma más justa de dividir el alquiler es según el tamaño de cada habitación. Calcula la proporción de cada habitación respecto al espacio privado total, y luego considera las áreas compartidas. La Calculadora SHARE automatiza esto dividiendo el alquiler proporcionalmente según las dimensiones de las habitaciones y un valor configurable para el espacio compartido."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Deben incluirse los espacios compartidos en el cálculo del alquiler?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, los espacios compartidos como el salón y la cocina deben considerarse en el cálculo. La Calculadora SHARE usa un 'valor de espacio compartido' configurable (0-1) para determinar cuánto peso tienen las áreas comunes. Un valor de 0.75 significa que el espacio compartido vale el 75% del valor de una habitación privada."
+          }
+        }
+      ]
+    }
+  </script>
 
-    <form id="rent-form">
-      <div class="inline-inputs">
-        <div>
-          <label for="rent">Precio del Alquiler:</label>
-          <input type="number" id="rent" name="rent" required />
+  <main>
+    <article class="container mt-5 pt-5">
+      <h1 class="title">SHared Appartment REnt Calculator (SHARE)</h1>
+      <p class="subtitle" style="text-align: center;">
+        Calcula cómo dividir el alquiler de forma justa basándote en el tamaño
+        de las habitaciones y el espacio compartido.
+      </p>
+
+      <form id="rent-form">
+        <div class="inline-inputs">
+          <div>
+            <label for="rent">Precio del Alquiler:</label>
+            <input type="number" id="rent" name="rent" required />
+          </div>
+          <div>
+            <label for="total_area">Área total del apartamento:</label>
+            <input type="number" id="total_area" name="total_area" required />
+          </div>
+          <div id="price-per-unit-area"></div>
         </div>
-        <div>
-          <label for="total_area">Área total del apartamento:</label>
-          <input type="number" id="total_area" name="total_area" required />
-        </div>
-        <div id="price-per-unit-area"></div>
-      </div>
 
-      <label for="num_rooms">Número de habitaciones:</label>
-      <input type="number" id="num_rooms" name="num_rooms" required />
+        <label for="num_rooms">Número de habitaciones:</label>
+        <input type="number" id="num_rooms" name="num_rooms" required />
 
-      <label for="alpha"
-        >Valor del espacio compartido (entre 0 y 1):
-        <div class="tooltip">
-          0 si el espacio compartido no se cuenta.<br />
-          1 si el valor por área del espacio compartido es igual al de las habitaciones.<br
+        <label for="alpha"
+          >Valor del espacio compartido (entre 0 y 1):
+          <div class="tooltip">
+            0 si el espacio compartido no se cuenta.<br />
+            1 si el valor por área del espacio compartido es igual al de las habitaciones.<br
+            />
+            Por defecto: 0.75.
+          </div>
+        </label>
+        <div class="inline-inputs">
+          <input
+            type="range"
+            id="alpha"
+            name="alpha"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.75"
+            style="width: 150px;"
           />
-          Por defecto: 0.75.
+          <span id="alpha-value">0.75</span>
         </div>
-      </label>
-      <div class="inline-inputs">
-        <input
-          type="range"
-          id="alpha"
-          name="alpha"
-          min="0"
-          max="1"
-          step="0.01"
-          value="0.75"
-          style="width: 150px;"
-        />
-        <span id="alpha-value">0.75</span>
-      </div>
 
-      <div id="room-dimensions-container"></div>
+        <div id="room-dimensions-container"></div>
 
-      <label for="bills">Gastos mensuales (opcional):</label>
-      <input type="number" id="bills" name="bills" />
+        <label for="bills">Gastos mensuales (opcional):</label>
+        <input type="number" id="bills" name="bills" />
 
-      <button type="submit">Calcular</button>
-    </form>
+        <button type="submit">Calcular</button>
+      </form>
 
-    <div id="warning"></div>
-    <div id="result"></div>
-    <div class="room-visualization" id="room-visualization"></div>
-  </div>
+      <div id="warning"></div>
+      <div id="result"></div>
+      <div class="room-visualization" id="room-visualization"></div>
+    </article>
+  </main>
 
   <script is:inline src="/js/sac_script.js"></script>
 </MainLayout>

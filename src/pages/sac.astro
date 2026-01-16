@@ -7,20 +7,24 @@ const alternateHref = "/es/sac"; // Links to Spanish version
 ---
 
 <MainLayout
-  title="Fair Rent Split Calculator - Divide Apartment Rent Fairly | Alexis Gomel"
-  description="Free tool to calculate fair rent splits for shared apartments. Easily divide rent among roommates based on room size and shared areas."
+  title="SHARE Calculator - Split Rent Fairly Among Roommates | Alexis Gomel"
+  description="Free SHARE Calculator to split apartment rent fairly among roommates. Calculate each tenant's share based on room size and shared spaces. Perfect for flatmates and shared housing."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
   <link rel="stylesheet" href="/assets/css/sac_styles.css" slot="head" />
+
+  <!-- WebApplication Schema -->
   <script slot="head" type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Shared Apartment Rent Calculator",
+      "name": "SHARE Calculator - SHared Appartment REnt Calculator",
       "description": "A free tool to calculate fair rent splits for shared apartments based on room dimensions and shared spaces.",
+      "url": "https://alexisgomel.com/sac",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
+      "inLanguage": "en",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -28,70 +32,105 @@ const alternateHref = "/es/sac"; // Links to Spanish version
       },
       "author": {
         "@type": "Person",
-        "name": "Alexis Gomel"
-      }
+        "name": "Alexis Gomel",
+        "url": "https://alexisgomel.com"
+      },
+      "featureList": [
+        "Calculate rent based on room size",
+        "Adjust for shared space value",
+        "Include monthly bills in calculation",
+        "Visual room size comparison"
+      ]
     }
   </script>
 
-  <div class="container mt-5 pt-5">
-    <h1 class="title">Fair Rent Split Calculator</h1>
-    <p class="subtitle">
-      Calculate how to split rent fairly based on room size and shared space.
-    </p>
+  <!-- FAQ Schema for better search visibility -->
+  <script slot="head" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you split rent fairly in a shared apartment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The fairest way to split rent is based on room size. Calculate each room's proportion of the total private space, then factor in shared areas. The SHARE Calculator automates this by dividing rent proportionally based on room dimensions and a configurable shared space value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should shared spaces be included in rent calculations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, shared spaces like living rooms and kitchens should be factored into rent calculations. The SHARE Calculator uses a configurable 'shared space value' (0-1) to determine how much weight shared areas carry. A value of 0.75 means shared space is worth 75% of private room value."
+          }
+        }
+      ]
+    }
+  </script>
 
-    <form id="rent-form">
-      <div class="inline-inputs">
-        <div>
-          <label for="rent">Total Rent:</label>
-          <input type="number" id="rent" name="rent" required />
+  <main>
+    <article class="container mt-5 pt-5">
+      <h1 class="title">SHared Appartment REnt Calculator (SHARE)</h1>
+      <p class="subtitle" style="text-align: center;">
+        Calculate how to split rent fairly based on room size and shared space.
+      </p>
+
+      <form id="rent-form">
+        <div class="inline-inputs">
+          <div>
+            <label for="rent">Total Rent:</label>
+            <input type="number" id="rent" name="rent" required />
+          </div>
+          <div>
+            <label for="total_area">Total Area:</label>
+            <input type="number" id="total_area" name="total_area" required />
+          </div>
+          <div id="price-per-unit-area"></div>
         </div>
-        <div>
-          <label for="total_area">Total Area:</label>
-          <input type="number" id="total_area" name="total_area" required />
-        </div>
-        <div id="price-per-unit-area"></div>
-      </div>
 
-      <label for="num_rooms">Number of rooms:</label>
-      <input type="number" id="num_rooms" name="num_rooms" required />
+        <label for="num_rooms">Number of rooms:</label>
+        <input type="number" id="num_rooms" name="num_rooms" required />
 
-      <label for="alpha"
-        >Value of shared space (between 0 and 1):
-        <div class="tooltip">
-          0 if the shared space is not taken into account of the calculation.<br
+        <label for="alpha"
+          >Value of shared space (between 0 and 1):
+          <div class="tooltip">
+            0 if the shared space is not taken into account of the calculation.<br
+            />
+            1 if the value per area of the shared space is considered the same as
+            the value per area of the rooms.<br />
+            Default: 0.75. The area of the shared space is considered to be worth
+            3/4 of the value of the private rooms.
+          </div>
+        </label>
+        <div class="inline-inputs">
+          <input
+            type="range"
+            id="alpha"
+            name="alpha"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.75"
+            style="width: 150px;"
           />
-          1 if the value per area of the shared space is considered the same as the
-          value per area of the rooms.<br />
-          Default: 0.75. The area of the shared space is considered to be worth 3/4
-          of the value of the private rooms.
+          <span id="alpha-value">0.75</span>
         </div>
-      </label>
-      <div class="inline-inputs">
-        <input
-          type="range"
-          id="alpha"
-          name="alpha"
-          min="0"
-          max="1"
-          step="0.01"
-          value="0.75"
-          style="width: 150px;"
-        />
-        <span id="alpha-value">0.75</span>
-      </div>
 
-      <div id="room-dimensions-container"></div>
+        <div id="room-dimensions-container"></div>
 
-      <label for="bills">Bills per month (optional):</label>
-      <input type="number" id="bills" name="bills" />
+        <label for="bills">Bills per month (optional):</label>
+        <input type="number" id="bills" name="bills" />
 
-      <button type="submit">Calculate</button>
-    </form>
+        <button type="submit">Calculate</button>
+      </form>
 
-    <div id="warning"></div>
-    <div id="result"></div>
-    <div class="room-visualization" id="room-visualization"></div>
-  </div>
+      <div id="warning"></div>
+      <div id="result"></div>
+      <div class="room-visualization" id="room-visualization"></div>
+    </article>
+  </main>
 
   <script is:inline src="/js/sac_script.js"></script>
 </MainLayout>
