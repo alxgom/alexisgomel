@@ -2,6 +2,7 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import Card from "../../components/Card.astro";
 import Lightbox from "../../components/Lightbox.astro";
+import PortfolioCarousel from "../../components/PortfolioCarousel.astro";
 import { Image } from "astro:assets";
 import avatarLiviano from "../../assets/imgs/avatar_liviano.png";
 import hamiltonian3d from "../../assets/imgs/3d_hamiltonian.png";
@@ -15,6 +16,61 @@ import { SITE_TITLE, SITE_DESCRIPTION_ES } from "../../consts";
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
 const alternateHref = "/"; // Links back to English
+
+// Portfolio items for carousel (Spanish)
+const portfolioItems = [
+  {
+    image: hamiltonian3d,
+    imageAlt: "Visualización de congelación de olas gigantes",
+    title: "Congelación de Olas Gigantes",
+    description:
+      "Investigación sobre el control de olas oceánicas extremas usando mecánica hamiltoniana. Publicado en Physical Review Letters 2021.",
+    zoomHref: "/assets/imgs/3d_hamiltonian.png",
+    linkHref:
+      "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501",
+    linkAriaLabel: "Ver publicación sobre olas gigantes",
+    zoomAriaLabel: "Ampliar imagen de olas gigantes",
+    gtmLabel: "Rogue wave freezing",
+  },
+  {
+    image: waveSchemeFlows,
+    imageAlt: "Modelado de olas ADHONLS",
+    title: "Modelado ADHONLS con Flujo Medio",
+    description:
+      "Ecuación de Schrödinger no lineal de alto orden con efectos de flujo medio para simulaciones precisas de olas.",
+    zoomHref: "/assets/imgs/wave_scheme_flows.png",
+    linkHref:
+      "https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear",
+    linkAriaLabel: "Ver publicación ADHONLS",
+    zoomAriaLabel: "Ampliar imagen ADHONLS",
+    gtmLabel: "ADHONLS",
+  },
+  {
+    image: populationMap,
+    imageAlt: "Visualización de mapas de colores personalizados",
+    title: "Mapas de Colores Personalizados",
+    description:
+      "Librería Python para crear barras de colores combinadas - uniendo múltiples paletas para visualización de datos complejos.",
+    zoomHref: "/assets/imgs/PopulationByDistrict_NiceColormap.png",
+    linkHref: "https://github.com/alxgom/-stitched_colorbars",
+    linkAriaLabel: "Ver mapas de colores en GitHub",
+    zoomAriaLabel: "Ampliar imagen de mapas de colores",
+    gtmLabel: "Custom colormaps",
+  },
+  {
+    image: filamentScheme,
+    imageAlt: "Regímenes estadísticos de filamentación",
+    title: "Regímenes de Filamentación Láser",
+    description:
+      "Análisis estadístico de filamentación de luz en medios no lineales, explorando diferentes regímenes de propagación.",
+    zoomHref: "/assets/imgs/filament_scheme2.png",
+    linkHref:
+      "https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180",
+    linkAriaLabel: "Ver publicación de filamentación",
+    zoomAriaLabel: "Ampliar imagen de filamentación",
+    gtmLabel: "Filamentation",
+  },
+];
 ---
 
 <MainLayout
@@ -171,117 +227,11 @@ const alternateHref = "/"; // Links back to English
       </div>
     </section>
 
-    <section id="portfolio" class="section">
-      <div class="container text-center">
-        <h2 class="section-title mb-4">Mis Trabajos</h2>
-        <p class="mb-5 pb-4">Aquí hay una lista de algunos de mis proyectos.</p>
-        <div class="row row justify-content-center">
-          <div class="col-sm-4">
-            <div class="img-wrapper">
-              <Image src={hamiltonian3d} alt="Rogue wave freezing" />
-              <div class="overlay">
-                <div class="overlay-infos">
-                  <h3>Rogue wave freezing</h3>
-                  <a
-                    href="/assets/imgs/3d_hamiltonian.png"
-                    aria-label="Zoom en Rogue wave freezing"
-                    class="gtm-track-click"
-                    data-event-category="Portfolio Item"
-                    data-event-label="Rogue wave freezing - Zoom"
-                    data-lightbox="true"><i class="ti-zoom-in"></i></a
-                  >
-                  <a
-                    href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.174501"
-                    aria-label="Ver proyecto Rogue wave freezing"
-                    class="gtm-track-click"
-                    data-event-category="Portfolio Item"
-                    data-event-label="Rogue wave freezing - Link"
-                    ><i class="ti-link"></i></a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="img-wrapper">
-              <Image src={waveSchemeFlows} alt="ADHONLS" />
-              <div class="overlay">
-                <div class="overlay-infos">
-                  <h3>ADHONLS</h3>
-                  <a
-                    href="/assets/imgs/wave_scheme_flows.png"
-                    aria-label="Zoom en ADHONLS"
-                    class="gtm-track-click"
-                    data-event-category="Portfolio Item"
-                    data-event-label="ADHONLS - Zoom"
-                    data-lightbox="true"><i class="ti-zoom-in"></i></a
-                  >
-                  <a
-                    href="https://pubs.aip.org/aip/pof/article/35/8/087128/2907461/Mean-flow-modeling-in-high-order-nonlinear"
-                    aria-label="Ver proyecto ADHONLS"
-                    class="gtm-track-click"
-                    data-event-category="Portfolio Item"
-                    data-event-label="ADHONLS - Link"><i class="ti-link"></i></a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div class="img-wrapper">
-              <Image src={populationMap} alt="Custom colormaps" />
-              <div class="overlay">
-                <div class="overlay-infos">
-                  <h3>Custom colormaps</h3>
-                  <a
-                    href="/assets/imgs/PopulationByDistrict_NiceColormap.png"
-                    aria-label="Zoom en Custom colormaps"
-                    class="gtm-track-click"
-                    data-event-category="Portfolio Item"
-                    data-event-label="Custom colormaps - Zoom"
-                    data-lightbox="true"><i class="ti-zoom-in"></i></a
-                  >
-                  <a
-                    href="https://github.com/alxgom/-stitched_colorbars"
-                    aria-label="Ver proyecto Custom colormaps"
-                    class="gtm-track-click"
-                    data-event-category="Portfolio Item"
-                    data-event-label="Custom colormaps - Link"
-                    ><i class="ti-link"></i></a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="img-wrapper">
-              <Image
-                src={filamentScheme}
-                alt="Filamentation statistical regimes"
-              />
-              <div class="overlay">
-                <div class="overlay-infos">
-                  <h3>Filamentation statistical regimes</h3>
-                  <a
-                    href="/assets/imgs/filament_scheme2.png"
-                    aria-label="Zoom en Filamentation statistical regimes"
-                    class="gtm-track-click"
-                    data-event-category="Portfolio Item"
-                    data-event-label="Filamentation - Zoom"
-                    data-lightbox="true"><i class="ti-zoom-in"></i></a
-                  >
-                  <a
-                    href="https://opg.optica.org/oe/fulltext.cfm?uri=oe-31-6-9973&id=527180"
-                    aria-label="Ver proyecto Filamentation statistical regimes"
-                    class="gtm-track-click"
-                    data-event-category="Portfolio Item"
-                    data-event-label="Filamentation - Link"
-                    ><i class="ti-link"></i></a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <PortfolioCarousel
+      items={portfolioItems}
+      sectionTitle="Mis Trabajos"
+      sectionSubtitle="Aquí hay una lista de algunos de mis proyectos. Si quieres ver más, visita mi página de proyectos en la sección de arriba."
+    />
 
     <section id="contact" class="position-relative section">
       <div class="container text-center">

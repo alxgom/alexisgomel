@@ -1,0 +1,161 @@
+---
+/**
+ * PortfolioCarousel.astro
+ * A Swiper-based portfolio carousel with coverflow effect
+ * Shows centered active slide with side previews and descriptions
+ */
+
+interface PortfolioItem {
+  image: ImageMetadata;
+  imageAlt: string;
+  title: string;
+  description: string;
+  zoomHref: string;
+  linkHref: string;
+  linkAriaLabel: string;
+  zoomAriaLabel: string;
+  gtmLabel: string;
+}
+
+interface Props {
+  items: PortfolioItem[];
+  sectionTitle: string;
+  sectionSubtitle: string;
+}
+
+const { items, sectionTitle, sectionSubtitle } = Astro.props;
+import { Image } from "astro:assets";
+---
+
+<section id="portfolio" class="section portfolio-carousel-section">
+  <div class="container text-center">
+    <h2 class="section-title pt-5 mb-2">{sectionTitle}</h2>
+    <p class="section-subtitle">{sectionSubtitle}</p>
+
+    <div class="portfolio-carousel-container">
+      <div class="swiper portfolio-swiper">
+        <div class="swiper-wrapper">
+          {
+            items.map((item) => (
+              <div class="swiper-slide">
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt}
+                  class="portfolio-slide-image"
+                />
+                <div class="portfolio-slide-content">
+                  <h3 class="portfolio-slide-title">{item.title}</h3>
+                  <p class="portfolio-slide-description">{item.description}</p>
+                  <div class="portfolio-slide-actions">
+                    <a
+                      href={item.zoomHref}
+                      aria-label={item.zoomAriaLabel}
+                      class="gtm-track-click"
+                      data-event-category="Portfolio Carousel"
+                      data-event-label={`${item.gtmLabel} - Zoom`}
+                      data-lightbox="true"
+                    >
+                      <i class="ti-zoom-in" />
+                    </a>
+                    <a
+                      href={item.linkHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={item.linkAriaLabel}
+                      class="gtm-track-click"
+                      data-event-category="Portfolio Carousel"
+                      data-event-label={`${item.gtmLabel} - Link`}
+                    >
+                      <i class="ti-link" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Navigation arrows -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- Pagination dots -->
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Initialize Swiper when DOM is ready
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof Swiper !== "undefined") {
+      initPortfolioSwiper();
+    } else {
+      // Wait for Swiper to load (since it's deferred)
+      window.addEventListener("load", initPortfolioSwiper);
+    }
+  });
+
+  function initPortfolioSwiper() {
+    const portfolioSwiper = new Swiper(".portfolio-swiper", {
+      // Effect and layout
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      loop: true,
+
+      // Coverflow effect settings
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows: false,
+      },
+
+      // Auto-play (slow rotation)
+      autoplay: {
+        delay: 6000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+
+      // Navigation
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      // Pagination
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+
+      // Keyboard navigation
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
+
+      // GTM tracking on slide change
+      on: {
+        slideChange: function () {
+          if (window.dataLayer) {
+            const activeSlide = this.slides[this.activeIndex];
+            const title = activeSlide
+              ? activeSlide.querySelector(".portfolio-slide-title")?.textContent
+              : "";
+            window.dataLayer.push({
+              event: "portfolio_carousel_slide",
+              slide_title: title,
+              slide_index: this.realIndex,
+            });
+          }
+        },
+      },
+    });
+  }
+</script>
