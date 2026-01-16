@@ -10,21 +10,29 @@ interface Props {
   height: string; // Height of the bar
   skills: Skill[];
   brightness?: string; // Optional brightness multiplier
+  opacity?: string; // Optional opacity (0-1)
 }
 
-const { title, color, height, skills, brightness = "1" } = Astro.props;
+const {
+  title,
+  color,
+  height,
+  skills,
+  brightness = "1",
+  opacity = "1",
+} = Astro.props;
 ---
 
 <div class="col-sm-4 col-md-4 mb-3 d-flex align-items-end">
   <div
     class="rotated-label"
-    style={`color: ${color}; filter: brightness(${brightness});`}
+    style={`color: ${color}; filter: brightness(${brightness}); opacity: ${opacity};`}
   >
     <span>{title}</span>
   </div>
   <div
     class="left-bar"
-    style={`height: ${height}; background-color: ${color}; filter: brightness(${brightness});`}
+    style={`height: ${height}; background-color: ${color}; filter: brightness(${brightness}); opacity: ${opacity};`}
   >
   </div>
 

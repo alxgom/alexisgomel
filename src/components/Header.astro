@@ -83,10 +83,6 @@ const link = (path) => `${homeBase}${path}`;
             class="nav-link dropdown-toggle"
             href={link("/cvonline")}
             id="cvDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
           >
             {t.cv}
           </a>
@@ -114,10 +110,6 @@ const link = (path) => `${homeBase}${path}`;
             class="nav-link dropdown-toggle"
             href={link("/projects")}
             id="projectsDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
           >
             {t.projects}
           </a>
@@ -185,6 +177,11 @@ const link = (path) => `${homeBase}${path}`;
 </nav>
 
 <style>
+  /* Ensure header stays on top of subheaders */
+  nav.navbar {
+    z-index: 9999 !important;
+  }
+
   /* Visual Separator */
   .nav-separator {
     color: #ccc;
@@ -199,24 +196,19 @@ const link = (path) => `${homeBase}${path}`;
       margin-top: 0;
       border-radius: 0.25rem;
     }
-    .dropdown-menu {
-      animation: fadeIn 0.3s;
-    }
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Highlight Dropdown Items on Hover */
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: #f8f9fa;
+    color: var(--primary);
+    text-decoration: none;
   }
 
-  /* Dropdown Item Styling */
+  /* Active state */
   .dropdown-item:active {
     background-color: var(--primary);
+    color: #fff;
   }
 </style>
