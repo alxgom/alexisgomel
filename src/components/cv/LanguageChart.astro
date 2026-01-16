@@ -32,7 +32,14 @@ const { labels, datasetLabel } = Astro.props;
       .toUpperCase()}`;
   }
 
-  const baseColor = "#ff7a57";
+  // Get Primary Color from CSS
+  let baseColor = getComputedStyle(document.documentElement)
+    .getPropertyValue("--primary")
+    .trim();
+  // Ensure it is a valid hex, otherwise fallback
+  if (!baseColor || !baseColor.startsWith("#")) {
+    baseColor = "#ff7a57";
+  }
   const colors = [
     baseColor,
     lightenColor(baseColor, 0),
