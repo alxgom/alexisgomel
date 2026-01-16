@@ -24,5 +24,10 @@ export default defineConfig({
 		platformProxy: {
 			enabled: true,
 		},
+		routes: {
+			extend: {
+				exclude: [{ pattern: "/sitemap-index.xml" }, { pattern: "/sitemap-0.xml" }],
+			},
+		},
 	}),
 });
