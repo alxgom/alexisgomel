@@ -43,6 +43,14 @@ const t = {
 
 // Links helper
 const link = (path) => `${homeBase}${path}`;
+
+// Active State Helper
+const isActive = (slug) => {
+  if (slug === "/") {
+    return pathname === "/" || pathname === "/es/";
+  }
+  return pathname.includes(slug);
+};
 ---
 
 <nav
@@ -71,7 +79,10 @@ const link = (path) => `${homeBase}${path}`;
       <ul class="navbar-nav ml-auto align-items-center">
         <!-- Home -->
         <li class="nav-item">
-          <a class="nav-link" href={link("/")}>{t.home}</a>
+          <a
+            class={`nav-link ${isActive("/") ? "active" : ""}`}
+            href={link("/")}>{t.home}</a
+          >
         </li>
 
         <!-- Separator -->
@@ -80,7 +91,7 @@ const link = (path) => `${homeBase}${path}`;
         <!-- CV Dropdown -->
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class={`nav-link dropdown-toggle ${isActive("cvonline") ? "active" : ""}`}
             href={link("/cvonline")}
             id="cvDropdown"
           >
@@ -107,7 +118,7 @@ const link = (path) => `${homeBase}${path}`;
         <!-- Projects Dropdown -->
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class={`nav-link dropdown-toggle ${isActive("projects") ? "active" : ""}`}
             href={link("/projects")}
             id="projectsDropdown"
           >
@@ -146,10 +157,16 @@ const link = (path) => `${homeBase}${path}`;
 
         <!-- Hobbies -->
         <li class="nav-item">
-          <a class="nav-link" href={link("/photography")}>{t.photography}</a>
+          <a
+            class={`nav-link ${isActive("photography") ? "active" : ""}`}
+            href={link("/photography")}>{t.photography}</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href={link("/playlists")}>{t.playlists}</a>
+          <a
+            class={`nav-link ${isActive("playlists") ? "active" : ""}`}
+            href={link("/playlists")}>{t.playlists}</a
+          >
         </li>
 
         <!-- Separator -->
@@ -157,7 +174,10 @@ const link = (path) => `${homeBase}${path}`;
 
         <!-- Contact -->
         <li class="nav-item">
-          <a class="nav-link" href={link("/contact")}>{t.contact}</a>
+          <a
+            class={`nav-link ${isActive("contact") ? "active" : ""}`}
+            href={link("/contact")}>{t.contact}</a
+          >
         </li>
 
         <!-- Language Switcher -->
@@ -198,10 +218,12 @@ const link = (path) => `${homeBase}${path}`;
     }
   }
 
-  /* Highlight Top Level Items on Hover */
+  /* Highlight Top Level Items on Hover & Active */
   .nav-link:hover,
-  .nav-item.dropdown:hover > .nav-link {
+  .nav-item.dropdown:hover > .nav-link,
+  .nav-link.active {
     color: var(--primary) !important;
+    font-weight: bold;
   }
 
   /* Highlight Dropdown Items on Hover */
