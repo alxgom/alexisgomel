@@ -9,18 +9,22 @@ interface Props {
   color: string; // Hex color code
   height: string; // Height of the bar
   skills: Skill[];
+  brightness?: string; // Optional brightness multiplier
 }
 
-const { title, color, height, skills } = Astro.props;
+const { title, color, height, skills, brightness = "1" } = Astro.props;
 ---
 
 <div class="col-sm-4 col-md-4 mb-3 d-flex align-items-end">
-  <div class="rotated-label" style={`color: ${color};`}>
+  <div
+    class="rotated-label"
+    style={`color: ${color}; filter: brightness(${brightness});`}
+  >
     <span>{title}</span>
   </div>
   <div
     class="left-bar"
-    style={`height: ${height}; background-color: ${color};`}
+    style={`height: ${height}; background-color: ${color}; filter: brightness(${brightness});`}
   >
   </div>
 

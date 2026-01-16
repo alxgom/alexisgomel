@@ -5,6 +5,7 @@ import { SITE_TITLE } from "../consts";
 // Import Components
 import LanguageChart from "../components/cv/LanguageChart.astro";
 import SkillGroup from "../components/cv/SkillGroup.astro";
+import Lightbox from "../components/Lightbox.astro";
 
 const currentLang = "en";
 const alternateHref = "/es/cvonline";
@@ -132,7 +133,8 @@ const beginnerSkills = [
 
           <SkillGroup
             title="Beginner"
-            color="#ffc9bb"
+            color="var(--primary)"
+            brightness="1.5"
             height="60px"
             skills={beginnerSkills}
           />
