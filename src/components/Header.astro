@@ -58,7 +58,7 @@ const isActive = (slug) => {
   data-spy="affix"
   data-offset-top="0"
 >
-  <div class="container">
+  <div class="container-fluid px-3 px-lg-5">
     <a class="navbar-brand" href={isSpanish ? "/es/" : "/"}>
       <img src="/assets/imgs/curvy_logo.svg" alt="Logo" />
     </a>
@@ -200,6 +200,40 @@ const isActive = (slug) => {
   /* Ensure header stays on top of subheaders */
   nav.navbar {
     z-index: 9999 !important;
+  }
+
+  /* Compact navbar - reduce padding */
+  .navbar {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+
+  /* Smaller logo */
+  .navbar-brand img {
+    max-height: 35px;
+  }
+
+  /* Compact nav links */
+  .nav-link {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+
+  /* Mobile: even more compact */
+  @media (max-width: 991px) {
+    .navbar {
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+    }
+
+    .navbar-brand img {
+      max-height: 28px;
+    }
+
+    .navbar-toggler {
+      padding: 0.2rem 0.5rem;
+      font-size: 1rem;
+    }
   }
 
   /* Visual Separator */
