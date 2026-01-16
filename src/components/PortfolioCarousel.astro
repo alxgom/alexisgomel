@@ -37,7 +37,11 @@ import { Image } from "astro:assets";
         <div class="swiper-wrapper">
           {
             items.map((item) => (
-              <div class="swiper-slide">
+              <div
+                class="swiper-slide portfolio-slide-clickable"
+                data-link={item.linkHref}
+                data-gtm-label={item.gtmLabel}
+              >
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
@@ -50,23 +54,12 @@ import { Image } from "astro:assets";
                     <a
                       href={item.zoomHref}
                       aria-label={item.zoomAriaLabel}
-                      class="gtm-track-click"
+                      class="gtm-track-click portfolio-zoom-btn"
                       data-event-category="Portfolio Carousel"
                       data-event-label={`${item.gtmLabel} - Zoom`}
                       data-lightbox="true"
                     >
                       <i class="ti-zoom-in" />
-                    </a>
-                    <a
-                      href={item.linkHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={item.linkAriaLabel}
-                      class="gtm-track-click"
-                      data-event-category="Portfolio Carousel"
-                      data-event-label={`${item.gtmLabel} - Link`}
-                    >
-                      <i class="ti-link" />
                     </a>
                   </div>
                 </div>
@@ -156,6 +149,30 @@ import { Image } from "astro:assets";
           }
         },
       },
+    });
+
+    // Make entire slide clickable (except zoom button)
+    document.querySelectorAll(".portfolio-slide-clickable").forEach((slide) => {
+      slide.style.cursor = "pointer";
+      slide.addEventListener("click", (e) => {
+        // Don't trigger if clicking zoom button
+        if (e.target.closest(".portfolio-zoom-btn")) {
+          return;
+        }
+        const link = slide.getAttribute("data-link");
+        const gtmLabel = slide.getAttribute("data-gtm-label");
+        if (link) {
+          // GTM tracking
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: "portfolio_carousel_click",
+              event_category: "Portfolio Carousel",
+              event_label: gtmLabel + " - Card Click",
+            });
+          }
+          window.open(link, "_blank", "noopener,noreferrer");
+        }
+      });
     });
   }
 </script>
