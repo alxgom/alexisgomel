@@ -97,9 +97,11 @@ import { Image } from "astro:assets";
       grabCursor: true,
       centeredSlides: true,
       slidesPerView: "auto",
+      slidesPerGroup: 1, // Navigate one slide at a time
       loop: true,
-      loopAdditionalSlides: 4, // Create extra clones for smooth looping
-      loopedSlides: 4, // Number of slides to clone on each side
+      loopAdditionalSlides: 4,
+      loopedSlides: 4,
+      speed: 600, // Transition speed in ms
 
       // Coverflow effect settings
       coverflowEffect: {
