@@ -1,34 +1,48 @@
 ---
-import { SITE_TITLE } from "../consts";
-
 const { pathname } = Astro.url;
 const isSpanish = pathname.startsWith("/es/");
 
-// 1. LOGIC FOR THE LANGUAGE SWITCHER BUTTON
+// 1. LANGUAGE SWITCHER LOGIC
 let switchUrl;
 if (isSpanish) {
-  // If in Spanish, remove '/es' (and handle root case)
   switchUrl = pathname.replace(/^\/es/, "") || "/";
 } else {
-  // If in English, add '/es' (handle root case)
+  // Fix for root path in English to switch to /es/
   switchUrl = pathname === "/" ? "/es/" : `/es${pathname}`;
 }
-
 const switchLabel = isSpanish ? "EN" : "ES";
 const switchLangAttr = isSpanish ? "en" : "es";
 
-// 2. LOGIC FOR NAVIGATION LINKS
-// Keep users in the current language namespace when clicking anchors
+// 2. BASE PATHS
 const homeBase = isSpanish ? "/es" : "";
 
-// 3. MENU TRANSLATIONS
+// 3. TRANSLATIONS
 const t = {
   home: isSpanish ? "Inicio" : "Home",
-  about: isSpanish ? "Sobre mí" : "About",
-  sections: isSpanish ? "Secciones" : "Sections",
-  works: isSpanish ? "Mis trabajos" : "My works",
+  // Professional
+  cv: isSpanish ? "CV" : "CV",
+  projects: isSpanish ? "Proyectos" : "Projects",
+  publications: isSpanish ? "Publicaciones" : "Publications",
+  // CV Submenu
+  cv_online: isSpanish ? "CV Online" : "Online CV",
+  cv_about: isSpanish ? "Sobre mí" : "About me",
+  cv_skills: isSpanish ? "Habilidades" : "Skills",
+  cv_experience: isSpanish ? "Experiencia" : "Experience",
+  cv_education: isSpanish ? "Educación" : "Education",
+  // Projects Submenu
+  proj_analysis: isSpanish ? "Análisis de Datos" : "Data Analysis",
+  proj_apps: isSpanish ? "Apps" : "App Development",
+  proj_viz_dev: isSpanish ? "Desarrollo Visualización" : "Visualization Dev",
+  proj_plots: isSpanish ? "Gráficos" : "Plots & Visualization",
+  // Hobbies
+  photography: isSpanish ? "Fotografía" : "Photography",
+  playlists: isSpanish ? "Playlists" : "Playlists",
+  // Contact
   contact: isSpanish ? "Contacto" : "Contact",
 };
+
+// Links helper
+const link = (path) => `${homeBase}${path}`;
 ---
 
 <nav
@@ -55,27 +69,112 @@ const t = {
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto align-items-center">
+        <!-- Home -->
         <li class="nav-item">
-          <a class="nav-link" href={`${homeBase}/#home`}>{t.home}</a>
+          <a class="nav-link" href={link("/")}>{t.home}</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href={`${homeBase}/#service`}>{t.sections}</a>
-        </li>
+        <!-- Separator -->
+        <li class="nav-separator d-none d-lg-block">|</li>
 
-        <li class="nav-item">
-          <a class="nav-link" href={`${homeBase}/#portfolio`}>{t.works}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href={`${homeBase}/#contact`}>{t.contact}</a>
-        </li>
-
-        <li class="nav-item ml-4">
+        <!-- CV Dropdown -->
+        <li class="nav-item dropdown">
           <a
-            class="nav-link btn btn-primary rounded"
+            class="nav-link dropdown-toggle"
+            href={link("/cvonline")}
+            id="cvDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            {t.cv}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="cvDropdown">
+            <a class="dropdown-item" href={link("/cvonline")}>{t.cv_online}</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href={link("/cvonline#Current")}
+              >{t.cv_about}</a
+            >
+            <a class="dropdown-item" href={link("/cvonline#Skills")}
+              >{t.cv_skills}</a
+            >
+            <a class="dropdown-item" href={link("/cvonline#Experience")}
+              >{t.cv_experience}</a
+            >
+            <a class="dropdown-item" href={link("/cvonline#Education")}
+              >{t.cv_education}</a
+            >
+          </div>
+        </li>
+
+        <!-- Projects Dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href={link("/projects")}
+            id="projectsDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            {t.projects}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="projectsDropdown">
+            <a class="dropdown-item" href={link("/projects")}>{t.projects}</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href={link("/projects#Data_analysis")}
+              >{t.proj_analysis}</a
+            >
+            <a class="dropdown-item" href={link("/projects#App_development")}
+              >{t.proj_apps}</a
+            >
+            <a class="dropdown-item" href={link("/projects#Viz_development")}
+              >{t.proj_viz_dev}</a
+            >
+            <a class="dropdown-item" href={link("/projects#Plots_Viz")}
+              >{t.proj_plots}</a
+            >
+          </div>
+        </li>
+
+        <!-- Publications (External) -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
+            target="_blank"
+            rel="noopener noreferrer">{t.publications}</a
+          >
+        </li>
+
+        <!-- Separator -->
+        <li class="nav-separator d-none d-lg-block">|</li>
+
+        <!-- Hobbies -->
+        <li class="nav-item">
+          <a class="nav-link" href={link("/photography")}>{t.photography}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={link("/playlists")}>{t.playlists}</a>
+        </li>
+
+        <!-- Separator -->
+        <li class="nav-separator d-none d-lg-block">|</li>
+
+        <!-- Contact -->
+        <li class="nav-item">
+          <a class="nav-link" href={link("/contact")}>{t.contact}</a>
+        </li>
+
+        <!-- Language Switcher -->
+        <li class="nav-item ml-3">
+          <a
+            class="nav-link btn btn-primary rounded btn-sm text-white"
             href={switchUrl}
             lang={switchLangAttr}
+            style="padding: 5px 10px;"
           >
             {switchLabel}
           </a>
@@ -84,3 +183,40 @@ const t = {
     </div>
   </div>
 </nav>
+
+<style>
+  /* Visual Separator */
+  .nav-separator {
+    color: #ccc;
+    margin: 0 10px;
+    user-select: none;
+  }
+
+  /* Hover Dropdown Logic for Desktop */
+  @media (min-width: 992px) {
+    .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+      margin-top: 0;
+      border-radius: 0.25rem;
+    }
+    .dropdown-menu {
+      animation: fadeIn 0.3s;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Dropdown Item Styling */
+  .dropdown-item:active {
+    background-color: var(--primary);
+  }
+</style>
