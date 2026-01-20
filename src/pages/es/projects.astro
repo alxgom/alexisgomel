@@ -194,6 +194,11 @@ const alternateHref = "/projects"; // Links to English version
               en suite, balcón, etc..
             </p>
             <p>
+              <a href="/es/sac" class="text-primary font-weight-bold"
+                >Prueba la Calculadora SHARE &rarr;</a
+              >
+            </p>
+            <p>
               <strong>Tecnología y habilidades:</strong> Javascript, HTML
             </p>
           </div>
@@ -642,7 +647,7 @@ const alternateHref = "/projects"; // Links to English version
         const id = entry.target.getAttribute("id");
         if (id) {
           const activeLink = document.querySelector(
-            `.cv-nav-link[href="#${id}"]`
+            `.cv-nav-link[href="#${id}"]`,
           );
           if (activeLink) {
             activeLink.classList.add("active");

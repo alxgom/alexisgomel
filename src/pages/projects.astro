@@ -186,6 +186,11 @@ const alternateHref = "/es/projects"; // Links to Spanish version
               features like insuite bathrooms, balcony, etc..
             </p>
             <p>
+              <a href="/sac" class="text-primary font-weight-bold"
+                >Try the SHARE Calculator &rarr;</a
+              >
+            </p>
+            <p>
               <strong>Tech & skills:</strong> Javascript, HTML
             </p>
           </div>
@@ -658,7 +663,7 @@ const alternateHref = "/es/projects"; // Links to Spanish version
         const id = entry.target.getAttribute("id");
         if (id) {
           const activeLink = document.querySelector(
-            `.cv-nav-link[href="#${id}"]`
+            `.cv-nav-link[href="#${id}"]`,
           );
           if (activeLink) {
             activeLink.classList.add("active");
