@@ -203,6 +203,31 @@ const beginnerSkills = [
         labels={["Español", "Inglés", "Francés", "Alemán"]}
         datasetLabel="Nivel"
       />
+
+      <!-- CTA to Projects Portfolio -->
+      <div class="container text-center mt-5 pt-4 mb-5 pb-4">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h3 class="mb-3" style="font-size: 28px; font-weight: bold;">
+              ¿Quieres ver estas habilidades en acción?
+            </h3>
+            <p class="mb-4" style="font-size: 18px;">
+              Consulta mi portafolio para explorar visualizaciones de datos,
+              dashboards interactivos y proyectos que demuestran Python, SQL y
+              más.
+            </p>
+            <a
+              href="/es/projects"
+              class="btn btn-primary btn-lg"
+              style="background-color: var(--primary); border-color: var(--primary); color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; transition: all 0.3s ease;"
+              onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';"
+              onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+            >
+              Ver Mis Proyectos →
+            </a>
+          </div>
+        </div>
+      </div>
       <a
         href="#Experience"
         class="section-arrow"
@@ -638,7 +663,7 @@ const beginnerSkills = [
           const id = entry.target.getAttribute("id");
           if (id) {
             const activeLink = document.querySelector(
-              `.cv-nav-link[href="#${id}"]`
+              `.cv-nav-link[href="#${id}"]`,
             );
             if (activeLink) {
               activeLink.classList.add("active");

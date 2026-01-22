@@ -201,6 +201,30 @@ const beginnerSkills = [
         labels={["Spanish", "English", "French", "German"]}
         datasetLabel="Level"
       />
+
+      <!-- CTA to Projects Portfolio -->
+      <div class="container text-center mt-5 pt-4 mb-5 pb-4">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h3 class="mb-3" style="font-size: 28px; font-weight: bold;">
+              Want to see these skills in action?
+            </h3>
+            <p class="mb-4" style="font-size: 18px;">
+              Check out my portfolio to explore data visualizations, interactive
+              dashboards, and projects showcasing Python, SQL, and more.
+            </p>
+            <a
+              href="/projects"
+              class="btn btn-primary btn-lg"
+              style="background-color: var(--primary); border-color: var(--primary); color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; transition: all 0.3s ease;"
+              onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';"
+              onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+            >
+              View My Projects →
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
     <a href="#Experience" class="section-arrow" aria-label="Go to Experience">
       <i class="ti-angle-down"></i>
@@ -639,7 +663,7 @@ const beginnerSkills = [
           // Ideally IDs should not have spaces.
           // Using CSS.escape or just attribute selector with quotes handles most standard IDs.
           const activeLink = document.querySelector(
-            `.cv-nav-link[href="#${id}"]`
+            `.cv-nav-link[href="#${id}"]`,
           );
           if (activeLink) {
             activeLink.classList.add("active");
