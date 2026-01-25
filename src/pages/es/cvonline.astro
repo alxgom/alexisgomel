@@ -87,8 +87,8 @@ const beginnerSkills = [
   <div class="cv-subheader mb-5">
     <div class="container">
       <a href="#Current" class="cv-nav-link">Sobre mí</a>
-      <a href="#Skills" class="cv-nav-link">Habilidades</a>
       <a href="#Experience" class="cv-nav-link">Experiencia</a>
+      <a href="#Skills" class="cv-nav-link">Habilidades</a>
       <a href="#Formation" class="cv-nav-link">Formación</a>
       <a href="#Teaching" class="cv-nav-link">Docencia</a>
       <a href="#Publications" class="cv-nav-link">Publicaciones</a>
@@ -142,140 +142,7 @@ const beginnerSkills = [
           </div>
         </div>
       </div>
-      <a href="#Skills" class="section-arrow" aria-label="Ir a Habilidades">
-        <i class="ti-angle-down"></i>
-      </a>
-    </section>
-
-    <section id="Skills" class="section mt-3">
-      <div class="container text-center">
-        <h2
-          class="section-title mb-4"
-          style="font-weight: bold; font-size: 40px;"
-        >
-          Habilidades
-        </h2>
-        <div class="mb-2 pb-4"></div>
-      </div>
-
-      <div class="container text-center">
-        <div class="row mx-auto">
-          <SkillGroup
-            title="Avanzado"
-            color="var(--primary)"
-            height="150px"
-            skills={advancedSkills}
-          />
-
-          <SkillGroup
-            title="Intermedio"
-            color="var(--primary)"
-            brightness="1.3"
-            opacity="0.8"
-            height="100px"
-            skills={intermediateSkills}
-          />
-
-          <SkillGroup
-            title="Principiante"
-            color="var(--primary)"
-            brightness="1.5"
-            opacity="0.5"
-            height="60px"
-            skills={beginnerSkills}
-          />
-        </div>
-      </div>
-
-      <div class="mb-2 pb-4"></div>
-
-      <div class="container text-left">
-        <section>
-          <div class="columns">
-            <div class="column">
-              <div class="rectangle"></div>
-              <div class="text">
-                <h3>Ciencia de Datos</h3>
-                <p>
-                  Análisis de Datos, Narración de Datos, Visualización de Datos,
-                  Estadística, Modelado Matemático, Simulaciones Numéricas,
-                  Análisis de Series Temporales.
-                </p>
-              </div>
-            </div>
-            <div class="column">
-              <div class="rectangle"></div>
-              <div class="text">
-                <h3>Matemáticas</h3>
-                <p>
-                  Regresiones, Análisis de Fourier, integración numérica,
-                  extrapolación, interpolación, análisis de wavelets,
-                  simulaciones estocásticas, ecuaciones diferenciales no
-                  lineales, álgebra lineal, modelado.
-                </p>
-              </div>
-            </div>
-            <div class="column">
-              <div class="rectangle"></div>
-              <div class="text">
-                <h3>Estadística</h3>
-                <p>
-                  Estadística de conjuntos, estimación de incertidumbre, PCA,
-                  k-means, correlación, información mutua, momentos estadísticos
-                  imparciales.
-                </p>
-              </div>
-            </div>
-            <div class="column">
-              <div class="rectangle"></div>
-              <div class="text">
-                <h3>Física</h3>
-                <p>
-                  Dinámica no lineal, Física láser, Mecánica de Fluidos, Física
-                  Estadística
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div class="mb-2 pb-4"></div>
-
-      <LanguageChart
-        labels={["Español", "Inglés", "Francés", "Alemán"]}
-        datasetLabel="Nivel"
-      />
-
-      <!-- CTA to Projects Portfolio -->
-      <div class="container text-center mt-5 pt-4 mb-5 pb-4">
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <h3 class="mb-3" style="font-size: 28px; font-weight: bold;">
-              ¿Quieres ver estas habilidades en acción?
-            </h3>
-            <p class="mb-4" style="font-size: 18px;">
-              Consulta mi portafolio para explorar visualizaciones de datos,
-              dashboards interactivos y proyectos que demuestran Python, SQL y
-              más.
-            </p>
-            <a
-              href="/es/projects"
-              class="btn btn-primary btn-lg"
-              style="background-color: var(--primary); border-color: var(--primary); color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; transition: all 0.3s ease;"
-              onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';"
-              onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
-            >
-              Ver Mis Proyectos →
-            </a>
-          </div>
-        </div>
-      </div>
-      <a
-        href="#Experience"
-        class="section-arrow"
-        aria-label="Ir a Experiencia Profesional"
-      >
+      <a href="#Experience" class="section-arrow" aria-label="Ir a Experiencia">
         <i class="ti-angle-down"></i>
       </a>
     </section>
@@ -511,6 +378,135 @@ const beginnerSkills = [
             </p>
 
             <div class="mb-5 pb-4" style="border-bottom: 1px solid #eee;"></div>
+          </div>
+        </div>
+      </div>
+      <a href="#Skills" class="section-arrow" aria-label="Ir a Habilidades">
+        <i class="ti-angle-down"></i>
+      </a>
+    </section>
+
+    <section id="Skills" class="section mt-3">
+      <div class="container text-center">
+        <h2
+          class="section-title mb-4"
+          style="font-weight: bold; font-size: 40px;"
+        >
+          Habilidades
+        </h2>
+        <div class="mb-2 pb-4"></div>
+      </div>
+
+      <div class="container text-center">
+        <div class="row mx-auto">
+          <SkillGroup
+            title="Avanzado"
+            color="var(--primary)"
+            height="150px"
+            skills={advancedSkills}
+          />
+
+          <SkillGroup
+            title="Intermedio"
+            color="var(--primary)"
+            brightness="1.3"
+            opacity="0.8"
+            height="100px"
+            skills={intermediateSkills}
+          />
+
+          <SkillGroup
+            title="Principiante"
+            color="var(--primary)"
+            brightness="1.5"
+            opacity="0.5"
+            height="60px"
+            skills={beginnerSkills}
+          />
+        </div>
+      </div>
+
+      <div class="mb-2 pb-4"></div>
+
+      <div class="container text-left">
+        <section>
+          <div class="columns">
+            <div class="column">
+              <div class="rectangle"></div>
+              <div class="text">
+                <h3>Ciencia de Datos</h3>
+                <p>
+                  Análisis de Datos, Narración de Datos, Visualización de Datos,
+                  Estadística, Modelado Matemático, Simulaciones Numéricas,
+                  Análisis de Series Temporales.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="rectangle"></div>
+              <div class="text">
+                <h3>Matemáticas</h3>
+                <p>
+                  Regresiones, Análisis de Fourier, integración numérica,
+                  extrapolación, interpolación, análisis de wavelets,
+                  simulaciones estocásticas, ecuaciones diferenciales no
+                  lineales, álgebra lineal, modelado.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="rectangle"></div>
+              <div class="text">
+                <h3>Estadística</h3>
+                <p>
+                  Estadística de conjuntos, estimación de incertidumbre, PCA,
+                  k-means, correlación, información mutua, momentos estadísticos
+                  imparciales.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="rectangle"></div>
+              <div class="text">
+                <h3>Física</h3>
+                <p>
+                  Dinámica no lineal, Física láser, Mecánica de Fluidos, Física
+                  Estadística
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="mb-2 pb-4"></div>
+
+      <LanguageChart
+        labels={["Español", "Inglés", "Francés", "Alemán"]}
+        datasetLabel="Nivel"
+      />
+
+      <!-- CTA to Projects Portfolio -->
+      <div class="container text-center mt-5 pt-4 mb-5 pb-4">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h3 class="mb-3" style="font-size: 28px; font-weight: bold;">
+              ¿Quieres ver estas habilidades en acción?
+            </h3>
+            <p class="mb-4" style="font-size: 18px;">
+              Consulta mi portafolio para explorar visualizaciones de datos,
+              dashboards interactivos y proyectos que demuestran Python, SQL y
+              más.
+            </p>
+            <a
+              href="/es/projects"
+              class="btn btn-primary btn-lg"
+              style="background-color: var(--primary); border-color: var(--primary); color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; transition: all 0.3s ease;"
+              onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';"
+              onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+            >
+              Ver Mis Proyectos →
+            </a>
           </div>
         </div>
       </div>
