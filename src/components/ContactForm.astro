@@ -2,9 +2,39 @@
 interface Props {
   formId: string;
   turnstileSiteKey: string;
+  lang?: "en" | "es";
 }
 
-const { formId, turnstileSiteKey } = Astro.props;
+const { formId, turnstileSiteKey, lang = "en" } = Astro.props;
+
+const translations = {
+  en: {
+    nameLabel: "Name",
+    namePlaceholder: "Your name",
+    emailLabel: "Email",
+    emailPlaceholder: "your.email@example.com",
+    messageLabel: "Message",
+    messagePlaceholder: "Your message...",
+    sendButton: "Send Message",
+    sending: "Sending...",
+    success: "Thank you! Your message has been sent.",
+    error: "Oops! There was a problem sending your message.",
+  },
+  es: {
+    nameLabel: "Nombre",
+    namePlaceholder: "Tu nombre",
+    emailLabel: "Correo electrónico",
+    emailPlaceholder: "tu.correo@ejemplo.com",
+    messageLabel: "Mensaje",
+    messagePlaceholder: "Tu mensaje...",
+    sendButton: "Enviar Mensaje",
+    sending: "Enviando...",
+    success: "¡Gracias! Tu mensaje ha sido enviado.",
+    error: "¡Ups! Hubo un problema al enviar tu mensaje.",
+  },
+};
+
+const t = translations[lang];
 ---
 
 <div class="contact-form-wrapper">
@@ -13,37 +43,38 @@ const { formId, turnstileSiteKey } = Astro.props;
     method="POST"
     class="contact-form"
     id="contactForm"
+    data-lang={lang}
   >
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">{t.nameLabel}</label>
       <input
         type="text"
         id="name"
         name="name"
         required
-        placeholder="Your name"
+        placeholder={t.namePlaceholder}
       />
     </div>
 
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">{t.emailLabel}</label>
       <input
         type="email"
         id="email"
         name="email"
         required
-        placeholder="your.email@example.com"
+        placeholder={t.emailPlaceholder}
       />
     </div>
 
     <div class="form-group">
-      <label for="message">Message</label>
+      <label for="message">{t.messageLabel}</label>
       <textarea
         id="message"
         name="message"
         rows="5"
         required
-        placeholder="Your message..."></textarea>
+        placeholder={t.messagePlaceholder}></textarea>
     </div>
 
     <div class="form-group">
@@ -51,16 +82,17 @@ const { formId, turnstileSiteKey } = Astro.props;
     </div>
 
     <button type="submit" class="btn btn-primary rounded">
-      Send Message
+      {t.sendButton}
     </button>
   </form>
 
   <div id="form-status" class="form-status"></div>
 </div>
 
-<script>
-  const form = document.getElementById("contactForm") as HTMLFormElement;
-  const statusDiv = document.getElementById("form-status") as HTMLDivElement;
+<script define:vars={{ translations, lang }}>
+  const form = document.getElementById("contactForm");
+  const statusDiv = document.getElementById("form-status");
+  const t = translations[lang];
 
   if (form) {
     form.addEventListener("submit", async (e) => {
@@ -75,12 +107,10 @@ const { formId, turnstileSiteKey } = Astro.props;
       }
 
       // Show loading state
-      const submitBtn = form.querySelector(
-        'button[type="submit"]'
-      ) as HTMLButtonElement;
+      const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
       submitBtn.disabled = true;
-      submitBtn.textContent = "Sending...";
+      submitBtn.textContent = t.sending;
 
       try {
         const formData = new FormData(form);
@@ -93,28 +123,20 @@ const { formId, turnstileSiteKey } = Astro.props;
         });
 
         if (response.ok) {
-          statusDiv.textContent = "Thank you! Your message has been sent.";
+          statusDiv.textContent = t.success;
           statusDiv.className = "form-status success";
           form.reset();
         } else {
           throw new Error("Form submission failed");
         }
       } catch (error) {
-        statusDiv.textContent =
-          "Oops! There was a problem sending your message.";
+        statusDiv.textContent = t.error;
         statusDiv.className = "form-status error";
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = originalText || "Send Message";
+        submitBtn.textContent = originalText;
       }
     });
-  }
-
-  // Declare global types for TypeScript
-  declare global {
-    interface Window {
-      dataLayer: any[];
-    }
   }
 </script>
 

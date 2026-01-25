@@ -1,34 +1,36 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import ContactForm from "../components/ContactForm.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import ContactForm from "../../components/ContactForm.astro";
 
-const currentLang = "en";
-const alternateHref = "/es/contact";
+const currentLang = "es";
+const alternateHref = "/contact";
 ---
 
 <MainLayout
-  title="Contact - Alexis Gomel | Get in Touch"
-  description="Contact Alexis Gomel. Send a message to discuss physics, data science, research collaborations, or projects."
+  title="Contacto - Alexis Gomel | Ponte en Contacto"
+  description="Contacta con Alexis Gomel. Envía un mensaje para discutir sobre física, ciencia de datos, colaboraciones de investigación o proyectos."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
   <section class="section mt-5">
     <div class="container">
       <div class="text-center mb-5">
-        <h6 class="subtitle">Get in Touch</h6>
-        <h1 class="section-title">Contact Me</h1>
+        <h6 class="subtitle">Hablemos</h6>
+        <h1 class="section-title">Contáctame</h1>
         <p class="mb-4">
-          Have a question or want to work together? Feel free to reach out!
+          ¿Tienes alguna pregunta o quieres colaborar? ¡Siéntete libre de
+          escribirme!
         </p>
       </div>
 
       <ContactForm
         formId="xldqpzqd"
         turnstileSiteKey="0x4AAAAAACFRCmkjExcAkZaD"
+        lang="es"
       />
 
       <div class="text-center mt-5">
-        <p>Or reach me directly at:</p>
+        <p>O escríbeme directamente a:</p>
         <a
           href="mailto:alexis.gomel@gmail.com"
           class="text-primary"
