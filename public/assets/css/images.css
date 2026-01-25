@@ -16,7 +16,7 @@
 }
 
 .img-wrapper .overlay {
-  background: rgba(255, 122, 87, 0.7);
+  background: var(--overlay-color);
   position: absolute;
   left: 0;
   bottom: 100%;
@@ -41,6 +41,40 @@
   -webkit-transition-delay: .2s;
           transition-delay: .2s;
   color: #fff;
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+}
+
+.overlay-link-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.overlay-zoom-link {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  color: #fff;
+  z-index: 20;
+  cursor: pointer;
+  transition: all 0.3s;
+  pointer-events: auto;
+  border-top-left-radius: 5px;
+}
+
+.overlay-zoom-link:hover {
+  color: var(--primary);
+  background: #fff;
 }
 
 .img-wrapper .overlay .overlay-infos h5 {
@@ -105,7 +139,7 @@
 }
 
 .general-img-holder .overlay {
-  background: rgba(255, 122, 87, 0.7);
+  background: var(--overlay-color);
   position: absolute;
   left: 0;
   bottom: 100%;
@@ -130,32 +164,16 @@
   -webkit-transition-delay: .2s;
           transition-delay: .2s;
   color: #fff;
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
 }
 
 .general-img-holder .overlay .overlay-infos h5 {
   margin-bottom: 15px;
 }
 
-.general-img-holder .overlay .overlay-infos a {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  line-height: 50px;
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  font-size: 20px;
-  margin: 0 5px;
-  transition: all 0.3s;
-}
 
-.general-img-holder .overlay .overlay-infos a:hover {
-  background: #fff;
-  color: var(--primary);
-  transform: scale(1.1);
-}
 
 .general-img-holder:hover .overlay, .img-wrapper:active .overlay {
   bottom: 0;
