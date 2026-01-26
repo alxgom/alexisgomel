@@ -36,39 +36,46 @@ import { Image } from "astro:assets";
       <div class="swiper portfolio-swiper">
         <div class="swiper-wrapper">
           {
-            items.map((item) => (
-              <a
-                href={item.linkHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="swiper-slide portfolio-slide-link gtm-track-click"
-                data-event-category="Portfolio Carousel"
-                data-event-label={`${item.gtmLabel} - Card Click`}
-                aria-label={item.linkAriaLabel}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.imageAlt}
-                  class="portfolio-slide-image"
-                />
-                <div class="portfolio-slide-content">
-                  <h3 class="portfolio-slide-title">{item.title}</h3>
-                  <p class="portfolio-slide-description">{item.description}</p>
-                  <div class="portfolio-slide-actions">
-                    <button
-                      type="button"
-                      aria-label={item.zoomAriaLabel}
-                      class="gtm-track-click portfolio-zoom-btn"
-                      data-event-category="Portfolio Carousel"
-                      data-event-label={`${item.gtmLabel} - Zoom`}
-                      data-lightbox-src={item.zoomHref}
-                    >
-                      <i class="ti-zoom-in" />
-                    </button>
+            items.map((item) => {
+              const isExternal = item.linkHref.startsWith("http");
+              const slideId = `portfolio-${item.gtmLabel.toLowerCase().replace(/\s+/g, "-")}`;
+              return (
+                <a
+                  id={slideId}
+                  href={item.linkHref}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  class="swiper-slide portfolio-slide-link gtm-track-click"
+                  data-event-category="Portfolio Carousel"
+                  data-event-label={`${item.gtmLabel} - Card Click`}
+                  aria-label={item.linkAriaLabel}
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt}
+                    class="portfolio-slide-image"
+                  />
+                  <div class="portfolio-slide-content">
+                    <h3 class="portfolio-slide-title">{item.title}</h3>
+                    <p class="portfolio-slide-description">
+                      {item.description}
+                    </p>
+                    <div class="portfolio-slide-actions">
+                      <button
+                        type="button"
+                        aria-label={item.zoomAriaLabel}
+                        class="gtm-track-click portfolio-zoom-btn"
+                        data-event-category="Portfolio Carousel"
+                        data-event-label={`${item.gtmLabel} - Zoom`}
+                        data-lightbox-src={item.zoomHref}
+                      >
+                        <i class="ti-zoom-in" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </a>
-            ))
+                </a>
+              );
+            })
           }
         </div>
 
