@@ -71,64 +71,101 @@ const alternateHref = "/es/sac"; // Links to Spanish version
   </script>
 
   <main>
-    <article class="container mt-5 pt-5">
+    <article class="container mt-5 pt-5 mb-5 pb-5">
       <h1 class="title">SHared Appartment REnt Calculator (SHARE)</h1>
-      <p class="subtitle" style="text-align: center;">
+      <p class="subtitle text-center mb-5">
         Calculate how to split rent fairly based on room size and shared space.
       </p>
 
-      <form id="rent-form">
-        <div class="inline-inputs">
-          <div>
-            <label for="rent">Total Rent:</label>
-            <input type="number" id="rent" name="rent" required />
-          </div>
-          <div>
-            <label for="total_area">Total Area:</label>
-            <input type="number" id="total_area" name="total_area" required />
-          </div>
-          <div id="price-per-unit-area"></div>
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <form id="rent-form">
+            <div class="inline-inputs">
+              <div>
+                <label for="rent">Total Rent:</label>
+                <input type="number" id="rent" name="rent" required />
+              </div>
+              <div>
+                <label for="total_area">Total Area:</label>
+                <input
+                  type="number"
+                  id="total_area"
+                  name="total_area"
+                  required
+                />
+              </div>
+              <div id="price-per-unit-area"></div>
+            </div>
+
+            <label for="num_rooms">Number of rooms:</label>
+            <input type="number" id="num_rooms" name="num_rooms" required />
+
+            <label for="alpha"
+              >Value of shared space (between 0 and 1):
+              <div class="tooltip">
+                0 if the shared space is not taken into account of the
+                calculation.<br />
+                1 if the value per area of the shared space is considered the same
+                as the value per area of the rooms.<br />
+                Default: 0.75. The area of the shared space is considered to be worth
+                3/4 of the value of the private rooms.
+              </div>
+            </label>
+            <div class="inline-inputs">
+              <input
+                type="range"
+                id="alpha"
+                name="alpha"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.75"
+                style="width: 150px;"
+              />
+              <span id="alpha-value">0.75</span>
+            </div>
+
+            <div id="room-dimensions-container"></div>
+
+            <label for="bills">Bills per month (optional):</label>
+            <input type="number" id="bills" name="bills" />
+
+            <button type="submit" class="btn btn-primary btn-block mt-3"
+              >Calculate</button
+            >
+          </form>
         </div>
 
-        <label for="num_rooms">Number of rooms:</label>
-        <input type="number" id="num_rooms" name="num_rooms" required />
-
-        <label for="alpha"
-          >Value of shared space (between 0 and 1):
-          <div class="tooltip">
-            0 if the shared space is not taken into account of the calculation.<br
-            />
-            1 if the value per area of the shared space is considered the same as
-            the value per area of the rooms.<br />
-            Default: 0.75. The area of the shared space is considered to be worth
-            3/4 of the value of the private rooms.
-          </div>
-        </label>
-        <div class="inline-inputs">
-          <input
-            type="range"
-            id="alpha"
-            name="alpha"
-            min="0"
-            max="1"
-            step="0.01"
-            value="0.75"
-            style="width: 150px;"
-          />
-          <span id="alpha-value">0.75</span>
+        <div class="col-lg-6">
+          <div id="warning"></div>
+          <div id="result"></div>
+          <div class="room-visualization" id="room-visualization"></div>
         </div>
+      </div>
 
-        <div id="room-dimensions-container"></div>
-
-        <label for="bills">Bills per month (optional):</label>
-        <input type="number" id="bills" name="bills" />
-
-        <button type="submit">Calculate</button>
-      </form>
-
-      <div id="warning"></div>
-      <div id="result"></div>
-      <div class="room-visualization" id="room-visualization"></div>
+      <div class="row mt-5 pt-4 border-top">
+        <div class="col-md-8 mx-auto">
+          <h3 class="h4 mb-3">Why this tool?</h3>
+          <p>
+            This simple calculator is my small contribution to help those
+            navigating the housing crisis. Finding a place is hard enough;
+            splitting the rent shouldn't add to the stress.
+          </p>
+          <p>
+            If you are looking to rent a place with others, this tool provides a
+            fair starting point for dividing costs. It calculates each person's
+            share based on their private room size and the common areas.
+          </p>
+          <p>
+            It's meant to save time and energy in cities where finding
+            accommodation is already a challenge. If you find it useful, please
+            share it with others!
+          </p>
+          <p class="text-center mt-4 text-muted small">
+            Have suggestions or found a bug? <a href="/contact">Reach out!</a>
+          </p>
+        </div>
+      </div>
     </article>
   </main>
 
