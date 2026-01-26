@@ -42,10 +42,10 @@ const t = {
 };
 
 // Links helper
-const link = (path) => `${homeBase}${path}`;
+const link = (path: string) => `${homeBase}${path}`;
 
 // Active State Helper
-const isActive = (slug) => {
+const isActive = (slug: string) => {
   if (slug === "/") {
     return pathname === "/" || pathname === "/es/";
   }
@@ -59,7 +59,12 @@ const isActive = (slug) => {
   data-offset-top="0"
 >
   <div class="container-fluid px-3 px-lg-5">
-    <a class="navbar-brand" href={isSpanish ? "/es/" : "/"}>
+    <a
+      class="navbar-brand gtm-track-click"
+      href={isSpanish ? "/es/" : "/"}
+      data-event-category="Navigation"
+      data-event-label="Logo"
+    >
       <img src="/assets/imgs/curvy_logo.svg" alt="Logo" />
     </a>
 
@@ -80,8 +85,10 @@ const isActive = (slug) => {
         <!-- Home -->
         <li class="nav-item">
           <a
-            class={`nav-link ${isActive("/") ? "active" : ""}`}
-            href={link("/")}>{t.home}</a
+            class={`nav-link gtm-track-click ${isActive("/") ? "active" : ""}`}
+            href={link("/")}
+            data-event-category="Navigation"
+            data-event-label="Home">{t.home}</a
           >
         </li>
 
@@ -91,26 +98,45 @@ const isActive = (slug) => {
         <!-- CV Dropdown -->
         <li class="nav-item dropdown">
           <a
-            class={`nav-link dropdown-toggle ${isActive("cvonline") ? "active" : ""}`}
+            class={`nav-link dropdown-toggle gtm-track-click ${isActive("cvonline") ? "active" : ""}`}
             href={link("/cvonline")}
             id="cvDropdown"
+            data-event-category="Navigation"
+            data-event-label="CV Dropdown"
           >
             {t.cv}
           </a>
           <div class="dropdown-menu" aria-labelledby="cvDropdown">
-            <a class="dropdown-item" href={link("/cvonline")}>{t.cv_online}</a>
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/cvonline")}
+              data-event-category="Navigation"
+              data-event-label="CV - Online CV">{t.cv_online}</a
+            >
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href={link("/cvonline#Current")}
-              >{t.cv_about}</a
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/cvonline#Current")}
+              data-event-category="Navigation"
+              data-event-label="CV - About me">{t.cv_about}</a
             >
-            <a class="dropdown-item" href={link("/cvonline#Skills")}
-              >{t.cv_skills}</a
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/cvonline#Skills")}
+              data-event-category="Navigation"
+              data-event-label="CV - Skills">{t.cv_skills}</a
             >
-            <a class="dropdown-item" href={link("/cvonline#Experience")}
-              >{t.cv_experience}</a
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/cvonline#Experience")}
+              data-event-category="Navigation"
+              data-event-label="CV - Experience">{t.cv_experience}</a
             >
-            <a class="dropdown-item" href={link("/cvonline#Education")}
-              >{t.cv_education}</a
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/cvonline#Education")}
+              data-event-category="Navigation"
+              data-event-label="CV - Education">{t.cv_education}</a
             >
           </div>
         </li>
@@ -118,26 +144,46 @@ const isActive = (slug) => {
         <!-- Projects Dropdown -->
         <li class="nav-item dropdown">
           <a
-            class={`nav-link dropdown-toggle ${isActive("projects") ? "active" : ""}`}
+            class={`nav-link dropdown-toggle gtm-track-click ${isActive("projects") ? "active" : ""}`}
             href={link("/projects")}
             id="projectsDropdown"
+            data-event-category="Navigation"
+            data-event-label="Projects Dropdown"
           >
             {t.projects}
           </a>
           <div class="dropdown-menu" aria-labelledby="projectsDropdown">
-            <a class="dropdown-item" href={link("/projects")}>{t.projects}</a>
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/projects")}
+              data-event-category="Navigation"
+              data-event-label="Projects - All">{t.projects}</a
+            >
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href={link("/projects#Data_analysis")}
-              >{t.proj_analysis}</a
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/projects#Data_analysis")}
+              data-event-category="Navigation"
+              data-event-label="Projects - Data Analysis">{t.proj_analysis}</a
             >
-            <a class="dropdown-item" href={link("/projects#App_development")}
-              >{t.proj_apps}</a
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/projects#App_development")}
+              data-event-category="Navigation"
+              data-event-label="Projects - App Development">{t.proj_apps}</a
             >
-            <a class="dropdown-item" href={link("/projects#Viz_development")}
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/projects#Viz_development")}
+              data-event-category="Navigation"
+              data-event-label="Projects - Visualization Dev"
               >{t.proj_viz_dev}</a
             >
-            <a class="dropdown-item" href={link("/projects#Plots_Viz")}
-              >{t.proj_plots}</a
+            <a
+              class="dropdown-item gtm-track-click"
+              href={link("/projects#Plots_Viz")}
+              data-event-category="Navigation"
+              data-event-label="Projects - Plots & Viz">{t.proj_plots}</a
             >
           </div>
         </li>
@@ -145,10 +191,12 @@ const isActive = (slug) => {
         <!-- Publications (External) -->
         <li class="nav-item">
           <a
-            class="nav-link"
+            class="nav-link gtm-track-click"
             href="https://scholar.google.com/citations?user=XgG56aYAAAAJ&hl=es&oi=ao"
             target="_blank"
-            rel="noopener noreferrer">{t.publications}</a
+            rel="noopener noreferrer"
+            data-event-category="Navigation"
+            data-event-label="Publications">{t.publications}</a
           >
         </li>
 
@@ -158,14 +206,18 @@ const isActive = (slug) => {
         <!-- Hobbies -->
         <li class="nav-item">
           <a
-            class={`nav-link ${isActive("photography") ? "active" : ""}`}
-            href={link("/photography")}>{t.photography}</a
+            class={`nav-link gtm-track-click ${isActive("photography") ? "active" : ""}`}
+            href={link("/photography")}
+            data-event-category="Navigation"
+            data-event-label="Photography">{t.photography}</a
           >
         </li>
         <li class="nav-item">
           <a
-            class={`nav-link ${isActive("playlists") ? "active" : ""}`}
-            href={link("/playlists")}>{t.playlists}</a
+            class={`nav-link gtm-track-click ${isActive("playlists") ? "active" : ""}`}
+            href={link("/playlists")}
+            data-event-category="Navigation"
+            data-event-label="Playlists">{t.playlists}</a
           >
         </li>
 
@@ -175,18 +227,22 @@ const isActive = (slug) => {
         <!-- Contact -->
         <li class="nav-item">
           <a
-            class={`nav-link ${isActive("contact") ? "active" : ""}`}
-            href={link("/contact")}>{t.contact}</a
+            class={`nav-link gtm-track-click ${isActive("contact") ? "active" : ""}`}
+            href={link("/contact")}
+            data-event-category="Navigation"
+            data-event-label="Contact">{t.contact}</a
           >
         </li>
 
         <!-- Language Switcher -->
         <li class="nav-item ml-3">
           <a
-            class="nav-link btn btn-primary rounded btn-sm text-white"
+            class="nav-link btn btn-primary rounded btn-sm text-white gtm-track-click"
             href={switchUrl}
             lang={switchLangAttr}
             style="padding: 5px 10px;"
+            data-event-category="Navigation"
+            data-event-label={`Language Switch - ${switchLabel}`}
           >
             {switchLabel}
           </a>
