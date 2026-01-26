@@ -26,10 +26,10 @@ document.getElementById('num_rooms').addEventListener('input', function() {
         const roomDiv = document.createElement('div');
         roomDiv.classList.add('room-dimension');
         roomDiv.innerHTML = `
-            <label>Dimensions of room ${i}:</label>
+            <label>Dimensions of Private Room ${i}:</label>
             <div class="room-dimensions">
-                <input type="number" name="room_width" placeholder="Width" required>
-                <input type="number" name="room_length" placeholder="Length" required>
+                <input type="number" name="room_width" placeholder="Width (e.g. 3)" required>
+                <input type="number" name="room_length" placeholder="Length (e.g. 4)" required>
             </div>
         `;
         roomDimensionsContainer.appendChild(roomDiv);
@@ -55,7 +55,7 @@ document.getElementById('rent-form').addEventListener('submit', function(event) 
     const alpha = parseFloat(formData.get('alpha'));
     const roomWidths = formData.getAll('room_width').map(Number);
     const roomLengths = formData.getAll('room_length').map(Number);
-    const roomDimensions = roomWidths.map((width, index) => [width, roomLengths[index]]);
+    const roomDimensions = roomWidths.map((width,index) => [width, roomLengths[index]]);
     const bills = formData.get('bills') ? parseFloat(formData.get('bills')) : null;
 
     const roomAreas = roomDimensions.map(dimension => dimension[0] * dimension[1]);
@@ -64,7 +64,7 @@ document.getElementById('rent-form').addEventListener('submit', function(event) 
 
     const warningDiv = document.getElementById('warning');
     if (sharedArea < 0) {
-        warningDiv.innerHTML = `Warning: Total area of the rooms (${totalRoomArea}) is greater than the total area of the apartment (${totalArea}).`;
+        warningDiv.innerHTML = `Warning: Total area of the rooms (${totalRoomArea}) is greater than the total area of the apartment (${totalArea}). Please check your measurements.`;
         return;
     } else {
         warningDiv.innerHTML = '';
@@ -87,7 +87,7 @@ document.getElementById('rent-form').addEventListener('submit', function(event) 
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = '';
     totalRentPerRoom.forEach((rent, index) => {
-        resultDiv.innerHTML += `<p>Room ${index + 1} should pay ${rent} in rent (${sharedSpaceCostPerRoom} for shared space)${bills ? ' and bills' : ''}.</p>`;
+        resultDiv.innerHTML += `<p><strong>Private Room ${index + 1}</strong> should pay <strong>${rent}</strong> in rent (includes ${sharedSpaceCostPerRoom} for shared space)${bills ? ' + bills split' : ''}.</p>`;
     });
 
     displayRoomVisualization(roomDimensions, sharedArea, totalArea);

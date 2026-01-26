@@ -86,7 +86,12 @@ const alternateHref = "/es/sac"; // Links to Spanish version
                 <input type="number" id="rent" name="rent" required />
               </div>
               <div>
-                <label for="total_area">Total Area:</label>
+                <label for="total_area"
+                  >Total Apartment Area: <small
+                    class="text-muted d-block font-weight-normal"
+                    >(any unit, just be consistent)</small
+                  ></label
+                >
                 <input
                   type="number"
                   id="total_area"
@@ -97,7 +102,7 @@ const alternateHref = "/es/sac"; // Links to Spanish version
               <div id="price-per-unit-area"></div>
             </div>
 
-            <label for="num_rooms">Number of rooms:</label>
+            <label for="num_rooms">Number of Private Rooms:</label>
             <input type="number" id="num_rooms" name="num_rooms" required />
 
             <label for="alpha"
@@ -164,6 +169,39 @@ const alternateHref = "/es/sac"; // Links to Spanish version
           <p class="text-center mt-4 text-muted small">
             Have suggestions or found a bug? <a href="/contact">Reach out!</a>
           </p>
+        </div>
+      </div>
+
+      <!-- Visible FAQ Section for SEO -->
+      <div class="row mt-5">
+        <div class="col-md-8 mx-auto">
+          <h2 class="h4 mb-4 text-center">Frequently Asked Questions</h2>
+
+          <div class="mb-4">
+            <h3 class="h6 font-weight-bold">
+              How do you split rent fairly in a shared apartment?
+            </h3>
+            <p class="text-muted">
+              The fairest way to split rent is based on room size. Calculate
+              each room's proportion of the total private space, then factor in
+              shared areas. The SHARE Calculator automates this by dividing rent
+              proportionally based on room dimensions and a configurable shared
+              space value.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="h6 font-weight-bold">
+              Should shared spaces be included in rent calculations?
+            </h3>
+            <p class="text-muted">
+              Yes, shared spaces like living rooms and kitchens should be
+              factored into rent calculations. The SHARE Calculator uses a
+              configurable 'shared space value' (0-1) to determine how much
+              weight shared areas carry. A value of 0.75 means shared space is
+              worth 75% of private room value.
+            </p>
+          </div>
         </div>
       </div>
     </article>

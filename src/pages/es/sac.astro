@@ -87,7 +87,12 @@ const alternateHref = "/sac"; // Links to English version
                 <input type="number" id="rent" name="rent" required />
               </div>
               <div>
-                <label for="total_area">Área total del apartamento:</label>
+                <label for="total_area"
+                  >Área total del apartamento: <small
+                    class="text-muted d-block font-weight-normal"
+                    >(cualquier unidad, mantén consistencia)</small
+                  ></label
+                >
                 <input
                   type="number"
                   id="total_area"
@@ -98,7 +103,7 @@ const alternateHref = "/sac"; // Links to English version
               <div id="price-per-unit-area"></div>
             </div>
 
-            <label for="num_rooms">Número de habitaciones:</label>
+            <label for="num_rooms">Número de habitaciones privadas:</label>
             <input type="number" id="num_rooms" name="num_rooms" required />
 
             <label for="alpha"
@@ -166,6 +171,42 @@ const alternateHref = "/sac"; // Links to English version
               >¡Contáctame!</a
             >
           </p>
+        </div>
+      </div>
+
+      <!-- Visible FAQ Section for SEO -->
+      <div class="row mt-5">
+        <div class="col-md-8 mx-auto">
+          <h2 class="h4 mb-4 text-center">Preguntas Frecuentes</h2>
+
+          <div class="mb-4">
+            <h3 class="h6 font-weight-bold">
+              ¿Cómo dividir el alquiler de forma justa en un piso compartido?
+            </h3>
+            <p class="text-muted">
+              La forma más justa de dividir el alquiler es según el tamaño de
+              cada habitación. Calcula la proporción de cada habitación respecto
+              al espacio privado total, y luego considera las áreas compartidas.
+              La Calculadora SHARE automatiza esto dividiendo el alquiler
+              proporcionalmente según las dimensiones de las habitaciones y un
+              valor configurable para el espacio compartido.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="h6 font-weight-bold">
+              ¿Deben incluirse los espacios compartidos en el cálculo del
+              alquiler?
+            </h3>
+            <p class="text-muted">
+              Sí, los espacios compartidos como el salón y la cocina deben
+              considerarse en el cálculo. La Calculadora SHARE usa un 'valor de
+              espacio compartido' configurable (0-1) para determinar cuánto peso
+              tienen las áreas comunes. Un valor de 0.75 significa que el
+              espacio compartido vale el 75% del valor de una habitación
+              privada.
+            </p>
+          </div>
         </div>
       </div>
     </article>
