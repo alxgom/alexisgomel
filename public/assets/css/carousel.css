@@ -85,14 +85,15 @@
   max-height: 200px;
 }
 
-/* Action links (zoom, external link) */
+/* Action links/buttons (zoom, external link) */
 .portfolio-slide-actions {
   display: flex;
   justify-content: center;
   gap: 15px;
 }
 
-.portfolio-slide-actions a {
+.portfolio-slide-actions a,
+.portfolio-slide-actions button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -102,12 +103,23 @@
   background: var(--primary, #007bff);
   color: #fff;
   font-size: 1rem;
+  border: none;
+  cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.portfolio-slide-actions a:hover {
+.portfolio-slide-actions a:hover,
+.portfolio-slide-actions button:hover {
   background: var(--primary-dark, #0056b3);
   transform: scale(1.1);
+}
+
+/* Slide as anchor - remove default link styling */
+a.portfolio-slide-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 /* Navigation arrows */
