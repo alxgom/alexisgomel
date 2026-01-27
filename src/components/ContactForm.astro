@@ -180,7 +180,7 @@ const t = translations[lang];
   input[type="email"]:focus,
   textarea:focus {
     outline: none;
-    border-color: #ff7a57;
+    border-color: var(--primary);
   }
 
   textarea {
@@ -198,12 +198,12 @@ const t = translations[lang];
   }
 
   .btn-primary {
-    background: #ff7a57;
+    background: var(--primary);
     color: #fff;
   }
 
   .btn-primary:hover {
-    background: #ff3d0b;
+    background: color-mix(in srgb, var(--primary) 80%, #000);
   }
 
   .btn.rounded {

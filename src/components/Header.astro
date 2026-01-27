@@ -68,6 +68,17 @@ const isActive = (slug: string) => {
       <img src="/assets/imgs/curvy_logo.svg" alt="Logo" />
     </a>
 
+    <!-- Language Switcher - Always visible, outside burger -->
+    <a
+      class="nav-link-lang-mobile gtm-track-click d-lg-none"
+      href={switchUrl}
+      lang={switchLangAttr}
+      data-event-category="Navigation"
+      data-event-label={`Language Switch - ${switchLabel}`}
+    >
+      {switchLabel}
+    </a>
+
     <button
       class="navbar-toggler"
       type="button"
@@ -224,23 +235,22 @@ const isActive = (slug: string) => {
         <!-- Separator -->
         <li class="nav-separator d-none d-lg-block">|</li>
 
-        <!-- Contact -->
-        <li class="nav-item">
+        <!-- Contact CTA -->
+        <li class="nav-item nav-item-contact">
           <a
-            class={`nav-link gtm-track-click ${isActive("contact") ? "active" : ""}`}
+            class={`nav-link nav-link-contact gtm-track-click ${isActive("contact") ? "active" : ""}`}
             href={link("/contact")}
             data-event-category="Navigation"
             data-event-label="Contact">{t.contact}</a
           >
         </li>
 
-        <!-- Language Switcher -->
-        <li class="nav-item ml-3">
+        <!-- Language Switcher - Desktop only (mobile version is outside burger) -->
+        <li class="nav-item ml-3 d-none d-lg-block">
           <a
-            class="nav-link btn btn-primary rounded btn-sm text-white gtm-track-click"
+            class="nav-link nav-link-lang gtm-track-click"
             href={switchUrl}
             lang={switchLangAttr}
-            style="padding: 5px 10px;"
             data-event-category="Navigation"
             data-event-label={`Language Switch - ${switchLabel}`}
           >
@@ -328,5 +338,76 @@ const isActive = (slug: string) => {
   .dropdown-item:active {
     background-color: var(--primary);
     color: #fff;
+  }
+
+  /* Contact CTA Button Styling - Filled/Solid */
+  .nav-link-contact {
+    background-color: var(--primary) !important;
+    border: 2px solid var(--primary) !important;
+    border-radius: 20px !important;
+    padding: 6px 18px !important;
+    margin-left: 8px;
+    font-weight: 600 !important;
+    color: #fff !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .nav-link-contact:hover {
+    background-color: color-mix(in srgb, var(--primary) 85%, #000) !important;
+    border-color: color-mix(in srgb, var(--primary) 85%, #000) !important;
+    color: #fff !important;
+  }
+
+  .nav-link-contact.active {
+    background-color: color-mix(in srgb, var(--primary) 85%, #000) !important;
+    border-color: color-mix(in srgb, var(--primary) 85%, #000) !important;
+    color: #fff !important;
+  }
+
+  /* Language Switcher - Outlined/Subtle */
+  .nav-link-lang {
+    border: 1px solid #999 !important;
+    border-radius: 15px !important;
+    padding: 4px 12px !important;
+    font-weight: 500 !important;
+    color: #666 !important;
+    font-size: 0.85rem !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .nav-link-lang:hover {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    background-color: transparent !important;
+  }
+
+  /* Mobile adjustments for Contact button */
+  @media (max-width: 991px) {
+    .nav-link-contact {
+      display: inline-block;
+      margin: 10px 0;
+    }
+  }
+
+  /* Mobile Language Switcher - Outside burger menu */
+  .nav-link-lang-mobile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    border: 1px solid #999;
+    border-radius: 15px;
+    padding: 0 12px;
+    font-weight: 500;
+    color: #666;
+    font-size: 0.8rem;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link-lang-mobile:hover {
+    border-color: var(--primary);
+    color: var(--primary);
   }
 </style>

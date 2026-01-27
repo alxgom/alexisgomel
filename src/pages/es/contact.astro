@@ -12,17 +12,18 @@ const alternateHref = "/contact";
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
-  <section class="section mt-5">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h6 class="subtitle">Hablemos</h6>
-        <h1 class="section-title">Contáctame</h1>
-        <p class="mb-4">
-          ¿Tienes alguna pregunta o quieres colaborar? ¡Siéntete libre de
-          escribirme!
-        </p>
-      </div>
+  <!-- Hero Section with Primary Color -->
+  <section class="contact-hero">
+    <div class="container text-center">
+      <h1 class="contact-hero-title">Conectemos</h1>
+      <p class="contact-hero-subtitle">
+        ¿Tienes alguna pregunta o quieres colaborar? ¡Me encantaría saber de ti!
+      </p>
+    </div>
+  </section>
 
+  <section class="section">
+    <div class="container">
       <ContactForm
         formId="xldqpzqd"
         turnstileSiteKey="0x4AAAAAACFRCmkjExcAkZaD"
@@ -30,17 +31,70 @@ const alternateHref = "/contact";
       />
 
       <div class="text-center mt-5">
-        <p>O escríbeme directamente a:</p>
-        <a
-          href="mailto:alexis.gomel@gmail.com"
-          class="text-primary"
-          style="font-size: 1.2rem;"
-        >
-          alexis.gomel@gmail.com
+        <p class="contact-alt-text">O escríbeme directamente a:</p>
+        <a href="mailto:alexis.gomel@gmail.com" class="contact-email-link">
+          <i class="ti-email"></i> alexis.gomel@gmail.com
         </a>
       </div>
     </div>
   </section>
+
+  <style>
+    .contact-hero {
+      background: linear-gradient(
+        135deg,
+        var(--primary) 0%,
+        color-mix(in srgb, var(--primary) 70%, #000) 100%
+      );
+      padding: 120px 0 60px;
+      margin-bottom: 2rem;
+    }
+
+    .contact-hero-title {
+      color: #fff;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-hero-subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-alt-text {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 2px solid var(--primary);
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-email-link:hover {
+      background-color: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .contact-email-link i {
+      font-size: 1.1em;
+    }
+  </style>
 
   <!-- Load Cloudflare Turnstile Script -->
   <script
