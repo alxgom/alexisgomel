@@ -1,0 +1,273 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/projects/sevilla"; // Hidden page, no alt
+
+// PALETTE DATA
+const sevillePalette = [
+  { name: "Almegre Red", hex: "#A50034" },
+  { name: "Triana Green", hex: "#115740" },
+  { name: "Lapiz Lazuli", hex: "#26619C" },
+  { name: "Albero Pantone", hex: "#FFAB60" },
+  { name: "White", hex: "#FFFFFF" },
+  { name: "Cloud Dance", hex: "#F0EEE9" },
+  { name: "Light Gray", hex: "#D4D4D4" },
+  { name: "Dark Gray", hex: "#434343" },
+  { name: "Black", hex: "#000000" },
+];
+---
+
+<MainLayout
+  title="Seville Palette Visualization | Alexis Gomel"
+  description="A data visualization of the Seville-inspired color palette."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <!-- SEO: Prevent Indexing -->
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+
+  <!-- D3.js -->
+  <script is:inline src="https://d3js.org/d3.v7.min.js"></script>
+
+  <style>
+    .palette-container {
+      max-width: 1000px;
+      margin: 120px auto 60px;
+      padding: 0 20px;
+    }
+    .viz-container {
+      width: 100%;
+      height: 600px;
+      background: #fafafa;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 8px;
+      font-size: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 4px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+  </style>
+
+  <div class="palette-container">
+    <div class="text-center mb-5">
+      <h1 class="section-title">The Seville Palette</h1>
+      <p class="lead text-muted">A network of accessible contrast.</p>
+      <p style="max-width: 600px; margin: 0 auto;">
+        Inspired by the vibrant colors of Seville, this visualization maps the
+        relationships between colors. Connections represent pairs with
+        <strong>passable contrast</strong> (WCAG AA), revealing how these distinct
+        hues can work together in harmony.
+      </p>
+    </div>
+
+    <!-- D3 Visualization Container -->
+    <div id="d3-viz" class="viz-container">
+      <div id="tooltip" class="tooltip"></div>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ palette: sevillePalette }}>
+    // --- Helper Functions ---
+    function hexToRgb(hex) {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result
+        ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16),
+          }
+        : null;
+    }
+
+    function luminance(r, g, b) {
+      const a = [r, g, b].map(function (v) {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    }
+
+    function calculateRatio(hex1, hex2) {
+      const rgb1 = hexToRgb(hex1);
+      const rgb2 = hexToRgb(hex2);
+      if (!rgb1 || !rgb2) return 0;
+      const lum1 = luminance(rgb1.r, rgb1.g, rgb1.b);
+      const lum2 = luminance(rgb2.r, rgb2.g, rgb2.b);
+      return (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);
+    }
+
+    // --- Visualization Setup ---
+    const width = document.getElementById("d3-viz").offsetWidth;
+    const height = 600;
+
+    // 1. Prepare Nodes (Colors)
+    const nodes = palette.map((d) => ({ ...d, id: d.name }));
+
+    // 2. Prepare Links (Contrast Connections)
+    const links = [];
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const ratio = calculateRatio(nodes[i].hex, nodes[j].hex);
+        // Only connect if ratio meets WCAG AA Large (3.0) at minimum
+        if (ratio >= 3.0) {
+          links.push({
+            source: nodes[i].id,
+            target: nodes[j].id,
+            ratio: ratio,
+            strength: ratio >= 4.5 ? 1 : 0.3, // Stronger link for better contrast
+          });
+        }
+      }
+    }
+
+    const svg = d3
+      .select("#d3-viz")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height]);
+
+    // Simulation
+    const simulation = d3
+      .forceSimulation(nodes)
+      .force(
+        "link",
+        d3
+          .forceLink(links)
+          .id((d) => d.id)
+          .distance(150),
+      )
+      .force("charge", d3.forceManyBody().strength(-300))
+      .force("center", d3.forceCenter(width / 2, height / 2))
+      .force("collide", d3.forceCollide().radius(40));
+
+    // Draw Links
+    const link = svg
+      .append("g")
+      .attr("stroke-opacity", 0.6)
+      .selectAll("line")
+      .data(links)
+      .join("line")
+      .attr("stroke", "#999")
+      .attr("stroke-width", (d) => Math.sqrt(d.ratio)); // Thicker lines for better contrast
+
+    // Draw Nodes
+    const node = svg
+      .append("g")
+      .selectAll("circle")
+      .data(nodes)
+      .join("circle")
+      .attr("r", 25)
+      .attr("fill", (d) => d.hex)
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 2)
+      .attr("cursor", "grab")
+      .call(drag(simulation));
+
+    // Labels
+    const label = svg
+      .append("g")
+      .selectAll("text")
+      .data(nodes)
+      .join("text")
+      .text((d) => d.name)
+      .attr("font-size", 12)
+      .attr("text-anchor", "middle")
+      .attr("dy", 40) // Below circle
+      .attr("fill", "#333")
+      .style("pointer-events", "none");
+
+    // Tooltip Interactions
+    const tooltip = d3.select("#tooltip");
+
+    link
+      .on("mouseover", (event, d) => {
+        tooltip.style("opacity", 1);
+        tooltip.html(`Contrast Ratio: <strong>${d.ratio.toFixed(2)}</strong>`);
+        d3.select(event.target)
+          .attr("stroke", "#333")
+          .attr("stroke-opacity", 1);
+      })
+      .on("mousemove", (event) => {
+        tooltip
+          .style(
+            "left",
+            event.pageX - document.getElementById("d3-viz").offsetLeft + "px",
+          )
+          .style(
+            "top",
+            event.pageY -
+              document.getElementById("d3-viz").offsetTop -
+              40 +
+              "px",
+          );
+      })
+      .on("mouseout", (event, d) => {
+        tooltip.style("opacity", 0);
+        d3.select(event.target)
+          .attr("stroke", "#999")
+          .attr("stroke-opacity", 0.6);
+      });
+
+    node
+      .on("mouseover", (event, d) => {
+        d3.select(event.target).attr("stroke", "#333").attr("stroke-width", 4);
+      })
+      .on("mouseout", (event) => {
+        d3.select(event.target).attr("stroke", "#fff").attr("stroke-width", 2);
+      });
+
+    // Simulation Tick
+    simulation.on("tick", () => {
+      link
+        .attr("x1", (d) => d.source.x)
+        .attr("y1", (d) => d.source.y)
+        .attr("x2", (d) => d.target.x)
+        .attr("y2", (d) => d.target.y);
+
+      node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+
+      label.attr("x", (d) => d.x).attr("y", (d) => d.y);
+    });
+
+    // Drag Behavior
+    function drag(simulation) {
+      function dragstarted(event) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        event.subject.fx = event.subject.x;
+        event.subject.fy = event.subject.y;
+      }
+
+      function dragged(event) {
+        event.subject.fx = event.x;
+        event.subject.fy = event.y;
+      }
+
+      function dragended(event) {
+        if (!event.active) simulation.alphaTarget(0);
+        event.subject.fx = null;
+        event.subject.fy = null;
+      }
+
+      return d3
+        .drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended);
+    }
+  </script>
+</MainLayout>
