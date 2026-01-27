@@ -588,23 +588,25 @@ const sevillePalette = [
     }
 
     // --- Populate Colorblind Swatch Rows ---
-    const swatchContainers = [
-      "swatches-normal",
-      "swatches-protanopia",
-      "swatches-deuteranopia",
-      "swatches-tritanopia",
-    ];
-    swatchContainers.forEach((containerId) => {
-      const container = document.getElementById(containerId);
-      if (container) {
-        palette.forEach((color) => {
-          const swatch = document.createElement("div");
-          swatch.className = "swatch";
-          swatch.style.backgroundColor = color.hex;
-          swatch.title = color.name;
-          container.appendChild(swatch);
-        });
-      }
+    document.addEventListener("DOMContentLoaded", () => {
+      const swatchContainers = [
+        "swatches-normal",
+        "swatches-protanopia",
+        "swatches-deuteranopia",
+        "swatches-tritanopia",
+      ];
+      swatchContainers.forEach((containerId) => {
+        const container = document.getElementById(containerId);
+        if (container) {
+          palette.forEach((color) => {
+            const swatch = document.createElement("div");
+            swatch.className = "swatch";
+            swatch.style.backgroundColor = color.hex;
+            swatch.title = color.name;
+            container.appendChild(swatch);
+          });
+        }
+      });
     });
   </script>
 </MainLayout>
