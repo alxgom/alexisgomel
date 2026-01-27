@@ -4,6 +4,18 @@ import Card from "../../components/Card.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import Lightbox from "../../components/Lightbox.astro";
 
+import { Image } from "astro:assets";
+import mixxxScreenshot from "../../assets/imgs/Projects/mixxx_screenshot.png";
+import mixxxDashboardSvg from "../../assets/imgs/Projects/mixxx_dashboard_svg_logo.svg";
+import rentalsImg from "../../assets/imgs/Projects/PopulationByDistrict_NiceColormap.png";
+import shareImg from "../../assets/imgs/Projects/sac_web_app.png";
+import trackingAppImg from "../../assets/imgs/Projects/tracking_app.png";
+import stitchedColorImg from "../../assets/imgs/jet_example.png";
+import springPendulumGif from "../../assets/imgs/springPendulum.gif";
+import waveGif from "../../assets/imgs/3_WAVE.gif";
+import filamentImg from "../../assets/imgs/filament_scheme2.png";
+import birdsImg from "../../assets/imgs/Projects/birds.png";
+
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
 const alternateHref = "/projects"; // Links to English version
@@ -60,10 +72,11 @@ const alternateHref = "/projects"; // Links to English version
         <div class="row mb-5 align-items-center">
           <div class="col-md-6 mb-3 mb-md-0">
             <div class="general-img-holder">
-              <img
-                src="/assets/imgs/Projects/mixxx_screenshot.png"
+              <Image
+                src={mixxxScreenshot}
                 alt="Extensión MIXX"
                 class="img-fluid"
+                loading="eager"
               />
               <div class="overlay">
                 <a
@@ -76,7 +89,7 @@ const alternateHref = "/projects"; // Links to English version
                   <h5>Panel de Análisis para DJ Mixxx</h5>
                 </div>
                 <a
-                  href="/assets/imgs/Projects/mixxx_screenshot.png"
+                  href={mixxxScreenshot.src}
                   class="overlay-zoom-link"
                   aria-label="Ampliar imagen del Panel"
                   data-lightbox="true"><i class="ti-zoom-in"></i></a
@@ -187,11 +200,7 @@ const alternateHref = "/projects"; // Links to English version
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
-            <img
-              src="/assets/imgs/Projects/PopulationByDistrict_NiceColormap.png"
-              alt="Alquileres"
-              class="img-fluid"
-            />
+            <Image src={rentalsImg} alt="Alquileres" class="img-fluid" />
             <div class="overlay">
               <a
                 href="https://www.kaggle.com/code/alexisgomel/apartment-rental-offers-munich"
@@ -201,7 +210,7 @@ const alternateHref = "/projects"; // Links to English version
                 <h5>Alquileres</h5>
               </div>
               <a
-                href="/assets/imgs/Projects/PopulationByDistrict_NiceColormap.png"
+                href={rentalsImg.src}
                 class="overlay-zoom-link"
                 aria-label="Ampliar imagen de Alquileres"
                 ><i class="ti-zoom-in"></i></a
@@ -242,11 +251,7 @@ const alternateHref = "/projects"; // Links to English version
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
-            <img
-              src="/assets/imgs/Projects/sac_web_app.png"
-              alt="Calculadora SHARE"
-              class="img-fluid"
-            />
+            <Image src={shareImg} alt="Calculadora SHARE" class="img-fluid" />
             <div class="overlay">
               <a
                 href="/es/sac"
@@ -258,7 +263,7 @@ const alternateHref = "/projects"; // Links to English version
                 </h5>
               </div>
               <a
-                href="/assets/imgs/Projects/sac_web_app.png"
+                href={shareImg.src}
                 class="overlay-zoom-link"
                 aria-label="Ampliar imagen de Calculadora SHARE"
                 ><i class="ti-zoom-in"></i></a
@@ -298,8 +303,8 @@ const alternateHref = "/projects"; // Links to English version
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
-            <img
-              src="/assets/imgs/Projects/tracking_app.png"
+            <Image
+              src={trackingAppImg}
               alt="Rastreador de Tareas"
               class="img-fluid"
             />
@@ -312,7 +317,7 @@ const alternateHref = "/projects"; // Links to English version
                 <h5>Rastreador de Tareas</h5>
               </div>
               <a
-                href="/assets/imgs/Projects/tracking_app.png"
+                href={trackingAppImg.src}
                 class="overlay-zoom-link"
                 aria-label="Ampliar imagen de Rastreador de Tareas"
                 ><i class="ti-zoom-in"></i></a
@@ -350,8 +355,8 @@ const alternateHref = "/projects"; // Links to English version
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
-            <img
-              src="/assets/imgs/jet_example.png"
+            <Image
+              src={stitchedColorImg}
               alt="Mapas de colores unidos"
               class="img-fluid"
             />
@@ -364,7 +369,7 @@ const alternateHref = "/projects"; // Links to English version
                 <h5>Mapas de colores unidos</h5>
               </div>
               <a
-                href="/assets/imgs/jet_example.png"
+                href={stitchedColorImg.src}
                 class="overlay-zoom-link"
                 aria-label="Ampliar imagen de Mapas de colores unidos"
                 ><i class="ti-zoom-in"></i></a
@@ -407,7 +412,7 @@ const alternateHref = "/projects"; // Links to English version
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
             <img
-              src="/assets/imgs/springPendulum.gif"
+              src={springPendulumGif.src}
               alt="Péndulo de Resorte"
               class="img-fluid"
             />
@@ -416,7 +421,7 @@ const alternateHref = "/projects"; // Links to English version
                 <h5>Péndulo de Resorte</h5>
               </div>
               <a
-                href="/assets/imgs/springPendulum.gif"
+                href={springPendulumGif.src}
                 class="overlay-zoom-link"
                 aria-label="Ampliar imagen de Péndulo de Resorte"
                 data-lightbox="true"><i class="ti-zoom-in"></i></a
@@ -439,7 +444,7 @@ const alternateHref = "/projects"; // Links to English version
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
             <img
-              src="/assets/imgs/3_WAVE.gif"
+              src={waveGif.src}
               alt="Estabilización de 3 Ondas"
               class="img-fluid"
             />
@@ -448,7 +453,7 @@ const alternateHref = "/projects"; // Links to English version
                 <h5>Péndulo de Resorte</h5>
               </div>
               <a
-                href="/assets/imgs/3_WAVE.gif"
+                href={waveGif.src}
                 class="overlay-zoom-link"
                 aria-label="Ampliar imagen de Estabilización de 3 Ondas"
                 ><i class="ti-zoom-in"></i></a
@@ -474,8 +479,8 @@ const alternateHref = "/projects"; // Links to English version
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
-            <img
-              src="/assets/imgs/filament_scheme2.png"
+            <Image
+              src={filamentImg}
               alt="Esquema de filamentación"
               class="img-fluid"
             />
@@ -488,7 +493,7 @@ const alternateHref = "/projects"; // Links to English version
                 <h5>Esquema de filamentación</h5>
               </div>
               <a
-                href="/assets/imgs/filament_scheme2.png"
+                href={filamentImg.src}
                 class="overlay-zoom-link"
                 aria-label="Ampliar imagen de Esquema de filamentación"
                 ><i class="ti-zoom-in"></i></a
@@ -510,11 +515,7 @@ const alternateHref = "/projects"; // Links to English version
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
-            <img
-              src="/assets/imgs/Projects/birds.png"
-              alt="Migración de aves"
-              class="img-fluid"
-            />
+            <Image src={birdsImg} alt="Migración de aves" class="img-fluid" />
             <div class="overlay">
               <a
                 href="#"
@@ -524,7 +525,7 @@ const alternateHref = "/projects"; // Links to English version
                 <h5>Migración de aves</h5>
               </div>
               <a
-                href="/assets/imgs/Projects/birds.png"
+                href={birdsImg.src}
                 class="overlay-zoom-link"
                 aria-label="Ampliar imagen de Migración de aves"
                 ><i class="ti-zoom-in"></i></a
