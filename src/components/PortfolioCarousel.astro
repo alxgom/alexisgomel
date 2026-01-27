@@ -40,27 +40,44 @@ import { Image } from "astro:assets";
               const isExternal = item.linkHref.startsWith("http");
               const slideId = `portfolio-${item.gtmLabel.toLowerCase().replace(/\s+/g, "-")}`;
               return (
-                <a
+                <div
                   id={slideId}
-                  href={item.linkHref}
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noopener noreferrer" : undefined}
-                  class="swiper-slide portfolio-slide-link gtm-track-click"
-                  data-event-category="Portfolio Carousel"
-                  data-event-label={`${item.gtmLabel} - Card Click`}
-                  aria-label={item.linkAriaLabel}
+                  class="swiper-slide portfolio-slide-container"
                 >
-                  <Image
-                    src={item.image}
-                    alt={item.imageAlt}
-                    class="portfolio-slide-image"
-                  />
-                  <div class="portfolio-slide-content">
-                    <h3 class="portfolio-slide-title">{item.title}</h3>
-                    <p class="portfolio-slide-description">
-                      {item.description}
-                    </p>
-                    <div class="portfolio-slide-actions">
+                  <a
+                    href={item.linkHref}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    class="portfolio-slide-link gtm-track-click"
+                    data-event-category="Portfolio Carousel"
+                    data-event-label={`${item.gtmLabel} - Card Click`}
+                    aria-label={item.linkAriaLabel}
+                    style="display: block; text-decoration: none; color: inherit; height: 100%;"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt}
+                      class="portfolio-slide-image"
+                    />
+                    <div
+                      class="portfolio-slide-content"
+                      style="padding-bottom: 0;"
+                    >
+                      <h3 class="portfolio-slide-title">{item.title}</h3>
+                      <p class="portfolio-slide-description">
+                        {item.description}
+                      </p>
+                    </div>
+                  </a>
+
+                  <div
+                    class="portfolio-slide-actions-wrapper"
+                    style="padding: 0 20px 20px; position: relative; z-index: 2; pointer-events: none;"
+                  >
+                    <div
+                      class="portfolio-slide-actions"
+                      style="pointer-events: auto;"
+                    >
                       <button
                         type="button"
                         aria-label={item.zoomAriaLabel}
@@ -73,7 +90,7 @@ import { Image } from "astro:assets";
                       </button>
                     </div>
                   </div>
-                </a>
+                </div>
               );
             })
           }
