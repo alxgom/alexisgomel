@@ -15,6 +15,7 @@ import springPendulumGif from "../../assets/imgs/springPendulum.gif";
 import waveGif from "../../assets/imgs/3_WAVE.gif";
 import filamentImg from "../../assets/imgs/filament_scheme2.png";
 import birdsImg from "../../assets/imgs/Projects/birds.png";
+import sevillaThumb from "../../assets/imgs/Projects/sevilla_thumb.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
@@ -351,6 +352,47 @@ const alternateHref = "/projects"; // Links to English version
     </div>
 
     <div class="container">
+      <!-- Project: La Paleta de Sevilla -->
+      <div class="row mb-5 align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="general-img-holder">
+            <Image
+              src={sevillaThumb}
+              alt="La Paleta de Sevilla"
+              class="img-fluid"
+            />
+            <div class="overlay">
+              <a
+                href="/es/projects/sevilla"
+                class="overlay-link-full"
+                aria-label="Ver proyecto La Paleta de Sevilla"></a>
+              <div class="overlay-infos">
+                <h5>La Paleta de Sevilla</h5>
+              </div>
+              <a
+                href={sevillaThumb.src}
+                class="overlay-zoom-link"
+                aria-label="Ampliar imagen de La Paleta de Sevilla"
+                ><i class="ti-zoom-in"></i></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>La Paleta de Sevilla</h4>
+          <p>
+            Una visualización de datos interactiva que explora una paleta de
+            colores inspirada en la arquitectura e historia de Sevilla. Incluye
+            análisis de contraste, simulaciones de daltonismo y una galería de
+            inspiración.
+          </p>
+          <p>
+            <strong>Tecnología y habilidades:</strong> Visualización de datos, D3.js,
+            Accesibilidad (WCAG), Teoría del color.
+          </p>
+        </div>
+      </div>
+
       <!-- Project: Stitched Colormaps -->
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">

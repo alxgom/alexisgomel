@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
+  <style>
+    /* 1. Point Animations */
+    .point { 
+      transform-box: fill-box;
+      transform-origin: center;
+      opacity: 0;
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .p1 { animation-delay: 0.1s; }
+    .p2 { animation-delay: 0.3s; }
+    .p3 { animation-delay: 0.5s; }
+    .p4 { animation-delay: 0.7s; }
+    .p5 { animation-delay: 0.9s; }
+
+    /* 2. Line Animation */
+    .line {
+      stroke-dasharray: 190;
+      stroke-dashoffset: 190;
+      opacity: 0;
+      animation: drawLine 0.8s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+      animation-delay: 1.2s;
+    }
+
+    /* 3. Arrowhead Animation */
+    .head {
+      transform-box: fill-box;
+      transform-origin: left center;
+      opacity: 0;
+      animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      animation-delay: 1.8s;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes drawLine {
+      0% { opacity: 1; stroke-dashoffset: 190; stroke-width: 2; }
+      100% { opacity: 1; stroke-dashoffset: 0; stroke-width: 3; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+
+  <!-- Connection Line -->
+  <line class="line" x1="5" y1="50" x2="195" y2="50" stroke="#2563eb" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Arrow Head -->
+  <path class="head" d="M 185 42 L 197 50 L 185 58" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+
+  <!-- Data Points -->
+  <circle class="point p1" cx="30" cy="62" r="3.5" fill="#000" />
+  <circle class="point p2" cx="65" cy="32" r="3.5" fill="#000" />
+  <circle class="point p3" cx="100" cy="55" r="3.5" fill="#000" />
+  <circle class="point p4" cx="135" cy="64" r="3.5" fill="#000" />
+  <circle class="point p5" cx="170" cy="37" r="3.5" fill="#000" />
+</svg>

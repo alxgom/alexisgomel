@@ -1,9 +1,9 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
 
 // MULTILINGUAL SETTINGS
-const currentLang = "en";
-const alternateHref = "/es/projects/sevilla";
+const currentLang = "es";
+const alternateHref = "/projects/sevilla";
 
 // PALETTE DATA
 const sevillePalette = [
@@ -20,32 +20,31 @@ const sevillePalette = [
 ---
 
 <MainLayout
-  title="Seville Palette Visualization | Alexis Gomel"
-  description="A data visualization of the Seville-inspired color palette."
+  title="La Paleta de Sevilla | Alexis Gomel"
+  description="Una visualización de datos de la paleta de colores inspirada en Sevilla."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
-  <!-- SEO: Prevent Indexing -->
   <!-- SEO: Indexing Allowed -->
   <meta
     slot="head"
     name="description"
-    content="A data visualization of the Seville-inspired color palette, featuring contrast analysis and color blindness simulations."
+    content="Una visualización de datos de la paleta de colores inspirada en Sevilla, con análisis de contraste y simulaciones de daltonismo."
   />
   <meta
     slot="head"
     name="keywords"
-    content="Seville, Color Palette, Data Visualization, Accessibility, WCAG, Color Blindness, Design, D3.js"
+    content="Sevilla, Paleta de Colores, Visualización de Datos, Accesibilidad, WCAG, Daltonismo, Diseño, D3.js"
   />
   <meta
     slot="head"
     property="og:title"
-    content="The Seville Palette | Alexis Gomel"
+    content="La Paleta de Sevilla | Alexis Gomel"
   />
   <meta
     slot="head"
     property="og:description"
-    content="Explore the accessible, Seville-inspired color palette with interactive visualizations."
+    content="Explora la paleta de colores accesible inspirada en Sevilla con visualizaciones interactivas."
   />
   <meta
     slot="head"
@@ -59,34 +58,34 @@ const sevillePalette = [
 
   <div class="palette-container">
     <div class="text-center mb-5">
-      <h1 class="section-title">The Seville Palette</h1>
+      <h1 class="section-title">La Paleta de Sevilla</h1>
       <p class="lead text-muted">
-        Inspired by the vibrant colors of Seville, this categorical palette is
-        designed for accessible contrast.
+        Inspirada en los vibrantes colores de Sevilla, esta paleta categórica
+        está diseñada para un contraste accesible.
       </p>
     </div>
 
     <div class="row mt-4 mb-5">
       <div class="col-md-3 mb-3">
         <div id="viz-bar" class="mini-viz"></div>
-        <p class="text-center text-muted small mt-2">Bar plot</p>
+        <p class="text-center text-muted small mt-2">Gráfico de barras</p>
       </div>
       <div class="col-md-3 mb-3">
         <div id="viz-scatter" class="mini-viz"></div>
-        <p class="text-center text-muted small mt-2">Scatter plot</p>
+        <p class="text-center text-muted small mt-2">Dispersión</p>
       </div>
       <div class="col-md-3 mb-3">
         <div id="viz-box" class="mini-viz"></div>
-        <p class="text-center text-muted small mt-2">Box plot</p>
+        <p class="text-center text-muted small mt-2">Diagrama de caja</p>
       </div>
       <div class="col-md-3 mb-3">
         <div id="viz-spark" class="mini-viz"></div>
-        <p class="text-center text-muted small mt-2">Sparkline</p>
+        <p class="text-center text-muted small mt-2">Minigráfico</p>
       </div>
     </div>
 
     <p class="text-center mt-4 mb-4">
-      The core of the palette is composed of three colors
+      El núcleo de la paleta se compone de tres colores
     </p>
 
     <div class="palette-row">
@@ -110,12 +109,14 @@ const sevillePalette = [
       </div>
     </div>
 
-    <p class="text-center mt-4 mb-4">And it's complemented by a grayscale.</p>
+    <p class="text-center mt-4 mb-4">
+      Y se complementa con una escala de grises.
+    </p>
 
     <p style="max-width: 600px; margin: 0 auto;">
-      Connections represent pairs with
-      <strong>passable contrast</strong> (WCAG AA), revealing how these distinct hues
-      can work together in harmony.
+      Las conexiones representan pares con
+      <strong>contraste aceptable</strong> (WCAG AA), revelando cómo estos matices
+      distintos pueden trabajar juntos en armonía.
     </p>
 
     <!-- D3 Visualization Container -->
@@ -125,14 +126,14 @@ const sevillePalette = [
 
     <!-- Contrast Matrix Section -->
     <section class="contrast-section mt-5 pt-5">
-      <h2 class="text-center mb-3">Contrast Matrix</h2>
+      <h2 class="text-center mb-3">Matriz de Contraste</h2>
       <p
         class="text-center text-muted mb-4"
         style="max-width: 600px; margin: 0 auto;"
       >
-        A practical reference for accessibility. Values show WCAG contrast
-        ratios;
-        <strong>bold (✓)</strong> indicates AA compliance (≥ 4.5).
+        Una referencia práctica para la accesibilidad. Los valores muestran las
+        relaciones de contraste WCAG;
+        <strong>negrita (✓)</strong> indica cumplimiento AA (≥ 4.5).
       </p>
       <div style="overflow-x: auto;">
         <table id="contrast-matrix" class="contrast-table">
@@ -142,22 +143,22 @@ const sevillePalette = [
 
       <!-- Color Blindness Simulation Section -->
       <section class="colorblind-section mt-5 pt-5">
-        <h3 class="text-center mb-3">Color Blindness Simulation</h3>
+        <h3 class="text-center mb-3">Simulación de Daltonismo</h3>
         <div class="text-center mb-4">
           <label class="toggle-switch">
             <input type="checkbox" id="accessible-toggle" />
             <span class="slider round"></span>
           </label>
           <span class="ml-2 text-muted" style="vertical-align: middle;"
-            >Use Accessible Green (Triana) instead of Red (Almegre)</span
+            >Usar Verde Accesible (Triana) en lugar de Rojo (Almegre)</span
           >
         </div>
         <p
           class="text-center text-muted mb-4"
           style="max-width: 700px; margin: 0 auto;"
         >
-          How does this palette appear to people with different types of color
-          vision deficiency?
+          ¿Cómo aparece esta paleta para personas con diferentes tipos de
+          deficiencia visual del color?
         </p>
 
         <!-- SVG Filters for Color Blindness -->
@@ -187,31 +188,31 @@ const sevillePalette = [
         <div class="colorblind-grid">
           <!-- Normal Vision -->
           <div class="colorblind-card">
-            <h4>Normal Vision</h4>
-            <p class="stat">~92% of population</p>
+            <h4>Visión Normal</h4>
+            <p class="stat">~92% de la población</p>
             <div id="swatches-normal"></div>
           </div>
 
           <!-- Deuteranopia -->
           <div class="colorblind-card">
-            <h4>Deuteranopia</h4>
-            <p class="stat">~6% of males | Green-blind</p>
+            <h4>Deuteranopía</h4>
+            <p class="stat">~6% de hombres | Ceguera al verde</p>
             <div id="swatches-deuteranopia" style="filter: url(#deuteranopia);">
             </div>
           </div>
 
           <!-- Protanopia -->
           <div class="colorblind-card">
-            <h4>Protanopia</h4>
-            <p class="stat">~1% of males | Red-blind</p>
+            <h4>Protanopía</h4>
+            <p class="stat">~1% de hombres | Ceguera al rojo</p>
             <div id="swatches-protanopia" style="filter: url(#protanopia);">
             </div>
           </div>
 
           <!-- Tritanopia -->
           <div class="colorblind-card">
-            <h4>Tritanopia</h4>
-            <p class="stat">~0.01% of population | Blue-blind</p>
+            <h4>Tritanopía</h4>
+            <p class="stat">~0.01% de la población | Ceguera al azul</p>
             <div id="swatches-tritanopia" style="filter: url(#tritanopia);">
             </div>
           </div>
@@ -220,30 +221,30 @@ const sevillePalette = [
 
       <!-- Photo Gallery Section -->
       <section class="photo-gallery mt-5 pt-5 inspiration-bg fade-in-section">
-        <h2 class="text-center mb-4">The Inspiration</h2>
+        <h2 class="text-center mb-4">La Inspiración</h2>
         <p
           class="text-center text-muted mb-5"
           style="max-width: 600px; margin: 0 auto;"
         >
-          These project came to be while visiting Andalusia with my family in
-          December 2025. While touring the city of sevilla and many towns in
-          Andalusia, I learned about how many of the colors used reflect the
-          rich history of the area.
+          Este proyecto surgió mientras visitaba Andalucía con mi familia en
+          diciembre de 2025. Al recorrer la ciudad de Sevilla y muchos pueblos
+          en Andalucía, aprendí cómo muchos de los colores utilizados reflejan
+          la rica historia de la zona.
         </p>
         <h3
           class="text-center text-muted mb-5"
           style="max-width: 600px; margin: 0 auto;"
         >
-          These colors include
+          Estos colores incluyen
         </h3>
         <ul>
           <li>
             <span class="inline-swatch" style="background-color: #FFAB60;"
             ></span>
-            Albero: Coming from sediments of the Guadalquivir river. This specific
-            shade is actually based on the <b>Pantone "Flor de Sevilla"</b>, a
-            brighter interpretation of the traditional Albero developed in
-            collaboration with Tanqueray.
+            Albero: Proveniente de sedimentos del río Guadalquivir. Este tono específico
+            se basa en realidad en el <b>Pantone "Flor de Sevilla"</b>, una
+            interpretación más brillante del Albero tradicional desarrollada en
+            colaboración con Tanqueray.
             <div class="mt-3 mb-3">
               <iframe
                 width="560"
@@ -260,47 +261,47 @@ const sevillePalette = [
           <li>
             <span class="inline-swatch" style="background-color: #A50034;"
             ></span>
-            Almegre: The word comes from Andalusian Arabic al-máḡra, which originates
-            from Arabic al-maḡra (الْمَغْرَة), meaning "red clay or earth".
+            Almegre: La palabra proviene del árabe andalusí al-máḡra, que se origina
+            del árabe al-maḡra (الْمَغْرَة), que significa "arcilla roja o tierra".
           </li>
           <li>
             <span class="inline-swatch" style="background-color: #26619C;"
             ></span>
-            Lapis lazuli: The blue of the palette, it reflects the valuable blue lapiz
-            lazuli imported by the Arabs, and the blue used in the many ceramics that
-            decorate andalucia. It also represents the clear skies usually present
-            in sevilla.
+            Lapiz lazuli: El azul de la paleta, refleja el valioso lapizlázuli azul
+            importado por los árabes, y el azul utilizado en las muchas cerámicas
+            que decoran Andalucía. También representa los cielos despejados generalmente
+            presentes en Sevilla.
           </li>
           <li>
             <span class="inline-swatch" style="background-color: #115740;"
             ></span>
-            Triana green: A deep green that reflects the green on the flag of andalucia,
-            and the green asociated with the "Esperanza de Triana". It also symbolizes
-            the lush green of the many trees that inhabit the city.
-            <b>Note:</b> This is an optional color in the palette, recommended as
-            a replacement for Almegre (Red) when red-green color blindness accessibility
-            is a priority.
+            Verde Triana: Un verde profundo que refleja el verde en la bandera de
+            Andalucía, y el verde asociado con la "Esperanza de Triana". También simboliza
+            el verde exuberante de los muchos árboles que habitan la ciudad.
+            <b>Nota:</b> Este es un color opcional en la paleta, recomendado como
+            reemplazo de Almegre (Rojo) cuando la accesibilidad para el daltonismo
+            rojo-verde es una prioridad.
           </li>
         </ul>
 
         <p>
-          The inspiration behind this colors is a mix of the beautiful history
-          of the area, which speaks about the mixing and coexistence of cultures
-          though the ages.
+          La inspiración detrás de estos colores es una mezcla de la hermosa
+          historia de la zona, que habla sobre la mezcla y convivencia de
+          culturas a través de los tiempos.
         </p>
         <p>
-          This idea also came to be thanks to the realization that this colours
-          formed a very pleasent and accesible palette. With muted natural
-          saturations and choices that can be accesible for colour blind
-          audiences.
+          Esta idea también surgió gracias a la comprensión de que estos colores
+          formaban una paleta muy agradable y accesible. Con saturaciones
+          naturales apagadas y elecciones que pueden ser accesibles para
+          audiencias daltónicas.
         </p>
 
         <ul>
           <li>
-            To finish the core of the palette, I added 2026's Pantenne's colour
-            of the year: "Cloud Dancer". A soft white that invokes peace and
-            traquility. Making it a perfect fit for a palette inspired by the
-            coexistance cultures in such a rich region.
+            Para terminar el núcleo de la paleta, agregué el color del año 2026
+            de Pantone: "Cloud Dancer". Un blanco suave que invoca paz y
+            tranquilidad. Haciéndolo un ajuste perfecto para una paleta
+            inspirada en la convivencia de culturas en una región tan rica.
           </li>
         </ul>
         <a href="https://www.pantone.com/color-of-the-year/2026">
@@ -308,9 +309,9 @@ const sevillePalette = [
         </a>
 
         <p class="mt-4">
-          To build a sequential palette using these colors, you can use the <a
-            href="https://gka.github.io/palettes/"
-            target="_blank">Chroma.js Color Palette Helper</a
+          Para construir una paleta secuencial usando estos colores, puedes usar
+          el <a href="https://gka.github.io/palettes/" target="_blank"
+            >Ayudante de Paleta de Colores Chroma.js</a
           >.
         </p>
 
@@ -318,25 +319,25 @@ const sevillePalette = [
           class="text-center text-muted mb-5"
           style="max-width: 600px; margin: 0 auto;"
         >
-          These photographs from my trip to Seville captured the textures,
-          light, and spirit that inspired this palette.
+          Estas fotografías de mi viaje a Sevilla capturaron las texturas, la
+          luz y el espíritu que inspiraron esta paleta.
         </p>
         <div class="gallery-grid">
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/oranges_tree_on_white_background.webp"
-              alt="Oranges tree on white background"
+              alt="Árbol de naranjas sobre fondo blanco"
               loading="lazy"
             />
-            <p class="caption">Oranges tree on white background</p>
+            <p class="caption">Árbol de naranjas sobre fondo blanco</p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/wall_paint_and_sky.JPG"
-              alt="Wall paint and sky"
+              alt="Pintura de pared y cielo"
               loading="lazy"
             />
-            <p class="caption">Wall paint and sky</p>
+            <p class="caption">Pintura de pared y cielo</p>
           </div>
           <div class="gallery-item">
             <img
@@ -349,74 +350,76 @@ const sevillePalette = [
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/blue_and_yellow_tiles_on_red_floor.webp"
-              alt="Blue and yellow tiles on red floor"
+              alt="Azulejos azules y amarillos sobre suelo rojo"
               loading="lazy"
             />
-            <p class="caption">Blue and yellow tiles on red floor</p>
+            <p class="caption">Azulejos azules y amarillos sobre suelo rojo</p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/white_and_blue_ceramic_decorations_on_columns.webp"
-              alt="White and blue ceramic decorations on columns"
+              alt="Decoraciones de cerámica blanca y azul en columnas"
               loading="lazy"
             />
-            <p class="caption">White and blue ceramic decorations on columns</p>
+            <p class="caption">
+              Decoraciones de cerámica blanca y azul en columnas
+            </p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/plaza_espana_lake_with_boats.webp"
-              alt="Plaza España lake with boats"
+              alt="Lago de Plaza España con barcas"
               loading="lazy"
             />
-            <p class="caption">Plaza España lake with boats</p>
+            <p class="caption">Lago de Plaza España con barcas</p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/cordoba_cathedral_interior.jpg"
-              alt="Cordoba cathedral interior"
+              alt="Interior de la catedral de Córdoba"
               loading="lazy"
             />
-            <p class="caption">Cordoba cathedral interior</p>
+            <p class="caption">Interior de la catedral de Córdoba</p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/little_street_cordoba.webp"
-              alt="Little street Cordoba"
+              alt="Callecita en Córdoba"
               loading="lazy"
             />
-            <p class="caption">Little street Cordoba</p>
+            <p class="caption">Callecita en Córdoba</p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/orange_wall_and_green_leaves.webp"
-              alt="Orange wall and green leaves"
+              alt="Pared naranja y hojas verdes"
               loading="lazy"
             />
-            <p class="caption">Orange wall and green leaves</p>
+            <p class="caption">Pared naranja y hojas verdes</p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/door_with_blue_and_white_ceramics.jpg"
-              alt="Door with blue and white ceramics"
+              alt="Puerta con cerámicas azules y blancas"
               loading="lazy"
             />
-            <p class="caption">Door with blue and white ceramics</p>
+            <p class="caption">Puerta con cerámicas azules y blancas</p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/plaza_espana_dinamic_shot_with_ceramics_foreground.JPG"
-              alt="Plaza España dynamic shot"
+              alt="Toma dinámica de Plaza España"
               loading="lazy"
             />
-            <p class="caption">Plaza España dynamic shot</p>
+            <p class="caption">Toma dinámica de Plaza España</p>
           </div>
           <div class="gallery-item">
             <img
               src="/assets/imgs/palette/cordoba_cathedral_interior_2.webp"
-              alt="Cordoba cathedral interior detail"
+              alt="Detalle interior de la catedral de Córdoba"
               loading="lazy"
             />
-            <p class="caption">Cordoba cathedral interior detail</p>
+            <p class="caption">Detalle interior de la catedral de Córdoba</p>
           </div>
         </div>
       </section>
@@ -542,7 +545,7 @@ const sevillePalette = [
     link
       .on("mouseover", (event, d) => {
         tooltip.style("opacity", 1);
-        tooltip.html(`Contrast Ratio: <strong>${d.ratio.toFixed(2)}</strong>`);
+        tooltip.html(`Ratio Contraste: <strong>${d.ratio.toFixed(2)}</strong>`);
         d3.select(event.target)
           .attr("stroke", "#333")
           .attr("stroke-opacity", 1);
@@ -621,7 +624,7 @@ const sevillePalette = [
       // Header Row
       const headerRow = document.createElement("tr");
       const cornerTh = document.createElement("th");
-      cornerTh.textContent = "BG \\ FG";
+      cornerTh.textContent = "FD \\ FN";
       headerRow.appendChild(cornerTh);
       palette.forEach((colColor) => {
         const th = document.createElement("th");
@@ -657,7 +660,7 @@ const sevillePalette = [
 
           if (ratio >= 4.5) td.textContent += " ✓";
 
-          td.title = `BG: ${rowColor.name}\nFG: ${colColor.name}\nRatio: ${ratio.toFixed(2)}`;
+          td.title = `Fondo: ${rowColor.name}\nFrente: ${colColor.name}\nRatio: ${ratio.toFixed(2)}`;
 
           tr.appendChild(td);
         });
