@@ -27,14 +27,20 @@ const {
 } = Astro.props;
 
 // 1. Determine the canonical URL for the current page
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalPath = Astro.url.pathname.endsWith("/")
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const canonicalURL = new URL(canonicalPath, Astro.site);
 
 // 2. Determine the alternate language tag for SEO
 const alternateLang = currentLang === "en" ? "es" : "en";
 
 // 3. Set the base URL for the 'x-default' (fallback) link
-// Ensure alternateHref is absolute
-const alternateUrl = new URL(alternateHref, Astro.site);
+// Ensure alternateHref is absolute and has a trailing slash
+const alternatePath = alternateHref.endsWith("/")
+  ? alternateHref
+  : `${alternateHref}/`;
+const alternateUrl = new URL(alternatePath, Astro.site);
 const enUrl = currentLang === "en" ? canonicalURL.href : alternateUrl.href;
 
 const schema = {

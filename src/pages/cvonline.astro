@@ -8,7 +8,7 @@ import SkillGroup from "../components/cv/SkillGroup.astro";
 import Lightbox from "../components/Lightbox.astro";
 
 const currentLang = "en";
-const alternateHref = "/es/cvonline";
+const alternateHref = "/es/cvonline/";
 const advancedSkills = [
   { name: "Python", experience: "+8yrs" },
   { name: "Matlab", experience: "+7yrs" },
@@ -655,7 +655,7 @@ const beginnerSkills = [
           Teaching Experience
         </h2>
         <div class="row mx-auto">
-          <div class="col-sm-6 col-md-6 ">
+          <div class="col-sm-6 col-md-6">
             <h3
               class="section-title mb-4 pb-3"
               style="font-weight: bold; font-size: 34px;"
@@ -717,23 +717,23 @@ const beginnerSkills = [
 
     <section id="Publications" class="section pt-5">
       <div class="container text-center">
-        <div class="bibtex_template  mb-3">
+        <div class="bibtex_template mb-3">
           <div style="">
             <span
               class="title"
               style="font-size: 26px;  font-family: American Typewriter;"
             ></span>
-          <div class="if author">
-            <span class="if year">
-              <span class="year" style="font-size: 20px"></span>,
-            </span>
-            <span class="author" style="font-size: 20px"></span>
-            <span class="if url" style="margin-left: 20px">
-              <a class="url" style="color:rgb(182, 52, 52); font-size:12px"
-                >(view online)</a
-              >
-            </span>
-          </div>
+            <div class="if author">
+              <span class="if year">
+                <span class="year" style="font-size: 20px"></span>,
+              </span>
+              <span class="author" style="font-size: 20px"></span>
+              <span class="if url" style="margin-left: 20px">
+                <a class="url" style="color:rgb(182, 52, 52); font-size:12px"
+                  >(view online)</a
+                >
+              </span>
+            </div>
           </div>
         </div>
 
@@ -746,11 +746,11 @@ const beginnerSkills = [
 
         <bibtex src="/mybib.bib"></bibtex>
 
-        <div class="bibtex_display " bibtexkey="Gomel2023"></div>
-        <div class="bibtex_display " bibtexkey="Gomel2021"></div>
-        <div class="bibtex_display " bibtexkey="Marconi2020a"></div>
-        <div class="bibtex_display " bibtexkey="Armaroli2020"></div>
-        <div class="bibtex_display " bibtexkey="Gomel2019"></div>
+        <div class="bibtex_display" bibtexkey="Gomel2023"></div>
+        <div class="bibtex_display" bibtexkey="Gomel2021"></div>
+        <div class="bibtex_display" bibtexkey="Marconi2020a"></div>
+        <div class="bibtex_display" bibtexkey="Armaroli2020"></div>
+        <div class="bibtex_display" bibtexkey="Gomel2019"></div>
       </div>
       <a
         href="#Presentations and congresses"

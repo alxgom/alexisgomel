@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
-const alternateHref = "/font-test";
+const alternateHref = "/font-test/";
 ---
 
 <MainLayout
@@ -860,7 +860,7 @@ const alternateHref = "/font-test";
           d3
             .line()
             .x((d) => x(d.x))
-            .y((d) => y(d.y))
+            .y((d) => y(d.y)),
         );
 
       // Dots
