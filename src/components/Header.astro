@@ -10,6 +10,14 @@ if (isSpanish) {
   // Fix for root path in English to switch to /es/
   switchUrl = pathname === "/" ? "/es/" : `/es${pathname}`;
 }
+// Ensure switchUrl has a trailing slash if it doesn't have one and doesn't have a dot or hash
+if (
+  !switchUrl.endsWith("/") &&
+  !switchUrl.includes(".") &&
+  !switchUrl.includes("#")
+) {
+  switchUrl += "/";
+}
 const switchLabel = isSpanish ? "EN" : "ES";
 const switchLangAttr = isSpanish ? "en" : "es";
 
@@ -42,7 +50,13 @@ const t = {
 };
 
 // Links helper
-const link = (path: string) => `${homeBase}${path}`;
+const link = (path: string) => {
+  const fullPath = `${homeBase}${path}`;
+  if (path.includes("#") || fullPath.endsWith("/") || path.includes(".")) {
+    return fullPath;
+  }
+  return `${fullPath}/`;
+};
 
 // Active State Helper
 const isActive = (slug: string) => {
