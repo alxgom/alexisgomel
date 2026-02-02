@@ -33,6 +33,7 @@
 		"check": "astro build && tsc && wrangler deploy --dry-run",
 		"deploy": "wrangler deploy",
 		"dev": "astro dev",
+		"indexnow": "node scripts/submit-indexnow.mjs",
 		"preview": "astro build && wrangler dev"
 	},
 	"type": "module"
