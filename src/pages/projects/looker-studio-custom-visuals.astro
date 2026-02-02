@@ -110,23 +110,34 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
       <div class="viz-list">
         <h3>Visualizations Included</h3>
         <div class="row align-items-center mt-4">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <ul>
               <li>
+                <strong>Lipstick Chart</strong> - A specialized chart type for comparing
+                real values against targets with a distinctive, high-density visual
+                style.
+              </li>
+              <li>
                 <strong>Tree Hierarchy</strong> - A hierarchical visualization for
-                displaying multi-level data structures with drill-down capabilities.
+                displaying multi-level data structures with intuitive drill-down capabilities.
               </li>
               <li>
                 <strong>Histogram</strong> - A customizable histogram with options
-                for orientation, log scale, and axis visibility.
-              </li>
-              <li>
-                <strong>Lipstick Chart</strong> - A specialized chart type for comparing
-                values with a distinctive visual style.
+                for orientation, log scale, and axis visibility for distribution analysis.
               </li>
             </ul>
+            <p class="text-muted mt-3">
+              Below you can see detailed demonstrations and technical
+              explanations for the primary visualizations.
+            </p>
           </div>
-          <div class="col-md-6 mb-4 mb-md-0">
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Lipstick Chart: Value vs. Target Analysis</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
             <div class="video-container">
               <video
                 autoplay
@@ -146,10 +157,39 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
                 />
                 Your browser does not support the video tag.
               </video>
-              <p class="text-muted small mt-2 text-center">
-                Lipstick Visualization: Interactive features and customization.
-              </p>
             </div>
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p>
+              The <strong>Lipstick Visual</strong> is a powerful tool designed to
+              compare current performance against specific targets. It excels at breaking
+              down metrics across various dimensions—for example, comparing <em
+                >Actual Revenue</em
+              > from different regions against their <em>Expected Targets</em>.
+            </p>
+            <p>
+              By combining multiple data points into a single graphical element,
+              it provides a comprehensive view at a glance:
+            </p>
+            <ul>
+              <li>
+                <strong>Completion Percentage:</strong> Visual progress towards the
+                goal.
+              </li>
+              <li>
+                <strong>Real Metric Value:</strong> The absolute current figure.
+              </li>
+              <li><strong>Target Value:</strong> The benchmark or budget.</li>
+              <li>
+                <strong>Absolute Variation:</strong> The calculated gap between both
+                values.
+              </li>
+            </ul>
+            <p class="text-muted small">
+              This visual effectively replaces the need for separate bar charts
+              and data tables by consolidating all performance indicators into
+              one streamlined, interactive component.
+            </p>
           </div>
         </div>
       </div>

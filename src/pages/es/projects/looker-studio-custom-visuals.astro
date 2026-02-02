@@ -112,25 +112,36 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
       <div class="viz-list">
         <h3>Visualizaciones Incluidas</h3>
         <div class="row align-items-center mt-4">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <ul>
               <li>
+                <strong>Gráfico Lipstick</strong> - Un tipo de gráfico especializado
+                para comparar valores reales con objetivos con un estilo visual distintivo
+                y de alta densidad.
+              </li>
+              <li>
                 <strong>Jerarquía de Árbol</strong> - Una visualización jerárquica
-                para mostrar estructuras de datos de varios niveles con capacidades
+                para mostrar estructuras de datos multinivel con capacidades intuitivas
                 de desglose (drill-down).
               </li>
               <li>
                 <strong>Histograma</strong> - Un histograma personalizable con opciones
-                de orientación, escala logarítmica y visibilidad de ejes.
-              </li>
-              <li>
-                <strong>Gráfico de Lápiz Labial (Lipstick Chart)</strong> - Un tipo
-                de gráfico especializado para comparar valores con un estilo visual
-                distintivo.
+                de orientación, escala logarítmica y visibilidad de ejes para el análisis
+                de distribución.
               </li>
             </ul>
+            <p class="text-muted mt-3">
+              A continuación puedes ver demostraciones detalladas y
+              explicaciones técnicas de las visualizaciones principales.
+            </p>
           </div>
-          <div class="col-md-6 mb-4 mb-md-0">
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Gráfico Lipstick: Análisis de Valor vs. Objetivo</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
             <div class="video-container">
               <video
                 autoplay
@@ -150,11 +161,42 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
                 />
                 Tu navegador no soporta el formato de video.
               </video>
-              <p class="text-muted small mt-2 text-center">
-                Visualización Lipstick: Características interactivas y
-                personalización.
-              </p>
             </div>
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p>
+              La <strong>Visualización Lipstick</strong> es una herramienta potente
+              diseñada para comparar el rendimiento actual frente a objetivos específicos.
+              Es excelente para desglosar métricas a través de varias dimensiones;
+              por ejemplo, comparar los <em>Ingresos Reales</em> de diferentes regiones
+              con sus <em>Objetivos Esperados</em>.
+            </p>
+            <p>
+              Al combinar múltiples puntos de datos en un solo elemento gráfico,
+              proporciona una visión completa de un vistazo:
+            </p>
+            <ul>
+              <li>
+                <strong>Porcentaje de Cumplimiento:</strong> Progreso visual hacia
+                la meta.
+              </li>
+              <li>
+                <strong>Valor Real de la Métrica:</strong> La cifra absoluta actual.
+              </li>
+              <li>
+                <strong>Valor Objetivo:</strong> El punto de referencia o presupuesto.
+              </li>
+              <li>
+                <strong>Variación Absoluta:</strong> La brecha calculada entre ambos
+                valores.
+              </li>
+            </ul>
+            <p class="text-muted small">
+              Esta visualización reemplaza efectivamente la necesidad de tener
+              gráficos de barras y tablas de datos por separado al consolidar
+              todos los indicadores de rendimiento en un componente interactivo
+              y simplificado.
+            </p>
           </div>
         </div>
       </div>
