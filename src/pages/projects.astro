@@ -71,16 +71,28 @@ const alternateHref = "/es/projects/";
       </div>
 
       <div class="container">
-        <!-- Project: MIXX -->
         <div class="row mb-5 align-items-center">
           <div class="col-md-6 mb-3 mb-md-0">
             <div class="general-img-holder">
-              <Image
-                src={mixxxScreenshot}
-                alt="MIXX Extension"
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
                 class="img-fluid"
-                loading="eager"
-              />
+                poster={mixxxScreenshot.src}
+                aria-label="Mixxx DJ Set Analysis Dashboard Demo Video"
+              >
+                <source
+                  src="/assets/imgs/Projects/mixxx_dashboard.webm"
+                  type="video/webm"
+                />
+                <source
+                  src="/assets/imgs/Projects/mixxx_dashboard_optimized.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
               <div class="overlay">
                 <a
                   href="https://dj-dashboard.onrender.com/"
@@ -91,12 +103,6 @@ const alternateHref = "/es/projects/";
                 <div class="overlay-infos">
                   <h5>Mixxx DJ Set Analysis Dashboard</h5>
                 </div>
-                <a
-                  href={mixxxScreenshot.src}
-                  class="overlay-zoom-link"
-                  aria-label="Zoom in on Dashboard"
-                  data-lightbox="true"><i class="ti-zoom-in"></i></a
-                >
               </div>
             </div>
           </div>

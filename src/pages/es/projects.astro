@@ -16,6 +16,7 @@ import waveGif from "../../assets/imgs/3_WAVE.gif";
 import filamentImg from "../../assets/imgs/filament_scheme2.png";
 import birdsImg from "../../assets/imgs/Projects/birds.png";
 import sevillaThumb from "../../assets/imgs/Projects/sevilla_thumb.png";
+import lookerStudioImg from "../../assets/imgs/Projects/tree_hierarchy_viz.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
@@ -70,16 +71,28 @@ const alternateHref = "/projects/";
       </div>
 
       <div class="container">
-        <!-- Project: MIXX -->
         <div class="row mb-5 align-items-center">
           <div class="col-md-6 mb-3 mb-md-0">
             <div class="general-img-holder">
-              <Image
-                src={mixxxScreenshot}
-                alt="Extensión MIXX"
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
                 class="img-fluid"
-                loading="eager"
-              />
+                poster={mixxxScreenshot.src}
+                aria-label="Video demostrativo del Panel de Análisis para DJ Mixxx"
+              >
+                <source
+                  src="/assets/imgs/Projects/mixxx_dashboard.webm"
+                  type="video/webm"
+                />
+                <source
+                  src="/assets/imgs/Projects/mixxx_dashboard_optimized.mp4"
+                  type="video/mp4"
+                />
+                Tu navegador no soporta el formato de video.
+              </video>
               <div class="overlay">
                 <a
                   href="https://dj-dashboard.onrender.com/"
@@ -90,12 +103,6 @@ const alternateHref = "/projects/";
                 <div class="overlay-infos">
                   <h5>Panel de Análisis para DJ Mixxx</h5>
                 </div>
-                <a
-                  href={mixxxScreenshot.src}
-                  class="overlay-zoom-link"
-                  aria-label="Ampliar imagen del Panel"
-                  data-lightbox="true"><i class="ti-zoom-in"></i></a
-                >
               </div>
             </div>
           </div>
@@ -390,6 +397,46 @@ const alternateHref = "/projects/";
           <p>
             <strong>Tecnología y habilidades:</strong> Visualización de datos, D3.js,
             Accesibilidad (WCAG), Teoría del color.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project: Looker Studio Community Visualizations -->
+      <div class="row mb-5 align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="general-img-holder">
+            <Image
+              src={lookerStudioImg}
+              alt="Visualizaciones de la Comunidad de Looker Studio"
+              class="img-fluid"
+            />
+            <div class="overlay">
+              <a
+                href="/es/projects/lookerstudio/"
+                class="overlay-link-full"
+                aria-label="Ver proyecto de Visualizaciones de Looker Studio"
+              ></a>
+              <div class="overlay-infos">
+                <h5>Visualizaciones de la Comunidad de Looker Studio</h5>
+              </div>
+              <a
+                href={lookerStudioImg.src}
+                class="overlay-zoom-link"
+                aria-label="Ampliar imagen de Visualizaciones de Looker Studio"
+                data-lightbox="true"><i class="ti-zoom-in"></i></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Visualizaciones de la Comunidad de Looker Studio</h4>
+          <p>
+            Visualizaciones personalizadas para Google Looker Studio, incluyendo
+            jerarquía de árbol, histograma y gráficos de lápiz labial.
+          </p>
+          <p>
+            <strong>Tecnología y habilidades:</strong> JavaScript, D3.js, API DSCC,
+            Visualización de Datos.
           </p>
         </div>
       </div>

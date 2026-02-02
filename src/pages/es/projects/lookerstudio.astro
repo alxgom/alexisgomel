@@ -1,36 +1,36 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
 
 // MULTILINGUAL SETTINGS
-const currentLang = "en";
-const alternateHref = "/es/projects/lookerstudio/";
+const currentLang = "es";
+const alternateHref = "/projects/lookerstudio/";
 ---
 
 <MainLayout
-  title="Looker Studio Community Visualizations | Alexis Gomel"
-  description="Custom community visualizations for Looker Studio including tree hierarchy, histogram, and lipstick chart visualizations."
+  title="Visualizaciones de la Comunidad de Looker Studio | Alexis Gomel"
+  description="Visualizaciones personalizadas de la comunidad para Looker Studio, incluyendo jerarquía de árbol, histograma y gráficos de lápiz labial."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
   <meta
     slot="head"
     name="description"
-    content="Custom community visualizations for Looker Studio. Explore interactive tree hierarchy, histogram, and lipstick chart visualizations built with JavaScript and DSCC."
+    content="Visualizaciones personalizadas de la comunidad para Looker Studio. Explora visualizaciones interactivas de jerarquía de árbol, histograma y gráficos de lápiz labial construidos con JavaScript y DSCC."
   />
   <meta
     slot="head"
     name="keywords"
-    content="Looker Studio, Community Visualizations, Data Visualization, Tree Hierarchy, Histogram, Lipstick Chart, DSCC, JavaScript"
+    content="Looker Studio, Visualizaciones de la Comunidad, Visualización de Datos, Jerarquía de Árbol, Histograma, Gráfico de Lápiz Labial, DSCC, JavaScript"
   />
   <meta
     slot="head"
     property="og:title"
-    content="Looker Studio Community Visualizations | Alexis Gomel"
+    content="Visualizaciones de la Comunidad de Looker Studio | Alexis Gomel"
   />
   <meta
     slot="head"
     property="og:description"
-    content="Custom community visualizations for Looker Studio including tree hierarchy, histogram, and lipstick charts."
+    content="Visualizaciones personalizadas de la comunidad para Looker Studio, incluyendo jerarquía de árbol, histogramas y gráficos de lápiz labial."
   />
   <meta
     slot="head"
@@ -89,17 +89,19 @@ const alternateHref = "/es/projects/lookerstudio/";
 
   <div class="looker-container">
     <div class="container mt-5 pt-5">
-      <h1 class="section-title">Looker Studio Community Visualizations</h1>
+      <h1 class="section-title">
+        Visualizaciones de la Comunidad de Looker Studio
+      </h1>
       <p class="lead text-muted">
-        Custom community visualizations I've developed for Google Looker Studio,
-        extending its capabilities with specialized chart types for better data
-        storytelling.
+        Visualizaciones personalizadas de la comunidad que he desarrollado para
+        Google Looker Studio, extendiendo sus capacidades con tipos de gráficos
+        especializados para una mejor narrativa de datos.
       </p>
 
       <iframe
         class="report-frame"
         width="100%"
-        height="800"
+        height="600"
         src="https://lookerstudio.google.com/embed/reporting/7f1ad7dc-2ae4-4e72-be31-b588c9890fa9/page/p_8m1usmbk0d"
         frameborder="0"
         style="border:0"
@@ -108,27 +110,29 @@ const alternateHref = "/es/projects/lookerstudio/";
       ></iframe>
 
       <div class="viz-list">
-        <h3>Visualizations Included</h3>
+        <h3>Visualizaciones Incluidas</h3>
         <div class="row align-items-center mt-4">
           <div class="col-md-6">
             <ul>
               <li>
-                <strong>Tree Hierarchy</strong> - A hierarchical visualization for
-                displaying multi-level data structures with drill-down capabilities.
+                <strong>Jerarquía de Árbol</strong> - Una visualización jerárquica
+                para mostrar estructuras de datos de varios niveles con capacidades
+                de desglose (drill-down).
               </li>
               <li>
-                <strong>Histogram</strong> - A customizable histogram with options
-                for orientation, log scale, and axis visibility.
+                <strong>Histograma</strong> - Un histograma personalizable con opciones
+                de orientación, escala logarítmica y visibilidad de ejes.
               </li>
               <li>
-                <strong>Lipstick Chart</strong> - A specialized chart type for comparing
-                values with a distinctive visual style.
+                <strong>Gráfico de Lápiz Labial (Lipstick Chart)</strong> - Un tipo
+                de gráfico especializado para comparar valores con un estilo visual
+                distintivo.
               </li>
             </ul>
             <p class="text-muted small mt-3">
-              The video demonstrates the interactive features of the Lipstick
-              visualization, including color customization, cross-filtering, and
-              dynamic resizing.
+              El video demuestra las características interactivas de la
+              visualización de Lápiz Labial, incluyendo personalización de
+              colores, filtrado cruzado y redimensionamiento dinámico.
             </p>
           </div>
           <div class="col-md-6 mb-4 mb-md-0">
@@ -139,7 +143,7 @@ const alternateHref = "/es/projects/lookerstudio/";
                 loop
                 playsinline
                 class="img-fluid rounded shadow"
-                aria-label="Lipstick Visualization Demo"
+                aria-label="Demo de Visualización Lipstick"
               >
                 <source
                   src="/assets/imgs/Projects/lookerstudio_lipstick_viz.webm"
@@ -149,7 +153,7 @@ const alternateHref = "/es/projects/lookerstudio/";
                   src="/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized.mp4"
                   type="video/mp4"
                 />
-                Your browser does not support the video tag.
+                Tu navegador no soporta el formato de video.
               </video>
             </div>
           </div>
@@ -157,22 +161,22 @@ const alternateHref = "/es/projects/lookerstudio/";
       </div>
 
       <div class="viz-list">
-        <h3>Technical Details</h3>
+        <h3>Detalles Técnicos</h3>
         <p>
-          These visualizations are built using the
+          Estas visualizaciones están construidas utilizando la
           <a
             href="https://developers.google.com/looker-studio/visualization"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Looker Studio Community Visualization API (DSCC)
+            API de Visualización de la Comunidad de Looker Studio (DSCC)
           </a>
-          with JavaScript and D3.js for rendering. They are designed to be highly
-          configurable through the Looker Studio style panel.
+          con JavaScript y D3.js para el renderizado. Están diseñadas para ser altamente
+          configurables a través del panel de estilo de Looker Studio.
         </p>
         <p>
-          <strong>Tech & skills:</strong> JavaScript, D3.js, DSCC API, Data Visualization,
-          CSS.
+          <strong>Tecnologías y habilidades:</strong> JavaScript, D3.js, API DSCC,
+          Visualización de Datos, CSS.
         </p>
       </div>
     </div>
