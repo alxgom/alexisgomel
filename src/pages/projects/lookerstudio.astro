@@ -1,0 +1,148 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+// const alternateHref = "/es/projects/lookerstudio/";
+---
+
+<MainLayout
+  title="Looker Studio Community Visualizations | Alexis Gomel"
+  description="Custom community visualizations for Looker Studio including tree hierarchy, histogram, and lipstick chart visualizations."
+  currentLang={currentLang}
+>
+  <meta
+    slot="head"
+    name="description"
+    content="Custom community visualizations for Looker Studio. Explore interactive tree hierarchy, histogram, and lipstick chart visualizations built with JavaScript and DSCC."
+  />
+  <meta
+    slot="head"
+    name="keywords"
+    content="Looker Studio, Community Visualizations, Data Visualization, Tree Hierarchy, Histogram, Lipstick Chart, DSCC, JavaScript"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Looker Studio Community Visualizations | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="Custom community visualizations for Looker Studio including tree hierarchy, histogram, and lipstick charts."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/Projects/tree_hierarchy_viz.png"
+  />
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <style>
+    .looker-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .report-frame {
+      width: 100%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      display: block;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .viz-list {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+
+    .viz-list h3 {
+      margin-bottom: 1rem;
+    }
+
+    .viz-list ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    .viz-list li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+
+  <div class="looker-container">
+    <div class="container mt-5 pt-5">
+      <h1 class="section-title">Looker Studio Community Visualizations</h1>
+      <p class="lead text-muted">
+        Custom community visualizations I've developed for Google Looker Studio,
+        extending its capabilities with specialized chart types for better data
+        storytelling.
+      </p>
+
+      <iframe
+        class="report-frame"
+        width="100%"
+        height="600"
+        src="https://lookerstudio.google.com/embed/reporting/7f1ad7dc-2ae4-4e72-be31-b588c9890fa9/page/p_8m1usmbk0d"
+        frameborder="0"
+        style="border:0"
+        allowfullscreen
+        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+      ></iframe>
+
+      <div class="viz-list">
+        <h3>Visualizations Included</h3>
+        <ul>
+          <li>
+            <strong>Tree Hierarchy</strong> - A hierarchical visualization for displaying
+            multi-level data structures with drill-down capabilities.
+          </li>
+          <li>
+            <strong>Histogram</strong> - A customizable histogram with options for
+            orientation, log scale, and axis visibility.
+          </li>
+          <li>
+            <strong>Lipstick Chart</strong> - A specialized chart type for comparing
+            values with a distinctive visual style.
+          </li>
+        </ul>
+      </div>
+
+      <div class="viz-list">
+        <h3>Technical Details</h3>
+        <p>
+          These visualizations are built using the
+          <a
+            href="https://developers.google.com/looker-studio/visualization"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Looker Studio Community Visualization API (DSCC)
+          </a>
+          with JavaScript and D3.js for rendering. They are designed to be highly
+          configurable through the Looker Studio style panel.
+        </p>
+        <p>
+          <strong>Tech & skills:</strong> JavaScript, D3.js, DSCC API, Data Visualization,
+          CSS.
+        </p>
+      </div>
+    </div>
+  </div>
+</MainLayout>
