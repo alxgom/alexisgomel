@@ -12,7 +12,7 @@ export default defineConfig({
 	integrations: [
 		mdx(),
 		sitemap({
-			filter: (page) => !page.includes('/font-test'),
+			filter: (page) => !page.includes('/font-test') && !page.includes('/webanalytics'),
 		}),
 		partytown({
 			config: {

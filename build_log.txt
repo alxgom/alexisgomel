@@ -1,0 +1,94 @@
+
+> build
+> astro build
+
+12:50:08 [@astrojs/cloudflare] Enabling sessions with Cloudflare KV for production with the "SESSION" KV binding.
+12:50:08 [@astrojs/cloudflare] If you see the error "Invalid binding `SESSION`" in your build output, you need to add the binding to your wrangler config file.
+12:50:08 [WARN] [@astrojs/cloudflare] [@astrojs/cloudflare] This adapter is intended to be used with server rendered pages, which this project does not contain any of. As such, this adapter is unnecessary.
+12:50:08 [WARN] [adapter] Cloudflare does not support sharp at runtime. However, you can configure `imageService: "compile"` to optimize images with sharp on prerendered pages during build time.
+12:50:08 [content] Syncing content
+12:50:08 [WARN] [glob-loader] The base directory "C:\DEV\alexisgomel-1\src\content\blog\" does not exist.
+12:50:08 [content] Synced content
+12:50:08 [types] Generated 550ms
+12:50:08 [build] output: "static"
+12:50:08 [build] mode: "server"
+12:50:08 [build] directory: C:\DEV\alexisgomel-1\dist\
+12:50:08 [build] adapter: @astrojs/cloudflare
+12:50:08 [build] Collecting build info...
+12:50:08 [build] Γ£ô Completed in 590ms.
+12:50:08 [build] Building server entrypoints...
+12:50:12 [vite] [32mΓ£ô built in 3.08s[39m
+12:50:12 [build] Γ£ô Completed in 3.13s.
+
+ building client (vite) 
+12:50:12 [vite] transforming...
+12:50:12 [vite] [32mΓ£ô[39m 5 modules transformed.
+12:50:12 [vite] rendering chunks...
+12:50:12 [vite] [32mΓ£ô built in 516ms[39m
+
+ prerendering static routes 
+12:50:12 Γû╢ src/pages/contact.astro
+12:50:12   ΓööΓöÇ /contact/index.html (+27ms) 
+12:50:12 Γû╢ src/pages/cvonline.astro
+12:50:12   ΓööΓöÇ /cvonline/index.html (+9ms) 
+12:50:12 Γû╢ src/pages/es/contact.astro
+12:50:12   ΓööΓöÇ /es/contact/index.html (+8ms) 
+12:50:12 Γû╢ src/pages/es/cvonline.astro
+12:50:12   ΓööΓöÇ /es/cvonline/index.html (+6ms) 
+12:50:12 Γû╢ src/pages/es/photography.astro
+12:50:12   ΓööΓöÇ /es/photography/index.html (+5ms) 
+12:50:12 Γû╢ src/pages/es/playlists.astro
+12:50:12   ΓööΓöÇ /es/playlists/index.html (+4ms) 
+12:50:12 Γû╢ src/pages/es/projects/sevilla.astro
+12:50:12   ΓööΓöÇ /es/projects/sevilla/index.html (+6ms) 
+12:50:12 Γû╢ src/pages/es/projects.astro
+12:50:12   ΓööΓöÇ /es/projects/index.html (+13ms) 
+12:50:12 Γû╢ src/pages/es/sac.astro
+12:50:12   ΓööΓöÇ /es/sac/index.html (+7ms) 
+12:50:12 Γû╢ src/pages/es/index.astro
+12:50:12   ΓööΓöÇ /es/index.html (+8ms) 
+12:50:12 Γû╢ src/pages/font-test.astro
+12:50:12   ΓööΓöÇ /font-test/index.html (+7ms) 
+12:50:12 Γû╢ src/pages/photography.astro
+12:50:12   ΓööΓöÇ /photography/index.html (+4ms) 
+12:50:12 Γû╢ src/pages/playlists.astro
+12:50:12   ΓööΓöÇ /playlists/index.html (+4ms) 
+12:50:12 Γû╢ src/pages/projects/lookerstudio.astro
+12:50:12   ΓööΓöÇ /projects/lookerstudio/index.html (+5ms) 
+12:50:12 Γû╢ src/pages/projects/sevilla.astro
+12:50:12   ΓööΓöÇ /projects/sevilla/index.html (+5ms) 
+12:50:12 Γû╢ src/pages/projects/webanalytics.astro
+12:50:12   ΓööΓöÇ /projects/webanalytics/index.html (+3ms) 
+12:50:12 Γû╢ src/pages/sac.astro
+12:50:12   ΓööΓöÇ /sac/index.html (+4ms) 
+12:50:12 Γû╢ src/pages/index.astro
+12:50:12   ΓööΓöÇ /index.html (+6ms) 
+12:50:12 Γû╢ src/pages/projects.astro
+12:50:12   ΓööΓöÇ /projects/index.html (+7ms) 
+12:50:12 ╬╗ src/pages/rss.xml.js
+12:50:12   ΓööΓöÇ /rss.xml (+12ms) 
+12:50:12 Γ£ô Completed in 246ms.
+
+ generating optimized images 
+12:50:12   Γû╢ /_astro/PopulationByDistrict_NiceColormap.HUjknczk_CtTh.webp (reused cache entry) (+6ms) (1/16)
+12:50:12   Γû╢ /_astro/mixxx_screenshot.BA0_EGsI_Zbewh3.webp (reused cache entry) (+8ms) (2/16)
+12:50:12   Γû╢ /_astro/tracking_app.HlYFod3c_ZPTcOn.webp (reused cache entry) (+6ms) (3/16)
+12:50:12   Γû╢ /_astro/sac_web_app.DEonBzom_21ekEV.webp (reused cache entry) (+8ms) (4/16)
+12:50:12   Γû╢ /_astro/sevilla_thumb.C4PVSXMl_ZBH8aG.webp (reused cache entry) (+7ms) (5/16)
+12:50:12   Γû╢ /_astro/jet_example.B_WiyxQI_24EeOi.webp (reused cache entry) (+7ms) (6/16)
+12:50:12   Γû╢ /_astro/birds.CD-IXxaE_Z2vIyRj.webp (reused cache entry) (+8ms) (7/16)
+12:50:12   Γû╢ /_astro/filament_scheme2.Bd5RP4c-_ZHBF99.webp (reused cache entry) (+8ms) (8/16)
+12:50:12   Γû╢ /_astro/3d_hamiltonian.CUw2oRnI_1zwFS6.webp (reused cache entry) (+6ms) (9/16)
+12:50:12   Γû╢ /_astro/avatar_liviano.DkHE92Nf_Z7WVEd.webp (reused cache entry) (+7ms) (10/16)
+12:50:12   Γû╢ /_astro/mixxx_dashboard_svg_logo.Dcm1PwN3_A0IIg.svg (reused cache entry) (+6ms) (11/16)
+12:50:12   Γû╢ /_astro/share_puzzle_logo.CG9Eg_ko_1MDmGf.svg (reused cache entry) (+6ms) (12/16)
+12:50:12   Γû╢ /_astro/PopulationByDistrict_NiceColormap_mini.DZ21G3uC_Z1MfGWC.webp (reused cache entry) (+7ms) (13/16)
+12:50:12   Γû╢ /_astro/wordcloud.8fIhBnSe_ZaK5h.webp (reused cache entry) (+83ms) (14/16)
+12:50:12   Γû╢ /_astro/3_WAVE.CuSPB6Rz_2nIK7.webp (reused cache entry) (+83ms) (15/16)
+12:50:13   Γû╢ /_astro/tree_hierarchy_viz.C8q1pS-n_Z1WGsJR.webp (before: 54kB, after: 21kB) (+188ms) (16/16)
+12:50:13 Γ£ô Completed in 199ms.
+
+12:50:13 [build] Rearranging server assets...
+12:50:13 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+12:50:13 [build] Server built in 4.99s
+12:50:13 [build] Complete!

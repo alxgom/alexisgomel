@@ -3,13 +3,14 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
-// const alternateHref = "/es/projects/lookerstudio/";
+const alternateHref = "/projects/lookerstudio/"; // Self-referencing until Spanish version exists
 ---
 
 <MainLayout
   title="Looker Studio Community Visualizations | Alexis Gomel"
   description="Custom community visualizations for Looker Studio including tree hierarchy, histogram, and lipstick chart visualizations."
   currentLang={currentLang}
+  alternateHref={alternateHref}
 >
   <meta
     slot="head"
