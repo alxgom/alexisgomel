@@ -1,0 +1,295 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "es";
+const alternateHref = "/projects/looker-studio-custom-visuals/";
+---
+
+<MainLayout
+  title="Visualizaciones Personalizadas para Looker Studio | Jerarquía de Árbol, Lipstick e Histograma"
+  description="Mejora tu narrativa de datos con visualizaciones interactivas personalizadas para Google Looker Studio, incluyendo Jerarquía de Árbol, Histogramas y gráficos Lipstick."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <meta
+    slot="head"
+    name="description"
+    content="Explora visualizaciones personalizadas avanzadas para Google Looker Studio. Construidas con JavaScript y DSCC, estas visualizaciones de la comunidad mejoran tus reportes con interactividad profunda."
+  />
+  <meta
+    slot="head"
+    name="keywords"
+    content="Visualizaciones Personalizadas Looker Studio, Visualizaciones de la Comunidad, Jerarquía de Árbol Looker Studio, Gráfico Lipstick, Histograma Personalizado, API DSCC, Visualización de Datos JavaScript"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Visualizaciones Personalizadas para Looker Studio | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="Visualizaciones interactivas personalizadas para Looker Studio. Incluye Jerarquía de Árbol, Histogramas y gráficos Lipstick avanzados."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/Projects/tree_hierarchy_viz.png"
+  />
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <style>
+    .looker-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .report-frame {
+      width: 100%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      display: block;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .viz-list {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+
+    .viz-list h3 {
+      margin-bottom: 1rem;
+    }
+
+    .viz-list ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    .viz-list li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+
+  <div class="looker-container">
+    <div class="container mt-5 pt-5">
+      <h1 class="section-title">
+        Visualizaciones de la Comunidad de Looker Studio
+      </h1>
+      <p class="lead text-muted">
+        Visualizaciones personalizadas de la comunidad que he desarrollado para
+        Google Looker Studio, extendiendo sus capacidades con tipos de gráficos
+        especializados para una mejor narrativa de datos.
+      </p>
+
+      <iframe
+        class="report-frame"
+        width="100%"
+        height="600"
+        src="https://lookerstudio.google.com/embed/reporting/7f1ad7dc-2ae4-4e72-be31-b588c9890fa9/page/p_8m1usmbk0d"
+        frameborder="0"
+        style="border:0"
+        allowfullscreen
+        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+      ></iframe>
+
+      <div class="viz-list">
+        <h3>Visualizaciones Incluidas</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6">
+            <ul>
+              <li>
+                <strong>Jerarquía de Árbol</strong> - Una visualización jerárquica
+                para mostrar estructuras de datos de varios niveles con capacidades
+                de desglose (drill-down).
+              </li>
+              <li>
+                <strong>Histograma</strong> - Un histograma personalizable con opciones
+                de orientación, escala logarítmica y visibilidad de ejes.
+              </li>
+              <li>
+                <strong>Gráfico de Lápiz Labial (Lipstick Chart)</strong> - Un tipo
+                de gráfico especializado para comparar valores con un estilo visual
+                distintivo.
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="video-container">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                class="img-fluid rounded shadow"
+                aria-label="Demo de Visualización Lipstick"
+              >
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_lipstick_viz.webm"
+                  type="video/webm"
+                />
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized.mp4"
+                  type="video/mp4"
+                />
+                Tu navegador no soporta el formato de video.
+              </video>
+              <p class="text-muted small mt-2 text-center">
+                Visualización Lipstick: Características interactivas y
+                personalización.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Jerarquía de Árbol en Acción</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="video-container">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                class="img-fluid rounded shadow"
+                aria-label="Demo de Visualización Jerarquía de Árbol"
+                poster="/assets/imgs/Projects/tree_hierarchy_viz.png"
+              >
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_tree_hierarchy_viz.webm"
+                  type="video/webm"
+                />
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_tree_hierarchy_viz_optimized.mp4"
+                  type="video/mp4"
+                />
+                Tu navegador no soporta el formato de video.
+              </video>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>
+              La visualización de <strong>Jerarquía de Árbol</strong> permite a los
+              usuarios navegar a través de estructuras de datos multinivel de manera
+              intuitiva. Al hacer clic en los nodos, los usuarios pueden profundizar
+              en categorías específicas, mientras que las transiciones fluidas ayudan
+              a mantener el contexto.
+            </p>
+            <p class="text-muted small">
+              Este video muestra las capacidades de desglose, el diseño
+              adaptable y las funciones interactivas de selección de nodos de la
+              estructura de árbol.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>¿Por qué usar visualizaciones personalizadas de la comunidad?</h3>
+        <p>
+          Aunque Google Looker Studio ofrece un conjunto robusto de gráficos
+          predeterminados, algunas estructuras de datos complejas requieren
+          enfoques visuales especializados.
+          <strong>Las visualizaciones personalizadas de la comunidad</strong> llenan
+          este vacío al permitir a los desarrolladores crear gráficos únicos e interactivos
+          utilizando
+          <a href="https://d3js.org/" target="_blank" rel="noopener noreferrer"
+            >D3.js</a
+          >
+          y la
+          <a
+            href="https://developers.google.com/looker-studio/visualization"
+            target="_blank"
+            rel="noopener noreferrer">API DSCC</a
+          >.
+        </p>
+        <p>Los beneficios clave incluyen:</p>
+        <ul>
+          <li>
+            <strong>Informes con Marca:</strong> Adapta el estilo de tus datos para
+            que coincida con tu identidad de marca.
+          </li>
+          <li>
+            <strong>Interacción Avanzada:</strong> Implementa comportamientos complejos
+            de desglose y filtrado cruzado.
+          </li>
+          <li>
+            <strong>Gráficos Especializados:</strong> Utiliza gráficos no estándar
+            como Jerarquías de Árbol o gráficos Lipstick para una comunicación más
+            efectiva.
+          </li>
+        </ul>
+      </div>
+
+      <div class="viz-list">
+        <h3>Preguntas Frecuentes</h3>
+        <div class="faq-item mt-4">
+          <h5>
+            1. ¿Qué es una visualización de la comunidad de Looker Studio?
+          </h5>
+          <p>
+            Es un gráfico de terceros desarrollado utilizando la API de
+            visualización de la comunidad de Google Looker Studio. Permite el
+            renderizado y la interacción personalizados que van más allá de los
+            componentes incorporados estándar.
+          </p>
+        </div>
+        <div class="faq-item mt-3">
+          <h5>2. ¿Cómo instalo estas visualizaciones personalizadas?</h5>
+          <p>
+            Puedes agregarlas a tu informe utilizando el icono "Visualizaciones
+            y componentes de la comunidad" en la barra de herramientas de Looker
+            Studio y pegando la ruta del manifiesto proporcionada (disponible
+            bajo peticion).
+          </p>
+        </div>
+        <div class="faq-item mt-3">
+          <h5>3. ¿Son estas visualizaciones responsivas?</h5>
+          <p>
+            Sí, todas las visualizaciones que se muestran aquí están diseñadas
+            para ser totalmente responsivas y adaptarse al tamaño del contenedor
+            dentro de tu informe de Looker Studio.
+          </p>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Detalles Técnicos</h3>
+        <p>
+          Estas visualizaciones están construidas utilizando la
+          <a
+            href="https://developers.google.com/looker-studio/visualization"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            API de Visualización de la Comunidad de Looker Studio (DSCC)
+          </a>
+          con JavaScript y D3.js para el renderizado. Están diseñadas para ser altamente
+          configurables a través del panel de estilo de Looker Studio.
+        </p>
+        <p>
+          <strong>Tecnologías y habilidades:</strong> JavaScript, D3.js, API DSCC,
+          Visualización de Datos, CSS.
+        </p>
+      </div>
+    </div>
+  </div>
+</MainLayout>

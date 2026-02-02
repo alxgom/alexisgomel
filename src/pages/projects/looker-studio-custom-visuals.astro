@@ -1,0 +1,281 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/es/projects/looker-studio-custom-visuals/";
+---
+
+<MainLayout
+  title="Custom Looker Studio Community Visuals | Tree Hierarchy, Lipstick & Histogram"
+  description="Enhance your data storytelling with interactive custom community visualizations for Google Looker Studio, including Tree Hierarchy, Histogram, and Lipstick charts."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <meta
+    slot="head"
+    name="description"
+    content="Explore advanced interactive custom visuals for Google Looker Studio. Built with JavaScript and DSCC, these community visualizations include Tree Hierarchy, Histogram, and Lipstick charts for deep data insights."
+  />
+  <meta
+    slot="head"
+    name="keywords"
+    content="Custom Looker Studio Visuals, Community Visualizations, Looker Studio Tree Hierarchy, Lipstick Chart, Histogram Visualization, DSCC API, JavaScript Data Viz, Google Looker Studio Extensions"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Custom Looker Studio Community Visuals | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="Interactive custom community visualizations for Looker Studio. Features advanced Tree Hierarchy, Histogram, and Lipstick charts."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/Projects/tree_hierarchy_viz.png"
+  />
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <style>
+    .looker-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .report-frame {
+      width: 100%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      display: block;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .viz-list {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+
+    .viz-list h3 {
+      margin-bottom: 1rem;
+    }
+
+    .viz-list ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    .viz-list li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+
+  <div class="looker-container">
+    <div class="container mt-5 pt-5">
+      <h1 class="section-title">Looker Studio Community Visualizations</h1>
+      <p class="lead text-muted">
+        Custom community visualizations I've developed for Google Looker Studio,
+        extending its capabilities with specialized chart types for better data
+        storytelling.
+      </p>
+
+      <iframe
+        class="report-frame"
+        width="100%"
+        height="800"
+        src="https://lookerstudio.google.com/embed/reporting/7f1ad7dc-2ae4-4e72-be31-b588c9890fa9/page/p_8m1usmbk0d"
+        frameborder="0"
+        style="border:0"
+        allowfullscreen
+        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+      ></iframe>
+
+      <div class="viz-list">
+        <h3>Visualizations Included</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6">
+            <ul>
+              <li>
+                <strong>Tree Hierarchy</strong> - A hierarchical visualization for
+                displaying multi-level data structures with drill-down capabilities.
+              </li>
+              <li>
+                <strong>Histogram</strong> - A customizable histogram with options
+                for orientation, log scale, and axis visibility.
+              </li>
+              <li>
+                <strong>Lipstick Chart</strong> - A specialized chart type for comparing
+                values with a distinctive visual style.
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="video-container">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                class="img-fluid rounded shadow"
+                aria-label="Lipstick Visualization Demo"
+              >
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_lipstick_viz.webm"
+                  type="video/webm"
+                />
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <p class="text-muted small mt-2 text-center">
+                Lipstick Visualization: Interactive features and customization.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Tree Hierarchy in Action</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="video-container">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                class="img-fluid rounded shadow"
+                aria-label="Tree Hierarchy Visualization Demo"
+                poster="/assets/imgs/Projects/tree_hierarchy_viz.png"
+              >
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_tree_hierarchy_viz.webm"
+                  type="video/webm"
+                />
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_tree_hierarchy_viz_optimized.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>
+              The <strong>Tree Hierarchy</strong> visualization allows users to navigate
+              through multi-level data structures intuitively. By clicking on nodes,
+              users can drill down into specific categories, while smooth transitions
+              maintain context and energy flow.
+            </p>
+            <p class="text-muted small">
+              This video showcases the drill-down capabilities, responsive
+              layout, and interactive node selection features of the tree
+              structure.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Why Use Custom Community Visualizations?</h3>
+        <p>
+          While Google Looker Studio offers a robust set of default charts, some
+          complex data structures require specialized visual approaches.
+          <strong>Custom community visualizations</strong> fill this gap by allowing
+          developers to build unique, interactive charts using
+          <a href="https://d3js.org/" target="_blank" rel="noopener noreferrer"
+            >D3.js</a
+          >
+          and the
+          <a
+            href="https://developers.google.com/looker-studio/visualization"
+            target="_blank"
+            rel="noopener noreferrer">DSCC API</a
+          >.
+        </p>
+        <p>Key benefits include:</p>
+        <ul>
+          <li>
+            <strong>Branded Reporting:</strong> Tailor the look and feel of your data
+            to match your brand identity.
+          </li>
+          <li>
+            <strong>Advanced Interaction:</strong> Implement complex drill-down behaviors
+            and cross-filtering.
+          </li>
+          <li>
+            <strong>Specialized Charts:</strong> Use non-standard charts like Tree
+            Hierarchies or Lipstick charts for more effective communication.
+          </li>
+        </ul>
+      </div>
+
+      <div class="viz-list">
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item mt-4">
+          <h5>1. What is a Looker Studio Community Visualization?</h5>
+          <p>
+            It's a third-party chart developed using the Google Looker Studio
+            Community Visualization API. It allows for custom rendering and
+            interaction that goes beyond standard built-in components.
+          </p>
+        </div>
+        <div class="faq-item mt-3">
+          <h5>2. How do I install these custom visuals?</h5>
+          <p>
+            You can add them to your report by using the "Community
+            Visualizations and Components" icon in the Looker Studio toolbar and
+            pasting the manifest path provided (available upon request).
+          </p>
+        </div>
+        <div class="faq-item mt-3">
+          <h5>3. Are these visuals responsive?</h5>
+          <p>
+            Yes, all visuals shown here are built to be fully responsive and
+            adapt to the size of the container within your Looker Studio report.
+          </p>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Technical Details</h3>
+        <p>
+          These visualizations are built using the
+          <a
+            href="https://developers.google.com/looker-studio/visualization"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Looker Studio Community Visualization API (DSCC)
+          </a>
+          with JavaScript and D3.js for rendering. They are designed to be highly
+          configurable through the Looker Studio style panel.
+        </p>
+        <p>
+          <strong>Tech & skills:</strong> JavaScript, D3.js, DSCC API, Data Visualization,
+          CSS.
+        </p>
+      </div>
+    </div>
+  </div>
+</MainLayout>
