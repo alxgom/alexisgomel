@@ -1,14 +1,14 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
 
 // MULTILINGUAL SETTINGS
-const currentLang = "en";
+const currentLang = "es";
 const alternateHref = "/projects/webanalytics/";
 ---
 
 <MainLayout
-  title="Web Analytics | Alexis Gomel"
-  description="Project Dashboard for Website Analytics"
+  title="Analítica Web | Alexis Gomel"
+  description="Panel del Proyecto para Analítica Web"
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
@@ -18,12 +18,13 @@ const alternateHref = "/projects/webanalytics/";
   <div class="container mt-5 pt-5 mb-5">
     <!-- Hero Section -->
     <section class="text-center mb-5">
-      <h1 class="section-title display-4 mb-3">Website Analytics Dashboard</h1>
+      <h1 class="section-title display-4 mb-3">Panel de Analítica Web</h1>
       <p class="lead text-muted mx-auto" style="max-width: 700px;">
-        A comprehensive, near real-time analytics overview for <strong
+        Una visión general completa y casi en tiempo real de la analítica para <strong
           >alexisgomel.com</strong
-        >. Powered by modern data engineering tools to provide deep insights
-        into traffic and user behavior.
+        >. Impulsado por herramientas modernas de ingeniería de datos para
+        proporcionar información profunda sobre el tráfico y el comportamiento
+        del usuario.
       </p>
     </section>
 
@@ -39,46 +40,49 @@ const alternateHref = "/projects/webanalytics/";
           style="border:0; position: absolute; top:0; left:0; width:100%; height:100%; min-height: 800px;"
           allowfullscreen
           sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-          title="Alexis Gomel Website Analytics Dashboard"
+          title="Panel de Analítica Web de Alexis Gomel"
         >
         </iframe>
       </div>
       <p class="text-center text-muted mt-3 mb-4">
-        Navigate between pages to see the General Overview (Page 1) and the
-        Traffic Breakdown (Page 2).
+        Navega entre las páginas para ver la Descripción General (Página 1) y el
+        Desglose de Tráfico (Página 2).
       </p>
     </section>
 
     <!-- Project Details & Features -->
     <section class="row mb-5 align-items-center">
       <div class="col-md-6 mb-4 mb-md-0">
-        <h2 class="h3 mb-3">Project Overview</h2>
+        <h2 class="h3 mb-3">Descripción del Proyecto</h2>
         <p>
-          This dashboard serves as a public preview of my personal analytics
-          suite. It leverages raw event data to visualize user journey and
-          engagement with granularity not available in standard reports.
+          Este panel sirve como una vista previa pública de mi suite personal de
+          análisis. Aprovecha los datos de eventos sin procesar para visualizar
+          el viaje del usuario y el compromiso con una granularidad no
+          disponible en los informes estándar.
         </p>
         <ul class="list-unstyled mt-3">
           <li class="mb-2">
             <i class="ti-stats-up text-primary mr-2"></i><strong
-              >Near Real-Time Data:</strong
-            > Updates every 4 hours via BigQuery.
+              >Datos casi en tiempo real:</strong
+            > Actualizaciones cada 4 horas a través de BigQuery.
           </li>
           <li class="mb-2">
             <i class="ti-layers-alt text-primary mr-2"></i><strong
-              >Custom Tracking:</strong
-            > Events captured via Google Tag Manager with custom data layers.
+              >Seguimiento personalizado:</strong
+            > Eventos capturados a través de Google Tag Manager con capas de datos
+            personalizadas.
           </li>
           <li class="mb-2">
             <i class="ti-layout-grid2 text-primary mr-2"></i><strong
-              >Advanced Visuals:</strong
-            > Features a custom Tree Hierarchy visualization for categorical breakdowns.
+              >Visuales avanzados:</strong
+            > Cuenta con una visualización de Jerarquía de Árbol personalizada para
+            desgloses categóricos.
           </li>
         </ul>
       </div>
       <div class="col-md-6">
         <div class="p-4 bg-light rounded shadow-sm">
-          <h3 class="h5 mb-3">Tech Stack</h3>
+          <h3 class="h5 mb-3">Tecnología</h3>
           <div class="d-flex flex-wrap">
             <span class="badge badge-light border text-dark m-1 p-2"
               >Google Analytics 4</span
@@ -94,7 +98,7 @@ const alternateHref = "/projects/webanalytics/";
             >
             <span class="badge badge-light border text-dark m-1 p-2">SQL</span>
             <span class="badge badge-light border text-dark m-1 p-2"
-              >Custom Viz Dev</span
+              >Desarrollo de Viz Personalizada</span
             >
           </div>
         </div>

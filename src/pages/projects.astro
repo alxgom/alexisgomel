@@ -17,6 +17,7 @@ import filamentImg from "../assets/imgs/filament_scheme2.png";
 import birdsImg from "../assets/imgs/Projects/birds.png";
 import sevillaImg from "../assets/imgs/Projects/sevilla_thumb.png";
 import lookerStudioImg from "../assets/imgs/Projects/tree_hierarchy_viz.png";
+import webAnalyticsImg from "../assets/imgs/Projects/webanalytics_screenshot.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
@@ -199,6 +200,51 @@ const alternateHref = "/es/projects/";
               data-event-category="Projects"
               data-event-label="Mixxx Companion - Text Link">View on GitHub</a
             >
+          </p>
+        </div>
+      </div>
+
+      <!-- Project: Web Analytics -->
+      <div class="row mb-5 align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="general-img-holder">
+            <Image
+              src={webAnalyticsImg}
+              alt="Web Analytics Dashboard"
+              class="img-fluid"
+            />
+            <div class="overlay">
+              <a
+                href="/projects/webanalytics/"
+                class="overlay-link-full"
+                aria-label="View Web Analytics project"></a>
+              <div class="overlay-infos">
+                <h5>Web Analytics Dashboard</h5>
+              </div>
+              <a
+                href={webAnalyticsImg.src}
+                class="overlay-zoom-link"
+                aria-label="Zoom in on Web Analytics Dashboard"
+                data-lightbox="true"><i class="ti-zoom-in"></i></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4>Web Analytics Dashboard</h4>
+          <p>
+            A near real-time analytics dashboard for this portfolio website,
+            built with Looker Studio and powered by GA4 data exported to
+            BigQuery.
+          </p>
+          <p>
+            It features a custom session channel grouping and a <strong
+              >custom Tree Hierarchy visualization</strong
+            > to break down traffic by device, browser, OS, and location.
+          </p>
+          <p>
+            <strong>Tech & skills:</strong> Looker Studio, BigQuery, GA4, SQL, Data
+            Visualization.
           </p>
         </div>
       </div>
