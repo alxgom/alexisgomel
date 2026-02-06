@@ -18,13 +18,19 @@ function initHobbiesAnimation() {
         '#9c2661'  // var(--lavender)
     ];
 
+    const isMobile = window.innerWidth < 768;
+    const blobCount = isMobile ? 3 : 6;
+    const blurRadius = isMobile ? '40px' : '80px';
+
     function createBlob() {
         const blob = document.createElement('div');
         blob.className = 'hobby-blob';
         
-        const size = 300 + Math.random() * 400;
+        // Random properties
+        const size = isMobile ? (150 + Math.random() * 200) : (300 + Math.random() * 400);
         blob.style.width = `${size}px`;
         blob.style.height = `${size}px`;
+        blob.style.filter = `blur(${blurRadius})`;
         
         // Constrain to 25% - 75% range (middle 50%) to stay well away from edges
         blob.style.left = `${25 + Math.random() * 50}%`;
@@ -33,14 +39,14 @@ function initHobbiesAnimation() {
         
         // Multi-point wandering path variables (more constrained drift: +/- 250px)
         blob.style.setProperty('--duration', `${25 + Math.random() * 15}s`); 
-        blob.style.setProperty('--tx', `${(Math.random() - 0.5) * 250}px`);
-        blob.style.setProperty('--ty', `${(Math.random() - 0.5) * 250}px`);
-        blob.style.setProperty('--tx1', `${(Math.random() - 0.5) * 250}px`);
-        blob.style.setProperty('--ty1', `${(Math.random() - 0.5) * 250}px`);
-        blob.style.setProperty('--tx2', `${(Math.random() - 0.5) * 250}px`);
-        blob.style.setProperty('--ty2', `${(Math.random() - 0.5) * 250}px`);
-        blob.style.setProperty('--tx3', `${(Math.random() - 0.5) * 250}px`);
-        blob.style.setProperty('--ty3', `${(Math.random() - 0.5) * 250}px`);
+        blob.style.setProperty('--tx', `${(Math.random() - 0.5) * 200}px`);
+        blob.style.setProperty('--ty', `${(Math.random() - 0.5) * 200}px`);
+        blob.style.setProperty('--tx1', `${(Math.random() - 0.5) * 200}px`);
+        blob.style.setProperty('--ty1', `${(Math.random() - 0.5) * 200}px`);
+        blob.style.setProperty('--tx2', `${(Math.random() - 0.5) * 200}px`);
+        blob.style.setProperty('--ty2', `${(Math.random() - 0.5) * 200}px`);
+        blob.style.setProperty('--tx3', `${(Math.random() - 0.5) * 200}px`);
+        blob.style.setProperty('--ty3', `${(Math.random() - 0.5) * 200}px`);
         
         container.appendChild(blob);
         
@@ -56,7 +62,7 @@ function initHobbiesAnimation() {
             if (entry.isIntersecting && !hasStarted) {
                 hasStarted = true;
                 // Create a set of initial blobs
-                for (let i = 0; i < 6; i++) {
+                for (let i = 0; i < blobCount; i++) {
                     setTimeout(createBlob, i * 300); // Staggered appearance
                 }
                 observer.unobserve(section); // Only trigger once

@@ -126,10 +126,12 @@ function initBackgroundAnimation(containerId) {
     
     if (!svg || !lineLayer || !dotLayer) return;
 
-    let clusters = [];
+    const isMobile = window.innerWidth < 768;
+    const numClusters = isMobile ? 3 : 5;
 
     function setupClusters() {
         clusters.forEach(c => c.stop());
+        clusters = []; // Reset clusters array
         lineLayer.innerHTML = '';
         dotLayer.innerHTML = '';
         
@@ -140,8 +142,7 @@ function initBackgroundAnimation(containerId) {
         if (w === 0 || h === 0) return;
 
         // Create clusters distributed across the full width
-        const numClusters = 5;
-        const clusterSize = Math.min(w, h) * 0.4;
+        const clusterSize = Math.min(w, h) * (isMobile ? 0.6 : 0.4);
         const zoneWidth = w / numClusters;
         
         for (let i = 0; i < numClusters; i++) {
@@ -158,17 +159,36 @@ function initBackgroundAnimation(containerId) {
                 h: clusterSize
             };
             const cluster = new DataCluster(container, lineLayer, dotLayer, bounds);
-            cluster.start();
+            // Don't start immediately, let observer decide
             clusters.push(cluster);
         }
     }
 
     setupClusters();
     
+    // Intersection Observer to pause/play animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                clusters.forEach(c => c.start());
+            } else {
+                clusters.forEach(c => c.stop());
+            }
+        });
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
+
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(setupClusters, 250);
+        resizeTimer = setTimeout(() => {
+            setupClusters();
+            // Re-start if visible after resize
+            if (container.getBoundingClientRect().top < window.innerHeight && container.getBoundingClientRect().bottom > 0) {
+                clusters.forEach(c => c.start());
+            }
+        }, 250);
     });
 }
 
