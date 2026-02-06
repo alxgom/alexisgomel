@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Data Flow Animation</title>
+    <style>
+        :root {
+            /* Website Colors */
+            --primary: #ff7a57;
+            --gray-700: #495057;
+            --gray-400: #ced4da;
+            --gray-100: #f8f9fa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--gray-100);
+            font-family: 'Inter', -apple-system, sans-serif;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%);
+        }
+
+        svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .dot {
+            fill: var(--primary);
+            filter: drop-shadow(0 0 4px rgba(255, 122, 87, 0.5));
+            opacity: 0;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dot.visible {
+            opacity: 1;
+        }
+
+        .line {
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            opacity: 0;
+            /* Subtle variation for lines */
+            filter: blur(0.5px);
+        }
+
+        .line.visible {
+            opacity: 0.3;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.5);
+            text-align: center;
+            max-width: 500px;
+            z-index: 100;
+        }
+
+        h1 {
+            color: var(--gray-700);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container">
+        <svg id="canvas-svg">
+            <!-- Layers to ensure dots are always on top of lines -->
+            <g id="line-layer"></g>
+            <g id="dot-layer"></g>
+        </svg>
+    </div>
+
+    <div class="content">
+        <h1>Modern Connectivity</h1>
+        <p>This prototype uses the site's primary color (#ff7a57) and a layered SVG architecture to ensure dots are always on top.</p>
+    </div>
+
+    <script>
+        const lineLayer = document.getElementById('line-layer');
+        const dotLayer = document.getElementById('dot-layer');
+        
+        const points = [];
+        const dots = new Map();
+        const lines = [];
+        const maxPoints = 3;
+        const interval = 3500;
+
+        function getPoint() {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            const m = 80;
+            return {
+                x: m + Math.random() * (w - m * 2),
+                y: m + Math.random() * (h - m * 2),
+                id: Math.random().toString(36).substr(2, 9),
+                radius: 3 + Math.random() * 5 // Varying size
+            };
+        }
+
+        function createDot(p) {
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', p.x);
+            circle.setAttribute('cy', p.y);
+            circle.setAttribute('r', p.radius);
+            circle.setAttribute('class', 'dot');
+            dotLayer.appendChild(circle);
+            
+            // Fade in
+            requestAnimationFrame(() => {
+                setTimeout(() => circle.classList.add('visible'), 50);
+            });
+            return circle;
+        }
+
+        function createLine(p1, p2) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', p1.x);
+            line.setAttribute('y1', p1.y);
+            line.setAttribute('x2', p2.x);
+            line.setAttribute('y2', p2.y);
+            line.setAttribute('class', 'line');
+            
+            const length = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+            line.style.strokeDasharray = length;
+            line.style.strokeDashoffset = length;
+            
+            lineLayer.appendChild(line);
+
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    line.classList.add('visible');
+                    line.style.transition = 'stroke-dashoffset 2s ease-out, opacity 1s ease';
+                    line.style.strokeDashoffset = 0;
+                }, 50);
+            });
+            return line;
+        }
+
+        function next() {
+            const p = getPoint();
+            const dot = createDot(p);
+            dots.set(p.id, dot);
+
+            if (points.length > 0) {
+                const prev = points[points.length - 1];
+                const line = createLine(prev, p);
+                lines.push({ el: line, from: prev.id, to: p.id });
+            }
+
+            points.push(p);
+
+            if (points.length > maxPoints) {
+                const old = points.shift();
+                const d = dots.get(old.id);
+                if (d) {
+                    d.classList.remove('visible');
+                    setTimeout(() => {
+                        d.remove();
+                        dots.delete(old.id);
+                    }, 1000);
+                }
+
+                const li = lines.findIndex(l => l.from === old.id);
+                if (li !== -1) {
+                    const lObj = lines.splice(li, 1)[0];
+                    lObj.el.classList.remove('visible');
+                    setTimeout(() => lObj.el.remove(), 1000);
+                }
+            }
+        }
+
+        // Init sequence
+        function init() {
+            next();
+            setTimeout(next, 1200);
+            setTimeout(next, 2400);
+            setTimeout(() => setInterval(next, interval), 3600);
+        }
+
+        window.onload = init;
+
+        // Cleanup on resize
+        window.onresize = () => {
+            lineLayer.innerHTML = '';
+            dotLayer.innerHTML = '';
+            points.length = 0;
+            dots.clear();
+            lines.length = 0;
+            // Immediate re-init
+            next(); next(); next();
+        };
+    </script>
+</body>
+</html>
