@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import "../styles/animation.css";
+import "../styles/hobbies-animation.css";
 import Card from "../components/Card.astro";
 import Lightbox from "../components/Lightbox.astro";
 import PortfolioCarousel from "../components/PortfolioCarousel.astro";
@@ -219,6 +220,7 @@ const portfolioItems = [
       </div>
     </section>
     <section id="hobbies" class="section">
+      <div id="hobbies-animation-container"></div>
       <div class="container text-center">
         <h2 class="section-title pt-5 mb-2">Hobbies</h2>
         <p class="section-subtitle">
@@ -314,3 +316,4 @@ const portfolioItems = [
 </MainLayout>
 
 <script src="../scripts/background-animation.js"></script>
+<script src="../scripts/hobbies-animation.js"></script>

@@ -13,13 +13,31 @@
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    /* 
+       Aggressive edge smoothing:
+       Combines a vertical linear fade with a central radial focus 
+       to ensure absolute zero opacity at all boundaries.
+    */
+    -webkit-mask-image: 
+        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+        radial-gradient(circle at center, black 0%, black 30%, transparent 80%);
+    mask-image: 
+        linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
+        radial-gradient(circle at center, black 0%, black 30%, transparent 80%);
+    -webkit-mask-composite: source-in; /* Combine the masks */
+    mask-composite: intersect;
+}
+
+/* Global Section Spacing Overrides (Increasing separation) */
+.section {
+    padding: 10rem 0 !important; /* Doubled from default 5rem */
 }
 
 .hobby-blob {
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
-    opacity: 0.1;
+    opacity: 0; /* JS will fade this in */
     mix-blend-mode: multiply;
     animation: hobby-drift var(--duration) ease-in-out infinite alternate;
     will-change: transform;
