@@ -16,7 +16,9 @@ const URL_LIST = [
   `https://${HOST}/contact/`,
   `https://${HOST}/es/contact/`,
   `https://${HOST}/projects/sevilla/`,
-  `https://${HOST}/es/projects/sevilla/`
+  `https://${HOST}/es/projects/sevilla/`,
+  `https://${HOST}/projects/webanalytics/`,
+  `https://${HOST}/es/projects/webanalytics/`
 ];
 
 async function submitToIndexNow(endpoint) {

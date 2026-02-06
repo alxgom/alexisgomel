@@ -23,6 +23,148 @@ import webAnalyticsImg from "../../assets/imgs/Projects/webanalytics_screenshot.
 const currentLang = "es";
 const alternateHref = "/projects/";
 // Links to English version
+const schema = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Panel de Análisis de Sets de DJ Mixxx",
+        description:
+          "Panel diseñado para el análisis post-set y la autorreflexión para DJs.",
+        url: "https://dj-dashboard.onrender.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Compañero Python para Mixxx",
+        description:
+          "Aplicación Python para visualizar la secuencia de BPM de sets de DJ en vivo.",
+        url: "https://github.com/alxgom/mixx-pycompanion",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Panel de Analítica Web",
+        description:
+          "Panel de análisis casi en tiempo real construido con Looker Studio y GA4.",
+        url: "https://alexisgomel.com/es/projects/webanalytics/",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Análisis Histórico de Alquileres",
+        description:
+          "Análisis de datos históricos de alquileres en Alemania y detección de valores atípicos.",
+        url: "https://www.kaggle.com/code/alexisgomel/apartment-rental-offers-munich",
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        name: "Calculadora SHARE",
+        description:
+          "Calculadora para aproximar la parte del alquiler que cada inquilino debe pagar.",
+        url: "https://alexisgomel.com/es/sac/",
+      },
+      {
+        "@type": "ListItem",
+        position: 6,
+        name: "Rastreador de Tareas",
+        description:
+          "Aplicación Python para rastrear el tiempo dedicado a tareas y visualizar el progreso.",
+        url: "https://github.com/alxgom/Tracking_app",
+      },
+      {
+        "@type": "ListItem",
+        position: 7,
+        name: "La Paleta de Sevilla",
+        description:
+          "Paleta de colores categórica inspirada en la historia y los paisajes de Sevilla.",
+        url: "https://alexisgomel.com/es/projects/sevilla/",
+      },
+      {
+        "@type": "ListItem",
+        position: 8,
+        name: "Visualizaciones Comunitarias de Looker Studio",
+        description:
+          "Visualizaciones comunitarias personalizadas incluyendo jerarquía de árbol e histograma.",
+        url: "https://alexisgomel.com/es/projects/looker-studio-custom-visuals/",
+      },
+      {
+        "@type": "ListItem",
+        position: 9,
+        name: "Web Scraping de Revistas (Wordcloud)",
+        description:
+          "Proyecto de web scraping para visualizar palabras clave de revistas de Dinámica No Lineal.",
+        url: "https://github.com/alxgom/NL-Dynamics-wordcloud",
+      },
+      {
+        "@type": "ListItem",
+        position: 10,
+        name: "Mapas de Color Cosidos",
+        description:
+          "Código en Python y Matlab para crear un nuevo mapa de color cosiendo dos existentes.",
+        url: "https://github.com/alxgom/-stitched_colorbars/wiki/Stiched-Colormaps",
+      },
+      {
+        "@type": "ListItem",
+        position: 11,
+        name: "Péndulo de Resorte",
+        description:
+          "Visualización de la dinámica del sistema de péndulo de resorte.",
+      },
+      {
+        "@type": "ListItem",
+        position: 12,
+        name: "Estabilización de 3 Ondas",
+        description:
+          "Animación de inestabilidad modulacional mostrando interacción no lineal.",
+      },
+      {
+        "@type": "ListItem",
+        position: 13,
+        name: "Esquema de Filamentación Láser",
+        description: "Esquema 3D de filamentación láser hecho en Python.",
+        url: "https://github.com/alxgom/Filamentation_scheme/wiki/Filamentation-Scheme",
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Demo del Panel de Análisis de Mixxx DJ",
+    description:
+      "Demostración del Panel de Análisis de Sets de DJ Mixxx para reflexión post-set.",
+    thumbnailUrl: `https://alexisgomel.com${mixxxScreenshot.src}`,
+    uploadDate: "2026-01-01T00:00:00+00:00",
+    contentUrl:
+      "https://alexisgomel.com/assets/imgs/Projects/mixxx_dashboard.webm",
+    publisher: {
+      "@type": "Person",
+      name: "Alexis Gomel",
+      url: "https://alexisgomel.com/es/",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Demo del Compañero Python para Mixxx",
+    description:
+      "Visualización en vivo de la secuencia de BPM para sets de DJ usando la app Compañero Python para Mixxx.",
+    thumbnailUrl:
+      "https://alexisgomel.com/assets/imgs/Projects/mixxx_pycompanion_poster.jpg",
+    uploadDate: "2026-01-01T00:00:00+00:00",
+    contentUrl:
+      "https://alexisgomel.com/assets/imgs/Projects/mixxx_pycompanion.webm",
+    publisher: {
+      "@type": "Person",
+      name: "Alexis Gomel",
+      url: "https://alexisgomel.com/es/",
+    },
+  },
+]);
 ---
 
 <MainLayout
@@ -31,6 +173,7 @@ const alternateHref = "/projects/";
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
+  <script type="application/ld+json" set:html={schema} slot="head" />
   <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
 
   <div class="cv-subheader mb-5">

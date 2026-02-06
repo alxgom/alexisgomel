@@ -104,10 +104,23 @@ This document tracks the target keywords and metadata for each page to ensure we
 ### Contact (`/contact/`)
 
 - **Five-second summary**: Contact form and information.
-- **Title**: Contact | Alexis Gomel
-- **Description**: _[To be filled]_
+- **Title**: Contact Alexis Gomel | Data Scientist & Physicist
+- **Description**: Get in touch with Alexis Gomel for data science projects, physics research collaborations, or general inquiries. Freelance and job opportunities welcome.
 - **Target Keywords**:
   - Contact Alexis Gomel
+  - Hire Data Scientist
+  - Physics Collaboration
+  - Data Analysis Services
+
+### Contact (`/es/contact/`)
+
+- **Title**: Contacto Alexis Gomel | Científico de Datos y Físico
+- **Description**: Contacta a Alexis Gomel para proyectos de ciencia de datos, colaboraciones en física o consultas generales. Disponible para freelance y oportunidades laborales.
+- **Target Keywords**:
+  - Contactar Alexis Gomel
+  - Contratar Científico de Datos
+  - Colaboración Física
+  - Servicios Análisis de Datos
 
 ### SHARE Calculator (`/sac/`)
 

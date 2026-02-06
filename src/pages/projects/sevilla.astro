@@ -25,7 +25,51 @@ const sevillePalette = [
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
-  <!-- SEO: Prevent Indexing -->
+  <!-- SEO: Schema Markup -->
+  <script type="application/ld+json" slot="head">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://alexisgomel.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://alexisgomel.com/projects/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "The Seville Palette",
+            "item": "https://alexisgomel.com/projects/sevilla/"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Inspiration behind the Seville Palette",
+        "description": "A look at the colors and history of Seville that inspired this accessible color palette. Featuring the Pantone 'Flor de Sevilla'.",
+        "thumbnailUrl": "https://img.youtube.com/vi/2vImZx_f0pg/maxresdefault.jpg",
+        "uploadDate": "2025-12-15T00:00:00+00:00",
+        "contentUrl": "https://www.youtube.com/watch?v=2vImZx_f0pg",
+        "embedUrl": "https://www.youtube.com/embed/2vImZx_f0pg",
+        "publisher": {
+          "@type": "Person",
+          "name": "Alexis Gomel",
+          "url": "https://alexisgomel.com"
+        }
+      }
+    ]
+  </script>
+
   <!-- SEO: Indexing Allowed -->
   <meta
     slot="head"

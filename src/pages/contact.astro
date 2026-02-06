@@ -7,11 +7,24 @@ const alternateHref = "/es/contact/";
 ---
 
 <MainLayout
-  title="Contact - Alexis Gomel | Get in Touch"
-  description="Contact Alexis Gomel. Send a message to discuss physics, data science, research collaborations, or projects."
+  title="Contact Alexis Gomel | Data Scientist & Physicist"
+  description="Get in touch with Alexis Gomel for data science projects, physics research collaborations, or general inquiries. Freelance and job opportunities welcome."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
+  <!-- SEO: Schema Markup -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Alexis Gomel",
+        "url": "https://alexisgomel.com",
+        "email": "alexis.gomel@gmail.com"
+      }
+    }
+  </script>
   <!-- Hero Section with Primary Color -->
   <section class="contact-hero">
     <div class="container text-center">

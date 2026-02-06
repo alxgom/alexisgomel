@@ -23,6 +23,148 @@ import webAnalyticsImg from "../assets/imgs/Projects/webanalytics_screenshot.png
 const currentLang = "en";
 const alternateHref = "/es/projects/";
 // Links to Spanish version
+const schema = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Mixxx DJ Set Analysis Dashboard",
+        description:
+          "Dashboard designed for post-set analysis and self-reflection for DJs.",
+        url: "https://dj-dashboard.onrender.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Mixxx Python Companion",
+        description:
+          "Python app to visualize the BPM sequence of DJ sets live.",
+        url: "https://github.com/alxgom/mixx-pycompanion",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Web Analytics Dashboard",
+        description:
+          "Near real-time analytics dashboard built with Looker Studio and GA4.",
+        url: "https://alexisgomel.com/projects/webanalytics/",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Historical Rent Analysis",
+        description:
+          "Analysis of historical rental data in Germany and price outlier detection.",
+        url: "https://www.kaggle.com/code/alexisgomel/apartment-rental-offers-munich",
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        name: "SHARE Calculator",
+        description:
+          "Calculator to approximate the share of rent each tenant should pay.",
+        url: "https://alexisgomel.com/sac/",
+      },
+      {
+        "@type": "ListItem",
+        position: 6,
+        name: "Task Tracker",
+        description:
+          "Python app to track time spent on tasks and visualize progress.",
+        url: "https://github.com/alxgom/Tracking_app",
+      },
+      {
+        "@type": "ListItem",
+        position: 7,
+        name: "The Seville Palette",
+        description:
+          "Categorical color palette inspired by the history and landscapes of Seville.",
+        url: "https://alexisgomel.com/projects/sevilla/",
+      },
+      {
+        "@type": "ListItem",
+        position: 8,
+        name: "Looker Studio Community Visualizations",
+        description:
+          "Custom community visualizations including tree hierarchy and histogram.",
+        url: "https://alexisgomel.com/projects/looker-studio-custom-visuals/",
+      },
+      {
+        "@type": "ListItem",
+        position: 9,
+        name: "Wordcloud Journal Web Scarping",
+        description:
+          "Web scraping project to visualize journal keywords from Nonlinear Dynamics journals.",
+        url: "https://github.com/alxgom/NL-Dynamics-wordcloud",
+      },
+      {
+        "@type": "ListItem",
+        position: 10,
+        name: "Stitched Colormaps",
+        description:
+          "Python and Matlab code to make a new colormap by stitching together two pre-existing ones.",
+        url: "https://github.com/alxgom/-stitched_colorbars/wiki/Stiched-Colormaps",
+      },
+      {
+        "@type": "ListItem",
+        position: 11,
+        name: "Spring Pendulum",
+        description:
+          "Visualization of the dynamics of the spring pendulum system.",
+      },
+      {
+        "@type": "ListItem",
+        position: 12,
+        name: "3 Wave Stabilization",
+        description:
+          "Modulational instability animation showing nonlinear interaction.",
+      },
+      {
+        "@type": "ListItem",
+        position: 13,
+        name: "Laser Filamentation Scheme",
+        description: "3D Laser filamentation scheme made in Python.",
+        url: "https://github.com/alxgom/Filamentation_scheme/wiki/Filamentation-Scheme",
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Mixxx DJ Set Analysis Dashboard Demo",
+    description:
+      "Demonstration of the Mixxx DJ Set Analysis Dashboard for post-set reflection.",
+    thumbnailUrl: `https://alexisgomel.com${mixxxScreenshot.src}`,
+    uploadDate: "2026-01-01T00:00:00+00:00",
+    contentUrl:
+      "https://alexisgomel.com/assets/imgs/Projects/mixxx_dashboard.webm",
+    publisher: {
+      "@type": "Person",
+      name: "Alexis Gomel",
+      url: "https://alexisgomel.com",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "Mixxx Python Companion Demo",
+    description:
+      "Live visualization of BPM sequence for DJ sets using the Mixxx Python Companion app.",
+    thumbnailUrl:
+      "https://alexisgomel.com/assets/imgs/Projects/mixxx_pycompanion_poster.jpg",
+    uploadDate: "2026-01-01T00:00:00+00:00",
+    contentUrl:
+      "https://alexisgomel.com/assets/imgs/Projects/mixxx_pycompanion.webm",
+    publisher: {
+      "@type": "Person",
+      name: "Alexis Gomel",
+      url: "https://alexisgomel.com",
+    },
+  },
+]);
 ---
 
 <MainLayout
@@ -31,6 +173,7 @@ const alternateHref = "/es/projects/";
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
+  <script type="application/ld+json" set:html={schema} slot="head" />
   <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
 
   <div class="cv-subheader mb-5">
