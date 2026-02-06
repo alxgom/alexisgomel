@@ -47,12 +47,26 @@ This document tracks the target keywords and metadata for each page to ensure we
 
 ### Photography (`/photography/`)
 
-- **Five-second summary**: Photography portfolio section.
-- **Title**: Photography | Alexis Gomel
-- **Description**: _[To be filled]_
+- **Five-second summary**: Central hub for photography portfolios on social platforms.
+- **Title**: Photography Portfolio & Social Hub | Alexis Gomel
+- **Description**: Explore my photography work across Instagram and GuruShots. Featuring Travel (Cities, Landscapes), Experimental (Abstract, Creative), and General photography portfolios.
 - **Target Keywords**:
-  - Street Photography
-  - [Location] Photography
+  - Photography Portfolio
+  - Travel Photography
+  - Cityscape & Urban
+  - Experimental & Abstract
+  - Photography Social Hub
+
+### Photography (`/es/photography/`)
+
+- **Title**: Portafolio de Fotografía y Redes | Alexis Gomel
+- **Description**: Explora mi trabajo fotográfico en Instagram y GuruShots. Portafolios de fotografía de Viajes (Ciudades, Paisajes), Experimental (Abstracta) y General.
+- **Target Keywords**:
+  - Portafolio de Fotografía
+  - Fotografía de Viajes
+  - Fotografía Urbana y Ciudades
+  - Experimental y Abstracta
+  - Redes Sociales Fotografía
 
 ### Online CV (`/cvonline/`)
 
@@ -66,12 +80,26 @@ This document tracks the target keywords and metadata for each page to ensure we
 
 ### Playlists (`/playlists/`)
 
-- **Five-second summary**: Music playlists and sharing.
-- **Title**: Playlists | Alexis Gomel
-- **Description**: _[To be filled]_
+- **Five-second summary**: DJ sets and curated playlists by Dr. Beat.
+- **Title**: Dr. Beat DJ Sets & Spotify Playlists | Alexis Gomel
+- **Description**: Listen to Dr. Beat's curated DJ sets and Spotify playlists. Featuring Swing, Jazz, Blues, and eclectic rhythms for the dance floor.
 - **Target Keywords**:
-  - Swing Music Playlists
-  - Blues Music Playlists
+  - Dr. Beat DJ
+  - Swing Music DJ
+  - Jazz Playlists
+  - Blues DJ Sets
+  - Curated Spotify Playlists
+
+### Playlists (`/es/playlists/`)
+
+- **Title**: Sets de DJ Dr. Beat y Listas Spotify | Alexis Gomel
+- **Description**: Escucha los sets de DJ y listas de Spotify curadas por Dr. Beat. Swing, Jazz, Blues y ritmos eclécticos para la pista de baile.
+- **Target Keywords**:
+  - Dr. Beat DJ
+  - DJ de Música Swing
+  - Listas de Jazz
+  - Sets de Blues
+  - Listas Spotify Curadas
 
 ### Contact (`/contact/`)
 

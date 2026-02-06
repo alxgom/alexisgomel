@@ -24,11 +24,17 @@ const PLAYLIST_IDS = [
 ---
 
 <MainLayout
-  title="Listas de Spotify | Alexis Gomel"
-  description="Escucha mis listas de Spotify y sets de DJ como 'Dr. Beat'. Una mezcla de swing, jazz y ritmos eclécticos."
+  title="Sets de DJ Dr. Beat y Listas Spotify | Alexis Gomel"
+  description="Escucha los sets de DJ y listas de Spotify curadas por Dr. Beat. Swing, Jazz, Blues y ritmos eclécticos para la pista de baile."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
+  <Fragment slot="head">
+    <meta
+      name="keywords"
+      content="Dr. Beat DJ, DJ de Música Swing, Listas de Jazz, Sets de Blues, Listas Spotify Curadas"
+    />
+  </Fragment>
   <!-- Hero Section for Dr. Beat -->
   <section class="header" style="padding: 120px 0 60px;">
     <div class="container">
@@ -43,7 +49,7 @@ const PLAYLIST_IDS = [
         </div>
         <div class="col-md-8">
           <h6 class="subtitle" style="color: var(--primary);">Presentando</h6>
-          <h1 class="section-title mb-3">Dr. Beat</h1>
+          <h1 class="section-title mb-3">Dr. Beat: Sets de DJ Swing y Jazz</h1>
           <p class="lead mb-4">
             Cuando no estoy trabajando, bailando o tomando fotos, estoy
             pinchando para sociales en mi escena local como <strong
