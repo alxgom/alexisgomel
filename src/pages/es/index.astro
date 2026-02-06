@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import "../../styles/animation.css";
 import Card from "../../components/Card.astro";
 import Lightbox from "../../components/Lightbox.astro";
 import PortfolioCarousel from "../../components/PortfolioCarousel.astro";
@@ -167,6 +168,12 @@ const portfolioItems = [
   </section>
   <main>
     <section id="service" class="section">
+      <div id="animation-container">
+        <svg id="canvas-svg">
+          <g class="line-layer"></g>
+          <g class="dot-layer"></g>
+        </svg>
+      </div>
       <div class="container text-center">
         <h2 class="section-title mb-4">Lo Que Hago</h2>
         <div class="row justify-content-center">
@@ -301,3 +308,5 @@ const portfolioItems = [
   </main>
   <Lightbox />
 </MainLayout>
+
+<script src="../../scripts/background-animation.js"></script>

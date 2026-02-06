@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jazz Hobbies Animation Prototype</title>
+    <style>
+        :root {
+            --primary: #a50034;
+            --teal: #115740;
+            --amber: #ffab60;
+            --lavender: #9c2661;
+            --blue: #26619c;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #fdfcf9;
+        }
+
+        #animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Fluid Background Blobs */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.12;
+            mix-blend-mode: multiply;
+            animation: drift var(--duration) ease-in-out infinite alternate;
+            will-change: transform; /* Performance hint */
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(var(--tx1), var(--ty1)) scale(1.2) rotate(5deg); }
+            50% { transform: translate(var(--tx2), var(--ty2)) scale(0.9) rotate(-5deg); }
+            75% { transform: translate(var(--tx3), var(--ty3)) scale(1.3) rotate(10deg); }
+            100% { transform: translate(var(--tx), var(--ty)) scale(1.1) rotate(0deg); }
+        }
+
+        /* Jazz Brush Strokes */
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            filter: url(#rough-brush); 
+        }
+
+        .jazz-stroke {
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            will-change: stroke-dashoffset, opacity; /* Performance hint */
+        }
+
+        .jazz-stroke.visible {
+            opacity: 0.2;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            border: 1px solid rgba(255,255,255,0.4);
+            max-width: 480px;
+        }
+
+        h1 {
+            color: #222;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container">
+        <!-- Blobs will be injected here -->
+        <svg id="jazz-canvas">
+            <defs>
+                <filter id="rough-brush">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" result="textured" />
+                    <feGaussianBlur in="textured" stdDeviation="10" /> <!-- Add diffusion back -->
+                </filter>
+            </defs>
+            <g id="stroke-layer"></g>
+        </svg>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <h1>The Jazz of Creativity</h1>
+            <p>A synthesis of fluid movement and rhythmic curves, evoking the flow of artistic inspiration.</p>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('animation-container');
+        const strokeLayer = document.getElementById('stroke-layer');
+        const colors = ['var(--primary)', 'var(--teal)', 'var(--amber)', 'var(--blue)', 'var(--lavender)'];
+        
+        let activeStrokes = 0;
+        const MAX_STROKES = 3;
+
+        // --- Background Blobs ---
+        function createBlob() {
+            const blob = document.createElement('div');
+            blob.className = 'blob';
+            const size = 400 + Math.random() * 500;
+            blob.style.width = `${size}px`;
+            blob.style.height = `${size}px`;
+            blob.style.left = `${Math.random() * 100}%`;
+            blob.style.top = `${Math.random() * 100}%`;
+            blob.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            blob.style.setProperty('--duration', `${15 + Math.random() * 10}s`); 
+            blob.style.setProperty('--tx', `${(Math.random() - 0.5) * 500}px`);
+            blob.style.setProperty('--ty', `${(Math.random() - 0.5) * 500}px`);
+            blob.style.setProperty('--tx1', `${(Math.random() - 0.5) * 500}px`);
+            blob.style.setProperty('--ty1', `${(Math.random() - 0.5) * 500}px`);
+            blob.style.setProperty('--tx2', `${(Math.random() - 0.5) * 500}px`);
+            blob.style.setProperty('--ty2', `${(Math.random() - 0.5) * 500}px`);
+            blob.style.setProperty('--tx3', `${(Math.random() - 0.5) * 500}px`);
+            blob.style.setProperty('--ty3', `${(Math.random() - 0.5) * 500}px`);
+            
+            container.insertBefore(blob, container.firstChild);
+        }
+
+        // --- Jazz Strokes ---
+        function createJazzStroke() {
+            if (activeStrokes >= MAX_STROKES) return;
+            activeStrokes++;
+
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            
+            const startX = Math.random() * w;
+            const startY = Math.random() * h;
+            
+            // Create a rhythmic bezier curve
+            const points = [];
+            let cx = startX;
+            let cy = startY;
+            
+            const numSegments = 2 + Math.floor(Math.random() * 3);
+            for (let i = 0; i < numSegments; i++) {
+                const dist = 200 + Math.random() * 300;
+                const angle = Math.random() * Math.PI * 2;
+                cx += Math.cos(angle) * dist;
+                cy += Math.sin(angle) * dist;
+                points.push(`${cx},${cy}`);
+            }
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${startX},${startY} S ${points.join(' ')}`);
+            path.setAttribute('class', 'jazz-stroke');
+            path.setAttribute('stroke', colors[Math.floor(Math.random() * colors.length)]);
+            path.setAttribute('stroke-width', 15 + Math.random() * 25); // Thicker, more "brushy" strokes
+            
+            strokeLayer.appendChild(path);
+
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+            
+            // Animation for drawing in
+            const drawDuration = 3000 + Math.random() * 2000;
+            
+            requestAnimationFrame(() => {
+                path.classList.add('visible');
+                path.animate([
+                    { strokeDashoffset: length },
+                    { strokeDashoffset: 0 }
+                ], {
+                    duration: drawDuration,
+                    easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
+                    fill: 'forwards'
+                });
+            });
+
+            // Smooth receding exit soon after reaching full length
+            setTimeout(() => {
+                path.style.transition = 'opacity 4s ease-in-out';
+                path.classList.remove('visible');
+                
+                // Recede towards destination (fading traces)
+                path.animate([
+                    { strokeDashoffset: 0 },
+                    { strokeDashoffset: -length }
+                ], {
+                    duration: drawDuration * 2.5,
+                    easing: 'ease-in-out',
+                    fill: 'forwards'
+                });
+                
+                setTimeout(() => {
+                    path.remove();
+                    activeStrokes--;
+                }, drawDuration * 3);
+            }, drawDuration + 1000 + Math.random() * 1000); 
+        }
+
+        function init() {
+            // Background
+            for (let i = 0; i < 6; i++) createBlob(); // More initial blobs
+            
+            // Rhythmic Strokes
+            createJazzStroke();
+            
+            setInterval(createJazzStroke, 3000); 
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

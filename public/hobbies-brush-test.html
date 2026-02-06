@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brush Strokes Animation Prototype</title>
+    <style>
+        :root {
+            --primary: #a50034;
+            --teal: #115740;
+            --amber: #ffab60;
+            --blue: #26619c;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #fdfcf9;
+        }
+
+        #animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            filter: url(#rough-paper);
+        }
+
+        .brush-stroke {
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0.1;
+            filter: blur(40px); /* Deep diffusion */
+            transition: opacity 3s ease-out;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid rgba(255,255,255,0.3);
+            max-width: 450px;
+        }
+
+        h1 {
+            color: #222;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container">
+        <svg id="svg-canvas" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <filter id="rough-paper">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+            </defs>
+            <g id="stroke-layer"></g>
+        </svg>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <h1>Artistic Strokes</h1>
+            <p>Simulating the flow of creativity with organic, painted brush strokes.</p>
+        </div>
+    </div>
+
+    <script>
+        const svg = document.getElementById('svg-canvas');
+        const layer = document.getElementById('stroke-layer');
+        const colors = ['var(--primary)', 'var(--teal)', 'var(--amber)', 'var(--blue)'];
+
+        function createPath() {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            
+            const startX = Math.random() * w;
+            const startY = Math.random() * h;
+            
+            const points = [];
+            let cx = startX;
+            let cy = startY;
+            
+            const numPoints = 3 + Math.floor(Math.random() * 4);
+            for (let i = 0; i < numPoints; i++) {
+                cx += (Math.random() - 0.5) * 400;
+                cy += (Math.random() - 0.5) * 400;
+                points.push(`${cx},${cy}`);
+            }
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${startX},${startY} Q ${points.join(' ')}`);
+            path.setAttribute('class', 'brush-stroke');
+            path.setAttribute('stroke', colors[Math.floor(Math.random() * colors.length)]);
+            path.setAttribute('stroke-width', 40 + Math.random() * 80);
+            
+            layer.appendChild(path);
+
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+            
+            const duration = 2000 + Math.random() * 3000;
+            path.animate([
+                { strokeDashoffset: length, opacity: 0 },
+                { strokeDashoffset: 0, opacity: 0.12 }
+            ], {
+                duration: duration,
+                easing: 'ease-out',
+                fill: 'forwards'
+            });
+
+            setTimeout(() => {
+                path.style.opacity = '0';
+                setTimeout(() => path.remove(), 2500);
+            }, duration + 5000 + Math.random() * 5000);
+        }
+
+        function init() {
+            // Initial set
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createPath, i * 1000);
+            }
+            
+            // Continuous spawning
+            setInterval(createPath, 4000);
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>

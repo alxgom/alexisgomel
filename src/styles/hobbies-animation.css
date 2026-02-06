@@ -1,0 +1,39 @@
+/* Hobbies Section Animation Styles */
+
+#hobbies {
+    position: relative !important;
+    overflow: hidden;
+}
+
+#hobbies-animation-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hobby-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.1;
+    mix-blend-mode: multiply;
+    animation: hobby-drift var(--duration) ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+@keyframes hobby-drift {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    25% { transform: translate(var(--tx1), var(--ty1)) scale(1.2) rotate(5deg); }
+    50% { transform: translate(var(--tx2), var(--ty2)) scale(0.9) rotate(-5deg); }
+    75% { transform: translate(var(--tx3), var(--ty3)) scale(1.3) rotate(10deg); }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.1) rotate(0deg); }
+}
+
+#hobbies .container {
+    position: relative !important;
+    z-index: 1;
+}

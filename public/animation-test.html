@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Data Flow Animation</title>
+    <title>Modern Data Flow - Shrink Effect</title>
     <style>
         :root {
-            /* Website Colors */
             --primary: #ff7a57;
             --gray-700: #495057;
             --gray-400: #ced4da;
@@ -45,7 +44,7 @@
             fill: var(--primary);
             filter: drop-shadow(0 0 4px rgba(255, 122, 87, 0.5));
             opacity: 0;
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .dot.visible {
@@ -58,12 +57,12 @@
             stroke-width: 1.5;
             stroke-linecap: round;
             opacity: 0;
-            /* Subtle variation for lines */
-            filter: blur(0.5px);
+            filter: blur(0.3px);
+            transition: opacity 0.8s ease;
         }
 
         .line.visible {
-            opacity: 0.3;
+            opacity: 0.35;
         }
 
         .content {
@@ -94,15 +93,14 @@
 <body>
     <div id="animation-container">
         <svg id="canvas-svg">
-            <!-- Layers to ensure dots are always on top of lines -->
             <g id="line-layer"></g>
             <g id="dot-layer"></g>
         </svg>
     </div>
 
     <div class="content">
-        <h1>Modern Connectivity</h1>
-        <p>This prototype uses the site's primary color (#ff7a57) and a layered SVG architecture to ensure dots are always on top.</p>
+        <h1>Modern Dynamic Flow</h1>
+        <p>This version features faster dot appearances (every 1.8s) and much slower, graceful fade-outs (3s) for a more layered "data processing" effect.</p>
     </div>
 
     <script>
@@ -112,18 +110,18 @@
         const points = [];
         const dots = new Map();
         const lines = [];
-        const maxPoints = 3;
-        const interval = 3500;
+        const maxPoints = 5; // Increased to allow more overlap with slower fadeout
+        const interval = 1800; // Faster dots
 
         function getPoint() {
             const w = window.innerWidth;
             const h = window.innerHeight;
-            const m = 80;
+            const m = 100;
             return {
                 x: m + Math.random() * (w - m * 2),
                 y: m + Math.random() * (h - m * 2),
                 id: Math.random().toString(36).substr(2, 9),
-                radius: 3 + Math.random() * 5 // Varying size
+                radius: 3 + Math.random() * 5
             };
         }
 
@@ -135,7 +133,6 @@
             circle.setAttribute('class', 'dot');
             dotLayer.appendChild(circle);
             
-            // Fade in
             requestAnimationFrame(() => {
                 setTimeout(() => circle.classList.add('visible'), 50);
             });
@@ -159,11 +156,12 @@
             requestAnimationFrame(() => {
                 setTimeout(() => {
                     line.classList.add('visible');
-                    line.style.transition = 'stroke-dashoffset 2s ease-out, opacity 1s ease';
+                    // Fast growth
+                    line.style.transition = 'stroke-dashoffset 1s ease-out, opacity 0.6s ease';
                     line.style.strokeDashoffset = 0;
                 }, 50);
             });
-            return line;
+            return { el: line, length: length };
         }
 
         function next() {
@@ -173,50 +171,59 @@
 
             if (points.length > 0) {
                 const prev = points[points.length - 1];
-                const line = createLine(prev, p);
-                lines.push({ el: line, from: prev.id, to: p.id });
+                const lineObj = createLine(prev, p);
+                lines.push({ 
+                    el: lineObj.el, 
+                    length: lineObj.length,
+                    from: prev.id, 
+                    to: p.id 
+                });
             }
 
             points.push(p);
 
             if (points.length > maxPoints) {
                 const old = points.shift();
+                
                 const d = dots.get(old.id);
                 if (d) {
+                    // Slow fade out for dot
+                    d.style.transition = 'opacity 3s ease-in';
                     d.classList.remove('visible');
                     setTimeout(() => {
                         d.remove();
                         dots.delete(old.id);
-                    }, 1000);
+                    }, 3000);
                 }
 
                 const li = lines.findIndex(l => l.from === old.id);
                 if (li !== -1) {
                     const lObj = lines.splice(li, 1)[0];
+                    // Slow shrink transition
+                    lObj.el.style.transition = 'stroke-dashoffset 3.5s ease-in, opacity 3s ease-in';
+                    lObj.el.style.strokeDashoffset = -lObj.length;
                     lObj.el.classList.remove('visible');
-                    setTimeout(() => lObj.el.remove(), 1000);
+                    
+                    setTimeout(() => lObj.el.remove(), 3500);
                 }
             }
         }
 
-        // Init sequence
         function init() {
             next();
+            setTimeout(next, 600);
             setTimeout(next, 1200);
-            setTimeout(next, 2400);
-            setTimeout(() => setInterval(next, interval), 3600);
+            setTimeout(() => setInterval(next, interval), 1800);
         }
 
         window.onload = init;
 
-        // Cleanup on resize
         window.onresize = () => {
             lineLayer.innerHTML = '';
             dotLayer.innerHTML = '';
             points.length = 0;
             dots.clear();
             lines.length = 0;
-            // Immediate re-init
             next(); next(); next();
         };
     </script>

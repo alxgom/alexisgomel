@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creativity Animation Prototype</title>
+    <style>
+        :root {
+            --primary: #a50034; /* Matching the site palette */
+            --teal: #115740;
+            --amber: #ffab60;
+            --lavender: #9c2661;
+            --blue: #26619c;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        #animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: radial-gradient(circle at center, #ffffff 0%, #f0eee9 100%);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            mix-blend-mode: multiply;
+            animation: drift var(--duration) ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(var(--tx1), var(--ty1)) scale(1.2) rotate(120deg); }
+            66% { transform: translate(var(--tx2), var(--ty2)) scale(0.8) rotate(240deg); }
+            100% { transform: translate(var(--tx3), var(--ty3)) scale(1.1) rotate(360deg); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255,255,255,0.5);
+            max-width: 450px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .color-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container"></div>
+
+    <div class="content">
+        <div class="card">
+            <h1>Creative Hobbies</h1>
+            <p>Drifting organic shapes to evoke inspiration, photography, and music.</p>
+            <div style="margin-top: 1rem;">
+                <span class="color-dot" style="background: var(--primary);"></span>
+                <span class="color-dot" style="background: var(--amber);"></span>
+                <span class="color-dot" style="background: var(--teal);"></span>
+                <span class="color-dot" style="background: var(--blue);"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('animation-container');
+        const colors = [
+            'var(--primary)',
+            'var(--amber)',
+            'var(--teal)',
+            'var(--blue)',
+            'var(--lavender)'
+        ];
+
+        function createBlob() {
+            const blob = document.createElement('div');
+            blob.className = 'blob';
+            
+            const size = 300 + Math.random() * 400;
+            blob.style.width = `${size}px`;
+            blob.style.height = `${size}px`;
+            
+            // Random start position
+            blob.style.left = `${Math.random() * 100}%`;
+            blob.style.top = `${Math.random() * 100}%`;
+            
+            // Random color
+            blob.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random animation params (Faster: 8-12s)
+            const duration = 8 + Math.random() * 4;
+            blob.style.setProperty('--duration', `${duration}s`);
+            
+            // Random drift targets
+            blob.style.setProperty('--tx1', `${(Math.random() - 0.5) * 400}px`);
+            blob.style.setProperty('--ty1', `${(Math.random() - 0.5) * 400}px`);
+            blob.style.setProperty('--tx2', `${(Math.random() - 0.5) * 400}px`);
+            blob.style.setProperty('--ty2', `${(Math.random() - 0.5) * 400}px`);
+            blob.style.setProperty('--tx3', `${(Math.random() - 0.5) * 400}px`);
+            blob.style.setProperty('--ty3', `${(Math.random() - 0.5) * 400}px`);
+            
+            container.appendChild(blob);
+        }
+
+        // Create initial set of blobs
+        for (let i = 0; i < 6; i++) {
+            createBlob();
+        }
+    </script>
+</body>
+</html>
