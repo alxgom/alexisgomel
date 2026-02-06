@@ -139,3 +139,14 @@ _> Complete this section mirroring the English pages but with Spanish keywords._
   - Análisis de Contraste WCAG
   - Visualización de Datos de Color
   - Simulador de Daltonismo Sevilla
+
+### Analítica Web (`/es/projects/webanalytics/`)
+
+- **Title**: Dashboard GA4, BigQuery y Looker Studio | Alexis Gomel
+- **Description**: Demostración en vivo de un stack de analítica web personalizado usando GA4, BigQuery y Looker Studio. Visualiza tráfico y datos de usuario en tiempo real.
+- **Target Keywords**:
+  - Dashboard Analítica Web
+  - Proyecto GA4 y BigQuery
+  - Portafolio Looker Studio
+  - Stack Analítica Personalizado
+  - Visualización de Datos en Tiempo Real
