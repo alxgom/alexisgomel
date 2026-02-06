@@ -201,3 +201,6 @@ if (document.readyState === 'loading') {
 } else {
     start();
 }
+
+// Handle Astro view transitions if applicable
+document.addEventListener('astro:page-load', start);
