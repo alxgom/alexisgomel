@@ -131,7 +131,11 @@ _> Complete this section mirroring the English pages but with Spanish keywords._
 
 ### Sevilla (`/es/projects/sevilla/`)
 
-- **Title**: _[To be filled]_
-- **Description**: _[To be filled]_
+- **Title**: Paleta de Colores Accesible de Sevilla y Visualización | Alexis Gomel
+- **Description**: Explora 'La Paleta de Sevilla', un esquema de color accesible inspirado en la historia de Sevilla. Incluye visualizaciones interactivas, análisis de contraste WCAG y simulaciones de daltonismo.
 - **Target Keywords**:
-  - Paleta de Colores Sevilla
+  - Paleta de Colores de Sevilla
+  - Paleta de Colores Accesible
+  - Análisis de Contraste WCAG
+  - Visualización de Datos de Color
+  - Simulador de Daltonismo Sevilla
