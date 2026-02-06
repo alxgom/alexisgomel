@@ -107,6 +107,16 @@ _> Complete this section mirroring the English pages but with Spanish keywords._
   - Alexis Gomel Portfolio Español
   - Científico de Datos
 
+### Calculadora SHARE (`/es/sac/`)
+
+- **Title**: Calculadora de Alquiler Justo por Metros Cuadrados | SHARE
+- **Description**: ¿Necesitas dividir el alquiler con compañeros de piso? La Calculadora SHARE te ayuda a estimar un reparto justo basado en los metros cuadrados y las zonas comunes.
+- **Target Keywords**:
+  - Calculadora de Alquiler
+  - Reparto de Alquiler Compañeros de Piso
+  - Alquiler por Metros Cuadrados
+  - Calculadora de Pisos Compartidos
+
 ### Proyectos (`/es/projects/`)
 
 - **Title**: Ciencia de Datos, Dashboards y Apps | Alexis Gomel
