@@ -26,8 +26,8 @@ const alternateHref = "/projects/";
 ---
 
 <MainLayout
-  title={`Proyectos de Ciencia de Datos y Física | ${SITE_TITLE}`}
-  description="Explora mis proyectos de Ciencia de Datos y Física, incluyendo dinámica no lineal, web scraping y herramientas de visualización."
+  title={`Ciencia de Datos, Dashboards y Apps | ${SITE_TITLE}`}
+  description="Explora mis proyectos de Ciencia de Datos, incluyendo Análisis de Datos, Dashboards (Cuadros de Mando), Desarrollo de Apps y Herramientas de Visualización."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
@@ -40,7 +40,7 @@ const alternateHref = "/projects/";
         class="cv-nav-link gtm-track-click"
         data-event-category="Sub-navigation"
         data-event-label="Projects - Data Analysis"
-        >Análisis de datos y paneles</a
+        >Análisis de datos y Dashboards</a
       >
       <a
         href="#App_development"
@@ -53,7 +53,8 @@ const alternateHref = "/projects/";
         class="cv-nav-link gtm-track-click"
         data-event-category="Sub-navigation"
         data-event-label="Projects - Visualization Dev"
-        >Desarrollo de Visualización</a
+        data-event-label="Projects - Visualization Dev"
+        >Desarrollo de Visualización de Datos</a
       >
       <a
         href="#Plots_Viz"
@@ -68,7 +69,7 @@ const alternateHref = "/projects/";
     <!-- Data Analysis & Dashboards Section -->
     <section id="Data_analysis" class="section mt-3">
       <div class="container text-center" style="padding-bottom:30px;">
-        <h2 class="section-title mb-4">Análisis de datos y paneles</h2>
+        <h2 class="section-title mb-4">Análisis de datos y Dashboards</h2>
       </div>
 
       <div class="container">
@@ -82,7 +83,7 @@ const alternateHref = "/projects/";
                 playsinline
                 class="img-fluid"
                 poster={mixxxScreenshot.src}
-                aria-label="Video demostrativo del Panel de Análisis para DJ Mixxx"
+                aria-label="Video demostrativo del Dashboard de Análisis para DJ Mixxx"
               >
                 <source
                   src="/assets/imgs/Projects/mixxx_dashboard.webm"
@@ -102,15 +103,15 @@ const alternateHref = "/projects/";
                   class="overlay-link-full"
                   aria-label="Ver Tablero MIXX"></a>
                 <div class="overlay-infos">
-                  <h5>Panel de Análisis para DJ Mixxx</h5>
+                  <h5>Dashboard de Análisis para DJ Mixxx</h5>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-6">
-            <h4>Panel de Análisis para DJ Mixxx</h4>
+            <h4>Dashboard de Análisis para DJ Mixxx</h4>
             <p>
-              Es un panel diseñado para el <strong
+              Es un dashboard diseñado para el <strong
                 >análisis posterior al set y la autorreflexión</strong
               >. Lo utilizo para obtener información sobre mi estilo como DJ,
               comprender mi flujo y descubrir nuevas combinaciones de canciones
@@ -212,7 +213,7 @@ const alternateHref = "/projects/";
           <div class="general-img-holder">
             <Image
               src={webAnalyticsImg}
-              alt="Panel de Analítica Web"
+              alt="Dashboard de Analítica Web"
               class="img-fluid"
             />
             <div class="overlay">
@@ -221,21 +222,21 @@ const alternateHref = "/projects/";
                 class="overlay-link-full"
                 aria-label="Ver el proyecto de Analítica Web"></a>
               <div class="overlay-infos">
-                <h5>Panel de Analítica Web</h5>
+                <h5>Dashboard de Analítica Web</h5>
               </div>
               <a
                 href={webAnalyticsImg.src}
                 class="overlay-zoom-link"
-                aria-label="Ampliar imagen del Panel de Analítica Web"
+                aria-label="Ampliar imagen del Dashboard de Analítica Web"
                 data-lightbox="true"><i class="ti-zoom-in"></i></a
               >
             </div>
           </div>
         </div>
         <div class="col-md-6">
-          <h4>Panel de Analítica Web</h4>
+          <h4>Dashboard de Analítica Web</h4>
           <p>
-            Un panel de análisis casi en tiempo real para este portafolio,
+            Un dashboard de análisis casi en tiempo real para este portafolio,
             construido con Looker Studio y alimentado por datos de GA4
             exportados a BigQuery.
           </p>
@@ -403,7 +404,7 @@ const alternateHref = "/projects/";
   <!-- Visualization Development Section -->
   <section id="Viz_development" class="section mt-3">
     <div class="container text-center" style="padding-bottom:30px;">
-      <h2 class="section-title mb-4">Desarrollo de Visualización</h2>
+      <h2 class="section-title mb-4">Desarrollo de Visualización de Datos</h2>
     </div>
 
     <div class="container">
