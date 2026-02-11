@@ -129,6 +129,8 @@ function initBackgroundAnimation(containerId) {
     const isMobile = window.innerWidth < 768;
     const numClusters = isMobile ? 3 : 5;
 
+    let clusters = [];
+
     function setupClusters() {
         clusters.forEach(c => c.stop());
         clusters = []; // Reset clusters array
@@ -147,7 +149,6 @@ function initBackgroundAnimation(containerId) {
         
         for (let i = 0; i < numClusters; i++) {
             const minX = i * zoneWidth;
-            const maxX = (i + 1) * zoneWidth - clusterSize;
             
             // Ensure cluster stays within its zone and container width
             const x = Math.max(0, Math.min(w - clusterSize, minX + Math.random() * (zoneWidth - clusterSize)));
