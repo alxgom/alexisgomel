@@ -16,6 +16,8 @@ const advancedSkills = [
   { name: "Git", experience: "+5 años" },
 ];
 
+import wordcloud from "../../assets/imgs/wordcloud_liviano.webp";
+
 const intermediateSkills = [
   { name: "Latex", experience: "+6 años" },
   { name: "SQL - BigQuery", experience: "1 año" },
@@ -172,7 +174,7 @@ const beginnerSkills = [
           <div class="col-md-4 text-center">
             <div class="general-img-holder mb-3">
               <img
-                src="/assets/imgs/wordcloud_liviano.webp"
+                src={wordcloud.src}
                 alt="Imagen generada por webscraping de las palabras clave de todos los artículos desde 2020 en la revista de dinámica no lineal"
                 class="img-fluid"
               />
