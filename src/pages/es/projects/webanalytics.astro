@@ -17,7 +17,7 @@ const alternateHref = "/projects/webanalytics/";
   <meta
     slot="head"
     name="keywords"
-    content="Dashboard Analítica Web, Proyecto GA4 BigQuery, Portafolio Looker Studio, Stack Analítica Personalizado, Visualización de Datos en Tiempo Real"
+    content="Dashboard Analítica Web, Proyecto GA4 BigQuery, Portafolio Looker Studio, Stack Analítica Personalizado, Visualización de Datos en Tiempo Real, Core Web Vitals, PageSpeed Insights, Automatización Lighthouse"
   />
   <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
 
@@ -25,14 +25,14 @@ const alternateHref = "/projects/webanalytics/";
     <!-- Hero Section -->
     <section class="text-center mb-5">
       <h1 class="section-title display-4 mb-3">
-        Panel de Analítica Web: GA4, BigQuery y Looker Studio
+        Panel de Rendimiento y Analítica Web: GA4, BigQuery y Looker Studio
       </h1>
       <p class="lead text-muted mx-auto" style="max-width: 700px;">
         Una visión general completa y casi en tiempo real de la analítica para <strong
           >alexisgomel.com</strong
         >. Impulsado por herramientas modernas de ingeniería de datos para
-        proporcionar información profunda sobre el tráfico y el comportamiento
-        del usuario.
+        monitorizar el tráfico, el comportamiento del usuario y el rendimiento
+        (Core Web Vitals).
       </p>
     </section>
 
@@ -43,7 +43,7 @@ const alternateHref = "/projects/webanalytics/";
         style="min-height: 800px; position: relative; height: 100%; width: 100%; overflow: hidden;"
       >
         <iframe
-          src="https://lookerstudio.google.com/embed/reporting/c498c4a2-7433-4687-8f3e-49b59d848e6d/page/p_5phix7rdzd"
+          src="https://lookerstudio.google.com/embed/reporting/f947f8a3-9830-42b1-abab-3d8c39af1865/page/p_co6axt5m0d"
           frameborder="0"
           style="border:0; position: absolute; top:0; left:0; width:100%; height:100%; min-height: 800px;"
           allowfullscreen
@@ -53,8 +53,9 @@ const alternateHref = "/projects/webanalytics/";
         </iframe>
       </div>
       <p class="text-center text-muted mt-3 mb-4">
-        Navega entre las páginas para ver la Descripción General (Página 1) y el
-        Desglose de Tráfico (Página 2).
+        Navega entre las páginas para explorar la Descripción General, el
+        Desglose de Tráfico, el Rendimiento de Core Web Vitals y los Insights de
+        SEO.
       </p>
     </section>
 
@@ -75,6 +76,16 @@ const alternateHref = "/projects/webanalytics/";
             > Actualizaciones cada 4 horas a través de BigQuery.
           </li>
           <li class="mb-2">
+            <i class="ti-timer text-primary mr-2"></i><strong
+              >Monitorización de rendimiento:</strong
+            > pruebas diarias automatizadas vía Cloud Functions y API PageSpeed.
+          </li>
+          <li class="mb-2">
+            <i class="ti-search text-primary mr-2"></i><strong
+              >SEO y Search Console:</strong
+            > Integración con Google Search Console para rendimiento de búsqueda orgánica.
+          </li>
+          <li class="mb-2">
             <i class="ti-layers-alt text-primary mr-2"></i><strong
               >Seguimiento personalizado:</strong
             > Eventos capturados a través de Google Tag Manager con capas de datos
@@ -83,8 +94,10 @@ const alternateHref = "/projects/webanalytics/";
           <li class="mb-2">
             <i class="ti-layout-grid2 text-primary mr-2"></i><strong
               >Visuales avanzados:</strong
-            > Cuenta con una visualización de Jerarquía de Árbol personalizada para
-            desgloses categóricos.
+            > Cuenta con <a href="/es/projects/looker-studio-custom-visuals/"
+              >visualizaciones personalizadas como Jerarquía de Árbol y KPI
+              Personalizado</a
+            > para una mejor presentación de informes.
           </li>
         </ul>
       </div>
@@ -106,7 +119,16 @@ const alternateHref = "/projects/webanalytics/";
             >
             <span class="badge badge-light border text-dark m-1 p-2">SQL</span>
             <span class="badge badge-light border text-dark m-1 p-2"
-              >Desarrollo de Viz Personalizada</span
+              >D3.js & DSCC</span
+            >
+            <span class="badge badge-light border text-dark m-1 p-2"
+              >API PageSpeed</span
+            >
+            <span class="badge badge-light border text-dark m-1 p-2"
+              >Google Search Console</span
+            >
+            <span class="badge badge-light border text-dark m-1 p-2"
+              >Cloud Functions</span
             >
           </div>
         </div>

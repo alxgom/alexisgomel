@@ -1,5 +1,8 @@
 ---
 import MainLayout from "../../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import performanceImg from "../../../assets/imgs/Projects/performance.png";
+import bestPracticesImg from "../../../assets/imgs/Projects/best_practices_screenshot.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
@@ -84,6 +87,14 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
 
     .viz-list li {
       margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .viz-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
     }
   </style>
 
@@ -115,19 +126,73 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
           <div class="col-md-12">
             <ul>
               <li>
-                <strong>Gráfico Lipstick</strong> - Un tipo de gráfico especializado
-                para comparar valores reales con objetivos con un estilo visual distintivo
-                y de alta densidad.
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/lipstick%20icon.svg"
+                  class="viz-icon"
+                  alt="Icono Gráfico Lipstick"
+                />
+                <div>
+                  <strong>Gráfico Lipstick</strong> - Un tipo de gráfico especializado
+                  para comparar valores reales con objetivos con un estilo visual
+                  distintivo y de alta densidad.
+                </div>
               </li>
               <li>
-                <strong>Jerarquía de Árbol</strong> - Una visualización jerárquica
-                para mostrar estructuras de datos multinivel con capacidades intuitivas
-                de desglose (drill-down).
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/tree%20icon.svg"
+                  class="viz-icon"
+                  alt="Icono Jerarquía de Árbol"
+                />
+                <div>
+                  <strong>Jerarquía de Árbol</strong> - Una visualización jerárquica
+                  para mostrar estructuras de datos multinivel con capacidades intuitivas
+                  de desglose (drill-down).
+                </div>
               </li>
               <li>
-                <strong>Histograma</strong> - Un histograma personalizable con opciones
-                de orientación, escala logarítmica y visibilidad de ejes para el análisis
-                de distribución.
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/Histogram.svg"
+                  class="viz-icon"
+                  alt="Icono Histograma"
+                />
+                <div>
+                  <strong>Histograma</strong> - Un histograma personalizable con opciones
+                  de orientación, escala logarítmica y visibilidad de ejes para el
+                  análisis de distribución.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/sparkline_table_icon.svg"
+                  class="viz-icon"
+                  alt="Icono Tabla Sparkline"
+                />
+                <div>
+                  <strong>Tabla Sparkline</strong> - Una tabla rica en datos con sparklines
+                  incrustados para rastrear tendencias de un vistazo.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/cleveland%20icon.svg"
+                  class="viz-icon"
+                  alt="Icono Gráfico Cleveland"
+                />
+                <div>
+                  <strong>Gráfico Cleveland</strong> - Una alternativa limpia a los
+                  gráficos de barras para comparar valores o mostrar distribuciones.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/minimal_pause_kpi.svg"
+                  class="viz-icon"
+                  alt="Icono KPI Personalizado"
+                />
+                <div>
+                  <strong>KPI Personalizado</strong> - Un diseño de tarjeta KPI minimalista
+                  con estética 'minimal pause' para un impacto métrico claro.
+                </div>
               </li>
             </ul>
             <p class="text-muted mt-3">
@@ -331,6 +396,55 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
           <strong>Tecnologías y habilidades:</strong> JavaScript, D3.js, API DSCC,
           Visualización de Datos, CSS.
         </p>
+      </div>
+      <div class="viz-list mt-5">
+        <h3>Aplicación en el Mundo Real: Monitorización de Rendimiento</h3>
+        <p>
+          Estas visualizaciones personalizadas no son solo conceptos teóricos;
+          se utilizan activamente en entornos de producción. Por ejemplo, el <strong
+            >Gráfico Cleveland</strong
+          > es fundamental en mi <a href="/es/projects/webanalytics/"
+            >Panel de Analítica Web</a
+          > personal.
+        </p>
+        <p>
+          Visualiza las puntuaciones diarias de <strong
+            >PageSpeed Insights</strong
+          >, permitiendo una identificación rápida de tendencias de rendimiento
+          y la distribución de métricas de Core Web Vitals.
+        </p>
+
+        <div class="row mt-4">
+          <div class="col-md-6 mb-4">
+            <figure class="text-center">
+              <div class="shadow rounded overflow-hidden d-inline-block">
+                <Image
+                  src={performanceImg}
+                  alt="Gráfico Cleveland mostrando distribución de puntuaciones de rendimiento"
+                  class="img-fluid"
+                />
+              </div>
+              <figcaption class="text-muted small mt-2">
+                Distribución de puntuaciones de rendimiento visualizada con
+                Gráfico Cleveland
+              </figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6 mb-4">
+            <figure class="text-center">
+              <div class="shadow rounded overflow-hidden d-inline-block">
+                <Image
+                  src={bestPracticesImg}
+                  alt="Gráfico Cleveland mostrando puntuaciones de mejores prácticas en el tiempo"
+                  class="img-fluid"
+                />
+              </div>
+              <figcaption class="text-muted small mt-2">
+                Seguimiento de métricas de Mejores Prácticas
+              </figcaption>
+            </figure>
+          </div>
+        </div>
       </div>
     </div>
   </div>

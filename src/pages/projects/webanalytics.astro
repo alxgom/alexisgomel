@@ -17,7 +17,7 @@ const alternateHref = "/projects/webanalytics/";
   <meta
     slot="head"
     name="keywords"
-    content="Web Analytics Dashboard, GA4 BigQuery Project, Looker Studio Portfolio, Custom Analytics Stack, Real-time Data Visualization"
+    content="Web Analytics Dashboard, GA4 BigQuery Project, Looker Studio Portfolio, Custom Analytics Stack, Real-time Data Visualization, Core Web Vitals, PageSpeed Insights, Lighthouse Automation"
   />
   <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
 
@@ -25,13 +25,13 @@ const alternateHref = "/projects/webanalytics/";
     <!-- Hero Section -->
     <section class="text-center mb-5">
       <h1 class="section-title display-4 mb-3">
-        Web Analytics Dashboard: GA4, BigQuery & Looker Studio
+        Web Analytics & Performance Dashboard: GA4, BigQuery & Looker Studio
       </h1>
       <p class="lead text-muted mx-auto" style="max-width: 700px;">
         A comprehensive, near real-time analytics overview for <strong
           >alexisgomel.com</strong
-        >. Powered by modern data engineering tools to provide deep insights
-        into traffic and user behavior.
+        >. Powered by modern data engineering tools to monitor traffic, user
+        behavior, and Core Web Vitals performance.
       </p>
     </section>
 
@@ -42,7 +42,7 @@ const alternateHref = "/projects/webanalytics/";
         style="min-height: 800px; position: relative; height: 100%; width: 100%; overflow: hidden;"
       >
         <iframe
-          src="https://lookerstudio.google.com/embed/reporting/c498c4a2-7433-4687-8f3e-49b59d848e6d/page/p_5phix7rdzd"
+          src="https://lookerstudio.google.com/embed/reporting/f947f8a3-9830-42b1-abab-3d8c39af1865/page/p_co6axt5m0d"
           frameborder="0"
           style="border:0; position: absolute; top:0; left:0; width:100%; height:100%; min-height: 800px;"
           allowfullscreen
@@ -52,8 +52,8 @@ const alternateHref = "/projects/webanalytics/";
         </iframe>
       </div>
       <p class="text-center text-muted mt-3 mb-4">
-        Navigate between pages to see the General Overview (Page 1) and the
-        Traffic Breakdown (Page 2).
+        Navigate between pages to explore the General Overview, Traffic
+        Breakdown, Core Web Vitals Performance, and SEO Insights.
       </p>
     </section>
 
@@ -73,6 +73,16 @@ const alternateHref = "/projects/webanalytics/";
             > Updates every 4 hours via BigQuery.
           </li>
           <li class="mb-2">
+            <i class="ti-timer text-primary mr-2"></i><strong
+              >Performance Monitoring:</strong
+            > automated daily tests via Cloud Functions & PageSpeed API.
+          </li>
+          <li class="mb-2">
+            <i class="ti-search text-primary mr-2"></i><strong
+              >SEO & Search Console:</strong
+            > Integration with Google Search Console for organic search performance.
+          </li>
+          <li class="mb-2">
             <i class="ti-layers-alt text-primary mr-2"></i><strong
               >Custom Tracking:</strong
             > Events captured via Google Tag Manager with custom data layers.
@@ -80,7 +90,9 @@ const alternateHref = "/projects/webanalytics/";
           <li class="mb-2">
             <i class="ti-layout-grid2 text-primary mr-2"></i><strong
               >Advanced Visuals:</strong
-            > Features a custom Tree Hierarchy visualization for categorical breakdowns.
+            > Features <a href="/projects/looker-studio-custom-visuals/"
+              >Custom Visuals like Tree Hierarchy and Custom KPI</a
+            > for enhanced reporting.
           </li>
         </ul>
       </div>
@@ -102,7 +114,16 @@ const alternateHref = "/projects/webanalytics/";
             >
             <span class="badge badge-light border text-dark m-1 p-2">SQL</span>
             <span class="badge badge-light border text-dark m-1 p-2"
-              >Custom Viz Dev</span
+              >D3.js & DSCC</span
+            >
+            <span class="badge badge-light border text-dark m-1 p-2"
+              >PageSpeed API</span
+            >
+            <span class="badge badge-light border text-dark m-1 p-2"
+              >Google Search Console</span
+            >
+            <span class="badge badge-light border text-dark m-1 p-2"
+              >Cloud Functions</span
             >
           </div>
         </div>

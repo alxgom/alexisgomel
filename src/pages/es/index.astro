@@ -16,6 +16,7 @@ import mixxxDashboard from "../../assets/imgs/Projects/mixxx_dashboard_svg_logo.
 import filamentScheme from "../../assets/imgs/filament_scheme2.png";
 import sacWebApp from "../../assets/imgs/Projects/sac_web_app.png";
 import sharePuzzleLogo from "../../assets/imgs/Projects/share_puzzle_logo.svg";
+import communityVisualsBanner from "../../assets/imgs/Projects/community_visuals_banner.svg";
 import { SITE_TITLE, SITE_DESCRIPTION_ES } from "../../consts";
 
 // MULTILINGUAL SETTINGS
@@ -25,6 +26,18 @@ const alternateHref = "/";
 
 // Portfolio items for carousel (Spanish)
 const portfolioItems = [
+  {
+    image: communityVisualsBanner,
+    imageAlt: "Visualizaciones de la Comunidad Looker Studio",
+    title: "Visualizaciones de Looker Studio",
+    description:
+      "Visualizaciones personalizadas incluyendo Jerarquía de Árbol, Lipstick e Histograma.",
+    zoomHref: "/assets/imgs/Projects/community_visuals_banner.svg",
+    linkHref: "/es/projects/looker-studio-custom-visuals/",
+    linkAriaLabel: "Ver Visualizaciones de la Comunidad",
+    zoomAriaLabel: "Ampliar imagen de Visualizaciones",
+    gtmLabel: "Community Visuals",
+  },
   {
     image: hamiltonian3d,
     imageAlt: "Visualización de congelación de olas gigantes",
