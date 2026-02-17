@@ -197,6 +197,7 @@
 
 @media (max-width: 767.98px) {
   .header .bg-image {
+    background-image: url(../imgs/wavesss_mobile.webp);
     background-position: center top; 
     background-size: cover;
   }
