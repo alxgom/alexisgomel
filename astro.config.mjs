@@ -2,8 +2,6 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
-
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
@@ -13,11 +11,6 @@ export default defineConfig({
 		mdx(),
 		sitemap({
 			filter: (page) => !page.includes('/font-test') && !page.includes('/webanalytics'),
-		}),
-		partytown({
-			config: {
-				forward: ["dataLayer.push"],
-			},
 		}),
 	],
 	adapter: cloudflare({
