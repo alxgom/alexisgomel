@@ -397,55 +397,79 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
           Visualización de Datos, CSS.
         </p>
       </div>
-      <div class="viz-list mt-5">
-        <h3>Aplicación en el Mundo Real: Monitorización de Rendimiento</h3>
-        <p>
-          Estas visualizaciones personalizadas no son solo conceptos teóricos;
-          se utilizan activamente en entornos de producción. Por ejemplo, el <strong
-            >Gráfico Cleveland</strong
-          > es fundamental en mi <a href="/es/projects/webanalytics/"
-            >Panel de Analítica Web</a
-          > personal.
-        </p>
-        <p>
-          Visualiza las puntuaciones diarias de <strong
-            >PageSpeed Insights</strong
-          >, permitiendo una identificación rápida de tendencias de rendimiento
-          y la distribución de métricas de Core Web Vitals.
-        </p>
-
-        <div class="row mt-4">
-          <div class="col-md-6 mb-4">
-            <figure class="text-center">
-              <div class="shadow rounded overflow-hidden d-inline-block">
-                <Image
-                  src={performanceImg}
-                  alt="Gráfico Cleveland mostrando distribución de puntuaciones de rendimiento"
-                  class="img-fluid"
-                />
-              </div>
-              <figcaption class="text-muted small mt-2">
-                Distribución de puntuaciones de rendimiento visualizada con
-                Gráfico Cleveland
-              </figcaption>
-            </figure>
-          </div>
-          <div class="col-md-6 mb-4">
-            <figure class="text-center">
-              <div class="shadow rounded overflow-hidden d-inline-block">
-                <Image
-                  src={bestPracticesImg}
-                  alt="Gráfico Cleveland mostrando puntuaciones de mejores prácticas en el tiempo"
-                  class="img-fluid"
-                />
-              </div>
-              <figcaption class="text-muted small mt-2">
-                Seguimiento de métricas de Mejores Prácticas
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </MainLayout>
+
+<div
+  style="background: linear-gradient(to bottom, #ffffff 0%, #f0eee9 300px, #f0eee9 100%); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 4rem 0;"
+>
+  <div class="looker-container">
+    <div class="container">
+      <h3>Aplicación en el Mundo Real: Monitorización de Rendimiento</h3>
+      <p
+        class="lead"
+        style="text-align: left; margin: 0 0 1rem 0; color: #434343;"
+      >
+        Estas visualizaciones personalizadas no son solo conceptos teóricos; se
+        utilizan activamente en entornos de producción. Por ejemplo, el <strong
+          >Gráfico Cleveland</strong
+        >
+        es fundamental en mi Panel de Analítica Web personal.
+      </p>
+
+      <p>
+        Visualiza las puntuaciones diarias de <strong>PageSpeed Insights</strong
+        >, permitiendo una identificación rápida de tendencias de rendimiento y
+        la distribución de métricas de Core Web Vitals.
+      </p>
+
+      <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+          <figure class="text-center">
+            <div
+              class="shadow rounded overflow-hidden d-inline-block"
+              style="background: white;"
+            >
+              <Image
+                src={performanceImg}
+                alt="Gráfico Cleveland mostrando distribución de puntuaciones de rendimiento"
+                class="img-fluid"
+              />
+            </div>
+            <figcaption class="text-muted small mt-2">
+              Distribución de puntuaciones de rendimiento visualizada con
+              Gráfico Cleveland
+            </figcaption>
+          </figure>
+        </div>
+        <div class="col-md-6 mb-4">
+          <figure class="text-center">
+            <div
+              class="shadow rounded overflow-hidden d-inline-block"
+              style="background: white;"
+            >
+              <Image
+                src={bestPracticesImg}
+                alt="Gráfico Cleveland mostrando puntuaciones de mejores prácticas en el tiempo"
+                class="img-fluid"
+              />
+            </div>
+            <figcaption class="text-muted small mt-2">
+              Seguimiento de métricas de Mejores Prácticas
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="text-center mt-4 mb-5">
+        <a
+          href="/es/projects/webanalytics/"
+          class="btn btn-primary btn-lg shadow-sm"
+        >
+          Ver Panel de Analítica Web <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -383,53 +383,78 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
           CSS.
         </p>
       </div>
-      <div class="viz-list mt-5">
-        <h3>Real-World Application: Performance Monitoring</h3>
-        <p>
-          These custom visualizations are not just theoretical concepts; they
-          are actively used in production environments. For example, the <strong
-            >Cleveland Plot</strong
-          > is integral to my personal <a href="/projects/webanalytics/"
-            >Web Analytics Dashboard</a
-          >.
-        </p>
-        <p>
-          It visualizes daily <strong>PageSpeed Insights</strong> scores, allowing
-          for quick identification of performance trends and distribution of Core
-          Web Vitals metrics.
-        </p>
-
-        <div class="row mt-4">
-          <div class="col-md-6 mb-4">
-            <figure class="text-center">
-              <div class="shadow rounded overflow-hidden d-inline-block">
-                <Image
-                  src={performanceImg}
-                  alt="Cleveland Plot showing Performance Scores distribution"
-                  class="img-fluid"
-                />
-              </div>
-              <figcaption class="text-muted small mt-2">
-                Performance scores distribution visualized with Cleveland Plot
-              </figcaption>
-            </figure>
-          </div>
-          <div class="col-md-6 mb-4">
-            <figure class="text-center">
-              <div class="shadow rounded overflow-hidden d-inline-block">
-                <Image
-                  src={bestPracticesImg}
-                  alt="Cleveland Plot showing Best Practices Scores over time"
-                  class="img-fluid"
-                />
-              </div>
-              <figcaption class="text-muted small mt-2">
-                Best Practices metrics tracking
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </MainLayout>
+
+<div
+  style="background: linear-gradient(to bottom, #ffffff 0%, #f0eee9 300px, #f0eee9 100%); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 4rem 0;"
+>
+  <div class="looker-container">
+    <div class="container">
+      <h3>Real-World Application: Performance Monitoring</h3>
+      <p
+        class="lead"
+        style="text-align: left; margin: 0 0 1rem 0; color: #434343;"
+      >
+        These custom visualizations are not just theoretical concepts; they are
+        actively used in production environments. For example, the <strong
+          >Cleveland Plot</strong
+        >
+        is integral to my personal Web Analytics Dashboard.
+      </p>
+
+      <p>
+        It visualizes daily <strong>PageSpeed Insights</strong> scores, allowing for
+        quick identification of performance trends and distribution of Core Web Vitals
+        metrics.
+      </p>
+
+      <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+          <figure class="text-center">
+            <div
+              class="shadow rounded overflow-hidden d-inline-block"
+              style="background: white;"
+            >
+              <Image
+                src={performanceImg}
+                alt="Cleveland Plot showing Performance Scores distribution"
+                class="img-fluid"
+              />
+            </div>
+            <figcaption class="text-muted small mt-2">
+              Performance scores distribution visualized with Cleveland Plot
+            </figcaption>
+          </figure>
+        </div>
+        <div class="col-md-6 mb-4">
+          <figure class="text-center">
+            <div
+              class="shadow rounded overflow-hidden d-inline-block"
+              style="background: white;"
+            >
+              <Image
+                src={bestPracticesImg}
+                alt="Cleveland Plot showing Best Practices Scores over time"
+                class="img-fluid"
+              />
+            </div>
+            <figcaption class="text-muted small mt-2">
+              Best Practices metrics tracking
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="text-center mt-4 mb-5">
+        <a
+          href="/projects/webanalytics/"
+          class="btn btn-primary btn-lg shadow-sm"
+        >
+          View Web Analytics Dashboard <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
