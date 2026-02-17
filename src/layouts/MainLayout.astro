@@ -115,11 +115,6 @@ const GTM_ID = "GTM-WDZK7ZFX";
     <link rel="stylesheet" href="/assets/css/global.css" />
     <link rel="stylesheet" href="/assets/css/cards.css" />
     <link rel="stylesheet" href="/assets/css/images.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="/assets/css/carousel.css" />
 
     <!-- Allow child pages to inject into head -->
     <slot name="head" />
@@ -159,10 +154,6 @@ const GTM_ID = "GTM-WDZK7ZFX";
       src="/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script is:inline defer src="/assets/vendors/bootstrap/bootstrap.affix.js"
     ></script>
-    <script
-      is:inline
-      defer
-      src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
-    ></script>
+    <slot name="scripts" />
   </body>
 </html>

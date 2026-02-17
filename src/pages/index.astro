@@ -123,6 +123,12 @@ const portfolioItems = [
     href="/assets/imgs/wavesss_webp.webp"
     fetchpriority="high"
   />
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <link slot="head" rel="stylesheet" href="/assets/css/carousel.css" />
   <section class="header" id="hero">
     <div class="bg-image bg-image-white">
       <div class="bg-image-white">
@@ -336,6 +342,12 @@ const portfolioItems = [
     <Lightbox />
   </main>
 </MainLayout>
+
+<script
+  slot="scripts"
+  is:inline
+  defer
+  src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script src="../scripts/background-animation.js"></script>
 <script src="../scripts/hobbies-animation.js"></script>
