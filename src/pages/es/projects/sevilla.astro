@@ -99,7 +99,7 @@ const sevillePalette = [
   <link rel="stylesheet" href="/assets/css/sevilla.css" slot="head" />
 
   <!-- D3.js -->
-  <script is:inline src="https://d3js.org/d3.v7.min.js"></script>
+  <script is:inline defer src="https://d3js.org/d3.v7.min.js"></script>
 
   <div class="palette-container">
     <div class="text-center mb-5">
@@ -509,164 +509,172 @@ const sevillePalette = [
     }
 
     // --- Visualization Setup ---
-    const width = document.getElementById("d3-viz").offsetWidth;
-    const height = 600;
+    document.addEventListener("DOMContentLoaded", () => {
+      const width = document.getElementById("d3-viz").offsetWidth;
+      const height = 600;
 
-    // 1. Prepare Nodes (Colors)
-    const nodes = palette.map((d) => ({ ...d, id: d.name }));
+      // 1. Prepare Nodes (Colors)
+      const nodes = palette.map((d) => ({ ...d, id: d.name }));
 
-    // 2. Prepare Links (Contrast Connections)
-    const links = [];
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const ratio = calculateRatio(nodes[i].hex, nodes[j].hex);
-        // Only connect if ratio meets WCAG AA Large (3.0) at minimum
-        if (ratio >= 3.0) {
-          links.push({
-            source: nodes[i].id,
-            target: nodes[j].id,
-            ratio: ratio,
-            strength: ratio >= 4.5 ? 1 : 0.3, // Stronger link for better contrast
-          });
+      // 2. Prepare Links (Contrast Connections)
+      const links = [];
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const ratio = calculateRatio(nodes[i].hex, nodes[j].hex);
+          // Only connect if ratio meets WCAG AA Large (3.0) at minimum
+          if (ratio >= 3.0) {
+            links.push({
+              source: nodes[i].id,
+              target: nodes[j].id,
+              ratio: ratio,
+              strength: ratio >= 4.5 ? 1 : 0.3, // Stronger link for better contrast
+            });
+          }
         }
       }
-    }
 
-    const svg = d3
-      .select("#d3-viz")
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .attr("viewBox", [0, 0, width, height]);
+      const svg = d3
+        .select("#d3-viz")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
 
-    // Simulation
-    const simulation = d3
-      .forceSimulation(nodes)
-      .force(
-        "link",
-        d3
-          .forceLink(links)
-          .id((d) => d.id)
-          .distance(150),
-      )
-      .force("charge", d3.forceManyBody().strength(-300))
-      .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collide", d3.forceCollide().radius(40));
+      // Simulation
+      const simulation = d3
+        .forceSimulation(nodes)
+        .force(
+          "link",
+          d3
+            .forceLink(links)
+            .id((d) => d.id)
+            .distance(150),
+        )
+        .force("charge", d3.forceManyBody().strength(-300))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collide", d3.forceCollide().radius(40));
 
-    // Draw Links
-    const link = svg
-      .append("g")
-      .attr("stroke-opacity", 0.6)
-      .selectAll("line")
-      .data(links)
-      .join("line")
-      .attr("stroke", "#999")
-      .attr("stroke-width", (d) => Math.sqrt(d.ratio)); // Thicker lines for better contrast
+      // Draw Links
+      const link = svg
+        .append("g")
+        .attr("stroke-opacity", 0.6)
+        .selectAll("line")
+        .data(links)
+        .join("line")
+        .attr("stroke", "#999")
+        .attr("stroke-width", (d) => Math.sqrt(d.ratio)); // Thicker lines for better contrast
 
-    // Draw Nodes
-    const node = svg
-      .append("g")
-      .selectAll("circle")
-      .data(nodes)
-      .join("circle")
-      .attr("r", 25)
-      .attr("fill", (d) => d.hex)
-      .attr("stroke", "#fff")
-      .attr("stroke-width", 2)
-      .attr("cursor", "grab")
-      .call(drag(simulation));
+      // Draw Nodes
+      const node = svg
+        .append("g")
+        .selectAll("circle")
+        .data(nodes)
+        .join("circle")
+        .attr("r", 25)
+        .attr("fill", (d) => d.hex)
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 2)
+        .attr("cursor", "grab")
+        .call(drag(simulation));
 
-    // Labels
-    const label = svg
-      .append("g")
-      .selectAll("text")
-      .data(nodes)
-      .join("text")
-      .text((d) => d.name)
-      .attr("font-size", 12)
-      .attr("text-anchor", "middle")
-      .attr("dy", 40) // Below circle
-      .attr("fill", "#333")
-      .style("pointer-events", "none");
+      // Labels
+      const label = svg
+        .append("g")
+        .selectAll("text")
+        .data(nodes)
+        .join("text")
+        .text((d) => d.name)
+        .attr("font-size", 12)
+        .attr("text-anchor", "middle")
+        .attr("dy", 40) // Below circle
+        .attr("fill", "#333")
+        .style("pointer-events", "none");
 
-    // Tooltip Interactions
-    const tooltip = d3.select("#tooltip");
+      // Tooltip Interactions
+      const tooltip = d3.select("#tooltip");
 
-    link
-      .on("mouseover", (event, d) => {
-        tooltip.style("opacity", 1);
-        tooltip.html(`Ratio Contraste: <strong>${d.ratio.toFixed(2)}</strong>`);
-        d3.select(event.target)
-          .attr("stroke", "#333")
-          .attr("stroke-opacity", 1);
-      })
-      .on("mousemove", (event) => {
-        tooltip
-          .style(
-            "left",
-            event.pageX - document.getElementById("d3-viz").offsetLeft + "px",
-          )
-          .style(
-            "top",
-            event.pageY -
-              document.getElementById("d3-viz").offsetTop -
-              40 +
-              "px",
-          );
-      })
-      .on("mouseout", (event, d) => {
-        tooltip.style("opacity", 0);
-        d3.select(event.target)
-          .attr("stroke", "#999")
-          .attr("stroke-opacity", 0.6);
-      });
-
-    node
-      .on("mouseover", (event, d) => {
-        d3.select(event.target).attr("stroke", "#333").attr("stroke-width", 4);
-      })
-      .on("mouseout", (event) => {
-        d3.select(event.target).attr("stroke", "#fff").attr("stroke-width", 2);
-      });
-
-    // Simulation Tick
-    simulation.on("tick", () => {
       link
-        .attr("x1", (d) => d.source.x)
-        .attr("y1", (d) => d.source.y)
-        .attr("x2", (d) => d.target.x)
-        .attr("y2", (d) => d.target.y);
+        .on("mouseover", (event, d) => {
+          tooltip.style("opacity", 1);
+          tooltip.html(
+            `Ratio Contraste: <strong>${d.ratio.toFixed(2)}</strong>`,
+          );
+          d3.select(event.target)
+            .attr("stroke", "#333")
+            .attr("stroke-opacity", 1);
+        })
+        .on("mousemove", (event) => {
+          tooltip
+            .style(
+              "left",
+              event.pageX - document.getElementById("d3-viz").offsetLeft + "px",
+            )
+            .style(
+              "top",
+              event.pageY -
+                document.getElementById("d3-viz").offsetTop -
+                40 +
+                "px",
+            );
+        })
+        .on("mouseout", (event, d) => {
+          tooltip.style("opacity", 0);
+          d3.select(event.target)
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6);
+        });
 
-      node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+      node
+        .on("mouseover", (event, d) => {
+          d3.select(event.target)
+            .attr("stroke", "#333")
+            .attr("stroke-width", 4);
+        })
+        .on("mouseout", (event) => {
+          d3.select(event.target)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 2);
+        });
 
-      label.attr("x", (d) => d.x).attr("y", (d) => d.y);
+      // Simulation Tick
+      simulation.on("tick", () => {
+        link
+          .attr("x1", (d) => d.source.x)
+          .attr("y1", (d) => d.source.y)
+          .attr("x2", (d) => d.target.x)
+          .attr("y2", (d) => d.target.y);
+
+        node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+
+        label.attr("x", (d) => d.x).attr("y", (d) => d.y);
+      });
+
+      // Drag Behavior
+      function drag(simulation) {
+        function dragstarted(event) {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          event.subject.fx = event.subject.x;
+          event.subject.fy = event.subject.y;
+        }
+
+        function dragged(event) {
+          event.subject.fx = event.x;
+          event.subject.fy = event.y;
+        }
+
+        function dragended(event) {
+          if (!event.active) simulation.alphaTarget(0);
+          event.subject.fx = null;
+          event.subject.fy = null;
+        }
+
+        return d3
+          .drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended);
+      }
     });
-
-    // Drag Behavior
-    function drag(simulation) {
-      function dragstarted(event) {
-        if (!event.active) simulation.alphaTarget(0.3).restart();
-        event.subject.fx = event.subject.x;
-        event.subject.fy = event.subject.y;
-      }
-
-      function dragged(event) {
-        event.subject.fx = event.x;
-        event.subject.fy = event.y;
-      }
-
-      function dragended(event) {
-        if (!event.active) simulation.alphaTarget(0);
-        event.subject.fx = null;
-        event.subject.fy = null;
-      }
-
-      return d3
-        .drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended);
-    }
 
     // --- Generate Contrast Matrix Table ---
     const table = document.getElementById("contrast-matrix");
