@@ -83,61 +83,97 @@ const alternateHref = "/sac/"; // Links to English version
       <div class="row">
         <div class="col-lg-6 mb-4">
           <form id="rent-form">
-            <div class="inline-inputs">
-              <div>
-                <label for="rent">Precio del Alquiler:</label>
-                <input type="number" id="rent" name="rent" required />
+            <div class="sac-card">
+              <h3 class="h5 mb-3">1. Detalles del Apartamento</h3>
+              <div class="inline-inputs mb-3">
+                <div>
+                  <label for="rent">Precio del Alquiler:</label>
+                  <input type="number" id="rent" name="rent" required />
+                </div>
+                <div>
+                  <label for="total_area"
+                    >Área total del apartamento / Metros Cuadrados: <small
+                      class="text-muted d-block font-weight-normal"
+                      >(cualquier unidad)</small
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    id="total_area"
+                    name="total_area"
+                    required
+                  />
+                </div>
+                <div id="price-per-unit-area"></div>
               </div>
-              <div>
-                <label for="total_area"
-                  >Área total del apartamento / Metros Cuadrados: <small
-                    class="text-muted d-block font-weight-normal"
-                    >(cualquier unidad, mantén consistencia)</small
-                  ></label
+
+              <div class="form-group mb-0">
+                <label for="bills">Gastos mensuales totales (opcional):</label>
+                <input type="number" id="bills" name="bills" />
+              </div>
+            </div>
+
+            <div class="sac-card mt-4">
+              <h3 class="h5 mb-3">2. Habitaciones Privadas</h3>
+              <div class="form-group mb-0">
+                <label for="num_rooms">Número de habitaciones privadas:</label>
+                <input type="number" id="num_rooms" name="num_rooms" required />
+              </div>
+
+              <div id="room-dimensions-container" class="mt-3"></div>
+            </div>
+
+            <div class="sac-card mt-4">
+              <h3 class="h5 mb-3">3. Preferencias de Espacio Compartido</h3>
+              <div class="form-group mb-0">
+                <div
+                  class="d-flex justify-content-between align-items-baseline mb-2"
                 >
+                  <label for="alpha" class="mb-0"
+                    >Valor del espacio compartido:</label
+                  >
+                  <span
+                    id="alpha-value"
+                    class="font-weight-bold"
+                    style="font-size: 1.25rem; color: var(--highlight-color);"
+                    >0.75</span
+                  >
+                </div>
                 <input
-                  type="number"
-                  id="total_area"
-                  name="total_area"
-                  required
+                  type="range"
+                  id="alpha"
+                  name="alpha"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="0.75"
+                  class="w-100"
+                  style="margin: 0 0 15px 0; padding: 0;"
                 />
+                <small class="form-text text-muted mb-0">
+                  <details>
+                    <summary
+                      style="cursor: pointer; color: var(--highlight-color);"
+                      >¿Qué es esto?</summary
+                    >
+                    <div class="mt-2 p-2 bg-light rounded small border">
+                      0 si el espacio compartido no se cuenta.<br />
+                      1 si el valor por área del espacio compartido es igual al de
+                      las habitaciones.<br />
+                      <strong>Por defecto: 0.75</strong>. El área del espacio
+                      compartido se considera que vale 3/4 del valor de las
+                      habitaciones privadas.
+                    </div>
+                  </details>
+                </small>
               </div>
-              <div id="price-per-unit-area"></div>
             </div>
 
-            <label for="num_rooms">Número de habitaciones privadas:</label>
-            <input type="number" id="num_rooms" name="num_rooms" required />
-
-            <label for="alpha"
-              >Valor del espacio compartido (entre 0 y 1):
-              <div class="tooltip">
-                0 si el espacio compartido no se cuenta.<br />
-                1 si el valor por área del espacio compartido es igual al de las habitaciones.<br
-                />
-                Por defecto: 0.75.
-              </div>
-            </label>
-            <div class="inline-inputs">
-              <input
-                type="range"
-                id="alpha"
-                name="alpha"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.75"
-                style="width: 150px;"
-              />
-              <span id="alpha-value">0.75</span>
-            </div>
-
-            <div id="room-dimensions-container"></div>
-
-            <label for="bills">Gastos mensuales (opcional):</label>
-            <input type="number" id="bills" name="bills" />
-
-            <button type="submit" class="btn btn-primary btn-block mt-3"
-              >Calcular</button
+            <button
+              type="submit"
+              class="btn btn-primary btn-block mt-4 compute-btn"
+              >Calcular Reparto Justo <i class="fas fa-calculator ml-2"
+              ></i></button
             >
           </form>
         </div>

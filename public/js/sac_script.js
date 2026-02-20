@@ -11,9 +11,14 @@ function updatePricePerUnitArea() {
 
     if (!isNaN(rent) && !isNaN(totalArea) && totalArea > 0) {
         const pricePerUnitArea = (rent / totalArea).toFixed(2);
-        pricePerUnitAreaDiv.innerHTML = `Price per unit area: ${pricePerUnitArea}`;
+        pricePerUnitAreaDiv.innerHTML = `
+            <span class="ppu-label">Price / unit</span>
+            <span class="ppu-value">${pricePerUnitArea}</span>
+        `;
+        pricePerUnitAreaDiv.classList.add('visible');
     } else {
         pricePerUnitAreaDiv.innerHTML = '';
+        pricePerUnitAreaDiv.classList.remove('visible');
     }
 }
 
