@@ -12,6 +12,7 @@ interface Props {
   bodyId?: string;
   bodyClass?: string;
   bodyData?: Record<string, string>;
+  image?: string;
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   bodyId = "home",
   bodyClass = "",
   bodyData = {},
+  image,
 } = Astro.props;
 
 const GTM_ID = "GTM-WDZK7ZFX";
@@ -33,6 +35,7 @@ const GTM_ID = "GTM-WDZK7ZFX";
     <BaseHead
       title={title}
       description={description}
+      image={image}
       currentLang={currentLang}
       alternateHref={alternateHref}
     />
