@@ -173,6 +173,13 @@ const schema = JSON.stringify([
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
+  <link
+    rel="preload"
+    as="image"
+    href={mixxxScreenshot.src}
+    slot="head"
+    fetchpriority="high"
+  />
   <script type="application/ld+json" set:html={schema} slot="head" />
   <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
 
@@ -296,6 +303,8 @@ const schema = JSON.stringify([
               class="img-fluid"
               loading="eager"
               fetchpriority="high"
+              widths={[400, 800, webAnalyticsImg.width]}
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div class="overlay">
               <a
