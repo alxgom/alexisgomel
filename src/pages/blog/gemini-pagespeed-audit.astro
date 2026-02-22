@@ -1,0 +1,538 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const currentLang = "en";
+const alternateHref = "/blog/gemini-pagespeed-audit/";
+
+const imgBase = "/assets/imgs/blog/gemini-pagespeed";
+---
+
+<MainLayout
+  title="I Asked Gemini 3.1 Pro to Audit My Website Performance | Alexis Gomel"
+  description="A first-person exploration of Gemini 3.1 Pro's multimodal capabilities: navigating a live Looker Studio dashboard, reading interactive charts, and verifying performance hypotheses against the actual website code."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+  <style is:inline>
+    .blog-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      color: #333;
+    }
+    .blog-wrap h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .blog-meta {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 2.5rem;
+    }
+    .blog-wrap h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.3rem;
+    }
+    .blog-wrap p {
+      margin-bottom: 1.25rem;
+    }
+    .blog-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+      margin: 1rem 0 0.4rem;
+    }
+    .img-caption {
+      font-size: 0.8rem;
+      color: #999;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 1rem 0 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .img-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+    .tag {
+      display: inline-block;
+      background: #f4f4f4;
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-size: 0.78rem;
+      color: #555;
+      margin-right: 6px;
+      margin-bottom: 1rem;
+    }
+    .highlight-box {
+      background: #f8f8f8;
+      border-left: 4px solid var(--primary, #e74c3c);
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin: 1.5rem 0;
+      font-size: 0.97rem;
+    }
+    /* Scrollable audit embed */
+    .audit-scroll {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      max-height: 520px;
+      overflow-y: auto;
+      padding: 28px 32px;
+      background: #fafafa;
+      font-size: 0.93rem;
+      line-height: 1.75;
+      margin: 1.5rem 0;
+    }
+    .audit-scroll h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+    }
+    .audit-scroll h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-top: 1.2rem;
+    }
+    .audit-scroll table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 1rem 0;
+    }
+    .audit-scroll th,
+    .audit-scroll td {
+      border: 1px solid #ddd;
+      padding: 6px 10px;
+      text-align: left;
+    }
+    .audit-scroll th {
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+    .audit-scroll tr:nth-child(even) td {
+      background: #f7f7f7;
+    }
+    .badge-confirmed {
+      color: #27ae60;
+      font-weight: 700;
+    }
+    .badge-refuted {
+      color: #e74c3c;
+      font-weight: 700;
+    }
+    .verdict {
+      display: inline-block;
+      font-size: 0.8rem;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-weight: 600;
+    }
+    .verdict.confirmed {
+      background: #eafaf1;
+      color: #1e8449;
+    }
+    .verdict.refuted {
+      background: #fdedec;
+      color: #c0392b;
+    }
+    .verdict.partial {
+      background: #fef9e7;
+      color: #9a7d0a;
+    }
+    .scroll-hint {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+  </style>
+
+  <article class="blog-wrap">
+    <span class="tag">AI</span>
+    <span class="tag">Web Performance</span>
+    <span class="tag">Gemini 3.1</span>
+    <span class="tag">Looker Studio</span>
+
+    <h1>
+      I Asked Gemini 3.1 Pro to Audit My Website's Performance — While Looking
+      at a Live Dashboard
+    </h1>
+    <p class="blog-meta">Alexis Gomel · 22 February 2026</p>
+
+    <p>
+      Last Thursday, Google released Gemini 3.1 Pro through Antigravity, the AI
+      coding assistant I've been using to build this website over the past year.
+      I was curious about one specific capability: could it actually <em>see</em
+      > and <em>reason</em> about data in a live, interactive web report — and then
+      verify its own conclusions against the source code?
+    </p>
+    <p>So I ran a small experiment.</p>
+
+    <h2>The Setup</h2>
+    <p>
+      I built a custom analytics pipeline for this site using GA4, BigQuery, and
+      Looker Studio. Part of it is a daily PageSpeed audit: a threaded Python
+      Cloud Function reads my sitemap, calls the
+      <a
+        href="https://developers.google.com/speed/docs/insights/v5/get-started"
+        target="_blank"
+        rel="noopener">PageSpeed Insights API</a
+      >
+      7 times per page, and stores the results in BigQuery. Because performance scores
+      naturally vary between runs, the dashboard shows the <strong
+        >median of those 7 measurements</strong
+      > to get a stable reading. Only the Performance metric has a wide spread; the
+      others (SEO, Accessibility, Best Practices) are essentially deterministic.
+    </p>
+    <div class="highlight-box">
+      You can explore the live dashboard yourself at
+      <a href="/projects/webanalytics/"
+        >alexisgomel.com/projects/webanalytics/</a
+      > — the data refreshes daily.
+    </div>
+    <p>
+      I asked Gemini 3.1 Pro to navigate to the PageSpeed section of that
+      report, read the charts, and produce a technical audit — without me
+      interpreting anything for it.
+    </p>
+
+    <h2>Step 1: Navigating the Dashboard</h2>
+    <p>
+      It opened the Looker Studio report and correctly identified the "Page
+      speed" tab, then the "Current state" sub-section.
+    </p>
+    <div class="img-pair">
+      <div>
+        <img
+          src={`${imgBase}/02_pagespeed_menu.png`}
+          alt="Gemini navigating to the Page speed menu"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          Correctly finding the Page speed → Current state section
+        </p>
+      </div>
+      <div>
+        <img
+          src={`${imgBase}/03_pagespeed_current_state.png`}
+          alt="Page speed current state dashboard"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          The PageSpeed dashboard with Best Practices, SEO and Performance
+          charts
+        </p>
+      </div>
+    </div>
+
+    <h2>Step 2: The Date Incident</h2>
+    <p>
+      Then things got revealing. The dashboard has a date range filter, and
+      without being asked, Gemini opened it and started changing it — apparently
+      trying to be thorough. It typed "028" into the offset field, accidentally
+      pulling the filter back 28 days instead of staying on today's data.
+    </p>
+    <div class="img-pair">
+      <div>
+        <img
+          src={`${imgBase}/05_date_picker_mishap.png`}
+          alt="Gemini mistyping 028 in date filter"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          The model proactively opened the date filter and typed "028" —
+          expanding scope without being asked
+        </p>
+      </div>
+      <div>
+        <img
+          src={`${imgBase}/06_date_applied.png`}
+          alt="Date filter correctly set to today"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          After my correction: filter set cleanly to 22 Feb 2026 – 22 Feb 2026
+        </p>
+      </div>
+    </div>
+    <p>
+      I corrected it with a short follow-up message and it applied the right
+      date immediately. But this is something I've noticed comparing Gemini to
+      Claude: Gemini tends to <strong
+        >expand the scope of a task without checking in first</strong
+      >. Claude is more likely to pause and ask. Neither approach is universally
+      better, but for tasks involving live data or production systems, it's
+      worth keeping in mind.
+    </p>
+    <p>
+      That said — compared to Gemini 3.0, which would loop on screenshots or
+      lose track of the report entirely — 3.1 Pro's navigation was decisively
+      more reliable. One small correction on my part versus complete inability
+      to complete the task.
+    </p>
+
+    <h2>Step 3: Reading the Scrollable Charts</h2>
+    <p>
+      Once the date was set, the AI scrolled through the performance charts,
+      including the interactive "Performance breakdown (median)" table. This
+      table lists every page path with device-specific scores for Speed Index,
+      FCP, LCP, CLS, and TBT — and it's scrollable inside the dashboard.
+      Previous versions couldn't reliably do this.
+    </p>
+    <img
+      src={`${imgBase}/07_performance_table.png`}
+      alt="Performance breakdown table in Looker Studio"
+      class="blog-img"
+    />
+    <p class="img-caption">
+      The scrollable performance table — showing per-path, per-device breakdown
+      of all Core Web Vital metrics
+    </p>
+
+    <h2>The Audit Report</h2>
+    <p>
+      From reading the charts and table, Gemini 3.1 Pro generated the following
+      technical audit. It identified the bottlenecks, scored them by severity,
+      and proposed fixes — all from reading the dashboard.
+    </p>
+
+    <p class="scroll-hint">↕ Scroll within the box to read the full report</p>
+    <div class="audit-scroll">
+      <h3>Executive Summary</h3>
+      <p>
+        The website demonstrates excellent baseline capabilities on Desktop, but
+        suffers from severe performance degradation on specific Mobile pages.
+        The primary bottlenecks are <strong
+          >excessive main-thread blocking (TBT)</strong
+        > on pages with heavy interactive components and delayed visual rendering
+        (Speed Index) for mobile users.
+      </p>
+
+      <h3>Key Performance Metrics — 22/02/2026</h3>
+      <table>
+        <thead>
+          <tr
+            ><th>Page</th><th>Device</th><th>Score</th><th>SI</th><th>FCP</th
+            ><th>LCP</th><th>TBT</th><th>CLS</th></tr
+          >
+        </thead>
+        <tbody>
+          <tr
+            ><td>/sac/</td><td>Desktop</td><td>100</td><td>1.0</td><td>1.0</td
+            ><td>1.0</td><td>1.0</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/sac/</td><td>Mobile</td><td>86</td><td>0.92</td><td>0.44</td
+            ><td>0.69</td><td>1.0</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/projects/</td><td>Desktop</td><td>100</td><td>1.0</td><td
+              >1.0</td
+            ><td>0.99</td><td>1.0</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/projects/</td><td>Mobile</td><td>78</td><td>0.98</td><td
+              >0.81</td
+            ><td><strong>0.22</strong></td><td>1.0</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/projects/webanalytics/</td><td>Desktop</td><td>60</td><td
+              ><strong>0.0</strong></td
+            ><td>0.99</td><td>0.99</td><td><strong>0.0</strong></td><td>1.0</td
+            ></tr
+          >
+          <tr
+            ><td>/projects/webanalytics/</td><td>Mobile</td><td
+              ><strong>56</strong></td
+            ><td><strong>0.02</strong></td><td>0.76</td><td>0.94</td><td
+              ><strong>0.0</strong></td
+            ><td>1.0</td></tr
+          >
+          <tr
+            ><td>/playlists/</td><td>Desktop</td><td>60</td><td>0.02</td><td
+              >1.0</td
+            ><td>0.99</td><td><strong>0.0</strong></td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/playlists/</td><td>Mobile</td><td><strong>55</strong></td><td
+              ><strong>0.0</strong></td
+            ><td>0.89</td><td>0.81</td><td>0.03</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/projects/looker-studio-…</td><td>Desktop</td><td>62</td><td
+              >0.23</td
+            ><td>0.98</td><td>0.98</td><td><strong>0.0</strong></td><td>1.0</td
+            ></tr
+          >
+          <tr
+            ><td>/es/ (home)</td><td>Mobile</td><td><strong>39</strong></td><td
+              >0.54</td
+            ><td>0.53</td><td><strong>0.03</strong></td><td>0.09</td><td>1.0</td
+            ></tr
+          >
+          <tr
+            ><td>/es/projects/</td><td>Mobile</td><td>70</td><td>—</td><td>—</td
+            ><td><strong>0.01</strong></td><td>—</td><td>1.0</td></tr
+          >
+        </tbody>
+      </table>
+      <p>
+        <em
+          >Note: CLS is perfect (1.0) across all pages — the layout is stable
+          everywhere.</em>
+      </p>
+
+      <h3>Findings, by Priority</h3>
+
+      <h4>1. TBT Critical — JavaScript Execution Wall</h4>
+      <p>
+        Pages embedding third-party iframes (/projects/webanalytics/,
+        /playlists/, /projects/looker-studio-custom-visuals/) have a TBT score
+        of 0.0. The browser's main thread is completely locked during load.
+        Users cannot scroll or interact until the JS payload clears.
+      </p>
+
+      <h4>2. Speed Index — Blank Screen Syndrome</h4>
+      <p>
+        The Speed Index on /projects/webanalytics/ and /playlists/ is near 0.0,
+        meaning the page renders almost nothing visible for a long window during
+        load. There are no skeleton screens or progressive reveal.
+      </p>
+
+      <h4>3. Mobile LCP — /projects/ Listing Page</h4>
+      <p>
+        /projects/ is a perfect 100 on desktop. On mobile, LCP drops to 0.22.
+        The hero section contains autoplay videos and large unoptimized images
+        served at desktop resolution.
+      </p>
+
+      <h4>4. Spanish Localization (/es/) — Worst Mobile Scores</h4>
+      <p>
+        Scrolling through the chart reveals the /es/ paths show catastrophically
+        low mobile LCP (0.01–0.03) and the worst overall performance scores.
+        Hypothesis: a render-blocking payload specific to the localization
+        layer.
+      </p>
+
+      <h3>Recommendations</h3>
+      <p>
+        <strong>Tier 1 — TBT:</strong> Add lazy loading to iframes. Use IntersectionObserver
+        to defer initialization until the embed is in view. Consider a Facade pattern
+        (show a static image, load iframe on click).
+      </p>
+      <p>
+        <strong>Tier 2 — Speed Index:</strong> Add skeleton screens for heavy sections.
+        Inline critical CSS.
+      </p>
+      <p>
+        <strong>Tier 3 — Mobile LCP:</strong> Add <code>srcset</code> and <code
+          >sizes</code
+        > to hero images. Preload video poster frames with <code
+          >fetchpriority="high"</code
+        >.
+      </p>
+    </div>
+
+    <h2>Step 4: Verifying the Hypotheses in Code</h2>
+    <p>
+      Next I asked it to check whether its guesses were actually correct by
+      scanning the website's source code (an Astro project). This is where the
+      loop closed nicely.
+    </p>
+
+    <div class="highlight-box" style="margin-bottom: 1rem;">
+      <strong>TBT hypothesis:</strong>
+      <span class="verdict confirmed">✅ Confirmed</span><br />
+      The <code>webanalytics.astro</code> file loads the Looker Studio iframe immediately
+      with no
+      <code>loading="lazy"</code>. The playlists page does the same for the
+      primary Spotify embed.
+    </div>
+    <div class="highlight-box" style="margin-bottom: 1rem;">
+      <strong>Speed Index hypothesis:</strong>
+      <span class="verdict confirmed">✅ Confirmed</span><br />
+      There's a loading spinner in the markup, but the iframe request fires immediately
+      underneath it — clogging the network before the spinner can even render cleanly.
+    </div>
+    <div class="highlight-box" style="margin-bottom: 1rem;">
+      <strong>Mobile LCP on /projects/:</strong>
+      <span class="verdict partial">⚠ Confirmed (partially)</span><br />
+      Hero images use <code>fetchpriority="high"</code> but no <code
+        >srcset</code
+      >. Desktop-resolution assets served to mobile. The autoplay video poster
+      is also unpreloaded.
+    </div>
+    <div class="highlight-box" style="margin-bottom: 1.5rem;">
+      <strong>Spanish localization hypothesis:</strong>
+      <span class="verdict refuted">❌ Refuted</span><br />
+      The <code>/es/</code> pages are physically separate Astro files with identical
+      structure to the English versions — no extra JS, no localization framework running
+      client-side. The extreme LCP scores on those pages are likely measurement noise
+      from the specific crawl, not a code defect.
+    </div>
+
+    <p>
+      Three out of four hypotheses confirmed. The fourth one was correctly
+      falsified — which is actually the more interesting result. The AI looked
+      at real data, generated a plausible but wrong explanation, and then
+      corrected it when the code didn't support it.
+    </p>
+
+    <h2>Fixes Applied</h2>
+    <p>After the verification, I had it implement the non-disruptive fixes:</p>
+    <ul>
+      <li>
+        <code>loading="lazy"</code> added to the Looker Studio iframe on both the
+        English and Spanish web analytics pages
+      </li>
+      <li>
+        Responsive <code>widths</code> and <code>sizes</code> attributes added to
+        the hero images on the projects listing pages
+      </li>
+      <li>
+        Video poster preloaded via <code>&lt;link rel="preload"&gt;</code> in the
+        document head
+      </li>
+    </ul>
+    <p>
+      <em
+        >The PageSpeed results from the next daily crawl will be added here once
+        they're available.</em>
+    </p>
+
+    <h2>Reflections</h2>
+    <p>
+      This worked better than I expected for a first try, and it represents a
+      workflow I hadn't really used before: ask the AI to look at a <em>live</em
+      > report, form its own interpretation, then check it against the code — all
+      in one session.
+    </p>
+    <p>
+      The date incident is a useful reminder that Gemini 3.1 is still eager to
+      act rather than ask. For exploratory, low-stakes experiments that's mostly
+      fine. For anything involving production or deployment you'd want clearer
+      scope boundaries upfront.
+    </p>
+    <p>
+      But as a "read the dashboard, find the real causes" shortcut — especially
+      for someone who already built the instrumentation and understands the
+      codebase — it's a genuinely useful addition to the workflow.
+    </p>
+  </article>
+</MainLayout>
