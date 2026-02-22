@@ -39,10 +39,10 @@ const schema = JSON.stringify([
       {
         "@type": "ListItem",
         position: 2,
-        name: "Mixxx Python Companion",
+        name: "Mixxx DJ Buddy",
         description:
-          "Python app to visualize the BPM sequence of DJ sets live.",
-        url: "https://github.com/alxgom/mixx-pycompanion",
+          "Go app to visualize and track BPM trends and track metadata of DJ sets in real time.",
+        url: "https://alexisgomel.com/projects/mixxx-dj-buddy/",
       },
       {
         "@type": "ListItem",
@@ -150,14 +150,14 @@ const schema = JSON.stringify([
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    name: "Mixxx Python Companion Demo",
+    name: "Mixxx DJ Buddy Demo",
     description:
-      "Live visualization of BPM sequence for DJ sets using the Mixxx Python Companion app.",
+      "Live BPM chart and track metadata visualization for DJ sets using Mixxx DJ Buddy.",
     thumbnailUrl:
-      "https://alexisgomel.com/assets/imgs/Projects/mixxx_pycompanion_poster.jpg",
-    uploadDate: "2026-01-01T00:00:00+00:00",
+      "https://alexisgomel.com/assets/imgs/Projects/mixxx_dj_buddy_poster.jpg",
+    uploadDate: "2026-02-01T00:00:00+00:00",
     contentUrl:
-      "https://alexisgomel.com/assets/imgs/Projects/mixxx_pycompanion.webm",
+      "https://alexisgomel.com/assets/imgs/Projects/mixxx_dj_buddy.webm",
     publisher: {
       "@type": "Person",
       name: "Alexis Gomel",
@@ -438,7 +438,7 @@ const schema = JSON.stringify([
         </div>
       </div>
 
-      <!-- Project: Mixxx Python Companion -->
+      <!-- Project: Mixxx DJ Buddy -->
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">
@@ -448,54 +448,65 @@ const schema = JSON.stringify([
               loop
               playsinline
               class="img-fluid"
-              poster="/assets/imgs/Projects/mixxx_pycompanion_poster.jpg"
-              aria-label="Mixxx Python Companion Demo Video"
+              poster="/assets/imgs/Projects/mixxx_dj_buddy_poster.jpg"
+              aria-label="Mixxx DJ Buddy Demo Video"
             >
               <source
-                src="/assets/imgs/Projects/mixxx_pycompanion.webm"
+                src="/assets/imgs/Projects/mixxx_dj_buddy.webm"
                 type="video/webm"
               />
               <source
-                src="/assets/imgs/Projects/mixxx_pycompanion_optimized.mp4"
+                src="/assets/imgs/Projects/mixxx_dj_buddy_optimized.mp4"
                 type="video/mp4"
               />
               Your browser does not support the video tag.
             </video>
             <div class="overlay">
               <a
-                href="https://github.com/alxgom/mixx-pycompanion"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/projects/mixxx-dj-buddy/"
                 class="overlay-link-full gtm-track-click"
                 data-event-category="Projects"
-                data-event-label="Mixxx Companion - GitHub"
-                aria-label="View Mixxx Companion on GitHub"></a>
+                data-event-label="Mixxx DJ Buddy - Card"
+                aria-label="View Mixxx DJ Buddy project page"></a>
               <div class="overlay-infos">
-                <h5>Mixxx Python Companion</h5>
+                <h5>Mixxx DJ Buddy</h5>
               </div>
             </div>
           </div>
         </div>
         <div class="col-md-6">
-          <h4>Mixxx Python Companion</h4>
+          <h4>Mixxx DJ Buddy</h4>
           <p>
-            Small Python app to visualize the BPM sequence of DJ sets live. It
-            works offline as a standalone web app using D3.js and reading
-            directly from the Mixxx SQLite database in real-time.
+            A live companion app for <a
+              href="https://mixxx.org/"
+              target="_blank"
+              rel="noopener noreferrer">Mixxx</a
+            > (free, open-source DJ software) that visualizes BPM trends and track
+            metadata in real time as you play, reading directly from the Mixxx SQLite
+            database.
           </p>
           <p>
-            It provides DJs with a visual history of their set's energy flow,
-            helping to maintain the desired atmosphere on the dance floor.
+            Hover over data points to reveal which <strong
+              >crates and playlists</strong
+            > each song belongs to &mdash; helping you understand the story of your
+            set and plan the next move on the dance floor.
           </p>
           <p>
-            <strong>Tech & skills:</strong> Python, D3.js, SQLite, Real-time Visualization.
             <a
-              href="https://github.com/alxgom/mixx-pycompanion"
+              href="/projects/mixxx-dj-buddy/"
+              class="text-primary font-weight-bold"
+              >Learn more about Mixxx DJ Buddy &rarr;</a
+            >
+          </p>
+          <p>
+            <strong>Tech & skills:</strong> Go, HTML, D3.js, SQLite.
+            <a
+              href="https://github.com/alxgom/Mixxx-dj-buddy"
               target="_blank"
               rel="noopener noreferrer"
               class="gtm-track-click"
               data-event-category="Projects"
-              data-event-label="Mixxx Companion - Text Link">View on GitHub</a
+              data-event-label="Mixxx DJ Buddy - Text Link">View on GitHub</a
             >
           </p>
         </div>
