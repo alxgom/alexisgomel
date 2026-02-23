@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import landingScreenshot from "../../assets/imgs/Projects/mixxx_dashboard_landing.png";
 import bpmScreenshot from "../../assets/imgs/Projects/mixxx_dashboard_bpm.png";
 import individualScreenshot from "../../assets/imgs/Projects/mixxx_dashboard_individual.png";
+import Lightbox from "../../components/Lightbox.astro";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
@@ -350,16 +351,29 @@ const schema = JSON.stringify({
       <div class="row align-items-center">
         <div class="col-md-6 mt-4 mt-md-0 order-2 order-md-1">
           <div class="screenshot-frame">
-            <Image
-              src={landingScreenshot}
-              alt="Mixxx DJ Set Analysis Dashboard showing aggregate analysis of Blues and Lindy sets."
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
               class="img-fluid"
-              loading="eager"
-              fetchpriority="high"
-              widths={[480, 900, landingScreenshot.width]}
-              sizes="(max-width: 767px) 100vw, 45vw"
-            />
+              poster="/assets/imgs/Projects/mixxx_screenshot.png"
+              aria-label="Mixxx DJ Set Analysis Dashboard Demo Video"
+            >
+              <source
+                src="/assets/imgs/Projects/mixxx_dashboard.webm"
+                type="video/webm"
+              />
+              <source
+                src="/assets/imgs/Projects/mixxx_dashboard_optimized.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
           </div>
+          <p class="text-muted small mt-2 text-center">
+            Dashboard overview: filtering by style and exploring trends.
+          </p>
         </div>
         <div class="col-md-6 order-1 order-md-2">
           <h2>Why I built this</h2>
@@ -412,11 +426,26 @@ const schema = JSON.stringify({
             front-end using <strong>Dash</strong> and <strong>Plotly</strong>.
           </p>
           <p>
+            I specifically chose Dash instead of standard BI tools like Looker
+            Studio or Power BI because it afforded me the flexibility to build
+            highly custom interactions—like embedding Spotify iframes
+            dynamically and having full control over the visual layouts tailored
+            to musical analysis.
+          </p>
+          <p>
+            To handle the annotations and ratings for each set, I implemented an <strong
+              >ad-hoc SQLite database</strong
+            >. This sidecar database uses the playlist ID keys from the main
+            Mixxx DB to augment the original data, linking my personal
+            reflections perfectly to the respective sets generated natively in
+            Mixxx without risking database corruption.
+          </p>
+          <p>
             To make the data accessible outside of my local machine, I
-            implemented a workflow where I periodically export my Mixxx
-            database, stripping out file path markers, and push it to the GitHub
-            repository where the Render web service picks it up to deploy the
-            live app.
+            implemented a workflow where I periodically export my Mixxx and
+            ad-hoc databases, stripping out file path markers, and push them to
+            the GitHub repository where the Render web service picks them up to
+            deploy the live app.
           </p>
           <div class="mt-4 mb-4">
             <span class="tech-badge">Python</span>
@@ -463,29 +492,47 @@ const schema = JSON.stringify({
           </p>
         </div>
         <div class="col-lg-6">
-          <div class="screenshot-frame">
-            <Image
-              src={bpmScreenshot}
-              alt="BPM Distribution plots showing the tempo spread across multiple DJ sets."
-              class="img-fluid pb-1"
-              widths={[480, 900, bpmScreenshot.width]}
-              sizes="(max-width: 767px) 100vw, 50vw"
-            />
+          <div class="screenshot-frame position-relative">
+            <a
+              href={bpmScreenshot.src}
+              data-lightbox="macro-analysis"
+              data-title="BPM Distribution plots showing the tempo spread across multiple DJ sets."
+            >
+              <Image
+                src={bpmScreenshot}
+                alt="BPM Distribution plots showing the tempo spread across multiple DJ sets."
+                class="img-fluid pb-1"
+                widths={[480, 900, bpmScreenshot.width]}
+                sizes="(max-width: 767px) 100vw, 50vw"
+              />
+            </a>
           </div>
+          <p class="text-center text-muted small mt-2">
+            <i class="ti-zoom-in"></i> Click image to zoom
+          </p>
         </div>
       </div>
 
       <div class="row align-items-center">
         <div class="col-lg-6 order-2 order-lg-1">
-          <div class="screenshot-frame">
-            <Image
-              src={individualScreenshot}
-              alt="Individual playlist view showing tracklist, playback buttons, and BPM line chart."
-              class="img-fluid"
-              widths={[480, 900, individualScreenshot.width]}
-              sizes="(max-width: 767px) 100vw, 50vw"
-            />
+          <div class="screenshot-frame position-relative">
+            <a
+              href={individualScreenshot.src}
+              data-lightbox="micro-analysis"
+              data-title="Individual playlist view showing tracklist, playback buttons, and BPM line chart."
+            >
+              <Image
+                src={individualScreenshot}
+                alt="Individual playlist view showing tracklist, playback buttons, and BPM line chart."
+                class="img-fluid"
+                widths={[480, 900, individualScreenshot.width]}
+                sizes="(max-width: 767px) 100vw, 50vw"
+              />
+            </a>
           </div>
+          <p class="text-center text-muted small mt-2">
+            <i class="ti-zoom-in"></i> Click image to zoom
+          </p>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
           <h3>2. The Micro View (Individual Sets)</h3>
@@ -581,4 +628,5 @@ const schema = JSON.stringify({
       </div>
     </div>
   </div>
+  <Lightbox />
 </MainLayout>
