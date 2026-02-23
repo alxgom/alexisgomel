@@ -1,0 +1,584 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import landingScreenshot from "../../assets/imgs/Projects/mixxx_dashboard_landing.png";
+import bpmScreenshot from "../../assets/imgs/Projects/mixxx_dashboard_bpm.png";
+import individualScreenshot from "../../assets/imgs/Projects/mixxx_dashboard_individual.png";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/es/projects/"; // Future placeholder for ES version
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Mixxx DJ Set Analysis Dashboard",
+  applicationCategory: "WebApplication",
+  description:
+    "A self-hosted web dashboard built with Python and Dash to analyze DJ sets played in Mixxx. Designed for post-set reflection, BPM trend analysis, and performance tracking over time.",
+  url: "https://alexisgomel.com/projects/mixxx-dashboard/",
+  author: {
+    "@type": "Person",
+    name: "Alexis Gomel",
+    url: "https://alexisgomel.com",
+  },
+  keywords:
+    "Mixxx data analysis, DJ set dashboard, Python Dash, Plotly visualization, SQLite, Dr Beat swing DJ, post-set reflection",
+});
+---
+
+<MainLayout
+  title="Mixxx DJ Set Analysis Dashboard | Alexis Gomel"
+  description="Explore how I built a custom Python & Dash web dashboard to analyze my swing and blues DJ sets, tracking BPM trends, library stats, and the flow of a night."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+  image="/assets/imgs/Projects/mixxx_screenshot.png"
+>
+  <meta
+    slot="head"
+    name="keywords"
+    content="DJ dashboard Python, Dash data visualization, Mixxx analytics, SQLite, Plotly BPM chart, Dr Beat swing DJ"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Mixxx DJ Set Analysis Dashboard | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="A custom dashboard built with Python/Dash to analyze DJ sets recorded in Mixxx. Data visualization for musical storytelling."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/Projects/mixxx_screenshot.png"
+  />
+  <link
+    rel="preload"
+    as="image"
+    href={landingScreenshot.src}
+    slot="head"
+    fetchpriority="high"
+  />
+  <script type="application/ld+json" set:html={schema} slot="head" />
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <style>
+    /* ── Layout ────────────────────────────────────── */
+    .dashboard-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    /* ── Hero ──────────────────────────────────────── */
+    .dashboard-hero {
+      text-align: center;
+      padding: 5rem 1rem 3rem;
+    }
+    .dashboard-hero .eyebrow {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    .dashboard-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .dashboard-hero .lead {
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      font-size: 1.15rem;
+      color: #555;
+    }
+    .btn-hero-primary {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      margin-right: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .btn-hero-primary:hover {
+      opacity: 0.85;
+      color: #fff;
+    }
+    .btn-hero-outline {
+      display: inline-block;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+      padding: 0.7rem 1.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-bottom: 0.5rem;
+    }
+    .btn-hero-outline:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ── Section dividers ──────────────────────────── */
+    .dashboard-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid #eee;
+    }
+    .dashboard-section h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .dashboard-section h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Story quote ───────────────────────────────── */
+    .story-quote {
+      border-left: 4px solid var(--primary);
+      padding: 0.75rem 1.25rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: #444;
+      background: #fafafa;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── Features grid ─────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      transition:
+        box-shadow 0.2s,
+        transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ── Screenshots ───────────────────────────────── */
+    .screenshot-frame {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    }
+    .screenshot-frame img {
+      display: block;
+      width: 100%;
+    }
+
+    /* ── Tech badges ───────────────────────────────── */
+    .tech-badge {
+      display: inline-block;
+      background: #f0f0f0;
+      border-radius: 20px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 0.25rem 0.2rem;
+      color: #333;
+    }
+
+    /* ── Alert note ────────────────────────────────── */
+    .live-demo-note {
+      background: #eef5fb;
+      border-left: 4px solid #3b82f6;
+      padding: 1rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      color: #1e3a8a;
+    }
+
+    /* ── CTA cards ─────────────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, #f8f6ff 0%, #f0eee9 100%);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .cta-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 3px 16px rgba(0, 0, 0, 0.07);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .cta-card .cta-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+    }
+    .cta-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .cta-card p {
+      font-size: 0.92rem;
+      color: #555;
+      margin: 0;
+      flex: 1;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.6rem 1.3rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+      align-self: flex-start;
+    }
+    .btn-cta:hover {
+      opacity: 0.85;
+      color: #fff;
+    }
+    .btn-cta-outline {
+      display: inline-block;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+      padding: 0.55rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      align-self: flex-start;
+    }
+    .btn-cta-outline:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    @media (max-width: 767px) {
+      .dashboard-hero {
+        padding: 4rem 1rem 2rem;
+      }
+      .cta-section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <div class="dashboard-hero">
+    <p class="eyebrow">Data Analytics & Music</p>
+    <h1>The data behind the dance floor.</h1>
+    <p class="lead">
+      A web dashboard built with Python and Dash to analyze the DJ sets I play
+      at swing and blues events. It turns my Mixxx history into actionable
+      insights about tempo, flow, and musical storytelling.
+    </p>
+    <a
+      href="https://dj-dashboard.onrender.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-hero-primary gtm-track-click"
+      data-event-category="Mixxx Dashboard"
+      data-event-label="Hero - Live Demo"
+    >
+      View Live Dashboard
+    </a>
+    <a
+      href="https://github.com/alxgom/mixx_addon"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-hero-outline gtm-track-click"
+      data-event-category="Mixxx Dashboard"
+      data-event-label="Hero - GitHub"
+    >
+      View on GitHub
+    </a>
+  </div>
+
+  <div class="dashboard-container">
+    <!-- ─── THE STORY ────────────────────────────────────────── -->
+    <section class="dashboard-section">
+      <div class="row align-items-center">
+        <div class="col-md-6 mt-4 mt-md-0 order-2 order-md-1">
+          <div class="screenshot-frame">
+            <Image
+              src={landingScreenshot}
+              alt="Mixxx DJ Set Analysis Dashboard showing aggregate analysis of Blues and Lindy sets."
+              class="img-fluid"
+              loading="eager"
+              fetchpriority="high"
+              widths={[480, 900, landingScreenshot.width]}
+              sizes="(max-width: 767px) 100vw, 45vw"
+            />
+          </div>
+        </div>
+        <div class="col-md-6 order-1 order-md-2">
+          <h2>Why I built this</h2>
+          <p>
+            When I am behind the decks as <strong>Dr. Beat</strong>, I play for
+            swing dancers (Lindy Hop, Balboa) and blues dancers. The job is to
+            read the room, build a narrative arc, and keep dancers inspired. But
+            once the night is over, it's remarkably hard to remember the exact
+            flow of the set, let alone track how your style evolves over months
+            and years.
+          </p>
+          <div class="story-quote">
+            "Did I stay at 140 BPM for too long? How did the energy transition
+            into the slow blues section? Am I taking enough musical risks, or
+            playing it too safe?"
+          </div>
+          <p>
+            I wanted a tool to review my work. The free DJ software I use, <a
+              href="https://mixxx.org/"
+              target="_blank"
+              rel="noopener noreferrer">Mixxx</a
+            >, stores all my history in a local SQLite database. So, combining
+            my background in data analysis with my passion for DJing, I built
+            this dashboard. It’s my personal post-game tape for mindful DJing,
+            allowing me to consciously explore my style and improve my sets.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TECH CONTEXT ─────────────────────────────────────── -->
+    <section class="dashboard-section">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Under the hood</h2>
+          <div class="live-demo-note">
+            <strong>Note on the Live Demo:</strong> The live instance is hosted on
+            Render's free tier. <b
+              >It takes about 1-2 minutes to spin up the server</b
+            >. Please be patient while it wakes up! <br /><a
+              href="https://dj-dashboard.onrender.com/"
+              target="_blank"
+              rel="noopener noreferrer">Try it here</a
+            >.
+          </div>
+          <p>
+            The application is built entirely in <strong>Python</strong>. It
+            reads the local <code>mixxxdb.sqlite</code> file using standard SQL queries,
+            processes the data with <strong>Pandas</strong>, and renders the
+            front-end using <strong>Dash</strong> and <strong>Plotly</strong>.
+          </p>
+          <p>
+            To make the data accessible outside of my local machine, I
+            implemented a workflow where I periodically export my Mixxx
+            database, stripping out file path markers, and push it to the GitHub
+            repository where the Render web service picks it up to deploy the
+            live app.
+          </p>
+          <div class="mt-4 mb-4">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Dash (Plotly)</span>
+            <span class="tech-badge">Pandas</span>
+            <span class="tech-badge">SQLite</span>
+            <span class="tech-badge">Render</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FEATURES ─────────────────────────────────────────── -->
+    <section class="dashboard-section">
+      <h2>Deep diving the data</h2>
+      <p class="lead mb-5">
+        The dashboard offers two main lenses for analysis: the macro view across
+        my entire history as a DJ, and the deep dive into the context of a
+        single night.
+      </p>
+
+      <div class="row align-items-center mb-5 pb-4">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h3>1. The Macro View (Aggregate)</h3>
+          <p>
+            At a high level, I want to understand my tendencies over time. Are
+            my Lindy sets getting faster? Do I play too many songs by Count
+            Basie compared to lesser-known artists? I can easily see my most
+            played artists and most played tracks across all events.
+          </p>
+          <p>
+            The dashboard aggregates statistics across selected date ranges or
+            specific styles (e.g., separating high-energy Swing sets from
+            late-night Blues sets). It visualizes the overall <strong
+              >BPM distribution</strong
+            >, helping me ensure I'm providing enough tempo variety for the
+            dancers.
+          </p>
+          <p>
+            I also track the percentage of songs played for the 1st time vs. 2nd
+            time vs. 3+ times. This serves as a proxy for how much my style is
+            settling, and measures my level of musical experimentation and
+            risk-taking across gigs.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="screenshot-frame">
+            <Image
+              src={bpmScreenshot}
+              alt="BPM Distribution plots showing the tempo spread across multiple DJ sets."
+              class="img-fluid pb-1"
+              widths={[480, 900, bpmScreenshot.width]}
+              sizes="(max-width: 767px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-2 order-lg-1">
+          <div class="screenshot-frame">
+            <Image
+              src={individualScreenshot}
+              alt="Individual playlist view showing tracklist, playback buttons, and BPM line chart."
+              class="img-fluid"
+              widths={[480, 900, individualScreenshot.width]}
+              sizes="(max-width: 767px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+          <h3>2. The Micro View (Individual Sets)</h3>
+          <p>
+            This is the post-mortem view. Selecting a specific playlist reveals
+            the exact track sequence and the "Energy Arc" — a line plot of <strong
+              >BPM vs. Cumulative Elapsed Time</strong
+            >.
+          </p>
+          <p>
+            This view provides the vital context that explains macro metrics.
+            For example, if I DJ for beginner dancers, I might play mostly safe
+            mid-tempo classics, limiting experimentation. But with an advanced
+            crowd, I take more risks.
+          </p>
+          <p>
+            But seeing a title isn't always enough to remember a song's vibe. I
+            integrated the <strong>Spotify Web Playback API</strong> using Dash HTML
+            components. As long as I've synced my Mixxx library IDs, clicking a simple
+            `<kbd>▶</kbd>` icon loads the track directly into an embedded
+            Spotify player on the dashboard for instant recall.
+          </p>
+          <p>
+            At the end of each set analysis, there is a section for annotations.
+            I assign a simple 1-5 rating on how the night felt, and note down
+            which song transitions worked brilliantly and which cleared the
+            floor. I can also instantly recreate the set on Spotify with a
+            single <strong>1-click export</strong> button to share the playlist with
+            the dancers.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ─── CTA SECTION ──────────────────────────────────────────── -->
+  <div
+    style="background: linear-gradient(to bottom, #ffffff 0%, #f0eee9 200px, #f0eee9 100%); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 4rem 1rem;"
+  >
+    <div class="dashboard-container">
+      <div class="cta-section">
+        <p
+          class="eyebrow"
+          style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem;"
+        >
+          Explore More
+        </p>
+        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;">
+          From analysis to real-time action
+        </h2>
+        <p style="color: #555; max-width: 560px; margin: 0 auto;">
+          The web dashboard works great for the day after a gig. Want to see how
+          I track this data live in the booth, or hear the music behind it?
+        </p>
+
+        <div class="cta-grid">
+          <div class="cta-card">
+            <span class="cta-label">Live App</span>
+            <h3>Mixxx DJ Buddy</h3>
+            <p>
+              I later built a desktop companion app in Go and D3.js that runs
+              alongside Mixxx. It reads the same SQLite database but visualizes
+              the BPM flow and track metadata <strong>live</strong> as the set happens.
+            </p>
+            <a
+              href="/projects/mixxx-dj-buddy/"
+              class="btn-cta gtm-track-click"
+              data-event-category="Mixxx Dashboard"
+              data-event-label="CTA - DJ Buddy"
+            >
+              Learn about DJ Buddy →
+            </a>
+          </div>
+
+          <div class="cta-card">
+            <span class="cta-label">The Music</span>
+            <h3>Dr. Beat Playlists</h3>
+            <p>
+              Curious about the music that inspired these analysis tools? Visit
+              the playlists page to explore the authentic swing and jazz sets I
+              play for dancers.
+            </p>
+            <a
+              href="/playlists/"
+              class="btn-cta-outline gtm-track-click"
+              data-event-category="Mixxx Dashboard"
+              data-event-label="CTA - Playlists"
+            >
+              Listen to the sets →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</MainLayout>
