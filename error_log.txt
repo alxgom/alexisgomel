@@ -1,0 +1,7 @@
+If you pass the openGraph prop, you have to at least define the title, type, and image basic properties!
+  Stack trace:
+    at validateProps (file:///C:/DEV/alexisgomel-1/dist/_worker.js/chunks/MainLayout_C6M4KV3w.mjs:71:15)
+    at AstroComponentInstance.SEO [as factory] (file:///C:/DEV/alexisgomel-1/dist/_worker.js/chunks/astro/server_BSLZx73y.mjs:413:12)
+    at AstroComponentInstance.render (file:///C:/DEV/alexisgomel-1/dist/_worker.js/chunks/astro/server_BSLZx73y.mjs:6086:30)
+    at renderChild (file:///C:/DEV/alexisgomel-1/dist/_worker.js/chunks/astro/server_BSLZx73y.mjs:5984:18)
+    at new BufferedRenderer (file:///C:/DEV/alexisgomel-1/dist/_worker.js/chunks/astro/server_BSLZx73y.mjs:1196:26)
