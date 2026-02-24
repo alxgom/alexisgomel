@@ -3,6 +3,7 @@ layout: ../layouts/MainLayout.astro
 title: SQL Interview Prep
 description: Senior Data Analyst SQL Technical Interview Prep (BigQuery).
 currentLang: en
+alternateHref: /sql/
 ---
 
 <style>
