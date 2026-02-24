@@ -395,7 +395,8 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
       <p>
         <em
           >Note: CLS is perfect (1.0) across all pages — the layout is stable
-          everywhere.</em>
+          everywhere.</em
+        >
       </p>
 
       <h3>Findings, by Priority</h3>
@@ -512,27 +513,140 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
     </ul>
     <p>
       <em
-        >The PageSpeed results from the next daily crawl will be added here once
-        they're available.</em>
+        ><strong>Update (Feb 23):</strong> I checked the dashboard today to see the
+        impact of these changes. Surprisingly, the TBT on the webanalytics page was
+        still 0.0. Why? Because <code>loading="lazy"</code> on an iframe that sits
+        "above the fold" doesn't actually stop Lighthouse from eagerly executing it.
+        The browser sees it's in the initial viewport and downloads it anyway. It
+        turns out the true fix will require a Facade pattern (rendering a static image
+        until clicked) — which Gemini actually suggested as its "Tier 1" recommendation
+        in the audit. It was right the first time.</em
+      >
     </p>
+
+    <h2>Digging Deeper: The Range Behind the Median</h2>
+    <p>
+      The Looker Studio dashboard shows the <em>median</em> of 7 daily test runs per
+      page. But to really understand what's happening, we need to look at the full
+      distribution. I ran a local Python script against the raw data in BigQuery to
+      plot the actual spread of the Performance Score and TBT metrics for both days.
+    </p>
+
+    <div class="img-pair">
+      <div>
+        <img
+          src={`${imgBase}/performance_score_distribution_22.png`}
+          alt="Performance score distributions on Feb 22"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          Feb 22: You can clearly see the massive variation in scores on the
+          mobile <code>/projects/webanalytics/</code> page.
+        </p>
+      </div>
+      <div>
+        <img
+          src={`${imgBase}/performance_score_distribution_23.png`}
+          alt="Performance score distributions on Feb 23"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          Feb 23: After the "fix", the variance on the heavy pages remains
+          largely identical.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Looking at the TBT specifically, the boxplots show exactly why the native
+      lazy loading attempt failed to move the needle: the main thread isn't just
+      blocked, it's blocked <em>consistently</em> for thousands of milliseconds across
+      every single run, cementing the need for a true Facade approach.
+    </p>
+
+    <div class="img-pair">
+      <div>
+        <img
+          src={`${imgBase}/tbt_value_distribution_22.png`}
+          alt="TBT distributions on Feb 22"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          Feb 22: Unacceptable TBT spread on the heavy iframe pages.
+        </p>
+      </div>
+      <div>
+        <img
+          src={`${imgBase}/tbt_value_distribution_23.png`}
+          alt="TBT distributions on Feb 23"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          Feb 23: Native <code>loading="lazy"</code> on above-the-fold content provides
+          zero relief.
+        </p>
+      </div>
+    </div>
 
     <h2>Reflections</h2>
     <p>
-      This worked better than I expected for a first try, and it represents a
-      workflow I hadn't really used before: ask the AI to look at a <em>live</em
-      > report, form its own interpretation, then check it against the code — all
-      in one session.
+      This experiment worked better than I expected for a first try, and it
+      represents a workflow I hadn't really used before: ask the AI to look at a <em
+        >live</em
+      >
+      report, form its own interpretation, then check it against the code, and finally
+      validate those assumptions against the raw data distributions.
     </p>
+
+    <p>
+      The distribution plots revealed three things that the median scores
+      masked:
+    </p>
+    <ul>
+      <li>
+        <strong>The Astro foundation is rock solid:</strong> The lightweight pages
+        (like <code>/sac/</code> or this very blog post) clustered tightly around
+        90-100. The performance bleed is 100% isolated to the third-party embeds.
+      </li>
+      <li>
+        <strong>The "/es/ ghost" was just noise:</strong> Yesterday's Looker Studio
+        audit flagged the Spanish home page for a catastrophic mobile score of 39.
+        The distribution on Feb 22 showed massive, sloppy variance. But on Feb 23?
+        That variance vanished, and the score clustered tightly at 85. This validated
+        our code-check: there was no heavy localization framework ruinous to performance.
+        We were chasing a ghost born from network jitter during a synthetic crawl.
+      </li>
+      <li>
+        <strong>The variance simply shifted:</strong> On the 22nd, <code
+          >/sevilla/</code
+        >
+        was the unstable outlier. On the 23rd, it stabilized and <code
+          >/playlists/</code
+        >
+        became wildly unpredictable.
+      </li>
+    </ul>
+
+    <p>
+      The ultimate takeaway? Hunting performance bugs using a single day's
+      median score is a trap. The dashboard alerted me to the problem, but only
+      by looking at the <em>distributions</em> across multiple days do you see the
+      truth: the framework is stable, but third-party embeds introduce massive, unpredictable
+      latency spikes that cannot be tamed by native <code>loading="lazy"</code> tags.
+    </p>
+
     <p>
       The date incident is a useful reminder that Gemini 3.1 is still eager to
       act rather than ask. For exploratory, low-stakes experiments that's mostly
       fine. For anything involving production or deployment you'd want clearer
       scope boundaries upfront.
     </p>
+
     <p>
       But as a "read the dashboard, find the real causes" shortcut — especially
       for someone who already built the instrumentation and understands the
-      codebase — it's a genuinely useful addition to the workflow.
+      codebase — it's a genuinely useful addition to the workflow. The next step
+      is clear: time to build those Facades.
     </p>
   </article>
 </MainLayout>

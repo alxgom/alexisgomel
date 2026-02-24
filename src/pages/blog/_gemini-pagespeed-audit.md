@@ -71,12 +71,30 @@ _[AUDIT EMBED PLACEHOLDER]_
 
 ---
 
+## Digging Deeper: The Range Behind the Median
+
+The Looker Studio dashboard shows the _median_ of 7 daily test runs per page. But to really understand what's happening, we need to look at the full distribution. I ran a local Python script against the raw data in BigQuery to plot the actual spread of the Performance Score and TBT metrics for both days.
+
+_[Screenshot: Feb 22 Performance distributions]_
+_[Screenshot: Feb 23 Performance distributions]_
+
+Looking at the TBT specifically, the boxplots show exactly why the native lazy loading attempt failed to move the needle: the main thread isn't just blocked, it's blocked _consistently_ for thousands of milliseconds across every single run, cementing the need for a true Facade approach.
+
+_[Screenshot: Feb 22 TBT distributions]_
+_[Screenshot: Feb 23 TBT distributions]_
+
 ## Reflections
 
-The experiment worked better than I expected for a first try. The combination of browser navigation, reading interactive charts, scrolling through data tables, and then cross-referencing findings against the source code is genuinely a new kind of workflow.
+This experiment worked better than I expected for a first try, and it represents a workflow I hadn't really used before: ask the AI to look at a _live_ report, form its own interpretation, then check it against the code, and finally validate those assumptions against the raw data distributions.
+
+The distribution plots revealed three things that the median scores masked:
+
+- **The Astro foundation is rock solid:** The lightweight pages (like `/sac/` or this very blog post) clustered tightly around 90-100. The performance bleed is 100% isolated to the third-party embeds.
+- **The "/es/ ghost" was just noise:** Yesterday's Looker Studio audit flagged the Spanish home page for a catastrophic mobile score of 39. The distribution on Feb 22 showed massive, sloppy variance. But on Feb 23? That variance vanished, and the score clustered tightly at 85. This validated our code-check: there was no heavy localization framework ruinous to performance. We were chasing a ghost born from network jitter during a synthetic crawl.
+- **The variance simply shifted:** On the 22nd, `/sevilla/` was the unstable outlier. On the 23rd, it stabilized and `/playlists/` became wildly unpredictable.
+
+The ultimate takeaway? Hunting performance bugs using a single day's median score is a trap. The dashboard alerted me to the problem, but only by looking at the _distributions_ across multiple days do you see the truth: the framework is stable, but third-party embeds introduce massive, unpredictable latency spikes that cannot be tamed by native `loading="lazy"` tags.
 
 The date mishap is a good reminder that these models are still eager to act rather than ask. For exploratory, low-stakes tasks that's mostly fine. For anything involving production data or deployment, you'd want clearer guardrails or more explicit prompting about scope boundaries.
 
-But as a "read the dashboard, find the bugs" shortcut? For someone who already built the instrumentation and knows the codebase? Surprisingly useful.
-
-_Results from the PageSpeed improvements will be added once the next daily crawl runs._
+But as a "read the dashboard, find the bugs" shortcut? For someone who already built the instrumentation and knows the codebase? Surprisingly useful. The next step is clear: time to build those Facades.
