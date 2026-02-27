@@ -51,6 +51,30 @@ const GTM_ID = "GTM-WDZK7ZFX";
         ad_personalization: "denied",
         analytics_storage: "denied",
       });
+
+      // Synchronously update consent based on previous choices, before GTM loads
+      try {
+        if (localStorage.getItem("silktideCookieBanner_InitialChoice")) {
+          var consentUpdates = {};
+          if (
+            localStorage.getItem("silktideCookieChoice_analytics") === "true"
+          ) {
+            consentUpdates.analytics_storage = "granted";
+          }
+          if (
+            localStorage.getItem("silktideCookieChoice_advertising") === "true"
+          ) {
+            consentUpdates.ad_storage = "granted";
+            consentUpdates.ad_user_data = "granted";
+            consentUpdates.ad_personalization = "granted";
+          }
+          if (Object.keys(consentUpdates).length > 0) {
+            gtag("consent", "update", consentUpdates);
+          }
+        }
+      } catch (e) {
+        // Ignore localStorage errors (e.g., if cookies are disabled)
+      }
     </script>
 
     <CookieConsent currentLang={currentLang} />
