@@ -52,18 +52,25 @@ const GTM_ID = "GTM-WDZK7ZFX";
         analytics_storage: "denied",
       });
 
-      // Synchronously update consent based on previous choices, before GTM loads
+      // Synchronously update consent based on previous choices, before GTM loads.
+      // Reads v2.0 keys (stcm.*) with fallback to v1.x keys (silktide*) for
+      // users who consented before the upgrade.
       try {
-        if (localStorage.getItem("silktideCookieBanner_InitialChoice")) {
+        var hasConsented =
+          localStorage.getItem("stcm.hasConsented") ||
+          localStorage.getItem("silktideCookieBanner_InitialChoice");
+        if (hasConsented) {
           var consentUpdates = {};
-          if (
-            localStorage.getItem("silktideCookieChoice_analytics") === "true"
-          ) {
+          var analyticsGranted =
+            localStorage.getItem("stcm.consent.analytics") === "true" ||
+            localStorage.getItem("silktideCookieChoice_analytics") === "true";
+          var advertisingGranted =
+            localStorage.getItem("stcm.consent.advertising") === "true" ||
+            localStorage.getItem("silktideCookieChoice_advertising") === "true";
+          if (analyticsGranted) {
             consentUpdates.analytics_storage = "granted";
           }
-          if (
-            localStorage.getItem("silktideCookieChoice_advertising") === "true"
-          ) {
+          if (advertisingGranted) {
             consentUpdates.ad_storage = "granted";
             consentUpdates.ad_user_data = "granted";
             consentUpdates.ad_personalization = "granted";

@@ -9,17 +9,16 @@ const { currentLang } = Astro.props;
 const i18n = {
   en: {
     bannerTitle: "Your privacy matters to us",
-    accept: "Accept custom cookies",
-    reject: "Reject custom cookies",
+    accept: "Accept all",
+    reject: "Reject non-essential",
   },
   es: {
     bannerTitle: "Tu privacidad nos importa",
-    accept: "Aceptar cookies",
-    reject: "Rechazar",
+    accept: "Aceptar todo",
+    reject: "Rechazar no esenciales",
   },
 };
 
-// Select text based on current language
 const text = currentLang === "es" ? i18n.es : i18n.en;
 ---
 
@@ -31,68 +30,36 @@ const text = currentLang === "es" ? i18n.es : i18n.en;
 <script is:inline src="/cookie-banner/silktide-consent-manager.js"></script>
 
 <script is:inline define:vars={{ text }}>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (typeof silktideCookieBannerManager !== "undefined") {
-      silktideCookieBannerManager.updateCookieBannerConfig({
-        background: { showBackground: true },
-        cookieIcon: { position: "bottomLeft" },
-        text: {
-          bannerTitle: text.bannerTitle,
-          acceptButtonText: text.accept,
-          rejectButtonText: text.reject,
-        },
-        cookieTypes: [
-          {
-            id: "necessary",
-            name: "Necessary",
-            required: true,
-            description:
-              "Essential cookies for the website to function properly.",
-          },
-          {
-            id: "analytics",
-            name: "Analytics",
-            defaultValue: true,
-            description:
-              "Cookies to help us understand how you use the website.",
-            onAccept: function () {
-              gtag("consent", "update", {
-                analytics_storage: "granted",
-              });
-              dataLayer.push({
-                event: "consent_accepted_analytics",
-              });
-            },
-            onReject: function () {
-              gtag("consent", "update", {
-                analytics_storage: "denied",
-              });
-            },
-          },
-          {
-            id: "advertising",
-            name: "Advertising",
-            description: "Cookies used to deliver relevant advertisements.",
-            onAccept: function () {
-              gtag("consent", "update", {
-                ad_storage: "granted",
-                ad_user_data: "granted",
-                ad_personalization: "granted",
-              });
-              dataLayer.push({
-                event: "consent_accepted_advertising",
-              });
-            },
-            onReject: function () {
-              gtag("consent", "update", {
-                ad_storage: "denied",
-                ad_user_data: "denied",
-                ad_personalization: "denied",
-              });
-            },
-          },
-        ],
-      });
-    }
+  silktideConsentManager.init({
+    text: {
+      prompt: {
+        description:
+          "<p>We use cookies to help us understand how you use this site.</p>",
+        acceptAllButtonText: text.accept,
+        rejectNonEssentialButtonText: text.reject,
+      },
+    },
+    icon: { position: "bottomLeft" },
+    consentTypes: [
+      {
+        id: "necessary",
+        label: "Necessary",
+        required: true,
+        description: "Essential cookies for the website to function properly.",
+      },
+      {
+        id: "analytics",
+        label: "Analytics",
+        defaultValue: true,
+        description: "Cookies to help us understand how you use the website.",
+        gtag: "analytics_storage",
+      },
+      {
+        id: "advertising",
+        label: "Advertising",
+        description: "Cookies used to deliver relevant advertisements.",
+        gtag: ["ad_storage", "ad_user_data", "ad_personalization"],
+      },
+    ],
   });
 </script>
