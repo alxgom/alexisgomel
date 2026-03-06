@@ -96,20 +96,27 @@ const alternateHref = "/sac/"; // Links to English version
               <h3 class="h5 mb-3">1. Detalles del Apartamento</h3>
               <div class="inline-inputs mb-3">
                 <div>
-                  <label for="rent">Precio del Alquiler:</label>
-                  <input type="number" id="rent" name="rent" required />
+                  <label for="rent">Precio del Alquiler</label>
+                  <input
+                    type="number"
+                    id="rent"
+                    name="rent"
+                    placeholder="ej. 1200"
+                    required
+                  />
                 </div>
                 <div>
                   <label for="total_area"
-                    >Área total del apartamento / Metros Cuadrados: <small
-                      class="text-muted d-block font-weight-normal"
+                    >Área total del apartamento
+                    <small class="text-muted d-block font-weight-normal"
                       >(cualquier unidad)</small
-                    ></label
-                  >
+                    >
+                  </label>
                   <input
                     type="number"
                     id="total_area"
                     name="total_area"
+                    placeholder="ej. 80"
                     required
                   />
                 </div>
@@ -117,18 +124,35 @@ const alternateHref = "/sac/"; // Links to English version
               </div>
 
               <div class="form-group mb-0">
-                <label for="bills">Gastos mensuales totales (opcional):</label>
-                <input type="number" id="bills" name="bills" />
+                <label for="bills">
+                  Gastos / Facturas totales (opcional)
+                  <i
+                    class="fas fa-info-circle"
+                    title="Gastos mensuales no incluidos en el alquiler — ej. suministros, internet, seguro. Se repartirán a partes iguales entre todos los inquilinos."
+                    style="cursor:help; color:var(--highlight-color); font-size:0.8rem; margin-left:3px;"
+                  ></i>
+                </label>
+                <input
+                  type="number"
+                  id="bills"
+                  name="bills"
+                  placeholder="ej. 150"
+                />
               </div>
             </div>
 
             <div class="sac-card mt-4">
               <h3 class="h5 mb-3">2. Habitaciones Privadas</h3>
               <div class="form-group mb-0">
-                <label for="num_rooms">Número de habitaciones privadas:</label>
-                <input type="number" id="num_rooms" name="num_rooms" required />
+                <label for="num_rooms">Número de habitaciones privadas</label>
+                <input
+                  type="number"
+                  id="num_rooms"
+                  name="num_rooms"
+                  placeholder="ej. 2"
+                  required
+                />
               </div>
-
               <div id="room-dimensions-container" class="mt-3"></div>
             </div>
 
@@ -139,7 +163,7 @@ const alternateHref = "/sac/"; // Links to English version
                   class="d-flex justify-content-between align-items-baseline mb-2"
                 >
                   <label for="alpha" class="mb-0"
-                    >Valor del espacio compartido:</label
+                    >Valor del espacio compartido</label
                   >
                   <span
                     id="alpha-value"
@@ -184,13 +208,20 @@ const alternateHref = "/sac/"; // Links to English version
               >Calcular Reparto Justo <i class="fas fa-calculator ml-2"
               ></i></button
             >
+            <p class="text-center mt-3 text-muted small">
+              ¿Tienes sugerencias o encontraste un error? <a href="/es/contact/"
+                >¡Contáctame!</a
+              >
+            </p>
           </form>
         </div>
 
         <div class="col-lg-6">
           <div id="warning"></div>
+          <div id="room-visualization"></div>
+          <div id="stacked-bars"></div>
           <div id="result"></div>
-          <div class="room-visualization" id="room-visualization"></div>
+          <div id="apt-pie"></div>
         </div>
       </div>
 
@@ -212,11 +243,6 @@ const alternateHref = "/sac/"; // Links to English version
             Está pensada para ahorrar tiempo y energía en ciudades donde
             encontrar alojamiento ya es un desafío. Si te resulta útil,
             ¡compártela con otros!
-          </p>
-          <p class="text-center mt-4 text-muted small">
-            ¿Tienes sugerencias o encontraste un error? <a href="/es/contact/">
-              >¡Contáctame!</a
-            >
           </p>
         </div>
       </div>
