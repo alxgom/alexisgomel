@@ -9,13 +9,13 @@
 #stcm-wrapper {
   --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
   --fontFamily: Helvetica Neue, Segoe UI, Arial, sans-serif;
-  --primaryColor: #F9D000;
-  --backgroundColor: #050505;
-  --textColor: #F4F0DF;
-  --backdropBackgroundColor: #00000077;
+  --primaryColor: #a50034;        /* almegre-red – buttons, links, toggles */
+  --backgroundColor: #ffffff;     /* white – matches site body */
+  --textColor: #343a40;           /* dark – readable on white */
+  --backdropBackgroundColor: #00000055;
   --backdropBackgroundBlur: 0px;
-  --iconColor: #050505;
-  --iconBackgroundColor: #F9D000;
+  --iconColor: #ffffff;           /* white icon on red circle */
+  --iconBackgroundColor: #a50034; /* red cookie icon */
   position: fixed;
   bottom: 0;
   right: 0;
