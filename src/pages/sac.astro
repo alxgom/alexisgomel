@@ -95,13 +95,19 @@ const alternateHref = "/es/sac/"; // Links to Spanish version
               <h3 class="h5 mb-3">1. Apartment Details</h3>
               <div class="inline-inputs mb-3">
                 <div>
-                  <label for="rent">Total Rent:</label>
-                  <input type="number" id="rent" name="rent" required />
+                  <label for="rent">Total Rent</label>
+                  <input
+                    type="number"
+                    id="rent"
+                    name="rent"
+                    placeholder="e.g. 1200"
+                    required
+                  />
                 </div>
                 <div>
                   <label for="total_area"
-                    >Total Apartment Area / Square Footage: <small
-                      class="text-muted d-block font-weight-normal"
+                    >Total Apartment Area
+                    <small class="text-muted d-block font-weight-normal"
                       >(any unit)</small
                     ></label
                   >
@@ -109,6 +115,7 @@ const alternateHref = "/es/sac/"; // Links to Spanish version
                     type="number"
                     id="total_area"
                     name="total_area"
+                    placeholder="e.g. 80"
                     required
                   />
                 </div>
@@ -116,18 +123,35 @@ const alternateHref = "/es/sac/"; // Links to Spanish version
               </div>
 
               <div class="form-group mb-0">
-                <label for="bills">Total Bills per month (optional):</label>
-                <input type="number" id="bills" name="bills" />
+                <label for="bills">
+                  Total Bills / Expenses (optional)
+                  <i
+                    class="fas fa-info-circle"
+                    title="Monthly costs not included in rent — e.g. utilities, internet, insurance. These will be split equally among all tenants."
+                    style="cursor:help; color:var(--highlight-color); font-size:0.8rem; margin-left:3px;"
+                  ></i>
+                </label>
+                <input
+                  type="number"
+                  id="bills"
+                  name="bills"
+                  placeholder="e.g. 150"
+                />
               </div>
             </div>
 
             <div class="sac-card mt-4">
               <h3 class="h5 mb-3">2. Private Rooms</h3>
               <div class="form-group mb-0">
-                <label for="num_rooms">Number of Private Rooms:</label>
-                <input type="number" id="num_rooms" name="num_rooms" required />
+                <label for="num_rooms">Number of Private Rooms</label>
+                <input
+                  type="number"
+                  id="num_rooms"
+                  name="num_rooms"
+                  placeholder="e.g. 2"
+                  required
+                />
               </div>
-
               <div id="room-dimensions-container" class="mt-3"></div>
             </div>
 
@@ -137,7 +161,7 @@ const alternateHref = "/es/sac/"; // Links to Spanish version
                 <div
                   class="d-flex justify-content-between align-items-baseline mb-2"
                 >
-                  <label for="alpha" class="mb-0">Value of shared space:</label>
+                  <label for="alpha" class="mb-0">Value of shared space</label>
                   <span
                     id="alpha-value"
                     class="font-weight-bold"
@@ -181,13 +205,19 @@ const alternateHref = "/es/sac/"; // Links to Spanish version
               class="btn btn-primary btn-block mt-4 compute-btn"
               >Compute Fair Split <i class="fas fa-calculator ml-2"></i></button
             >
+            <p class="text-center mt-3 text-muted small">
+              Have suggestions or found a bug? <a href="/contact/">Reach out!</a
+              >
+            </p>
           </form>
         </div>
 
         <div class="col-lg-6">
           <div id="warning"></div>
+          <div id="room-visualization"></div>
+          <div id="stacked-bars"></div>
           <div id="result"></div>
-          <div class="room-visualization" id="room-visualization"></div>
+          <div id="apt-pie"></div>
         </div>
       </div>
 
@@ -209,61 +239,58 @@ const alternateHref = "/es/sac/"; // Links to Spanish version
             accommodation is already a challenge. If you find it useful, please
             share it with others!
           </p>
-          <p class="text-center mt-4 text-muted small">
-            Have suggestions or found a bug? <a href="/contact/">Reach out!</a>
-          </p>
         </div>
-      </div>
 
-      <!-- Visible FAQ Section for SEO -->
-      <div class="row mt-5">
-        <div class="col-md-8 mx-auto">
-          <h2 class="h4 mb-4 text-center">Frequently Asked Questions</h2>
+        <!-- Visible FAQ Section for SEO -->
+        <div class="row mt-5">
+          <div class="col-md-8 mx-auto">
+            <h2 class="h4 mb-4 text-center">Frequently Asked Questions</h2>
 
-          <div class="mb-4">
-            <h3 class="h6 font-weight-bold">
-              How to split rent fairly in a shared apartment?
-            </h3>
-            <p class="text-muted">
-              The fairest way to split rent is based on room size. Calculate
-              each room's proportion of the total private square footage, then
-              factor in shared areas. The SHARE Calculator automates this by
-              dividing rent proportionally based on room dimensions and a
-              configurable shared space value.
-            </p>
-          </div>
+            <div class="mb-4">
+              <h3 class="h6 font-weight-bold">
+                How to split rent fairly in a shared apartment?
+              </h3>
+              <p class="text-muted">
+                The fairest way to split rent is based on room size. Calculate
+                each room's proportion of the total private square footage, then
+                factor in shared areas. The SHARE Calculator automates this by
+                dividing rent proportionally based on room dimensions and a
+                configurable shared space value.
+              </p>
+            </div>
 
-          <div class="mb-4">
-            <h3 class="h6 font-weight-bold">
-              How to share rent with roommates and common areas?
-            </h3>
-            <p class="text-muted">
-              When figuring out how to share rent, common areas like living
-              rooms and kitchens should be factored in. The SHARE Calculator
-              uses a configurable 'shared space value' (0-1) to determine how
-              much weight shared areas carry. A value of 0.75 means shared space
-              is worth 75% of private room value.
-            </p>
-          </div>
+            <div class="mb-4">
+              <h3 class="h6 font-weight-bold">
+                How to share rent with roommates and common areas?
+              </h3>
+              <p class="text-muted">
+                When figuring out how to share rent, common areas like living
+                rooms and kitchens should be factored in. The SHARE Calculator
+                uses a configurable 'shared space value' (0-1) to determine how
+                much weight shared areas carry. A value of 0.75 means shared
+                space is worth 75% of private room value.
+              </p>
+            </div>
 
-          <div class="mb-4">
-            <h3 class="h6 font-weight-bold">
-              How do subjective features like a balcony or big windows affect
-              the rent split?
-            </h3>
-            <p class="text-muted">
-              The SHARE Calculator intentionally focuses on the objective math
-              of square footage and shared areas to provide a fast, fair
-              baseline estimate. Once you have this baseline, you can easily
-              adjust the final price with your flatmates to account for
-              subjective features (like sunshine or an ensuite bathroom) without
-              overcomplicating the initial calculation.
-            </p>
+            <div class="mb-4">
+              <h3 class="h6 font-weight-bold">
+                How do subjective features like a balcony or big windows affect
+                the rent split?
+              </h3>
+              <p class="text-muted">
+                The SHARE Calculator intentionally focuses on the objective math
+                of square footage and shared areas to provide a fast, fair
+                baseline estimate. Once you have this baseline, you can easily
+                adjust the final price with your flatmates to account for
+                subjective features (like sunshine or an ensuite bathroom)
+                without overcomplicating the initial calculation.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </article>
-  </main>
 
-  <script is:inline defer src="/js/sac_script.js"></script>
+    <script is:inline defer src="/js/sac_script.js"></script>
+  </main>
 </MainLayout>
