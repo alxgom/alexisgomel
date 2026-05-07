@@ -10,8 +10,8 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
 ---
 
 <MainLayout
-  title="Looker Studio Community Visualizations"
-  description="Enhance your data storytelling with interactive custom community visualizations for Google Looker Studio, including Tree Hierarchy, Histogram, and Lipstick charts."
+  title="Data Studio (formerly Looker Studio) Community Visualizations"
+  description="Enhance your data storytelling with interactive custom community visualizations for Google Data Studio (formerly Looker Studio), including Tree Hierarchy, Histogram, and Lipstick charts."
   currentLang={currentLang}
   alternateHref={alternateHref}
   image="/assets/imgs/Projects/community_visuals_banner.svg"
@@ -29,7 +29,7 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
   <meta
     slot="head"
     property="og:title"
-    content="Custom Looker Studio Community Visualizations | Alexis Gomel"
+    content="Custom Data Studio (formerly Looker Studio) Community Visualizations | Alexis Gomel"
   />
   <meta
     slot="head"
@@ -42,6 +42,32 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
     content="/assets/imgs/Projects/tree_hierarchy_viz.png"
   />
   <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <!-- FAQ Schema for LLM Context -->
+  <script slot="head" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are some examples of custom Data Studio (Looker Studio) community visualizations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Examples of custom Data Studio (formerly Looker Studio) visualizations include Tree Hierarchies for multi-level data drill-downs, Lipstick Charts for tracking performance against targets, Cleveland Plots for tracking distributions without clutter, and Sparkline tables. These extend the native capabilities of Data Studio (Looker Studio)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are Data Studio (Looker Studio) community visualizations built?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Data Studio (formerly Looker Studio) custom community visualizations are built using JavaScript, CSS, and libraries like D3.js. They connect to data using the Data Studio Community Component API (DSCC API) provided by Google, allowing developers to render completely custom, interactive HTML inside their reports. While the source code is not provided publicly on the page, you can interact with the live embedded dashboard to see how they work just like native visuals, and reach out if you want to know more."
+          }
+        }
+      ]
+    }
+  </script>
 
   <style>
     .looker-container {
@@ -101,9 +127,9 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
 
   <div class="looker-container">
     <div class="container mt-5 pt-5">
-      <h1 class="section-title">Looker Studio Community Visualizations</h1>
+      <h1 class="section-title">Data Studio (formerly Looker Studio) Community Visualizations</h1>
       <p class="lead text-muted">
-        Custom community visualizations I've developed for Google Looker Studio,
+        Custom community visualizations I've developed for Google Data Studio (formerly Looker Studio),
         extending its capabilities with specialized chart types for better data
         storytelling.
       </p>
@@ -369,9 +395,9 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
       <div class="viz-list">
         <h3>Frequently Asked Questions</h3>
         <div class="faq-item mt-4">
-          <h5>1. What is a Looker Studio Community Visualization?</h5>
+          <h5>1. What is a Data Studio (Looker Studio) Community Visualization?</h5>
           <p>
-            It's a third-party chart developed using the Google Looker Studio
+            It's a third-party chart developed using the Google Data Studio (formerly Looker Studio)
             Community Visualization API. It allows for custom rendering and
             interaction that goes beyond standard built-in components.
           </p>
@@ -380,7 +406,7 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
           <h5>2. How do I install these custom visualizations?</h5>
           <p>
             You can add them to your report by using the "Community
-            Visualizations and Components" icon in the Looker Studio toolbar and
+            Visualizations and Components" icon in the Data Studio toolbar and
             pasting the manifest path provided (available upon request).
           </p>
         </div>
@@ -388,7 +414,7 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
           <h5>3. Are these visualizations responsive?</h5>
           <p>
             Yes, all visualizations shown here are built to be fully responsive
-            and adapt to the size of the container within your Looker Studio
+            and adapt to the size of the container within your Data Studio (Looker Studio)
             report.
           </p>
         </div>
@@ -403,10 +429,10 @@ const alternateHref = "/es/projects/looker-studio-custom-visuals/";
             target="_blank"
             rel="noopener noreferrer"
           >
-            Looker Studio Community Visualization API (DSCC)
+            Data Studio (Looker Studio) Community Visualization API (DSCC)
           </a>
           with JavaScript and D3.js for rendering. They are designed to be highly
-          configurable through the Looker Studio style panel.
+          configurable through the Data Studio style panel.
         </p>
         <p>
           <strong>Tech & skills:</strong> JavaScript, D3.js, DSCC API, Data Visualization,
