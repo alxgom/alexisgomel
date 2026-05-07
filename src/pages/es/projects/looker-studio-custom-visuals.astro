@@ -10,8 +10,8 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
 ---
 
 <MainLayout
-  title="Ejemplos de Visualizaciones de Comunidad Looker Studio"
-  description="Mejora tu narrativa de datos con visualizaciones interactivas personalizadas para Google Looker Studio, incluyendo Jerarquía de Árbol, Histogramas y gráficos Lipstick."
+  title="Ejemplos de Visualizaciones de Comunidad Data Studio (anteriormente Looker Studio)"
+  description="Mejora tu narrativa de datos con visualizaciones interactivas personalizadas para Google Data Studio (anteriormente Looker Studio), incluyendo Jerarquía de Árbol, Histogramas y gráficos Lipstick."
   currentLang={currentLang}
   alternateHref={alternateHref}
   image="/assets/imgs/Projects/community_visuals_banner.svg"
@@ -29,7 +29,7 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
   <meta
     slot="head"
     property="og:title"
-    content="Visualizaciones Personalizadas para Looker Studio | Alexis Gomel"
+    content="Visualizaciones Personalizadas para Data Studio (anteriormente Looker Studio) | Alexis Gomel"
   />
   <meta
     slot="head"
@@ -42,6 +42,32 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
     content="/assets/imgs/Projects/tree_hierarchy_viz.png"
   />
   <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <!-- FAQ Schema for LLM Context -->
+  <script slot="head" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuáles son algunos ejemplos de visualizaciones de la comunidad personalizadas para Data Studio (Looker Studio)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ejemplos de visualizaciones personalizadas para Data Studio (anteriormente Looker Studio) incluyen Jerarquías de Árbol para desgloses de datos multinivel, Gráficos Lipstick para rastrear el rendimiento frente a objetivos, Gráficos Cleveland para rastrear distribuciones sin desorden visual, y tablas Sparkline. Estas visualizaciones amplían las capacidades nativas de Data Studio (Looker Studio)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se construyen las visualizaciones de la comunidad de Data Studio (Looker Studio)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las visualizaciones de la comunidad personalizadas de Data Studio (anteriormente Looker Studio) se construyen utilizando JavaScript, CSS y bibliotecas como D3.js. Se conectan a los datos mediante la API de Componentes de la Comunidad de Data Studio (DSCC API) proporcionada por Google, lo que permite a los desarrolladores renderizar HTML interactivo y completamente personalizado dentro de sus informes. Aunque el código fuente no se proporciona públicamente en la página, puedes probar el panel interactivo incrustado para ver cómo funcionan igual que las visualizaciones nativas, y contactarme si deseas saber más."
+          }
+        }
+      ]
+    }
+  </script>
 
   <style>
     .looker-container {
@@ -102,11 +128,11 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
   <div class="looker-container">
     <div class="container mt-5 pt-5">
       <h1 class="section-title">
-        Visualizaciones de la Comunidad de Looker Studio
+        Visualizaciones de la Comunidad de Data Studio (anteriormente Looker Studio)
       </h1>
       <p class="lead text-muted">
         Visualizaciones personalizadas de la comunidad que he desarrollado para
-        Google Looker Studio, extendiendo sus capacidades con tipos de gráficos
+        Google Data Studio (anteriormente Looker Studio), extendiendo sus capacidades con tipos de gráficos
         especializados para una mejor narrativa de datos.
       </p>
 
@@ -379,11 +405,11 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
         <h3>Preguntas Frecuentes</h3>
         <div class="faq-item mt-4">
           <h5>
-            1. ¿Qué es una visualización de la comunidad de Looker Studio?
+            1. ¿Qué es una visualización de la comunidad de Data Studio (Looker Studio)?
           </h5>
           <p>
             Es un gráfico de terceros desarrollado utilizando la API de
-            visualización de la comunidad de Google Looker Studio. Permite el
+            visualización de la comunidad de Google Data Studio (anteriormente Looker Studio). Permite el
             renderizado y la interacción personalizados que van más allá de los
             componentes incorporados estándar.
           </p>
@@ -392,8 +418,8 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
           <h5>2. ¿Cómo instalo estas visualizaciones personalizadas?</h5>
           <p>
             Puedes agregarlas a tu informe utilizando el icono "Visualizaciones
-            y componentes de la comunidad" en la barra de herramientas de Looker
-            Studio y pegando la ruta del manifiesto proporcionada (disponible
+            y componentes de la comunidad" en la barra de herramientas de Data Studio
+            y pegando la ruta del manifiesto proporcionada (disponible
             bajo peticion).
           </p>
         </div>
@@ -402,7 +428,7 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
           <p>
             Sí, todas las visualizaciones que se muestran aquí están diseñadas
             para ser totalmente responsivas y adaptarse al tamaño del contenedor
-            dentro de tu informe de Looker Studio.
+            dentro de tu informe de Data Studio (Looker Studio).
           </p>
         </div>
       </div>
@@ -416,10 +442,10 @@ const alternateHref = "/projects/looker-studio-custom-visuals/";
             target="_blank"
             rel="noopener noreferrer"
           >
-            API de Visualización de la Comunidad de Looker Studio (DSCC)
+            API de Visualización de la Comunidad de Data Studio (Looker Studio) (DSCC)
           </a>
           con JavaScript y D3.js para el renderizado. Están diseñadas para ser altamente
-          configurables a través del panel de estilo de Looker Studio.
+          configurables a través del panel de estilo de Data Studio.
         </p>
         <p>
           <strong>Tecnologías y habilidades:</strong> JavaScript, D3.js, API DSCC,
