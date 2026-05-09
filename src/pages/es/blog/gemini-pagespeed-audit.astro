@@ -1,0 +1,682 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+export const frontmatter = {
+  title:
+    "Le pedí a Gemini 3.1 Pro que auditara el rendimiento de mi web mientras miraba un panel en vivo",
+  description:
+    "Una exploración en primera persona de las capacidades multimodales de Gemini 3.1 Pro: navegar por un panel de Looker Studio, leer gráficos interactivos y verificar hipótesis de rendimiento contra el código real del sitio web.",
+  pubDate: "2026-02-22",
+  tags: ["IA", "Rendimiento Web", "Gemini 3.1", "Looker Studio"],
+};
+
+const currentLang = "es";
+const alternateHref = "/blog/gemini-pagespeed-audit/";
+
+const imgBase = "/assets/imgs/blog/gemini-pagespeed";
+---
+
+<MainLayout
+  title="Le pedí a Gemini 3.1 Pro que auditara el rendimiento de mi web | Alexis Gomel"
+  description="Una exploración en primera persona de las capacidades multimodales de Gemini 3.1 Pro: navegar por un panel de Looker Studio, leer gráficos interactivos y verificar hipótesis de rendimiento contra el código real del sitio web."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+  <style is:inline>
+    .blog-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      color: #333;
+    }
+    .blog-wrap h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .blog-meta {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 2.5rem;
+    }
+    .blog-wrap h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.3rem;
+    }
+    .blog-wrap p {
+      margin-bottom: 1.25rem;
+    }
+    .blog-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+      margin: 1rem 0 0.4rem;
+    }
+    .img-caption {
+      font-size: 0.8rem;
+      color: #999;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 1rem 0 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .img-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+    .tag {
+      display: inline-block;
+      background: #f4f4f4;
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-size: 0.78rem;
+      color: #555;
+      margin-right: 6px;
+      margin-bottom: 1rem;
+    }
+    .highlight-box {
+      background: #f8f8f8;
+      border-left: 4px solid var(--primary, #e74c3c);
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin: 1.5rem 0;
+      font-size: 0.97rem;
+    }
+    /* Scrollable audit embed */
+    .audit-scroll {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      max-height: 520px;
+      overflow-y: auto;
+      padding: 28px 32px;
+      background: #fafafa;
+      font-size: 0.93rem;
+      line-height: 1.75;
+      margin: 1.5rem 0;
+    }
+    .audit-scroll h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+    }
+    .audit-scroll h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-top: 1.2rem;
+    }
+    .audit-scroll table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 1rem 0;
+    }
+    .audit-scroll th,
+    .audit-scroll td {
+      border: 1px solid #ddd;
+      padding: 6px 10px;
+      text-align: left;
+    }
+    .audit-scroll th {
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+    .audit-scroll tr:nth-child(even) td {
+      background: #f7f7f7;
+    }
+    .badge-confirmed {
+      color: #27ae60;
+      font-weight: 700;
+    }
+    .badge-refuted {
+      color: #e74c3c;
+      font-weight: 700;
+    }
+    .verdict {
+      display: inline-block;
+      font-size: 0.8rem;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-weight: 600;
+    }
+    .verdict.confirmed {
+      background: #eafaf1;
+      color: #1e8449;
+    }
+    .verdict.refuted {
+      background: #fdedec;
+      color: #c0392b;
+    }
+    .verdict.partial {
+      background: #fef9e7;
+      color: #9a7d0a;
+    }
+    .scroll-hint {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+  </style>
+
+  <article class="blog-wrap">
+    <span class="tag">IA</span>
+    <span class="tag">Rendimiento Web</span>
+    <span class="tag">Gemini 3.1</span>
+    <span class="tag">Looker Studio</span>
+
+    <h1>¿Puede la IA construir mi sitio web y también auditarlo?</h1>
+    <p
+      class="subtitle"
+      style="font-size: 1.25rem; color: #555; margin-top: -0.2rem; margin-bottom: 2rem; font-weight: 500;"
+    >
+      Le pedí al nuevo Gemini 3.1 Pro que actuara como analista de mi sitio web.
+    </p>
+
+    <p class="blog-meta" style="margin-top: -1rem;">
+      Alexis Gomel · 22 de febrero de 2026
+    </p>
+
+    <p>
+      Durante el último año, construí este sitio web utilizando asistentes de codificación de IA.
+      Debido a eso, los agentes ya conocen todo mi código y la arquitectura de diseño.
+    </p>
+
+    <p>
+      También mantengo un panel de Looker Studio que rastrea las puntuaciones diarias de PageSpeed. 
+      Normalmente, mi flujo de trabajo es manual. Leo el panel, detecto una caída en el rendimiento 
+      y le pido a la IA que me ayude a corregir el código.
+    </p>
+
+    <p>
+      Cuando Google lanzó Gemini 3.1 Pro a través de Antigravity la semana pasada, quise probar una 
+      mejora multimodal específica. ¿Qué pasa si me elimino como intermediario? ¿Podría el modelo 
+      realmente <em>ver</em> un informe web interactivo en vivo, navegar por los gráficos como un 
+      analista humano y escribir su propia auditoría técnica?
+    </p>
+
+    <p>
+      Diseñé una prueba sencilla. El agente tenía que navegar por el panel, encontrar las métricas 
+      de rendimiento, escribir un informe de auditoría e implementar las correcciones propuestas 
+      directamente en el código.
+    </p>
+
+    <h2>La configuración</h2>
+    <p>
+      Construí un pipeline de análisis personalizado para este sitio usando GA4, BigQuery y 
+      Looker Studio. Parte de él es una auditoría diaria de PageSpeed. Una Google Cloud Function 
+      en Python lee mi sitemap, llama a la 
+      <a
+        href="https://developers.google.com/speed/docs/insights/v5/get-started"
+        target="_blank"
+        rel="noopener">API de PageSpeed Insights</a
+      >
+      siete veces por página y guarda los resultados en BigQuery. Las puntuaciones de rendimiento 
+      varían naturalmente entre ejecuciones. Para obtener una lectura estable, el panel muestra la 
+      <strong>mediana de esas 7 mediciones</strong>. Solo la métrica de Rendimiento tiene una dispersión amplia; las otras (SEO, Accesibilidad, Mejores Prácticas) son esencialmente deterministas.
+    </p>
+    <div class="highlight-box">
+      Puedes explorar el panel en vivo tú mismo en 
+      <a href="/es/projects/webanalytics/"
+        >alexisgomel.com/es/projects/webanalytics/</a
+      >.
+    </div>
+    <p>
+      Apunté un agente Gemini 3.1 Pro a la URL del informe y le di una directiva simple. Lee los gráficos, 
+      produce una auditoría técnica y verifica tus hallazgos contra el código. No proporcioné pistas.
+    </p>
+
+    <h2>Paso 1: Navegando por el panel</h2>
+    <p>
+      El primer obstáculo puso a prueba su razonamiento multimodal. Le di acceso a mi panel personal. 
+      Tenía que usar un navegador headless, entender el diseño visual y hacer clic en las pestañas correctas.
+    </p>
+
+    <p>
+      Abrió con éxito el informe de Looker Studio, hizo clic en la pestaña "Page speed" y navegó a la 
+      sección "Current state".
+    </p>
+    <div class="img-pair">
+      <div>
+        <img
+          src={`${imgBase}/02_pagespeed_menu.png`}
+          alt="Gemini navegando al menú de Page speed"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          Encontrando correctamente la sección Page speed → Current state
+        </p>
+      </div>
+      <div>
+        <img
+          src={`${imgBase}/03_pagespeed_current_state.png`}
+          alt="Panel de estado actual de Page speed"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          El panel de PageSpeed con gráficos de Mejores Prácticas, SEO y Rendimiento
+        </p>
+      </div>
+    </div>
+
+    <h2>Paso 2: El incidente de la fecha</h2>
+    <p>
+      Un primer contratiempo ocurrió casi de inmediato. El panel tiene un filtro de rango de fechas. 
+      Sin ninguna instrucción, Gemini lo abrió y empezó a escribir. Introdujo "028" en el campo de 
+      desplazamiento, retrasando accidentalmente la ventana de datos 28 días. No le pedí que filtrara 
+      datos históricos. Este comportamiento proactivo fue un pequeño indicio de lo que vendría.
+    </p>
+    <div class="img-pair">
+      <div>
+        <img
+          src={`${imgBase}/05_date_picker_mishap.png`}
+          alt="Gemini escribiendo mal 028 en el filtro de fecha"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          El modelo abrió proactivamente el filtro de fecha y escribió "028", expandiendo el alcance sin que se lo pidieran.
+        </p>
+      </div>
+      <div>
+        <img
+          src={`${imgBase}/06_date_applied.png`}
+          alt="Filtro de fecha configurado correctamente para hoy"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          Después de mi corrección: filtro configurado limpiamente para el 22 Feb 2026 – 22 Feb 2026
+        </p>
+      </div>
+    </div>
+    <p>
+      Envié una corrección corta y aplicó la fecha correcta de inmediato. He notado esta diferencia de 
+      comportamiento al comparar Gemini con Claude. Gemini tiende a actuar fuera de sus instrucciones 
+      originales sin consultar. Claude suele pausar para pedir confirmación. Ningún enfoque es 
+      universalmente mejor, pero para tareas que involucran datos de producción en vivo, hay que tener esto en cuenta.
+    </p>
+    <p>
+      Aún así, en comparación con Gemini 3.0, la navegación fue una mejora masiva. El modelo anterior 
+      entraría en bucles infinitos con las capturas de pantalla o perdería por completo el rastro de la 
+      interfaz del informe. 3.1 Pro solo necesitó una corrección menor.
+    </p>
+
+    <h2>Paso 3: Leyendo los gráficos desplazables</h2>
+    <p>
+      Con la fecha configurada, la IA se desplazó por los gráficos de rendimiento. Esto incluyó la tabla 
+      interactiva "Performance breakdown (median)", que enumera cada ruta de página con puntuaciones 
+      específicas del dispositivo para Speed Index, FCP, LCP, CLS y TBT.
+    </p>
+    <p>
+      Leer esta tabla requiere desplazarse dentro de un elemento incrustado dentro de la página principal. 
+      Las versiones anteriores del modelo fallaban por completo en esta interacción específica.
+    </p>
+    <img
+      src={`${imgBase}/07_performance_table.png`}
+      alt="Tabla de desglose de rendimiento en Looker Studio"
+      class="blog-img"
+    />
+    <p class="img-caption">
+      La tabla de rendimiento desplazable que muestra el desglose por ruta y por dispositivo de todas 
+      las métricas de Core Web Vital.
+    </p>
+
+    <h2>El informe de auditoría</h2>
+    <p>
+      Basándose en los datos del panel, Gemini 3.1 Pro generó la siguiente auditoría técnica. 
+      Identificó los cuellos de botella, los calificó por gravedad y propuso soluciones.
+    </p>
+
+    <p class="scroll-hint">↕ Desplázate dentro del cuadro para leer el informe completo</p>
+    <div class="audit-scroll">
+      <h3>Resumen Ejecutivo</h3>
+      <p>
+        El sitio web demuestra excelentes capacidades base en Escritorio, pero sufre una 
+        degradación severa del rendimiento en páginas específicas de Móvil. Los principales 
+        cuellos de botella son el <strong>bloqueo excesivo del hilo principal (TBT)</strong> 
+        en páginas con componentes interactivos pesados y el renderizado visual retrasado 
+        (Speed Index) para usuarios móviles.
+      </p>
+
+      <h3>Métricas Clave de Rendimiento — 22/02/2026</h3>
+      <table>
+        <thead>
+          <tr
+            ><th>Página</th><th>Dispositivo</th><th>Puntuación</th><th>SI</th><th>FCP</th
+            ><th>LCP</th><th>TBT</th><th>CLS</th></tr
+          >
+        </thead>
+        <tbody>
+          <tr
+            ><td>/sac/</td><td>Escritorio</td><td>100</td><td>1.0</td><td>1.0</td
+            ><td>1.0</td><td>1.0</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/sac/</td><td>Móvil</td><td>86</td><td>0.92</td><td>0.44</td
+            ><td>0.69</td><td>1.0</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/projects/</td><td>Escritorio</td><td>100</td><td>1.0</td><td
+              >1.0</td
+            ><td>0.99</td><td>1.0</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/projects/</td><td>Móvil</td><td>78</td><td>0.98</td><td
+              >0.81</td
+            ><td><strong>0.22</strong></td><td>1.0</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/projects/webanalytics/</td><td>Escritorio</td><td>60</td><td
+              ><strong>0.0</strong></td
+            ><td>0.99</td><td>0.99</td><td><strong>0.0</strong></td><td>1.0</td
+            ></tr
+          >
+          <tr
+            ><td>/projects/webanalytics/</td><td>Móvil</td><td
+              ><strong>56</strong></td
+            ><td><strong>0.02</strong></td><td>0.76</td><td>0.94</td><td
+              ><strong>0.0</strong></td
+            ><td>1.0</td></tr
+          >
+          <tr
+            ><td>/playlists/</td><td>Escritorio</td><td>60</td><td>0.02</td><td
+              >1.0</td
+            ><td>0.99</td><td><strong>0.0</strong></td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/playlists/</td><td>Móvil</td><td><strong>55</strong></td><td
+              ><strong>0.0</strong></td
+            ><td>0.89</td><td>0.81</td><td>0.03</td><td>1.0</td></tr
+          >
+          <tr
+            ><td>/projects/looker-studio-…</td><td>Escritorio</td><td>62</td><td
+              >0.23</td
+            ><td>0.98</td><td>0.98</td><td><strong>0.0</strong></td><td>1.0</td
+            ></tr
+          >
+          <tr
+            ><td>/es/ (inicio)</td><td>Móvil</td><td><strong>39</strong></td><td
+              >0.54</td
+            ><td>0.53</td><td><strong>0.03</strong></td><td>0.09</td><td>1.0</td
+            ></tr
+          >
+          <tr
+            ><td>/es/projects/</td><td>Móvil</td><td>70</td><td>—</td><td>—</td
+            ><td><strong>0.01</strong></td><td>—</td><td>1.0</td></tr
+          >
+        </tbody>
+      </table>
+      <p>
+        <em
+          >Nota: CLS es perfecto (1.0) en todas las páginas; el diseño es estable en todas partes.</em
+        >
+      </p>
+
+      <h3>Hallazgos, por Prioridad</h3>
+
+      <h4>1. TBT Crítico — Muro de ejecución de JavaScript</h4>
+      <p>
+        Las páginas que incrustan iframes de terceros (/projects/webanalytics/, /playlists/, 
+        /projects/looker-studio-custom-visuals/) tienen una puntuación de TBT de 0.0. El hilo 
+        principal del navegador está completamente bloqueado durante la carga. Los usuarios no 
+        pueden desplazarse ni interactuar hasta que se despeja la carga de JS.
+      </p>
+
+      <h4>2. Speed Index — Síndrome de pantalla en blanco</h4>
+      <p>
+        El Speed Index en /projects/webanalytics/ y /playlists/ es cercano a 0.0, lo que significa 
+        que la página no muestra casi nada visible durante una larga ventana durante la carga. 
+        No hay pantallas de esqueleto ni revelación progresiva.
+      </p>
+
+      <h4>3. LCP Móvil — Página de listado de /projects/</h4>
+      <p>
+        /projects/ es un 100 perfecto en escritorio. En móvil, el LCP cae a 0.22. La sección hero 
+        contiene videos de reproducción automática e imágenes grandes no optimizadas servidas a 
+        resolución de escritorio.
+      </p>
+
+      <h4>4. Localización en Español (/es/) — Peores puntuaciones móviles</h4>
+      <p>
+        Al desplazarse por el gráfico, se observa que las rutas /es/ muestran LCP móviles 
+        catastróficamente bajos (0.01–0.03) y las peores puntuaciones generales de rendimiento. 
+        Hipótesis: una carga que bloquea el renderizado específica de la capa de localización.
+      </p>
+
+      <h3>Recomendaciones</h3>
+      <p>
+        <strong>Nivel 1 — TBT:</strong> Añadir lazy loading a los iframes. Usar IntersectionObserver 
+        para retrasar la inicialización hasta que el embed esté a la vista. Considerar un patrón Facade 
+        (mostrar una imagen estática, cargar el iframe al hacer clic).
+      </p>
+      <p>
+        <strong>Nivel 2 — Speed Index:</strong> Añadir pantallas de esqueleto para secciones pesadas. 
+        Poner en línea el CSS crítico.
+      </p>
+      <p>
+        <strong>Nivel 3 — LCP Móvil:</strong> Añadir <code>srcset</code> y <code>sizes</code> a las 
+        imágenes hero. Precargar los fotogramas de póster de video con <code>fetchpriority="high"</code>.
+      </p>
+    </div>
+
+    <h2>Paso 4: Verificando hipótesis en el código</h2>
+    <p>
+      A continuación, le pedí al agente que verificara sus suposiciones escaneando el código fuente 
+      real de Astro. Esto cerró el círculo perfectamente.
+    </p>
+
+    <div class="highlight-box" style="margin-bottom: 1rem;">
+      <span class="verdict confirmed">✅ Hipótesis de TBT confirmada</span><br />
+      El agente identificó correctamente que el archivo <code>webanalytics.astro</code> carga el 
+      iframe de Looker Studio inmediatamente sin el atributo <code>loading="lazy"</code>. 
+      La página de playlists repite este error para el embed principal de Spotify.
+    </div>
+    <div class="highlight-box" style="margin-bottom: 1rem;">
+      <span class="verdict confirmed">✅ Hipótesis de Speed Index confirmada</span
+      ><br />
+      El marcado incluye un spinner de carga. La solicitud del iframe se dispara inmediatamente 
+      debajo de él de todos modos. Esto obstruye la red antes de que el spinner pueda siquiera 
+      renderizarse limpiamente.
+    </div>
+    <div class="highlight-box" style="margin-bottom: 1rem;">
+      <span class="verdict partial"
+        >⚠ Hipótesis de LCP Móvil parcialmente confirmada</span
+      ><br />
+      Las imágenes hero usan <code>fetchpriority="high"</code> pero carecen de un atributo 
+      <code>srcset</code>. El sitio sirve activos pesados de resolución de escritorio a 
+      dispositivos móviles. Al póster del video de reproducción automática también le falta 
+      una etiqueta de precarga.
+    </div>
+    <div class="highlight-box" style="margin-bottom: 1.5rem;">
+      <span class="verdict refuted"
+        >❌ Hipótesis de localización en español refutada</span
+      ><br />
+      Las páginas <code>/es/</code> son archivos Astro físicamente separados. Comparten una 
+      estructura idéntica con las versiones en inglés. No hay un marco de localización pesado 
+      ejecutándose en el lado del cliente. Las puntuaciones extremas de LCP en esas páginas 
+      fueron probablemente ruido de medición de ese rastreo sintético específico, no un defecto del código.
+    </div>
+
+    <p>
+      Tres de cada cuatro hipótesis resultaron correctas. La cuarta fue falsificada correctamente. 
+      La IA miró datos reales, generó una explicación plausible pero errónea para las páginas en 
+      español, y luego corrigió su suposición cuando el código no la respaldaba.
+    </p>
+
+    <h2>Arreglos aplicados</h2>
+    <p>
+      Después de verificar los problemas, instruí al agente para que implementara los arreglos 
+      no disruptivos.
+    </p>
+    <ul>
+      <li>
+        Añadido <code>loading="lazy"</code> al iframe de Looker Studio en las páginas de análisis 
+        web en inglés y español.
+      </li>
+      <li>
+        Añadidos atributos <code>widths</code> y <code>sizes</code> responsivos a las imágenes 
+        hero en las páginas de listado de proyectos.
+      </li>
+      <li>
+        Precargado el póster del video usando una etiqueta <code>&lt;link rel="preload"&gt;</code> 
+        en el encabezado del documento.
+      </li>
+    </ul>
+    <p>
+      <em
+        ><strong>Actualización (23 de febrero):</strong> Revisé el panel hoy para medir el impacto. 
+        El TBT en la página webanalytics seguía siendo 0.0. Añadir <code>loading="lazy"</code> a 
+        un iframe por encima del pliegue (above-the-fold) no impide que Lighthouse lo ejecute 
+        ansiosamente. El navegador lo ve en el viewport inicial y lo descarga de inmediato. Una 
+        solución verdadera requiere un patrón Facade, donde se renderiza una imagen estática 
+        hasta que el usuario hace clic. Gemini sugirió esto como su recomendación principal en 
+        la auditoría. Implementarlo rompería la experiencia interactiva inmediata de la página. 
+        La IA diagnosticó con precisión el problema y propuso el arreglo matemáticamente 
+        correcto, pero careció del juicio para sopesar las puntuaciones de rendimiento frente a 
+        objetivos más amplios de experiencia del usuario.
+      </em>
+    </p>
+
+    <h2>Exploraciones de seguimiento</h2>
+
+    <p>
+      El panel de Looker Studio muestra la <em>mediana</em> de siete pruebas diarias por página. 
+      Para entender realmente el impacto en el rendimiento, tenemos que mirar la distribución 
+      completa. Le pedí a la IA que escribiera un script en Python para extraer los datos brutos 
+      de BigQuery y graficar la dispersión real de la Puntuación de Rendimiento y las métricas de 
+      TBT en ambos días.
+    </p>
+
+    <div class="img-pair">
+      <div>
+        <img
+          src={`${imgBase}/performance_score_distribution_22.png`}
+          alt="Distribuciones de puntuación de rendimiento el 22 de febrero"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          22 de febrero: Se puede ver claramente la enorme variación en las puntuaciones de la página móvil <code>/projects/webanalytics/</code>.
+        </p>
+      </div>
+      <div>
+        <img
+          src={`${imgBase}/performance_score_distribution_23.png`}
+          alt="Distribuciones de puntuación de rendimiento el 23 de febrero"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          23 de febrero: Después del "arreglo", la varianza en las páginas pesadas sigue siendo 
+          prácticamente idéntica.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Los boxplots muestran exactamente por qué falló el intento nativo de lazy loading. El hilo 
+      principal se bloquea consistentemente durante miles de milisegundos en cada ejecución. 
+      Un enfoque de Facade verdadero es la única forma técnica de evitarlo.
+    </p>
+
+    <p>
+      La verdadera lección aquí es el flujo de trabajo en sí. Un agente de IA puede leer tu código, 
+      acceder a tus datos analíticos en vivo y realizar sus propios experimentos para probar 
+      hipótesis como un analista humano.
+    </p>
+
+    <div class="img-pair">
+      <div>
+        <img
+          src={`${imgBase}/tbt_value_distribution_22.png`}
+          alt="Distribuciones de TBT el 22 de febrero"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          22 de febrero: Dispersión de TBT inaceptable en las páginas pesadas con iframes.
+        </p>
+      </div>
+      <div>
+        <img
+          src={`${imgBase}/tbt_value_distribution_23.png`}
+          alt="Distribuciones de TBT el 23 de febrero"
+          class="blog-img"
+        />
+        <p class="img-caption">
+          23 de febrero: <code>loading="lazy"</code> nativo en contenido above-the-fold no 
+          proporciona ningún alivio.
+        </p>
+      </div>
+    </div>
+
+    <h2>Reflexiones</h2>
+
+    <h3>Resultados de la auditoría</h3>
+
+    <p>
+      Los gráficos de distribución revelaron tres cosas que las puntuaciones medianas ocultaban.
+    </p>
+    <ul>
+      <li>
+        <strong>La base de Astro es sólida.</strong> Las páginas ligeras (como <code>/sac/</code> o 
+        esta misma publicación del blog) se agruparon estrechamente alrededor de 90-100. La pérdida 
+        de rendimiento está totalmente aislada a los embeds de terceros.
+      </li>
+      <li>
+        <strong>El "fantasma de /es/" era solo ruido.</strong> La auditoría de Looker Studio 
+        originalmente marcó la página de inicio en español con una puntuación móvil catastrófica 
+        de 39. La distribución el 22 de febrero mostró una varianza masiva. Para el 23 de febrero, 
+        esa varianza desapareció y la puntuación se agrupó estrechamente en 85. Estábamos persiguiendo 
+        un fantasma nacido del jitter de la red.
+      </li>
+      <li>
+        <strong>La varianza simplemente se desplazó.</strong> El día 22, <code>/sevilla/</code> 
+        era el valor atípico inestable. El día 23, se estabilizó mientras que <code>/playlists/</code> 
+        se volvió salvajemente impredecible.
+      </li>
+    </ul>
+
+    <p>
+      Cazar errores de rendimiento usando la puntuación mediana de un solo día es engañoso. 
+      El panel me alertó sobre un problema de base. Pero solo mirando las distribuciones a lo 
+      largo de varios días se ve la verdad. El marco es estable, pero los embeds de terceros 
+      introducen picos de latencia masivos que las etiquetas nativas <code>loading="lazy"</code> 
+      no pueden arreglar.
+    </p>
+
+    <h3>¿Puede Gemini 3.1 auditar mi sitio web?</h3>
+
+    <p>
+      Este experimento funcionó mejor de lo que esperaba para un primer intento. Resalta un flujo de 
+      trabajo que no había usado anteriormente: pedirle a la IA que interprete un informe 
+      <em>en vivo</em>, verifique sus hallazgos con el código y valide esas suposiciones usando 
+      distribuciones de datos brutos.
+    </p>
+    <p>
+      Sin embargo, el proceso también expuso fallas significativas. Gemini 3.1 está demasiado 
+      ansioso por actuar sin preguntar. Para tareas exploratorias de bajo riesgo, esto es aceptable. 
+      Para cualquier cosa que involucre datos de producción o despliegue, hay que imponer límites 
+      de alcance estrictos desde el principio.
+    </p>
+    <p>
+      La mayor desventaja es la falta de buenos criterios que tengan en cuenta el panorama general. 
+      Sus sugerencias técnicas se basan en una lógica sólida, pero carece por completo del juicio 
+      para darse cuenta de cuándo una base de código subóptima es un compromiso necesario para una 
+      mejor experiencia del usuario.
+    </p>
+    <p>
+      En general, el nuevo modelo muestra mejoras claras. Pero no hemos llegado al punto en el que 
+      podamos confiar en que estos agentes tomen decisiones importantes.
+    </p>
+  </article>
+</MainLayout>

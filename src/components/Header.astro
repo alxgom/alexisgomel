@@ -30,6 +30,7 @@ const t = {
   // Professional
   cv: isSpanish ? "CV" : "CV",
   projects: isSpanish ? "Proyectos" : "Projects",
+  blog: "Blog",
   publications: isSpanish ? "Publicaciones" : "Publications",
   // CV Submenu
   cv_online: isSpanish ? "CV Online" : "Online CV",
@@ -211,6 +212,16 @@ const isActive = (slug: string) => {
               data-event-label="Projects - Plots & Viz">{t.proj_plots}</a
             >
           </div>
+        </li>
+
+        <!-- Blog -->
+        <li class="nav-item">
+          <a
+            class={`nav-link gtm-track-click ${isActive("blog") ? "active" : ""}`}
+            href={link("/blog")}
+            data-event-category="Navigation"
+            data-event-label="Blog">{t.blog}</a
+          >
         </li>
 
         <!-- Publications (External) -->
