@@ -1,6 +1,15 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 
+export const frontmatter = {
+  title:
+    "I Asked Gemini 3.1 Pro to Audit My Website's Performance — While Looking at a Live Dashboard",
+  description:
+    "A first-person exploration of Gemini 3.1 Pro's multimodal capabilities: navigating a live Looker Studio dashboard, reading interactive charts, and verifying performance hypotheses against the actual website code.",
+  pubDate: "2026-02-22",
+  tags: ["AI", "Web Performance", "Gemini 3.1", "Looker Studio"],
+};
+
 const currentLang = "en";
 const alternateHref = "/blog/gemini-pagespeed-audit/";
 
@@ -169,20 +178,49 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
     <span class="tag">Gemini 3.1</span>
     <span class="tag">Looker Studio</span>
 
-    <h1>
-      I Asked Gemini 3.1 Pro to Audit My Website's Performance — While Looking
-      at a Live Dashboard
-    </h1>
+    <h1>Can AI build my website, and audit it too?</h1>
+    <h2>I asked the new Gemini 3.1 Pro to step in as my website's analyst.</h2>
+
     <p class="blog-meta">Alexis Gomel · 22 February 2026</p>
 
     <p>
-      Last Thursday, Google released Gemini 3.1 Pro through Antigravity, the AI
-      coding assistant I've been using to build this website over the past year.
-      I was curious about one specific capability: could it actually <em>see</em
-      > and <em>reason</em> about data in a live, interactive web report — and then
-      verify its own conclusions against the source code?
+      Last Thursday, Google released Gemini 3.1 Pro through Antigravity. I was
+      curious about one specific capability: could it actually <em>see</em> and <em
+        >reason</em
+      > about data in a live, interactive web report like a human analyst would.
     </p>
     <p>So I ran a small experiment.</p>
+
+    <p>
+      Over the last year, i've been developing my website with the help of AI.
+      This means all my website's code is available for the AI agents, and the
+      documentation related to it's design choices.
+    </p>
+
+    <p>
+      Along side this development, I also have dashboards to track the analytics
+      of my website. In particular I have a dashboard that displays a daily
+      PageSpeed audit to check for performance changes and improvement
+      oportunities.
+    </p>
+
+    <p>
+      Usually, this means i'd have a look at the data and then report to the
+      agent to brainstorm and imeplement improvements for my website. So, this
+      is a small experiment to test what happens when the AI knows my codebase,
+      and a can also audit the performance and suggest changes, as well as a
+      test on the multimodal capabilities of the new models. Can it understand
+      and interact with my dashboard like a normal user, to find the relevant
+      data?.
+    </p>
+
+    <p>
+      The expetiment consist of the following: - Navigate the dashboard to find
+      the performance metrics. - Make an audit report identifying possible
+      improvements based on the metrics, while taking into account the content
+      of my website. - Perform the proposed imrpovements and check if the
+      changes has the expected results.
+    </p>
 
     <h2>The Setup</h2>
     <p>
@@ -204,15 +242,21 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
       You can explore the live dashboard yourself at
       <a href="/projects/webanalytics/"
         >alexisgomel.com/projects/webanalytics/</a
-      > — the data refreshes daily.
+      >.
     </div>
     <p>
-      I asked Gemini 3.1 Pro to navigate to the PageSpeed section of that
-      report, read the charts, and produce a technical audit — without me
-      interpreting anything for it.
+      I asked a Gemini 3.1 Pro agent with access to my website's codebase to
+      navigate to the PageSpeed section of that report, read the charts, and
+      produce a technical audit; without me interpreting anything for it.
     </p>
 
     <h2>Step 1: Navigating the Dashboard</h2>
+    <p>
+      The first challenge for it's multimodal capabilities. I gave it access to
+      my personal dashboard, which meant using the browser, and undestanding
+      visual layout and context.
+    </p>
+
     <p>
       It opened the Looker Studio report and correctly identified the "Page
       speed" tab, then the "Current state" sub-section.
@@ -243,10 +287,12 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
 
     <h2>Step 2: The Date Incident</h2>
     <p>
-      Then things got revealing. The dashboard has a date range filter, and
-      without being asked, Gemini opened it and started changing it — apparently
-      trying to be thorough. It typed "028" into the offset field, accidentally
-      pulling the filter back 28 days instead of staying on today's data.
+      A fist hickup. The dashboard has a date range filter, and without being
+      asked, Gemini opened it and started changing it. It typed "028" into the
+      offset field, accidentally pulling the filter back 28 days instead of
+      staying on today's data. This was a surprise, as it was not requiered to
+      check the current status of the website, and a small telltale of things to
+      come.
     </p>
     <div class="img-pair">
       <div>
@@ -257,7 +303,7 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
         />
         <p class="img-caption">
           The model proactively opened the date filter and typed "028" —
-          expanding scope without being asked
+          expanding scope without being asked.
         </p>
       </div>
       <div>
@@ -276,15 +322,16 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
       date immediately. But this is something I've noticed comparing Gemini to
       Claude: Gemini tends to <strong
         >expand the scope of a task without checking in first</strong
-      >. Claude is more likely to pause and ask. Neither approach is universally
-      better, but for tasks involving live data or production systems, it's
-      worth keeping in mind.
+      >. While in my experience, Claude is more likely to ask for confirmation
+      before acting outside the scope of the task. Neither approach is
+      universally better, but for tasks involving live data or production
+      systems, it's worth keeping in mind.
     </p>
     <p>
-      That said — compared to Gemini 3.0, which would loop on screenshots or
-      lose track of the report entirely — 3.1 Pro's navigation was decisively
-      more reliable. One small correction on my part versus complete inability
-      to complete the task.
+      That said, compared to Gemini 3.0, which would loop on screenshots or lose
+      track of the report entirely, 3.1 Pro's navigation was decisively more
+      reliable. One small correction on my part versus complete inability to
+      complete the task.
     </p>
 
     <h2>Step 3: Reading the Scrollable Charts</h2>
@@ -292,8 +339,9 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
       Once the date was set, the AI scrolled through the performance charts,
       including the interactive "Performance breakdown (median)" table. This
       table lists every page path with device-specific scores for Speed Index,
-      FCP, LCP, CLS, and TBT — and it's scrollable inside the dashboard.
-      Previous versions couldn't reliably do this.
+      FCP, LCP, CLS, and TBT. This is a nice improvement, as it is a somewhat
+      elaborate interaction involving scrolling on elemnts inside the page, and
+      previous versions couldn't reliably do this.
     </p>
     <img
       src={`${imgBase}/07_performance_table.png`}
@@ -301,15 +349,15 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
       class="blog-img"
     />
     <p class="img-caption">
-      The scrollable performance table — showing per-path, per-device breakdown
-      of all Core Web Vital metrics
+      The scrollable performance table showing per-path, per-device breakdown of
+      all Core Web Vital metrics
     </p>
 
     <h2>The Audit Report</h2>
     <p>
       From reading the charts and table, Gemini 3.1 Pro generated the following
       technical audit. It identified the bottlenecks, scored them by severity,
-      and proposed fixes — all from reading the dashboard.
+      and proposed fixes based on the dashboard data.
     </p>
 
     <p class="scroll-hint">↕ Scroll within the box to read the full report</p>
@@ -453,8 +501,7 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
     <h2>Step 4: Verifying the Hypotheses in Code</h2>
     <p>
       Next I asked it to check whether its guesses were actually correct by
-      scanning the website's source code (an Astro project). This is where the
-      loop closed nicely.
+      scanning the website's source code. This is where the loop closed nicely.
     </p>
 
     <div class="highlight-box" style="margin-bottom: 1rem;">
@@ -469,7 +516,7 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
       <strong>Speed Index hypothesis:</strong>
       <span class="verdict confirmed">✅ Confirmed</span><br />
       There's a loading spinner in the markup, but the iframe request fires immediately
-      underneath it — clogging the network before the spinner can even render cleanly.
+      underneath it, clogging the network before the spinner can even render cleanly.
     </div>
     <div class="highlight-box" style="margin-bottom: 1rem;">
       <strong>Mobile LCP on /projects/:</strong>
@@ -483,16 +530,16 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
       <strong>Spanish localization hypothesis:</strong>
       <span class="verdict refuted">❌ Refuted</span><br />
       The <code>/es/</code> pages are physically separate Astro files with identical
-      structure to the English versions — no extra JS, no localization framework running
+      structure to the English versions, no extra JS, no localization framework running
       client-side. The extreme LCP scores on those pages are likely measurement noise
       from the specific crawl, not a code defect.
     </div>
 
     <p>
       Three out of four hypotheses confirmed. The fourth one was correctly
-      falsified — which is actually the more interesting result. The AI looked
-      at real data, generated a plausible but wrong explanation, and then
-      corrected it when the code didn't support it.
+      falsified, which is actually the more interesting result. The AI looked at
+      real data, generated a plausible but wrong explanation, and then corrected
+      it when the code didn't support it.
     </p>
 
     <h2>Fixes Applied</h2>
@@ -518,18 +565,23 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
         still 0.0. Why? Because <code>loading="lazy"</code> on an iframe that sits
         "above the fold" doesn't actually stop Lighthouse from eagerly executing it.
         The browser sees it's in the initial viewport and downloads it anyway. It
-        turns out the true fix will require a Facade pattern (rendering a static image
-        until clicked) — which Gemini actually suggested as its "Tier 1" recommendation
-        in the audit. It was right the first time.</em
-      >
+        turns out a possible the true fix will require a Facade pattern (rendering
+        a static image until clicked), which Gemini actually suggested as its "Tier
+        1" recommendation in the audit. While this is true, it would break the user
+        experience of the website. This is a good example where AI still cannot make
+        a good call because it will optimize without taking into account the broader
+        context of the dessign.
+      </em>
     </p>
 
-    <h2>Digging Deeper: The Range Behind the Median</h2>
+    <h2>Follow up explorations</h2>
+
     <p>
       The Looker Studio dashboard shows the <em>median</em> of 7 daily test runs per
       page. But to really understand what's happening, we need to look at the full
-      distribution. I ran a local Python script against the raw data in BigQuery to
-      plot the actual spread of the Performance Score and TBT metrics for both days.
+      distribution, so I aske the AI to ran a Python script against the raw data in
+      BigQuery to plot the actual spread of the Performance Score and TBT metrics
+      for both days.
     </p>
 
     <div class="img-pair">
@@ -564,6 +616,13 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
       every single run, cementing the need for a true Facade approach.
     </p>
 
+    <p>
+      The interesting take away from this, beyond the failed fix, is the
+      potential of having a workflow where the AI can be mindful of the
+      codebase, but also have access to audit and analytics data to run it's own
+      experiments and test ideas and improvements like a real analyst would.
+    </p>
+
     <div class="img-pair">
       <div>
         <img
@@ -589,14 +648,8 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
     </div>
 
     <h2>Reflections</h2>
-    <p>
-      This experiment worked better than I expected for a first try, and it
-      represents a workflow I hadn't really used before: ask the AI to look at a <em
-        >live</em
-      >
-      report, form its own interpretation, then check it against the code, and finally
-      validate those assumptions against the raw data distributions.
-    </p>
+
+    <h3>Results form the audit</h3>
 
     <p>
       The distribution plots revealed three things that the median scores
@@ -629,24 +682,38 @@ const imgBase = "/assets/imgs/blog/gemini-pagespeed";
 
     <p>
       The ultimate takeaway? Hunting performance bugs using a single day's
-      median score is a trap. The dashboard alerted me to the problem, but only
-      by looking at the <em>distributions</em> across multiple days do you see the
-      truth: the framework is stable, but third-party embeds introduce massive, unpredictable
-      latency spikes that cannot be tamed by native <code>loading="lazy"</code> tags.
+      median score can be misleading. The dashboard alerted me to the problem,
+      but only by looking at the <em>distributions</em> across multiple days do you
+      see the truth: the framework is stable, but third-party embeds introduce massive,
+      unpredictable latency spikes that cannot be tamed by native <code
+        >loading="lazy"</code
+      > tags.
+    </p>
+
+    <h3>Can gemini 3.1 audit my website</h3>
+
+    <p>
+      This experiment worked better than I expected for a first try, and it
+      represents a workflow I hadn't really used before: ask the AI to look at a <em
+        >live</em
+      >
+      report, form its own interpretation, then check it against the code, and finally
+      validate those assumptions against the raw data distributions.
     </p>
 
     <p>
-      The date incident is a useful reminder that Gemini 3.1 is still eager to
-      act rather than ask. For exploratory, low-stakes experiments that's mostly
-      fine. For anything involving production or deployment you'd want clearer
-      scope boundaries upfront.
+      However, along the way Gemini 3.1 showed that it is eager to act rather
+      than ask. For exploratory, low-stakes experiments that's mostly fine. For
+      anything involving production or deployment you'd want clearer scope
+      boundaries upfront. The other downside is the lack of good criteria that
+      imply taking into account the broader picture. It's suggestions seem very
+      reasonable and sound logic, but lack the judgement to realise that it is
+      better to have a suboptimal solution but keep a better user experience.
     </p>
 
     <p>
-      But as a "read the dashboard, find the real causes" shortcut — especially
-      for someone who already built the instrumentation and understands the
-      codebase — it's a genuinely useful addition to the workflow. The next step
-      is clear: time to build those Facades.
+      Over all the new model shows clear improvements, but have not reached the
+      point where we can rely on them to make important descicions.
     </p>
   </article>
 </MainLayout>

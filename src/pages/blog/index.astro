@@ -1,0 +1,113 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+// Fetch all posts in the directory (MD, MDX, Astro)
+const rawPosts = await Astro.glob('./*.{md,mdx,astro}');
+
+// Filter out this index page, partials, and sort by date
+const posts = rawPosts
+  .filter((post) => {
+    // Exclude the current page (index)
+    if (post.url === '/blog' || post.url === '/blog/') return false;
+    
+    // Exclude files starting with underscore or missing frontmatter
+    const fileName = post.file ? post.file.split(/[/\\]/).pop() : '';
+    if (fileName && fileName.startsWith('_')) return false;
+    if (!post.frontmatter || !post.frontmatter.title) return false;
+
+    return true;
+  })
+  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+
+const currentLang = "en";
+const alternateHref = "/blog/";
+---
+
+<MainLayout
+  title="Blog | Alexis Gomel"
+  description="Personal blog covering data analysis, AI, web development, and visualization projects."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <style is:inline>
+    .blog-index {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+    .blog-index h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+    .post-list {
+      list-style: none;
+      padding: 0;
+    }
+    .post-item {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #eaeaea;
+    }
+    .post-item:last-child {
+      border-bottom: none;
+    }
+    .post-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .post-title a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .post-title a:hover {
+      color: var(--primary, #0056b3);
+    }
+    .post-meta {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 1rem;
+    }
+    .post-excerpt {
+      color: #555;
+      line-height: 1.6;
+    }
+    .read-more {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary, #0056b3);
+      text-decoration: none;
+    }
+    .read-more:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <div class="blog-index">
+    <h1>Blog</h1>
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li class="post-item">
+          <h2 class="post-title">
+            <a href={post.url}>{post.frontmatter.title}</a>
+          </h2>
+          <div class="post-meta">
+            {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </div>
+          <p class="post-excerpt">{post.frontmatter.description}</p>
+          <a href={post.url} class="read-more">Read article &rarr;</a>
+        </li>
+      ))}
+    </ul>
+    {posts.length === 0 && <p>No posts found.</p>}
+  </div>
+</MainLayout>
