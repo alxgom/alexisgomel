@@ -8,7 +8,7 @@ const rawPosts = await Astro.glob('./*.{md,mdx,astro}');
 const posts = rawPosts
   .filter((post) => {
     // Exclude the current page (index)
-    if (post.url === '/blog' || post.url === '/blog/') return false;
+    if (post.url === '/es/blog' || post.url === '/es/blog/') return false;
     
     // Exclude files starting with underscore or missing frontmatter
     const fileName = post.file ? post.file.split(/[/\\]/).pop() : '';
@@ -19,13 +19,13 @@ const posts = rawPosts
   })
   .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
 
-const currentLang = "en";
-const alternateHref = "/es/blog/";
+const currentLang = "es";
+const alternateHref = "/blog/";
 ---
 
 <MainLayout
   title="Blog | Alexis Gomel"
-  description="Personal blog covering data analysis, AI, web development, and visualization projects."
+  description="Blog personal que cubre análisis de datos, IA, desarrollo web y proyectos de visualización."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
@@ -97,17 +97,17 @@ const alternateHref = "/es/blog/";
             <a href={post.url}>{post.frontmatter.title}</a>
           </h2>
           <div class="post-meta">
-            {new Date(post.frontmatter.pubDate).toLocaleDateString('en-US', {
+            {new Date(post.frontmatter.pubDate).toLocaleDateString('es-ES', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
             })}
           </div>
           <p class="post-excerpt">{post.frontmatter.description}</p>
-          <a href={post.url} class="read-more">Read article &rarr;</a>
+          <a href={post.url} class="read-more">Leer artículo &rarr;</a>
         </li>
       ))}
     </ul>
-    {posts.length === 0 && <p>No posts found.</p>}
+    {posts.length === 0 && <p>No se encontraron artículos.</p>}
   </div>
 </MainLayout>

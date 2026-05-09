@@ -1,0 +1,195 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+export const frontmatter = {
+  title: "Cómo desarrollar visualizaciones personalizadas con Figma e IA",
+  description: "Cómo utilizo Figma e IA para construir visualizaciones de datos personalizadas usando SVG como ancla técnica.",
+  pubDate: "2026-05-09",
+  tags: ["Visualización de Datos", "IA", "Figma", "D3.js", "Looker Studio"],
+};
+
+const currentLang = "es";
+const alternateHref = "/blog/custom-visuals-workflow-figma-ai/";
+
+const lipstickVideo = "/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized.mp4";
+---
+
+<MainLayout
+  title="Cómo desarrollar visualizaciones personalizadas con Figma e IA | Alexis Gomel"
+  description="Cómo utilizo Figma e IA para construir visualizaciones de datos personalizadas usando SVG como ancla técnica."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <style is:inline>
+    .blog-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      color: #333;
+    }
+    .blog-wrap h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .blog-meta {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 2.5rem;
+    }
+    .blog-wrap h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.3rem;
+    }
+    .blog-wrap p {
+      margin-bottom: 1.25rem;
+    }
+    .blog-video {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+      margin: 1rem 0 0.4rem;
+    }
+    .img-caption {
+      font-size: 0.8rem;
+      color: #999;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .tag {
+      display: inline-block;
+      background: #f4f4f4;
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-size: 0.78rem;
+      color: #555;
+      margin-right: 6px;
+      margin-bottom: 1rem;
+    }
+    .highlight-box {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      margin: 2rem 0;
+      font-family: monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+    .cta-box {
+      background: #f8f8f8;
+      border-left: 4px solid var(--primary, #3498db);
+      padding: 24px;
+      border-radius: 0 8px 8px 0;
+      margin: 2.5rem 0;
+      text-align: center;
+    }
+    .cta-button {
+      display: inline-block;
+      background: #3498db;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
+    .cta-button:hover {
+      background: #2980b9;
+      color: white;
+    }
+  </style>
+
+  <article class="blog-wrap">
+    <span class="tag">Visualización de Datos</span>
+    <span class="tag">IA</span>
+    <span class="tag">Figma</span>
+    <span class="tag">D3.js</span>
+
+    <h1>Cómo desarrollar visualizaciones personalizadas con Figma e IA</h1>
+    
+    <p class="blog-meta">
+      Alexis Gomel · 9 de mayo de 2026
+    </p>
+
+    <video autoplay muted loop playsinline class="blog-video">
+      <source src={lipstickVideo} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <p class="img-caption">La visualización Lipstick. La construí para comparar valores reales frente a objetivos sin usar una tabla desordenada.</p>
+
+    <p>
+      No soy un desarrollador profesional. Sé lo suficiente de la sintaxis de D3.js para leer código, pero escribirlo desde cero requiere un esfuerzo increíble. Se siente desconectado de mi flujo de trabajo. Pienso en historias. Me gusta usar Figma porque mantiene el enfoque en la experiencia del usuario.
+    </p>
+
+    <p>
+      Encontré un ancla técnica para esto. Utilizo SVG como lenguaje compartido entre mi diseño y el agente de IA. Esto hace que el prototipado sea rápido.
+    </p>
+
+    <h2>La fricción del lenguaje natural</h2>
+    <p>
+      El lenguaje natural es una forma terrible de describir un gráfico complejo. Pasas horas en bucles intentando que el agente vea lo que quieres decir. Figma es diferente. Es excelente para el diseño, pero produce código muerto.
+    </p>
+    <p>
+      La exportación SVG soluciona esto. Al exportar desde Figma, le estoy dando a la IA un plano técnico. Contiene la geometría y las clases CSS necesarias para el código final. Incluso con la visión de IA moderna, tener el código SVG proporciona un anclaje que evita que el modelo alucine el diseño. Encuentro que nombrar mis capas intencionalmente en Figma hace que este anclaje sea aún más fuerte.
+    </p>
+
+    <h2>¿Por qué la visualización Lipstick?</h2>
+    <p>
+      Elegí la visualización Lipstick para mi primer experimento porque resolvía un problema de diseño. Normalmente, comparar métricas reales frente a objetivos requiere dos cosas separadas. Necesitas un gráfico de barras para lo visual y una tabla para los números. Ocupa demasiado espacio.
+    </p>
+    <p>
+      La visualización Lipstick empaqueta todos esos datos en una sola forma. Incluye el valor real junto al objetivo. Elimina la necesidad de una tabla.
+    </p>
+
+    <h2>Figma como guion gráfico</h2>
+    <p>
+      Mi flujo de trabajo es una mezcla de diseño guiado por especificaciones y diseño iterativo. Uso Figma como un guion gráfico de cine. Es donde fallo rápido con los diseños. No quiero probar conceptos con código todavía.
+    </p>
+    <p>
+      Una vez que la idea central es sólida, paso a un entorno HTML local. Aquí es donde fallo rápido con los errores y las animaciones. La configuración local utiliza un simulacro de la plataforma de destino.
+    </p>
+
+    <div class="highlight-box">
+<pre>
+const testData = &#123;
+  tables: &#123;
+    DEFAULT: [
+      &#123; dimensionCol: ["Region A"], valueCol: [80], targetCol: [100] &#125;,
+      &#123; dimensionCol: ["Region B"], valueCol: [120], targetCol: [100] &#125;
+    ]
+  &#125;
+&#125;;
+</pre>
+    </div>
+
+    <p>
+      Le pido al agente estos datos de inmediato. Los graficamos y vemos la visualización en vivo. Ajustamos los hovers y las transiciones en un entorno simplificado. Este ciclo es rápido porque la base ya está ahí. Me enfoco en la estética mientras el agente maneja las matemáticas.
+    </p>
+
+    <p>
+      La velocidad de fallo es una característica central de este flujo de trabajo. Al probar en un entorno HTML controlado antes de pasar a Looker Studio, puedo realizar múltiples iteraciones en el tiempo que tomaría guardar y actualizar un panel en vivo una sola vez.
+    </p>
+
+    <div class="cta-box">
+      <p style="font-weight: 600; margin-bottom: 0.5rem;">Echa un vistazo a las visualizaciones terminadas</p>
+      <p>He utilizado este método para construir una galería de componentes personalizados, desde el gráfico Lipstick hasta jerarquías de árboles interactivas.</p>
+      <a href="/es/projects/looker-studio-custom-visuals/" class="cta-button">
+        Explorar Visualizaciones Personalizadas &rarr;
+      </a>
+    </div>
+
+    <p>
+      Este enfoque me resulta natural. Utiliza el poder multimodal de la IA moderna para conectar la interfaz de diseño directamente con el código de producción. No necesito ser un experto en D3 para construir algo único.
+    </p>
+  </article>
+</MainLayout>

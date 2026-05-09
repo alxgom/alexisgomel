@@ -2,21 +2,21 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 
 export const frontmatter = {
-  title: "Building custom visuals with Figma and AI agents using the lipstick workflow",
-  description: "A fast workflow for developing custom data visualizations by combining Figma design with AI coding agents.",
+  title: "How to develop custom visuals using Figma and AI",
+  description: "How I use Figma and AI to build custom data visualizations by using SVG as a technical anchor.",
   pubDate: "2026-05-09",
   tags: ["Data Visualization", "AI", "Figma", "D3.js", "Looker Studio"],
 };
 
 const currentLang = "en";
-const alternateHref = "/blog/custom-visuals-workflow-figma-ai/";
+const alternateHref = "/es/blog/custom-visuals-workflow-figma-ai/";
 
 const lipstickVideo = "/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized.mp4";
 ---
 
 <MainLayout
-  title="Building custom visuals with Figma and AI agents | Alexis Gomel"
-  description="A fast workflow for developing custom data visualizations by combining Figma design with AI coding agents."
+  title="How to develop custom visuals using Figma and AI | Alexis Gomel"
+  description="How I use Figma and AI to build custom data visualizations by using SVG as a technical anchor."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
@@ -74,6 +74,16 @@ const lipstickVideo = "/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized
       margin-right: 6px;
       margin-bottom: 1rem;
     }
+    .highlight-box {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      margin: 2rem 0;
+      font-family: monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
     .cta-box {
       background: #f8f8f8;
       border-left: 4px solid var(--primary, #3498db);
@@ -105,7 +115,7 @@ const lipstickVideo = "/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized
     <span class="tag">Figma</span>
     <span class="tag">D3.js</span>
 
-    <h1>Building custom visuals with Figma and AI agents using the lipstick workflow</h1>
+    <h1>How to develop custom visuals using Figma and AI</h1>
     
     <p class="blog-meta">
       Alexis Gomel · 9 May 2026
@@ -115,50 +125,71 @@ const lipstickVideo = "/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized
       <source src={lipstickVideo} type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-    <p class="img-caption">The Lipstick viz in action. A custom Looker Studio component built using this method.</p>
+    <p class="img-caption">The Lipstick viz. I built this to compare real values against targets without using a cluttered table.</p>
 
     <p>
-      Most data visualization tools force a hard choice. You either use a generic bar chart or you spend days wrestling with D3.js boilerplates. I prefer a middle path. I call it the Lipstick workflow. It uses Figma for the soul of the visual and AI agents for the plumbing. This method keeps the creative process fast while providing absolute control over the final output.
+      I am not a professional developer. I can read D3.js syntax, but writing it from scratch takes too much effort. It feels disconnected from my workflow. I think in stories. I like Figma because it keeps the focus on the user experience.
     </p>
 
-    <h2>The Figma foundation</h2>
     <p>
-      Everything starts in Figma. I don't think about data schemas yet. I focus on the story. I draw the visual as a raw SVG. This is where I define the shapes, colors, and hover behaviors. For the Lipstick viz, this meant drawing the specific "lipstick" bar and the target indicators. Once the design is ready, I export it as an SVG.
+      I found a technical anchor for this. I use SVG as a shared language between my design and the AI agent. This makes prototyping fast.
     </p>
 
-    <h2>Moving to the IDE</h2>
+    <h2>The friction of natural language</h2>
     <p>
-      I take that SVG into VS Code or Antigravity. This is where I wake up the Gemini CLI. The static design is ready to become a live component. Using a CLI agent directly in the workspace makes the transition from design to code feel immediate.
+      Natural language is a terrible way to describe a complex chart. You spend hours in loops trying to get the agent to see what you mean. Figma is different. It is great for design, but it produces dead code.
+    </p>
+    <p>
+      The SVG export solves this. When I export from Figma, I am giving the AI a blueprint. It contains the geometry and the CSS classes needed for the final code. Even with modern AI vision, having the SVG code provides a grounding that prevents the model from hallucinating the layout. I find that naming my layers intentionally in Figma makes this anchor even stronger.
     </p>
 
-    <h2>Synthetic data and D3.js</h2>
+    <h2>Why the Lipstick visual?</h2>
     <p>
-      The first prompt is simple. I ask the agent to create a JSON file with synthetic data that fits the visual logic. Then, I give it the Figma SVG and tell it to write D3.js code that maps the data to the SVG elements.
+      I chose the Lipstick visual for my first experiment because it solved a layout problem. Usually, comparing actual metrics against targets requires two separate things. You need a bar plot for the visual and a table for the numbers. It takes up too much space.
     </p>
     <p>
-      Using the SVG as a template is the secret. It ensures the final chart looks exactly like the design. D3 handles the math and the data binding, but Figma provides the structure. This avoids the "empty canvas" problem that usually slows down custom development.
-    </p>
-
-    <h2>Refining interactions</h2>
-    <p>
-      Now I iterate. We add hover effects and smooth transitions. I test the code in a local browser using the synthetic data. The agent helps me fix edge cases in the rendering logic or adjust the responsive behavior. We keep polishing until the visual feels responsive and "alive."
+      The Lipstick visual packs all that data into a single shape. It includes the real value alongside the target. It removes the need for a table.
     </p>
 
-    <h2>Deployment</h2>
+    <h2>Figma as a storyboard</h2>
     <p>
-      Finally, I ask the agent to port the working logic. Sometimes it becomes a Looker Studio community visual. Other times, it's a Power BI component or React code for a website. The hard part is already done. The transformation to a specific platform is just a wrapper change.
+      My workflow is a mix of spec-driven and iterative design. I use Figma like a movie storyboard. It is where I fail fast with layouts. I don't want to test concepts with code yet.
+    </p>
+    <p>
+      Once the core idea is solid, I move to a local HTML environment. This is where I fail fast on bugs and animations. The local setup uses a mock of the target platform.
+    </p>
+
+    <div class="highlight-box">
+<pre>
+const testData = &#123;
+  tables: &#123;
+    DEFAULT: [
+      &#123; dimensionCol: ["Region A"], valueCol: [80], targetCol: [100] &#125;,
+      &#123; dimensionCol: ["Region B"], valueCol: [120], targetCol: [100] &#125;
+    ]
+  &#125;
+&#125;;
+</pre>
+    </div>
+
+    <p>
+      I ask the agent for this data immediately. We plot it and see the visual live. We tweak the hovers and transitions in a simplified setting. This cycle is fast because the foundation is there. I focus on the aesthetics while the agent handles the math.
+    </p>
+
+    <p>
+      Speed of failure is a core feature of this workflow. By testing in a controlled HTML environment before moving to Looker Studio, I can run multiple iterations in the time it would take to refresh a live dashboard just once.
     </p>
 
     <div class="cta-box">
-      <p style="font-weight: 600; margin-bottom: 0.5rem;">Want to see the final results?</p>
-      <p>Explore the full gallery of custom visuals I've built using this workflow, including the Lipstick chart, Tree Hierarchy, and more.</p>
+      <p style="font-weight: 600; margin-bottom: 0.5rem;">Check out the finished visuals</p>
+      <p>I've used this method to build a gallery of custom components, from the Lipstick chart to interactive Tree Hierarchies.</p>
       <a href="/projects/looker-studio-custom-visuals/" class="cta-button">
         Explore Custom Visuals &rarr;
       </a>
     </div>
 
     <p>
-      This workflow lets me stay agile. I can focus on the storytelling and the aesthetics from the start. The AI acts as a technical partner that bridges the gap between a design vision and production-ready code.
+      This approach feels natural. It uses the multimodal power of modern AI to connect the design UI directly to production code. I don't need to be a D3 expert to build something unique.
     </p>
   </article>
 </MainLayout>
