@@ -1,0 +1,255 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import Lightbox from "../../../components/Lightbox.astro";
+import { Image } from "astro:assets";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "es";
+const alternateHref = "/projects/powerbi-custom-visuals/";
+---
+
+<MainLayout
+  title="Visualizaciones Personalizadas Gratis para Power BI | Alexis Gomel"
+  description="Descarga visualizaciones personalizadas, gratuitas y de código abierto para Microsoft Power BI, incluyendo el Gráfico de Bala Lipstick y el Mapa de Calor Matriz de Intensidad."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+  image="/assets/imgs/powerbi/LipsktickViz.jpg"
+>
+  <meta
+    slot="head"
+    name="description"
+    content="Descarga visualizaciones personalizadas, gratuitas y de código abierto para Microsoft Power BI. Obtén los archivos pbiviz para el Lipstick Chart y la Matriz de Intensidad para tus dashboards."
+  />
+  <meta
+    slot="head"
+    name="keywords"
+    content="Visualizaciones Personalizadas Power BI Gratis, Descargar Visualizaciones Power BI, pbiviz gratis, Lipstick Chart, Matriz de Intensidad, Heatmap, Power BI código abierto, Visualización de Datos"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Visualizaciones Personalizadas Gratis para Power BI | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="Una colección de visualizaciones personalizadas, gratuitas y de código abierto para Microsoft Power BI, destacando el Lipstick Chart y la Matriz de Intensidad."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/powerbi/LipsktickViz.jpg"
+  />
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <style>
+    .pbi-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .viz-list {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+
+    .viz-list h3 {
+      margin-bottom: 1rem;
+    }
+
+    .viz-list ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    .viz-list li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .viz-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    .btn-download-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 2px solid #e8b231;
+      color: #e8b231;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+    .btn-download-outline:hover {
+      background: #e8b231;
+      color: #fff;
+    }
+  </style>
+
+  <div class="pbi-container">
+    <div class="container mt-5 pt-5">
+      <h1 class="section-title">Visualizaciones Personalizadas Gratis para Power BI</h1>
+      <p class="lead text-muted">
+        Una colección de visualizaciones personalizadas <strong>100% gratuitas</strong> y de código abierto que he desarrollado para Microsoft Power BI,
+        extendiendo sus capacidades con tipos de gráficos especializados para contar mejores historias con datos.
+      </p>
+
+      <div class="viz-list">
+        <h3>Visualizaciones Incluidas</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-12">
+            <ul>
+              <li>
+                <img
+                  src="/assets/imgs/powerbi/lipstick-chart-icon.svg"
+                  class="viz-icon"
+                  alt="Lipstick Chart Icon"
+                />
+                <div>
+                  <strong>Lipstick Bullet Chart</strong> - Un gráfico especializado gratuito para comparar
+                  valores reales contra objetivos con un estilo visual distintivo y de alta densidad.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="/assets/imgs/powerbi/intensity-matrix-icon.svg"
+                  class="viz-icon"
+                  alt="Intensity Matrix Icon"
+                />
+                <div>
+                  <strong>Mapa de Calor Matriz de Intensidad</strong> - Una visualización de mapa de calor de alto rendimiento
+                  para Power BI, con paletas de colores científicas profesionales (Viridis, Inferno, Turbo)
+                  y capacidades avanzadas de ciencia de datos.
+                </div>
+              </li>
+            </ul>
+            <p class="text-muted mt-3">
+              A continuación puedes ver demostraciones detalladas y explicaciones técnicas
+              sobre los visuales.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Lipstick Bullet Chart</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+            <a href="/es/projects/powerbi-lipstick-chart/">
+              <img
+                src="/assets/imgs/powerbi/LipsktickViz.jpg"
+                alt="Lipstick Bullet Chart en Power BI"
+                class="img-fluid rounded shadow"
+              />
+            </a>
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p>
+              El gráfico <strong>Lipstick Bullet Chart</strong> condensa el valor real, el objetivo,
+              el porcentaje de cumplimiento y la variación absoluta en una sola barra compacta.
+            </p>
+            <p>
+              Al combinar múltiples puntos de datos en un único elemento gráfico,
+              proporciona una vista integral de un vistazo, reemplazando efectivamente la necesidad
+              de tarjetas KPI separadas, gráficos de barras y tablas de datos.
+            </p>
+            <p>
+              <a href="/es/projects/powerbi-lipstick-chart/" class="btn btn-primary mt-2">
+                Leer documentación completa
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Mapa de Calor Matriz de Intensidad</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <a href="/assets/imgs/powerbi/HeatmapViz.jpg" data-lightbox="powerbi-heatmap" data-title="Matriz de Intensidad mostrando ocupación hotelera promedio por día de la semana y mes">
+              <img
+                src="/assets/imgs/powerbi/HeatmapViz.jpg"
+                alt="Captura de la Matriz de Intensidad mostrando ocupación hotelera promedio por día de la semana y mes"
+                class="img-fluid rounded shadow"
+              />
+            </a>
+          </div>
+          <div class="col-md-6">
+            <p>
+              La <strong>Matriz de Intensidad</strong> es una visualización de mapa de calor de alto rendimiento
+              centrada en paletas de colores científicas profesionales (Viridis, Inferno, Turbo) y
+              características avanzadas de ciencia de datos.
+            </p>
+            <p>
+              Sus capacidades clave incluyen:
+            </p>
+            <ul>
+              <li><strong>Escalado Avanzado:</strong> Escalas lineales, logarítmicas y de potencia.</li>
+              <li><strong>Escalas Divergentes:</strong> Escalado con punto medio configurable para RdBu, PiYG, etc.</li>
+              <li><strong>Auto-escalado y Normalización Robusta:</strong> Normalización basada en cuantiles y recorte de datos.</li>
+            </ul>
+            <p class="text-muted small mt-3">
+              Construida con D3.js y el SDK de Power BI para una alta interactividad, incluyendo tooltips y filtrado cruzado.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Descargar y Usar (100% Gratis y Código Abierto)</h3>
+        <p>
+          Estas visualizaciones personalizadas tienen licencia MIT y son <strong>completamente gratuitas para descargar y usar</strong> en tus reportes comerciales o personales. Puedes descargar los
+          archivos <code>.pbiviz</code> compilados directamente desde el repositorio de GitHub e importarlos
+          en Power BI Desktop.
+        </p>
+        <div class="mt-4">
+           <a
+              href="https://github.com/alxgom/PowerBI-viz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-download-outline gtm-track-click"
+              data-event-category="PowerBI Custom Visuals"
+              data-event-label="GitHub Repository"
+            >
+              Ver en GitHub <i class="fas fa-external-link-alt ml-2"></i>
+            </a>
+        </div>
+        
+        <div class="faq-item mt-4">
+          <h5>¿Cómo los instalo?</h5>
+          <ol class="mt-2">
+            <li>Descarga el archivo <code>.pbiviz</code> desde el repositorio de GitHub.</li>
+            <li>Abre Power BI Desktop.</li>
+            <li>En el panel de Visualizaciones, haz clic en el menú de tres puntos y selecciona <strong>"Importar un objeto visual desde un archivo"</strong>.</li>
+            <li>Selecciona el archivo descargado y confirma.</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <Lightbox />
+</MainLayout>

@@ -1,0 +1,277 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Lightbox from "../../components/Lightbox.astro";
+import { Image } from "astro:assets";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/es/projects/powerbi-custom-visuals/";
+---
+
+<MainLayout
+  title="Free Power BI Custom Visuals | Alexis Gomel"
+  description="Download free, open-source custom visuals for Microsoft Power BI, including the Lipstick Bullet Chart and Intensity Matrix Heatmap."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+  image="/assets/imgs/powerbi/LipsktickViz.jpg"
+>
+  <meta
+    slot="head"
+    name="description"
+    content="Download free, open-source custom visuals for Microsoft Power BI. Get the pbiviz files for the Lipstick Chart and Intensity Matrix Heatmap to use in your dashboards."
+  />
+  <meta
+    slot="head"
+    name="keywords"
+    content="Free Power BI Custom Visuals, Download Power BI Visuals, Free pbiviz, Lipstick Chart, Intensity Matrix, Heatmap, open-source Power BI visuals, Data Visualization"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Free Power BI Custom Visuals | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="A collection of free, open-source custom visuals for Microsoft Power BI, featuring the Lipstick Chart and Intensity Matrix Heatmap."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/powerbi/LipsktickViz.jpg"
+  />
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <style>
+    .pbi-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .viz-list {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+
+    .viz-list h3 {
+      margin-bottom: 1rem;
+    }
+
+    .viz-list ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    .viz-list li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .viz-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #f5f0e8 0%, #ede8dc 100%);
+      border: 2px dashed #d4c9a8;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #a89870;
+      font-size: 0.9rem;
+      gap: 0.5rem;
+    }
+    
+    .img-placeholder .placeholder-icon {
+      font-size: 2.5rem;
+      opacity: 0.5;
+    }
+
+    .btn-download-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 2px solid #e8b231;
+      color: #e8b231;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+    .btn-download-outline:hover {
+      background: #e8b231;
+      color: #fff;
+    }
+  </style>
+
+  <div class="pbi-container">
+    <div class="container mt-5 pt-5">
+      <h1 class="section-title">Free Power BI Custom Visuals</h1>
+      <p class="lead text-muted">
+        A collection of <strong>100% free</strong>, open-source custom visuals I've developed for Microsoft Power BI,
+        extending its capabilities with specialized chart types for better data
+        storytelling.
+      </p>
+
+      <div class="viz-list">
+        <h3>Visualizations Included</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-12">
+            <ul>
+              <li>
+                <img
+                  src="/assets/imgs/powerbi/lipstick-chart-icon.svg"
+                  class="viz-icon"
+                  alt="Lipstick Chart Icon"
+                />
+                <div>
+                  <strong>Lipstick Bullet Chart</strong> - A free specialized chart type for comparing
+                  real values against targets with a distinctive, high-density visual
+                  style.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="/assets/imgs/powerbi/intensity-matrix-icon.svg"
+                  class="viz-icon"
+                  alt="Intensity Matrix Icon"
+                />
+                <div>
+                  <strong>Intensity Matrix Heatmap</strong> - A high-performance heatmap visual
+                  for Power BI, featuring professional scientific colormaps (Viridis, Inferno, Turbo)
+                  and advanced data science capabilities.
+                </div>
+              </li>
+            </ul>
+            <p class="text-muted mt-3">
+              Below you can see detailed demonstrations and technical
+              explanations for the visuals.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Lipstick Bullet Chart</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+            <a href="/projects/powerbi-lipstick-chart/">
+              <img
+                src="/assets/imgs/powerbi/LipsktickViz.jpg"
+                alt="Lipstick Bullet Chart in Power BI"
+                class="img-fluid rounded shadow"
+              />
+            </a>
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p>
+              The <strong>Lipstick Bullet Chart</strong> packs actual value, target,
+              completion percentage and absolute variance into a single compact bar.
+            </p>
+            <p>
+              By combining multiple data points into a single graphical element,
+              it provides a comprehensive view at a glance, effectively replacing the need
+              for separate KPI cards, bar charts, and data tables.
+            </p>
+            <p>
+              <a href="/projects/powerbi-lipstick-chart/" class="btn btn-primary mt-2">
+                Read full documentation
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Intensity Matrix Heatmap</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <a href="/assets/imgs/powerbi/HeatmapViz.jpg" data-lightbox="powerbi-heatmap" data-title="Intensity Matrix Heatmap showing average hotel occupancy by day of week and month">
+              <img
+                src="/assets/imgs/powerbi/HeatmapViz.jpg"
+                alt="Intensity Matrix Heatmap Screenshot showing average hotel occupancy for each day of the week and each month of the year"
+                class="img-fluid rounded shadow"
+              />
+            </a>
+          </div>
+          <div class="col-md-6">
+            <p>
+              The <strong>Intensity Matrix</strong> is a high-performance heatmap visual 
+              focusing on professional scientific colormaps (Viridis, Inferno, Turbo) and 
+              advanced data science features.
+            </p>
+            <p>
+              Key capabilities include:
+            </p>
+            <ul>
+              <li><strong>Advanced Scaling:</strong> Linear, Logarithmic, and Power scales.</li>
+              <li><strong>Diverging Scales:</strong> Configurable midpoint scaling for RdBu, PiYG, etc.</li>
+              <li><strong>Auto-Scaling & Robust Normalization:</strong> Quantile-based normalization and data clipping.</li>
+            </ul>
+            <p class="text-muted small mt-3">
+              Built with D3.js and the Power BI SDK for high interactivity including tooltips and cross-filtering.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Download & Use (100% Free & Open Source)</h3>
+        <p>
+          These custom visuals are MIT licensed and <strong>completely free to download and use</strong> in your commercial or personal reports. You can download the 
+          compiled <code>.pbiviz</code> files directly from the GitHub repository and import them 
+          into Power BI Desktop.
+        </p>
+        <div class="mt-4">
+           <a
+              href="https://github.com/alxgom/PowerBI-viz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-download-outline gtm-track-click"
+              data-event-category="PowerBI Custom Visuals"
+              data-event-label="GitHub Repository"
+            >
+              View on GitHub <i class="fas fa-external-link-alt ml-2"></i>
+            </a>
+        </div>
+        
+        <div class="faq-item mt-4">
+          <h5>How do I install them?</h5>
+          <ol class="mt-2">
+            <li>Download the <code>.pbiviz</code> file from the GitHub repository.</li>
+            <li>Open Power BI Desktop.</li>
+            <li>In the Visualizations pane, click the three-dot menu and select <strong>"Import a visual from a file"</strong>.</li>
+            <li>Select the downloaded file and confirm.</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <Lightbox />
+</MainLayout>

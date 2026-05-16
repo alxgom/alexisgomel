@@ -1,0 +1,690 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Lightbox from "../../components/Lightbox.astro";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/es/projects/powerbi-lipstick-chart/";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Lipstick Bullet Chart – Power BI Custom Visual",
+  applicationCategory: "BusinessApplication",
+  description:
+    "A free Power BI custom visual that combines actual vs. target comparison, completion percentage, and absolute variation into a single compact, high-density bar element – the Lipstick Chart.",
+  url: "https://alexisgomel.com/projects/powerbi-lipstick-chart/",
+  author: {
+    "@type": "Person",
+    name: "Alexis Gomel",
+    url: "https://alexisgomel.com",
+  },
+  keywords:
+    "Power BI custom visual, Lipstick chart, bullet chart, actual vs target, KPI visualization, pbiviz, free Power BI visual",
+});
+---
+
+<MainLayout
+  title="Lipstick Bullet Chart – Free Power BI Custom Visual | Alexis Gomel"
+  description="A free Power BI custom visual for actual-vs-target KPI analysis. The Lipstick Chart packs completion %, absolute value, target, and variance into a single compact element."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+  image="/assets/imgs/powerbi/LipsktickViz.jpg"
+>
+  <meta
+    slot="head"
+    name="keywords"
+    content="Power BI custom visual, Lipstick chart Power BI, bullet chart Power BI, actual vs target Power BI, free pbiviz download, KPI dashboard Power BI"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Lipstick Bullet Chart – Free Power BI Custom Visual | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="A free Power BI custom visual combining actual vs. target, completion %, and variance into one compact, information-dense element."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/powerbi/LipsktickViz.jpg"
+  />
+  <script type="application/ld+json" set:html={schema} slot="head" />
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <style>
+    /* ── Layout ─────────────────────────────────────────── */
+    .pbi-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    /* ── Hero ───────────────────────────────────────────── */
+    .pbi-hero {
+      text-align: center;
+      padding: 5rem 1rem 3.5rem;
+    }
+    .pbi-hero .eyebrow {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e8b231;
+      margin-bottom: 0.75rem;
+    }
+    .pbi-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .pbi-hero .lead {
+      max-width: 640px;
+      margin: 0 auto 2.25rem;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Hero CTA buttons */
+    .btn-hero-primary {
+      display: inline-block;
+      background: #e8b231;
+      color: #fff;
+      font-weight: 700;
+      padding: 0.8rem 1.9rem;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      margin-right: 0.75rem;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 14px rgba(232, 178, 49, 0.35);
+    }
+    .btn-hero-primary:hover {
+      opacity: 0.88;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .btn-hero-outline {
+      display: inline-block;
+      border: 2px solid #e8b231;
+      color: #e8b231;
+      font-weight: 700;
+      padding: 0.75rem 1.75rem;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-bottom: 0.5rem;
+    }
+    .btn-hero-outline:hover {
+      background: #e8b231;
+      color: #fff;
+    }
+
+    /* ── Sections ───────────────────────────────────────── */
+    .pbi-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid #eee;
+    }
+    .pbi-section h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .pbi-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Screenshot / image frame ───────────────────────── */
+    .screenshot-frame {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.13);
+    }
+    .screenshot-frame img {
+      display: block;
+      width: 100%;
+    }
+
+    /* Image placeholder (used until real assets arrive) */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #f5f0e8 0%, #ede8dc 100%);
+      border: 2px dashed #d4c9a8;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #a89870;
+      font-size: 0.9rem;
+      gap: 0.5rem;
+    }
+    .img-placeholder .placeholder-icon {
+      font-size: 2.5rem;
+      opacity: 0.5;
+    }
+
+    /* ── Feature cards ──────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid #ede8dc;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.65rem;
+      display: block;
+    }
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .feature-card p {
+      font-size: 0.92rem;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ── Tech badges ────────────────────────────────────── */
+    .tech-badge {
+      display: inline-block;
+      background: #f5f0e8;
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin: 0.25rem 0.2rem;
+      color: #5a4a2a;
+    }
+
+    /* ── Quote / note callout ───────────────────────────── */
+    .pbi-note {
+      background: #fdf8ef;
+      border-left: 4px solid #e8b231;
+      padding: 1rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      color: #5a4a20;
+    }
+
+    /* ── Download card ──────────────────────────────────── */
+    .download-section {
+      background: linear-gradient(135deg, #fdf8ef 0%, #f5f0e8 100%);
+      border: 1px solid #e8d9b0;
+      border-radius: 14px;
+      padding: 2.25rem 2rem;
+      margin-top: 2rem;
+    }
+    .download-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .download-card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e8d9b0;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    .download-card .dl-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #e8b231;
+    }
+    .download-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .download-card p {
+      font-size: 0.88rem;
+      color: #666;
+      margin: 0;
+      flex: 1;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #e8b231;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+    .btn-download:hover {
+      opacity: 0.86;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .btn-download-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 2px solid #e8b231;
+      color: #e8b231;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+    .btn-download-outline:hover {
+      background: #e8b231;
+      color: #fff;
+    }
+
+    /* ── CTA bottom ─────────────────────────────────────── */
+    .cta-bottom {
+      background: linear-gradient(135deg, #f5f0e8 0%, #ede8dc 100%);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+    .cta-bottom h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+    .cta-bottom p {
+      color: #555;
+      max-width: 520px;
+      margin: 0 auto 1.75rem;
+    }
+
+    @media (max-width: 767px) {
+      .pbi-hero {
+        padding: 4rem 1rem 2rem;
+      }
+      .download-section {
+        padding: 1.75rem 1rem;
+      }
+      .cta-bottom {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <div class="pbi-hero">
+    <p class="eyebrow">Power BI · Custom Visual</p>
+    <h1>The Lipstick Bullet Chart</h1>
+    <p class="lead">
+      A free, open-source Power BI custom visual that packs actual value, target,
+      completion % and variance into a single compact, information-dense element.
+      Born in Data Studio — now native in Power BI.
+    </p>
+    <a
+      href="/files/powerbi/lipstick-bullet-chart.pbiviz"
+      class="btn-hero-primary gtm-track-click"
+      data-event-category="PowerBI Lipstick Chart"
+      data-event-label="Hero - Download pbiviz"
+      data-event-action="download"
+      download
+    >
+      ⬇ Download .pbiviz
+    </a>
+    <a
+      href="https://github.com/alxgom/PowerBI-viz"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-hero-outline gtm-track-click"
+      data-event-category="PowerBI Lipstick Chart"
+      data-event-label="Hero - GitHub"
+    >
+      View on GitHub
+    </a>
+  </div>
+
+  <div class="pbi-container">
+
+    <!-- ─── SCREENSHOT / WHAT IT LOOKS LIKE ─────────────────── -->
+    <section class="pbi-section">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <div class="screenshot-frame position-relative">
+            <a
+              href="/assets/imgs/powerbi/LipsktickViz.jpg"
+              data-lightbox="powerbi-lipstick"
+              data-title="Lipstick Bullet Chart in Power BI – actual vs. target with completion % and variance"
+            >
+              <img
+                src="/assets/imgs/powerbi/LipsktickViz.jpg"
+                alt="Lipstick Bullet Chart running in Power BI – shows actual revenue vs. target with completion percentage and absolute variance"
+                class="img-fluid"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <p class="text-center text-muted small mt-2">
+            <i class="ti-zoom-in"></i> Click to zoom · Lipstick Chart in Power BI
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h2>What it does</h2>
+          <p>
+            The <strong>Lipstick Bullet Chart</strong> is built for anyone who needs
+            to compare actual performance against a target across multiple categories
+            — without resorting to a cluttered table or a column chart forest.
+          </p>
+          <p>
+            Each row in the visual encodes four values simultaneously:
+          </p>
+          <ul>
+            <li><strong>Actual value</strong> – rendered as the "lipstick" bar fill.</li>
+            <li><strong>Target value</strong> – the reference benchmark marker.</li>
+            <li>
+              <strong>Completion %</strong> – progress toward the goal, shown
+              numerically and through the bar length.
+            </li>
+            <li>
+              <strong>Absolute variance</strong> – the raw gap between actual and
+              target, color-coded as positive or negative.
+            </li>
+          </ul>
+          <p class="text-muted small">
+            This effectively replaces the need for a separate KPI card, a bar chart,
+            and a data table — all in a single, responsive visual element.
+          </p>
+          <div class="mt-3">
+            <span class="tech-badge">TypeScript</span>
+            <span class="tech-badge">D3.js</span>
+            <span class="tech-badge">Power BI SDK</span>
+            <span class="tech-badge">pbiviz</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ORIGIN STORY ─────────────────────────────────────── -->
+    <section class="pbi-section">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>From Data Studio to Power BI</h2>
+          <p>
+            This visual started life as a
+            <a
+              href="/projects/looker-studio-custom-visuals/"
+              class="gtm-track-click"
+              data-event-category="PowerBI Lipstick Chart"
+              data-event-label="Internal - Looker Studio link"
+            >
+              community visualization for Google Data Studio (Looker Studio)
+            </a>.
+            I originally built it using the DSCC API and D3.js to fill a very specific
+            gap: a way to scan dozens of KPIs at a glance in management reports without
+            toggling between multiple chart types.
+          </p>
+          <div class="pbi-note">
+            The same visual concept, rebuilt from scratch for Power BI's custom
+            visual SDK — with native formatting pane integration, responsive
+            sizing, and theme support.
+          </div>
+          <p>
+            Porting it to Power BI meant moving from a JavaScript DSCC bundle to a
+            full <strong>TypeScript + Power BI SDK</strong> project, implementing
+            the <code>IVisual</code> interface, and wiring up the formatting pane
+            through the capabilities JSON. The result is a <code>.pbiviz</code> file
+            you can sideload into any Power BI Desktop report in under a minute.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FEATURE CARDS ────────────────────────────────────── -->
+    <section class="pbi-section">
+      <h2>Key features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>4 metrics, 1 element</h3>
+          <p>
+            Actual, target, completion % and variance rendered in a single compact
+            bar — no need for separate visuals.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎨</span>
+          <h3>Formatting pane</h3>
+          <p>
+            Colors, label visibility, bar thickness and padding are all configurable
+            directly from the Power BI formatting pane.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📐</span>
+          <h3>Responsive sizing</h3>
+          <p>
+            The visual adapts to any container size — works in a narrow card or
+            across a wide dashboard panel.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔢</span>
+          <h3>Multi-category support</h3>
+          <p>
+            Bind a dimension field to render a row per category — regions, products,
+            channels — all in one scrollable list.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">✅</span>
+          <h3>Conditional coloring</h3>
+          <p>
+            Variance and fill color flip automatically based on whether the actual
+            is above or below target.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🆓</span>
+          <h3>Free & open-source</h3>
+          <p>
+            MIT licensed. Download the <code>.pbiviz</code>, inspect the source on
+            GitHub, fork it — no strings attached.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DASHBOARD SCREENSHOT PLACEHOLDER ────────────────── -->
+    <section class="pbi-section">
+      <h2>In the wild: sample dashboard</h2>
+      <p>
+        Below is a screenshot of the Lipstick Chart used inside a full Power BI
+        dashboard alongside native visuals. It sits naturally next to cards, slicers
+        and matrix tables without visual friction.
+      </p>
+      <div class="row mt-4">
+        <div class="col-md-10 mx-auto">
+          <!-- PLACEHOLDER – replace with real dashboard screenshot -->
+          <div class="img-placeholder">
+            <span class="placeholder-icon">🖼</span>
+            <span><strong>Dashboard screenshot coming soon</strong></span>
+            <span class="text-muted small">
+              Drop your Power BI dashboard screenshot here as
+              <code>/assets/imgs/powerbi/lipstick_dashboard.jpg</code>
+            </span>
+          </div>
+          <p class="text-center text-muted small mt-2">
+            Full Power BI dashboard using the Lipstick Bullet Chart for regional
+            sales vs. target analysis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DOWNLOADS ────────────────────────────────────────── -->
+    <section class="pbi-section">
+      <div class="download-section">
+        <h2>Download & install</h2>
+        <p class="text-muted">
+          Sideload the <code>.pbiviz</code> into Power BI Desktop or grab the sample
+          report to see it wired up with demo data.
+        </p>
+        <div class="download-grid">
+
+          <!-- .pbiviz custom visual -->
+          <div class="download-card">
+            <span class="dl-label">Custom Visual</span>
+            <h3>Lipstick Bullet Chart <code>.pbiviz</code></h3>
+            <p>
+              The compiled custom visual file. In Power BI Desktop go to
+              <em>Insert → Get more visuals → Import a visual from a file</em> and
+              select this file.
+            </p>
+            <a
+              href="/files/powerbi/lipstick-bullet-chart.pbiviz"
+              class="btn-download gtm-track-click"
+              data-event-category="PowerBI Lipstick Chart"
+              data-event-label="Download - pbiviz file"
+              data-event-action="download"
+              download
+            >
+              ⬇ Download .pbiviz
+            </a>
+          </div>
+
+          <!-- .pbix sample report -->
+          <div class="download-card">
+            <span class="dl-label">Sample Report</span>
+            <h3>Demo dashboard <code>.pbix</code></h3>
+            <p>
+              A complete Power BI report file with sample data pre-wired to the
+              visual. Open it directly in Power BI Desktop — no setup needed.
+            </p>
+            <a
+              href="/files/powerbi/lipstick-chart-demo.pbix"
+              class="btn-download gtm-track-click"
+              data-event-category="PowerBI Lipstick Chart"
+              data-event-label="Download - pbix demo report"
+              data-event-action="download"
+              download
+            >
+              ⬇ Download .pbix
+            </a>
+          </div>
+
+          <!-- GitHub source -->
+          <div class="download-card">
+            <span class="dl-label">Source Code</span>
+            <h3>GitHub repository</h3>
+            <p>
+              Full TypeScript source, build instructions, and the capabilities
+              JSON. Fork it, adapt it, or submit a PR.
+            </p>
+            <a
+              href="https://github.com/alxgom/PowerBI-viz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-download-outline gtm-track-click"
+              data-event-category="PowerBI Lipstick Chart"
+              data-event-label="Download - GitHub source"
+            >
+              View on GitHub →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── INSTALL INSTRUCTIONS ─────────────────────────────── -->
+    <section class="pbi-section">
+      <h2>How to install in 60 seconds</h2>
+      <ol style="line-height: 2; padding-left: 1.25rem;">
+        <li>Download the <code>.pbiviz</code> file above.</li>
+        <li>Open Power BI Desktop and open (or create) a report.</li>
+        <li>
+          In the <em>Visualizations</em> pane click the three-dot menu
+          <strong>→ Import a visual from a file</strong>.
+        </li>
+        <li>Select the downloaded <code>.pbiviz</code> and confirm the security prompt.</li>
+        <li>
+          The Lipstick Chart icon appears in your Visualizations pane. Drag it onto
+          the canvas and bind your <strong>Category</strong>, <strong>Value</strong>
+          and <strong>Target</strong> fields.
+        </li>
+      </ol>
+      <div class="pbi-note">
+        <strong>Note:</strong> Power BI may show a security warning when importing
+        custom visuals from a file. This is expected behavior for any sideloaded
+        visual not certified by Microsoft AppSource.
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ─── CTA BOTTOM ───────────────────────────────────────────── -->
+  <div
+    style="background: linear-gradient(to bottom, #ffffff 0%, #f5f0e8 200px, #f5f0e8 100%); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 4rem 1rem;"
+  >
+    <div class="pbi-container">
+      <div class="cta-bottom">
+        <p
+          style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #e8b231; margin-bottom: 0.5rem;"
+        >
+          More custom visualizations
+        </p>
+        <h2>This started in Data Studio</h2>
+        <p>
+          The Lipstick chart is part of a broader set of custom visuals I've built
+          for Google Data Studio (Looker Studio) — Tree Hierarchy, Histogram,
+          Cleveland Plot and more.
+        </p>
+        <a
+          href="/projects/looker-studio-custom-visuals/"
+          class="btn-hero-primary gtm-track-click"
+          data-event-category="PowerBI Lipstick Chart"
+          data-event-label="CTA - Looker Studio visuals"
+        >
+          See the Data Studio visuals →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Lightbox />
+</MainLayout>
