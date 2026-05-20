@@ -3,6 +3,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import mainScreenshot from "../../../assets/imgs/Projects/mixxx_dj_buddy_main.png";
 import settingsScreenshot from "../../../assets/imgs/Projects/mixxx_dj_buddy_settings.png";
+import einkCloseup from "../../../assets/imgs/Projects/eink_mixxx_display_closeup.jpg";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
@@ -15,7 +16,7 @@ const schema = JSON.stringify({
   applicationCategory: "MultimediaApplication",
   operatingSystem: "Windows",
   description:
-    "Aplicación complementaria en tiempo real para Mixxx (software de DJ gratuito y de código abierto) que visualiza las tendencias de BPM y los metadatos de los tracks, con tooltips interactivos que muestran crates y playlists.",
+    "Una aplicación complementaria para Mixxx que rastrea tendencias de BPM e historial de tracks, ayudando a los DJs a mantener el pulso durante eventos de baile social.",
   url: "https://alexisgomel.com/es/projects/mixxx-dj-buddy/",
   downloadUrl: "https://github.com/alxgom/Mixxx-dj-buddy/releases",
   author: {
@@ -29,8 +30,8 @@ const schema = JSON.stringify({
 ---
 
 <MainLayout
-  title="Mixxx DJ Buddy — Visualizador de Set de DJ en Tiempo Real | Alexis Gomel"
-  description="Mixxx DJ Buddy es una app complementaria en tiempo real para el software de DJ gratuito Mixxx. Visualiza el flujo de BPM, rastrea crates y playlists, y mantén el pulso durante eventos de swing, blues o cualquier baile social."
+  title="Visualiza el flujo de tu set de DJ en tiempo real con Mixxx DJ Buddy | Alexis Gomel"
+  description="Mixxx DJ Buddy es una app en tiempo real para Mixxx. Rastrea tu flujo de BPM, organiza crates y mantén la energía de tu set sin distracciones."
   currentLang={currentLang}
   alternateHref={alternateHref}
   image="/assets/imgs/Projects/mixxx_dj_buddy_poster.jpg"
@@ -39,21 +40,6 @@ const schema = JSON.stringify({
     slot="head"
     name="keywords"
     content="Mixxx companion app, visualizador set de DJ, gráfico BPM en vivo, herramienta DJ swing blues, software DJ código abierto, app Go escritorio, DJ baile social"
-  />
-  <meta
-    slot="head"
-    property="og:title"
-    content="Mixxx DJ Buddy — Visualizador de Set de DJ en Tiempo Real | Alexis Gomel"
-  />
-  <meta
-    slot="head"
-    property="og:description"
-    content="Gráfico BPM en tiempo real y metadatos de tracks para DJs de Mixxx. Desarrollado en Go con D3.js."
-  />
-  <meta
-    slot="head"
-    property="og:image"
-    content="/assets/imgs/Projects/mixxx_dj_buddy_poster.jpg"
   />
   <link
     rel="preload"
@@ -69,7 +55,6 @@ const schema = JSON.stringify({
     slot="head"
   />
   <script type="application/ld+json" set:html={schema} slot="head" />
-  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
 
   <style>
     /* ── Layout ────────────────────────────────────── */
@@ -81,70 +66,110 @@ const schema = JSON.stringify({
 
     /* ── Hero ──────────────────────────────────────── */
     .buddy-hero {
-      text-align: center;
-      padding: 5rem 1rem 3rem;
+      padding: 8rem 1rem 6rem;
+      background: var(--cloud-dance-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .buddy-hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(var(--light-gray) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.2;
+      pointer-events: none;
     }
     .buddy-hero .eyebrow {
-      font-size: 0.85rem;
+      font-family: var(--font-family-monospace);
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--primary);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      display: block;
     }
     .buddy-hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
     }
     .buddy-hero .lead {
       max-width: 620px;
-      margin: 0 auto 2rem;
-      font-size: 1.15rem;
-      color: #555;
+      margin: 0 0 2.5rem;
+      font-size: 1.2rem;
+      color: var(--dark-gray);
+      line-height: 1.6;
     }
     .btn-hero-primary {
       display: inline-block;
       background: var(--primary);
       color: #fff;
-      font-weight: 600;
-      padding: 0.75rem 1.75rem;
-      border-radius: 6px;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 0; /* Sharp corner */
       text-decoration: none;
-      transition: opacity 0.2s;
-      margin-right: 0.75rem;
+      transition: all 0.2s ease;
+      margin-right: 1rem;
       margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      box-shadow: 6px 6px 0px var(--dark);
+      border: 1px solid var(--dark);
     }
     .btn-hero-primary:hover {
-      opacity: 0.85;
+      background: var(--dark);
       color: #fff;
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0px var(--primary);
     }
     .btn-hero-outline {
       display: inline-block;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      font-weight: 600;
-      padding: 0.7rem 1.6rem;
-      border-radius: 6px;
+      border: 1px solid var(--dark-gray);
+      color: var(--dark-gray);
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 0; /* Sharp corner */
       text-decoration: none;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
       margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      box-shadow: 6px 6px 0px var(--light-gray);
     }
     .btn-hero-outline:hover {
-      background: var(--primary);
-      color: #fff;
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0px var(--albero-pantone);
     }
 
     /* ── Section dividers ──────────────────────────── */
     .buddy-section {
-      padding: 3.5rem 0;
-      border-top: 1px solid #eee;
+      padding: 5rem 0;
+      border-top: 1px solid var(--light-gray);
+    }
+    .buddy-section p a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .buddy-section p a:hover {
+      color: var(--dark);
     }
     .buddy-section h2 {
-      font-size: 1.65rem;
-      font-weight: 700;
-      margin-bottom: 1.25rem;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
     }
     .buddy-section h3 {
       font-size: 1.25rem;
@@ -154,157 +179,198 @@ const schema = JSON.stringify({
 
     /* ── Story quote ───────────────────────────────── */
     .story-quote {
-      border-left: 4px solid var(--primary);
-      padding: 0.75rem 1.25rem;
-      margin: 1.5rem 0;
+      border-left: 2px solid var(--primary);
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
       font-style: italic;
-      color: #444;
-      background: #fafafa;
-      border-radius: 0 6px 6px 0;
+      color: var(--dark-gray);
+      background: var(--cloud-dance-white);
+      font-size: 1.1rem;
     }
 
     /* ── Features grid ─────────────────────────────── */
-    .features-grid {
+    .features-row {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
     }
-    .feature-card {
-      background: #fff;
-      border: 1px solid #e8e8e8;
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-      transition:
-        box-shadow 0.2s,
-        transform 0.2s;
+    .features-row-3 {
+      grid-template-columns: repeat(3, 1fr);
     }
-    .feature-card:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
-      transform: translateY(-2px);
+    .features-row-2 {
+      grid-template-columns: repeat(2, 1fr);
     }
-    .feature-icon {
-      font-size: 1.8rem;
-      margin-bottom: 0.75rem;
-      display: block;
+    .feature-item {
+      padding: 2rem 0;
+      border-top: 1px solid var(--light-gray);
+      transition: border-color 0.3s;
     }
-    .feature-card h3 {
-      font-size: 1.05rem;
+    .feature-item:hover {
+      border-top-color: var(--primary);
+    }
+    .feature-item h3 {
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
-    .feature-card p {
-      font-size: 0.93rem;
-      color: #555;
-      margin: 0;
+    .feature-item p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .feature-item-img {
+      margin-top: 1.5rem;
+      overflow: hidden;
+      border: 1px solid var(--light-gray);
+      background: #000;
+    }
+    .feature-item-img img {
+      display: block;
+      width: 100%;
+      opacity: 0.9;
     }
 
     /* ── Video ─────────────────────────────────────── */
     .demo-video {
       width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid var(--dark);
+      box-shadow: 20px 20px 0px var(--albero-pantone);
       display: block;
+      transition: all 0.3s ease;
+    }
+    .demo-video:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 24px 24px 0px var(--albero-pantone);
     }
 
     /* ── Screenshots ───────────────────────────────── */
     .screenshot-frame {
-      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+      box-shadow: 20px 20px 0px var(--albero-pantone);
+      border: 1px solid var(--dark);
+      background: #000;
+      transition: all 0.3s ease;
+    }
+    .screenshot-frame:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 24px 24px 0px var(--albero-pantone);
     }
     .screenshot-frame img {
       display: block;
       width: 100%;
+      filter: grayscale(0.2) contrast(1.1);
+      transition: all 0.4s ease;
+    }
+    .screenshot-frame:hover img {
+      filter: grayscale(0) contrast(1.1);
+      transform: scale(1.02);
+    }
+    .hero-frame {
+      transform: perspective(1000px) rotateY(-8deg) rotateX(2deg) skewY(1deg);
+    }
+    .hero-frame:hover {
+      transform: perspective(1000px) rotateY(-2deg) rotateX(1deg) translate(-4px, -4px) !important;
     }
 
     /* ── Tech badges ───────────────────────────────── */
     .tech-badge {
       display: inline-block;
-      background: #f0f0f0;
-      border-radius: 20px;
-      padding: 0.3rem 0.85rem;
-      font-size: 0.85rem;
-      font-weight: 600;
+      border: 1px solid var(--light-gray);
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      font-family: var(--font-family-monospace);
+      font-weight: 500;
       margin: 0.25rem 0.2rem;
-      color: #333;
+      color: var(--dark-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     /* ── CTA cards ─────────────────────────────────── */
-    .cta-section {
-      background: linear-gradient(135deg, #f8f6ff 0%, #f0eee9 100%);
-      border-radius: 16px;
-      padding: 3rem 2rem;
+    .display-cta {
+      margin-top: 5rem;
+      padding: 5rem 1.25rem;
+      border-top: 1px solid var(--light-gray);
+      background: var(--cloud-dance-white);
+    }
+    .display-cta-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       text-align: center;
-      margin-top: 4rem;
-      margin-bottom: 2rem;
+    }
+    .display-cta h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+    .display-cta .lead {
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      color: var(--dark-gray);
+      font-size: 1.05rem;
     }
     .cta-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2.5rem;
+      gap: 2rem;
+      text-align: left;
     }
     .cta-card {
+      border: 1px solid var(--dark);
+      padding: 2.5rem 2rem;
       background: #fff;
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 3px 16px rgba(0, 0, 0, 0.07);
-      text-align: left;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      height: 100%;
+      box-shadow: 8px 8px 0px var(--light-gray);
+      transition: all 0.3s ease;
     }
-    .cta-card .cta-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+    .cta-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 12px 12px 0px var(--primary);
+      border-color: var(--dark);
+    }
+    .cta-label {
+      font-family: var(--font-family-monospace);
+      font-size: 0.75rem;
       color: var(--primary);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: block;
     }
     .cta-card h3 {
       font-size: 1.15rem;
       font-weight: 700;
-      margin: 0;
+      margin-bottom: 0.75rem;
     }
     .cta-card p {
-      font-size: 0.92rem;
-      color: #555;
-      margin: 0;
-      flex: 1;
-    }
-    .btn-cta {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 600;
-      padding: 0.6rem 1.3rem;
-      border-radius: 6px;
-      text-decoration: none;
       font-size: 0.9rem;
-      transition: opacity 0.2s;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .cta-link {
+      font-family: var(--font-family-monospace);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.2s ease;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
       align-self: flex-start;
     }
-    .btn-cta:hover {
-      opacity: 0.85;
-      color: #fff;
-    }
-    .btn-cta-outline {
-      display: inline-block;
-      border: 2px solid var(--primary);
+    .cta-link:hover {
       color: var(--primary);
-      font-weight: 600;
-      padding: 0.55rem 1.2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.2s;
-      align-self: flex-start;
-    }
-    .btn-cta-outline:hover {
-      background: var(--primary);
-      color: #fff;
+      border-bottom-color: var(--primary);
     }
 
     /* ── Future plans list ─────────────────────────── */
@@ -313,136 +379,201 @@ const schema = JSON.stringify({
       padding-left: 0.25rem;
     }
 
+    /* ── Setup Steps - Anti-AI UI elements ────────── */
+    .setup-steps {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+    .setup-step-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .setup-step-num {
+      font-family: var(--font-family-monospace);
+      font-weight: 900;
+      color: var(--primary);
+      font-size: 1.25rem;
+      width: 45px;
+      flex-shrink: 0;
+      line-height: 1;
+      padding-top: 2px;
+    }
+    .setup-step-content {
+      border-left: 2px solid var(--light-gray);
+      padding-left: 1.5rem;
+    }
+    .setup-step-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .setup-step-content p {
+      font-size: 0.95rem;
+      color: #666;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── Remote Display callout ─────────────────────── */
+    .remote-display-callout {
+      background: var(--dark);
+      padding: 5rem 0;
+      border-top: none;
+    }
+    .remote-display-callout h2 {
+      color: #fff;
+    }
+    .remote-display-callout .eyebrow {
+      color: var(--albero-pantone);
+    }
+    .remote-display-callout p {
+      color: rgba(255,255,255,0.75);
+    }
+    .remote-display-callout p a {
+      color: var(--albero-pantone) !important;
+      text-decoration: underline;
+    }
+    .remote-display-callout .btn-hero-outline {
+      color: #fff;
+      border-color: rgba(255,255,255,0.5);
+      box-shadow: 6px 6px 0px rgba(255,255,255,0.15);
+    }
+    .remote-display-callout .btn-hero-outline:hover {
+      color: var(--albero-pantone);
+      border-color: var(--albero-pantone);
+      box-shadow: 8px 8px 0px rgba(255,255,255,0.1);
+    }
+
     @media (max-width: 767px) {
       .buddy-hero {
-        padding: 4rem 1rem 2rem;
+        padding: 6rem 1rem 4rem;
+        text-align: left;
       }
-      .cta-section {
+      .display-cta {
         padding: 2rem 1rem;
+      }
+      .features-row-3,
+      .features-row-2 {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 
   <!-- ─── HERO ──────────────────────────────────────────────── -->
   <div class="buddy-hero">
-    <p class="eyebrow">Herramienta de DJ de código abierto para Mixxx</p>
-    <h1>Tu set de DJ,<br />visualizado en tiempo real.</h1>
-    <p class="lead">
-      Mixxx DJ Buddy es una app complementaria en vivo para
-      <a href="https://mixxx.org/" target="_blank" rel="noopener noreferrer"
-        >Mixxx</a
-      >
-      — el software de DJ gratuito y de código abierto. Dibuja tu flujo de BPM mientras
-      tocas y muestra los crates y playlists detrás de cada canción, para que siempre
-      sepas la historia que está contando tu set.
-    </p>
-    <a
-      href="https://github.com/alxgom/Mixxx-dj-buddy/releases"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn-hero-primary gtm-track-click"
-      data-event-category="Mixxx DJ Buddy ES"
-      data-event-label="Hero - Descargar"
-    >
-      Descargar (.exe)
-    </a>
-    <a
-      href="https://github.com/alxgom/Mixxx-dj-buddy"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn-hero-outline gtm-track-click"
-      data-event-category="Mixxx DJ Buddy ES"
-      data-event-label="Hero - GitHub"
-    >
-      Ver en GitHub
-    </a>
+    <div class="buddy-container">
+      <div class="row align-items-center text-start">
+        <div class="col-lg-6">
+          <p class="eyebrow">Herramienta de DJ de código abierto para Mixxx</p>
+          <h1>Mixxx DJ Buddy visualiza tu set de DJ en tiempo real.</h1>
+          <p class="lead">
+            Mixxx DJ Buddy es una aplicación complementaria en tiempo real para
+            <a href="https://mixxx.org/" target="_blank" rel="noopener noreferrer"
+              >Mixxx</a
+            >. Rastrea tu flujo de BPM a medida que tocas, muestra las crates detrás de cada canción e incluye un servidor de transmisión para pantallas remotas.
+          </p>
+          <div class="hero-actions">
+            <a
+              href="https://github.com/alxgom/Mixxx-dj-buddy/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-hero-primary gtm-track-click"
+              data-event-category="Mixxx DJ Buddy ES"
+              data-event-label="Hero - Descargar"
+            >
+              Descargar (.exe)
+            </a>
+            <a
+              href="https://github.com/alxgom/Mixxx-dj-buddy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-hero-outline gtm-track-click"
+              data-event-category="Mixxx DJ Buddy ES"
+              data-event-label="Hero - GitHub"
+            >
+              Ver en GitHub
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-5 mt-lg-0">
+          <div class="screenshot-frame hero-frame">
+            <Image
+              src={mainScreenshot}
+              alt="Interfaz principal de Mixxx DJ Buddy que muestra un gráfico de BPM con el tema Jazzy Light"
+              class="img-fluid"
+              loading="eager"
+              width={600}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="buddy-container">
     <!-- ─── THE STORY ────────────────────────────────────────── -->
     <section class="buddy-section">
-      <div class="row align-items-center">
-        <div class="col-md-7">
-          <h2>De una libreta a un visualizador en tiempo real</h2>
-          <p>
-            Cuando empecé a pinchar música para fiestas de swing y blues como
-            <strong>Dr. Beat</strong>, llevaba una pequeña libreta junto a los
-            platos para esbozar el arco de BPM de mi set — un mapa aproximado de
-            la energía que intentaba construir, liberar y reconstruir durante la
-            noche.
-          </p>
-          <div class="story-quote">
-            "Miro la pista de baile y reacciono. Pero también me gusta construir
-            una historia — subir la energía, crear tensión, dejar que respire."
-          </div>
-          <p>
-            Mixxx DJ Buddy convirtió esa libreta en un gráfico en vivo. Lee
-            directamente de la base de datos SQLite de
-            <a
-              href="https://mixxx.org/"
-              target="_blank"
-              rel="noopener noreferrer">Mixxx</a
-            >
-            y se actualiza automáticamente con cada track — sin entradas manuales,
-            sin interrupciones en el flujo.
-          </p>
-          <p>
-            El BPM solo no captura todo, pero es un punto de partida sólido — y
-            la capa de crates y playlists lo hace genuinamente útil para tomar
-            decisiones durante el set. Las versiones futuras irán más allá con
-            métricas de audio perceptuales.
-          </p>
-        </div>
-        <div class="col-md-5 mt-4 mt-md-0">
-          <div class="screenshot-frame">
-            <Image
-              src={mainScreenshot}
-              alt="Interfaz principal de Mixxx DJ Buddy mostrando el gráfico de BPM con el tema Jazzy Light"
-              class="img-fluid"
-              loading="eager"
-              fetchpriority="high"
-              widths={[480, 900, mainScreenshot.width]}
-              sizes="(max-width: 767px) 100vw, 45vw"
-            />
-          </div>
-        </div>
+      <h2>De una libreta a un visualizador en tiempo real</h2>
+      <p>
+        Cuando empecé a pinchar música para fiestas de swing y blues como
+        <strong>Dr. Beat</strong>, llevaba una pequeña libreta junto a los
+        platos para esbozar el arco de BPM de mi set. Era un mapa aproximado de
+        la energía que intentaba construir, liberar y reconstruir durante la
+        noche.
+      </p>
+      <div class="story-quote">
+        "Miro la pista de baile y reacciono. Pero también me gusta construir
+        una historia — subir la energía, crear tensión, dejar que respire."
       </div>
-    </section>
-
-    <!-- ─── DEMO VIDEO ───────────────────────────────────────── -->
-    <section class="buddy-section">
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        class="demo-video"
-        poster="/assets/imgs/Projects/mixxx_dj_buddy_poster.jpg"
-        aria-label="Grabación de pantalla demostrativa de Mixxx DJ Buddy"
-      >
-        <source
-          src="/assets/imgs/Projects/mixxx_dj_buddy.webm"
-          type="video/webm"
-        />
-        <source
-          src="/assets/imgs/Projects/mixxx_dj_buddy_optimized.mp4"
-          type="video/mp4"
-        />
-        Tu navegador no soporta el formato de video.
-      </video>
-      <p class="text-muted small mt-3 text-center">
-        El gráfico se actualiza en vivo con cada track. Pasa el cursor por
-        cualquier punto para ver los crates y playlists de esa canción — los
-        crates compartidos con el track anterior se destacan automáticamente.
+      <!-- Video debajo de la historia — muestra el gráfico en vivo -->
+      <div class="mt-4 mb-4">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          class="demo-video"
+          poster="/assets/imgs/Projects/mixxx_dj_buddy_poster.jpg"
+          aria-label="Grabación de pantalla demostrativa de Mixxx DJ Buddy"
+        >
+          <source src="/assets/imgs/Projects/mixxx_dj_buddy.webm" type="video/webm" />
+          <source src="/assets/imgs/Projects/mixxx_dj_buddy_optimized.mp4" type="video/mp4" />
+          Tu navegador no soporta el formato de video.
+        </video>
+        <p class="text-muted small mt-3 text-center">
+          El gráfico se actualiza en vivo con cada track. Pasa el cursor por
+          cualquier punto para ver los crates y playlists de esa canción — los
+          crates compartidos con el track anterior se destacan automáticamente.
+        </p>
+      </div>
+      <p>
+        Mixxx DJ Buddy convirtió esa libreta en un gráfico en vivo. Lee
+        directamente de la base de datos SQLite de
+        <a
+          href="https://mixxx.org/"
+          target="_blank"
+          rel="noopener noreferrer">Mixxx</a
+        >
+        y se actualiza automáticamente con cada track. No requiere entradas manuales ni
+        interrupciones en el flujo.
+      </p>
+      <p>
+        El BPM solo no captura todo, pero es un punto de partida sólido.
+        La capa de crates y playlists lo hace genuinamente útil para tomar
+        decisiones durante el set. Las versiones futuras irán más allá con
+        métricas de audio perceptuales.
       </p>
     </section>
 
     <!-- ─── FEATURES ─────────────────────────────────────────── -->
     <section class="buddy-section">
-      <h2>Qué hace</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <span class="feature-icon">📊</span>
+      <h2>Funciones principales</h2>
+
+      <!-- Fila 1: tres funciones solo texto -->
+      <div class="features-row features-row-3">
+        <div class="feature-item">
           <h3>Gráfico de BPM en vivo</h3>
           <p>
             Un gráfico de líneas impulsado por D3.js que se actualiza en tiempo
@@ -451,8 +582,7 @@ const schema = JSON.stringify({
           </p>
         </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">🗂️</span>
+        <div class="feature-item">
           <h3>Tooltip de Crates y Playlists</h3>
           <p>
             Pasa el cursor o haz clic en cualquier punto para ver a qué
@@ -463,8 +593,7 @@ const schema = JSON.stringify({
           </p>
         </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">📌</span>
+        <div class="feature-item">
           <h3>Siempre visible</h3>
           <p>
             Activa el modo "pin" para que la ventana permanezca sobre Mixxx —
@@ -472,74 +601,84 @@ const schema = JSON.stringify({
             gráfico para tener más espacio cuando lo necesites.
           </p>
         </div>
+      </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">🎨</span>
+      <!-- Fila 2: funciones con capturas de pantalla -->
+      <div class="features-row features-row-2">
+        <div class="feature-item">
           <h3>Temas</h3>
           <p>
             Alterna entre un tema oscuro predeterminado y el vibrante tema
             <strong>Jazzy Light</strong> — colores expresivos inspirados en el espíritu
             de libertad del jazz.
           </p>
+          <div class="feature-item-img">
+            <Image
+              src={mainScreenshot}
+              alt="Interfaz principal de Mixxx DJ Buddy — tema Jazzy Light con gráfico de BPM y logo de vinilo"
+              class="img-fluid"
+              width={500}
+            />
+          </div>
+          <p class="text-muted small mt-2">Interfaz principal — tema Jazzy Light</p>
         </div>
 
-        <div class="feature-card">
-          <span class="feature-icon">⚙️</span>
+        <div class="feature-item">
           <h3>Configuración persistente</h3>
           <p>
             Todas tus preferencias (tema, siempre visible, ejes, modo tooltip)
             se guardan y restauran automáticamente entre sesiones.
           </p>
-        </div>
-
-        <div class="feature-card">
-          <span class="feature-icon">⚡</span>
-          <h3>Ligero y rápido</h3>
-          <p>
-            Reescrita de Python a Go, la app es <strong>~10× más pequeña</strong
-            >
-            y arranca al instante — sin entorno Python, sin dependencias que gestionar.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── SCREENSHOTS ──────────────────────────────────────── -->
-    <section class="buddy-section">
-      <h2>Interfaz y configuración</h2>
-      <div class="row mt-3">
-        <div class="col-md-6 mb-4">
-          <div class="screenshot-frame">
-            <Image
-              src={mainScreenshot}
-              alt="Interfaz principal de Mixxx DJ Buddy — tema Jazzy Light con gráfico de BPM y logo de vinilo"
-              class="img-fluid"
-              widths={[480, 900, mainScreenshot.width]}
-              sizes="(max-width: 767px) 100vw, 50vw"
-            />
-          </div>
-          <p class="text-muted small mt-2 text-center">
-            Interfaz principal — tema Jazzy Light
-          </p>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="screenshot-frame">
+          <div class="feature-item-img">
             <Image
               src={settingsScreenshot}
               alt="Panel de configuración de Mixxx DJ Buddy mostrando opciones de ejes, always-on-top, tema y selector de info del tooltip"
               class="img-fluid"
-              widths={[480, 900, settingsScreenshot.width]}
-              sizes="(max-width: 767px) 100vw, 50vw"
+              width={500}
             />
           </div>
-          <p class="text-muted small mt-2 text-center">
-            Panel de configuración — tema oscuro
-          </p>
+          <p class="text-muted small mt-2">Panel de configuración — tema oscuro</p>
         </div>
       </div>
     </section>
 
-    <!-- ─── HOW IT WORKS ─────────────────────────────────────── -->
+    <!-- ─── REMOTE DISPLAY CALLOUT ───────────────────────────── -->
+    <section class="buddy-section remote-display-callout">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <span class="eyebrow">Extensión inalámbrica opcional</span>
+          <h2>Transmite a Mixxx Remote Display</h2>
+          <p>
+            DJ Buddy puede transmitir inalámbricamente datos de tracks y portadas a
+            <a href="/es/projects/mixxx-remote-display/">Mixxx Remote Display</a> — una
+            app Android que convierte un teléfono libre en una pantalla de sala.
+            Desarrollado como proyecto complementario, está diseñado para eventos de baile social
+            donde el público quiere saber qué está sonando.
+          </p>
+          <a
+            href="/es/projects/mixxx-remote-display/"
+            class="btn-hero-outline gtm-track-click"
+            data-event-category="Mixxx DJ Buddy ES"
+            data-event-label="Remote Display Callout"
+          >
+            Ver Mixxx Remote Display →
+          </a>
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+          <div class="screenshot-frame">
+            <Image
+              src={einkCloseup}
+              alt="Mixxx Remote Display mostrando información de pista en una pantalla e-ink en un evento de baile"
+              class="img-fluid"
+              width={500}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── CÓMO FUNCIONA ─────────────────────────────────────── -->
     <section class="buddy-section">
       <div class="row align-items-center">
         <div class="col-md-6">
@@ -553,10 +692,14 @@ const schema = JSON.stringify({
           </p>
           <p>
             El gráfico se renderiza con <strong>D3.js</strong>, mientras que el
-            backend en Go gestiona la lectura de la base de datos y la ventana
-            de la app. Esta arquitectura es lo que permite que sea un único <code
-              >.exe</code
-            > sin runtime externo.
+            backend en Go gestiona la lectura de la base de datos. Si se activa,
+            también actúa como un servidor <strong>Bluetooth RFCOMM</strong> para
+            transmitir los metadatos de los tracks.
+          </p>
+          <p>
+            Esta arquitectura permite que la aplicación sea rápida y autocontenida.
+            Funciona como un único <code>.exe</code> sin necesidad de un entorno
+            Python o configuraciones complejas.
           </p>
           <p>
             Detecta automáticamente la ubicación predeterminada de
@@ -589,29 +732,46 @@ const schema = JSON.stringify({
             el próximo movimiento con más confianza.
           </p>
           <h3 class="mt-4">Primeros pasos</h3>
-          <ol>
-            <li>
-              Descarga el <a
-                href="https://github.com/alxgom/Mixxx-dj-buddy/releases"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><strong>.exe</strong> desde GitHub Releases</a>
+          <ul class="setup-steps">
+            <li class="setup-step-item">
+              <div class="setup-step-num">01</div>
+              <div class="setup-step-content">
+                <h3>Descargar</h3>
+                <p>
+                  Obtén el <a
+                    href="https://github.com/alxgom/Mixxx-dj-buddy/releases"
+                    target="_blank"
+                    rel="noopener noreferrer">último <code>.exe</code></a
+                  > desde GitHub.
+                </p>
+              </div>
             </li>
-            <li>
-              Asegúrate de tener <a
-                href="https://mixxx.org/"
-                target="_blank"
-                rel="noopener noreferrer">Mixxx</a
-              > instalado
+            <li class="setup-step-item">
+              <div class="setup-step-num">02</div>
+              <div class="setup-step-content">
+                <h3>Requisitos</h3>
+                <p>Asegúrate de tener <a
+                  href="https://mixxx.org/"
+                  target="_blank"
+                  rel="noopener noreferrer">Mixxx</a
+                > instalado en tu ordenador.</p>
+              </div>
             </li>
-            <li>
-              Ejecuta <code>mixxx-dj-buddy.exe</code> — encuentra tu base de datos
-              automáticamente
+            <li class="setup-step-item">
+              <div class="setup-step-num">03</div>
+              <div class="setup-step-content">
+                <h3>Lanzar</h3>
+                <p>Ejecuta <code>mixxx-dj-buddy.exe</code>. Encontrará tu base de datos automáticamente.</p>
+              </div>
             </li>
-            <li>
-              Inicia tu sesión en Mixxx y observa cómo el gráfico cobra vida
+            <li class="setup-step-item">
+              <div class="setup-step-num">04</div>
+              <div class="setup-step-content">
+                <h3>Pinchar</h3>
+                <p>Inicia tu sesión de DJ y observa cómo cobra vida el gráfico de energía.</p>
+              </div>
             </li>
-          </ol>
+          </ul>
         </div>
       </div>
     </section>
@@ -620,25 +780,20 @@ const schema = JSON.stringify({
     <section class="buddy-section">
       <h2>Lo que viene</h2>
       <p>
-        El BPM es una proxy útil pero no la historia completa. La próxima
-        versión de DJ Buddy avanzará hacia <strong
-          >métricas de audio perceptuales</strong
-        >
-        — características que representen mejor cómo suena realmente una canción en
+        El BPM es una métrica útil pero no cuenta la historia completa. La próxima
+        versión de DJ Buddy avanzará hacia <strong>métricas de audio perceptuales</strong>.
+        Estas características representan mejor cómo se siente realmente una canción en
         la pista: energía, peso, pulso, dinámica.
       </p>
       <ul class="future-list mt-3">
         <li>
-          <strong>Análisis de audio avanzado</strong> — ir más allá del BPM hacia
-          métricas que reflejen mejor la energía percibida y el carácter musical
+          <strong>Análisis de audio avanzado</strong>. Métricas que reflejen con mayor precisión la energía percibida y el carácter musical.
         </li>
         <li>
-          <strong>Historial de sets más rico</strong> — mejores visualizaciones para
-          sets largos y patrones entre múltiples eventos
+          <strong>Historial de sets enriquecido</strong>. Mejores visualizaciones para sets largos y patrones en múltiples eventos.
         </li>
         <li>
-          <strong>Soporte multiplataforma</strong> — la base en Go lo hace sencillo
-          para macOS y Linux
+          <strong>App de descubrimiento remota para iOS</strong>. Ampliando la experiencia inalámbrica a más dispositivos.
         </li>
       </ul>
       <p class="mt-3">
@@ -652,68 +807,43 @@ const schema = JSON.stringify({
     </section>
   </div>
 
-  <!-- ─── CTA SECTION ──────────────────────────────────────────── -->
-  <div
-    style="background: linear-gradient(to bottom, #ffffff 0%, #f0eee9 200px, #f0eee9 100%); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 4rem 1rem;"
-  >
-    <div class="buddy-container">
-      <div class="cta-section">
-        <p
-          class="eyebrow"
-          style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem;"
-        >
-          Más herramientas DJ y sesiones
-        </p>
-        <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;">
-          Explora el panorama completo
-        </h2>
-        <p style="color: #555; max-width: 560px; margin: 0 auto;">
-          DJ Buddy rastrea el flujo de un set en vivo. ¿Quieres analizar tu
-          historial a lo largo de decenas de eventos, o escuchar la música
-          detrás de las herramientas?
-        </p>
+  <div class="display-cta">
+    <div class="display-cta-inner">
+      <span class="cta-label">Más herramientas y sets de DJ</span>
+      <h2>Explora el panorama completo</h2>
+      <p class="lead">
+        Mixxx DJ Buddy forma parte de un ecosistema más amplio de herramientas diseñadas para eventos de baile social.
+      </p>
 
-        <div class="cta-grid">
-          <div class="cta-card">
-            <span class="cta-label">Análisis post-set</span>
-            <h3>Dashboard de Análisis de Sets para DJ Mixxx</h3>
-            <p>
-              Una web app en Python/Dash con el historial completo de mis sets —
-              navega por evento, explora combinaciones de canciones y descubre
-              tendencias a largo plazo. Donde DJ Buddy rastrea el momento, el
-              dashboard rastrea el viaje.
-            </p>
-            <a
-              href="https://dj-dashboard.onrender.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-cta gtm-track-click"
-              data-event-category="Mixxx DJ Buddy ES"
-              data-event-label="CTA - Dashboard"
-            >
-              Abrir el Dashboard →
-            </a>
-          </div>
+      <div class="cta-grid">
+        <div class="cta-card">
+          <span class="cta-label">Pantalla de Acompañamiento Inalámbrica</span>
+          <h3>Mixxx Remote Display</h3>
+          <p>
+            Un cliente Android que se conecta a DJ Buddy vía Bluetooth SPP. Ideal para salas donde los bailarines quieren consultar el tema que está sonando.
+          </p>
+          <a href="/es/projects/mixxx-remote-display/" class="cta-link">Ver pantalla remota →</a>
+        </div>
 
-          <div class="cta-card">
-            <span class="cta-label">La música detrás de las herramientas</span>
-            <h3>Dr. Beat — Sets de Swing y Jazz</h3>
-            <p>
-              ¿Curiosidad por la música que inspiró estas herramientas? Visita
-              la página de playlists para explorar los sets de swing, blues y
-              jazz que Dr. Beat toca en fiestas de baile social.
-            </p>
-            <a
-              href="/es/playlists/"
-              class="btn-cta-outline gtm-track-click"
-              data-event-category="Mixxx DJ Buddy ES"
-              data-event-label="CTA - Playlists"
-            >
-              Escuchar los sets →
-            </a>
-          </div>
+        <div class="cta-card">
+          <span class="cta-label">Análisis post-set</span>
+          <h3>Dashboard de Análisis de Sets</h3>
+          <p>
+            Una aplicación web interactiva en Python/Dash que detalla el historial completo de mis sesiones como <strong>Dr. Beat</strong>. Analiza curvas de BPM, transiciones y elecciones de pistas a largo plazo.
+          </p>
+          <a href="https://dj-dashboard.onrender.com/" target="_blank" rel="noopener noreferrer" class="cta-link">Abrir dashboard →</a>
+        </div>
+
+        <div class="cta-card">
+          <span class="cta-label">La música detrás de las herramientas</span>
+          <h3>Dr. Beat: Sets de Swing y Jazz</h3>
+          <p>
+            ¿Quieres escuchar la música real que inspiró estos proyectos? Explora las listas de reproducción y archivos de sets que Dr. Beat prepara para los bailarines.
+          </p>
+          <a href="/es/playlists/" class="cta-link">Escuchar sets →</a>
         </div>
       </div>
     </div>
   </div>
 </MainLayout>
+/MainLayout>

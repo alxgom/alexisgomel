@@ -18,6 +18,7 @@ import wordcloud from "../../assets/imgs/wordcloud_liviano.webp";
 import sevillaThumb from "../../assets/imgs/Projects/sevilla_thumb.png";
 import lookerStudioImg from "../../assets/imgs/Projects/tree_hierarchy_viz.png";
 import webAnalyticsImg from "../../assets/imgs/Projects/webanalytics_screenshot.png";
+import einkAlongside from "../../assets/imgs/Projects/eink_mixxx_display_alongside.jpg";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
@@ -47,6 +48,14 @@ const schema = JSON.stringify([
       {
         "@type": "ListItem",
         position: 3,
+        name: "Mixxx Remote Display",
+        description:
+          "Pantalla inalámbrica 'Now Playing' para bailarines. Conecta cualquier dispositivo Android a Mixxx por Bluetooth para identificar canciones en tiempo real.",
+        url: "https://alexisgomel.com/es/projects/mixxx-remote-display/",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
         name: "Panel de Analítica Web",
         description:
           "Panel de análisis casi en tiempo real construido con Data Studio y GA4.",
@@ -529,7 +538,63 @@ const schema = JSON.stringify([
         </div>
       </div>
 
-      <!-- Project: Task Tracker -->
+      <!-- Project: Mixxx Remote Display -->
+      <div class="row mb-5 align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <div class="general-img-holder">
+            <Image
+              src={einkAlongside}
+              alt="Mixxx Remote Display en un e-reader"
+              class="img-fluid"
+              widths={[400, 800, einkAlongside.width]}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            <div class="overlay">
+              <a
+                href="/es/projects/mixxx-remote-display/"
+                class="overlay-link-full gtm-track-click"
+                data-event-category="Projects"
+                data-event-label="Mixxx Remote Display - Card"
+                aria-label="Ver página de Mixxx Remote Display"></a>
+              <div class="overlay-infos">
+                <h5>Mixxx Remote Display</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4><a href="/es/projects/mixxx-remote-display/" class="text-dark">Mixxx Remote Display</a></h4>
+          <p>
+            Una aplicación complementaria para Android que convierte cualquier móvil,
+            tablet o e-reader en una pantalla dedicada "Now Playing". Permite a los
+            bailarines identificar la música sin necesidad de preguntar al DJ ni
+            depender de una conexión a internet.
+          </p>
+          <p>
+            Optimizada para un descubrimiento sin fricciones, la pantalla se actualiza
+            automáticamente vía Bluetooth SPP, siendo una opción robusta para salas
+            de baile y locales sin Wi-Fi.
+          </p>
+          <p>
+            <a
+              href="/es/projects/mixxx-remote-display/"
+              class="text-primary font-weight-bold"
+              >Explora la Pantalla de Descubrimiento &rarr;</a
+            >
+          </p>
+          <p>
+            <strong>Tecnología y habilidades:</strong> Android, Java, Bluetooth SPP, Mixxx.
+            <a
+              href="https://github.com/alxgom/mixxx-bt-display"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="gtm-track-click"
+              data-event-category="Projects"
+              data-event-label="Mixxx Remote Display - Text Link">Ver en GitHub</a
+            >
+          </p>
+        </div>
+      </div>
       <div class="row mb-5 align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
           <div class="general-img-holder">

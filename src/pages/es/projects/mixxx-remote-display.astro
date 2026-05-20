@@ -1,0 +1,650 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import einkAlongside from "../../../assets/imgs/Projects/eink_mixxx_display_alongside.jpg";
+import einkCloseup from "../../../assets/imgs/Projects/eink_mixxx_display_closeup.jpg";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "es";
+const alternateHref = "/projects/mixxx-remote-display/";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Mixxx Remote Display",
+  applicationCategory: "MultimediaApplication",
+  operatingSystem: "Android",
+  description:
+    "Una pantalla complementaria inalámbrica para Mixxx que ayuda a los bailarines a descubrir el artista y el título de la música que están bailando en tiempo real.",
+  url: "https://alexisgomel.com/es/projects/mixxx-remote-display/",
+  downloadUrl: "https://github.com/alxgom/mixxx-bt-display/releases",
+  author: {
+    "@type": "Person",
+    name: "Alexis Gomel",
+    url: "https://alexisgomel.com/es/",
+  },
+  keywords:
+    "Mixxx display, pantalla DJ para bailarines, Android e-ink DJ, herramienta de descubrimiento musical, tecnología para baile social",
+});
+---
+
+<MainLayout
+  title="Lleva el descubrimiento musical a la pista de baile con Mixxx Remote Display | Alexis Gomel"
+  description="Una pantalla inalámbrica 'Now Playing' para Mixxx. Ofrece a tus bailarines una forma sencilla de descubrir artistas y canciones mientras bailan."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+  image="/assets/imgs/Projects/mixxx_dj_buddy_poster.jpg"
+>
+  <meta
+    slot="head"
+    name="keywords"
+    content="Mixxx remote display, pantalla now playing, herramienta descubrimiento bailarines, android dj app, e-ink dj display, reconocimiento artistas baile social"
+  />
+  <script type="application/ld+json" set:html={schema} slot="head" />
+
+  <style>
+    .display-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+    .display-hero {
+      padding: 8rem 1rem 6rem;
+      background: var(--cloud-dance-white);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle technical background pattern */
+    .display-hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(var(--light-gray) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+    .display-hero .eyebrow {
+      font-family: var(--font-family-monospace);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .display-hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .display-hero .lead {
+      max-width: 620px;
+      margin: 0 0 2.5rem;
+      font-size: 1.2rem;
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+    .btn-hero-primary {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 0; /* Sharp corner */
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+    }
+    .btn-hero-primary:hover {
+      background: var(--dark);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .btn-hero-outline {
+      display: inline-block;
+      border: 1px solid var(--dark-gray);
+      color: var(--dark-gray);
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 0; /* Sharp corner */
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+    }
+    .btn-hero-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .display-section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--light-gray);
+    }
+    .display-section p a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .display-section p a:hover {
+      color: var(--dark);
+    }
+    .display-section h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    .story-quote {
+      border-left: 2px solid var(--primary);
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--dark-gray);
+      background: var(--cloud-dance-white);
+      font-size: 1.1rem;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .feature-item {
+      padding: 2rem 0;
+      border-top: 1px solid var(--light-gray);
+      transition: border-color 0.3s;
+    }
+    .feature-item:hover {
+      border-top-color: var(--primary);
+    }
+    .feature-item h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .feature-item p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .screenshot-frame {
+      overflow: hidden;
+      box-shadow: 20px 20px 0px var(--albero-pantone); /* Hard offset shadow instead of soft glow */
+      border: 1px solid var(--dark);
+      background: #000;
+      transition: all 0.3s ease;
+    }
+    .screenshot-frame:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 24px 24px 0px var(--albero-pantone);
+    }
+    .screenshot-frame img {
+      display: block;
+      width: 100%;
+      filter: grayscale(0.2) contrast(1.1);
+      transition: all 0.4s ease;
+    }
+    .screenshot-frame:hover img {
+      filter: grayscale(0) contrast(1.1);
+      transform: scale(1.02);
+    }
+    .tech-badge {
+      display: inline-block;
+      border: 1px solid var(--light-gray);
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      font-family: var(--font-family-monospace);
+      font-weight: 500;
+      margin: 0.25rem 0.2rem;
+      color: var(--dark-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .primary-badge {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .success-badge {
+      border-color: var(--triana-green);
+      color: var(--triana-green);
+    }
+    .hero-frame {
+      transform: perspective(1000px) rotateY(-8deg) rotateX(2deg) skewY(1deg);
+    }
+    .hero-frame:hover {
+      transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
+    }
+    /* Pipeline and setup steps - Anti-AI UI elements */
+    .pipeline-flow {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem;
+      margin: 3rem 0;
+      border: 1px solid var(--light-gray);
+      padding: 2rem;
+      background: var(--cloud-dance-white);
+      position: relative;
+    }
+    .pipeline-step {
+      position: relative;
+    }
+    .pipeline-step::after {
+      content: "\2192"; /* Right arrow */
+      position: absolute;
+      right: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    .pipeline-step:last-child::after {
+      content: "";
+    }
+    .pipeline-step-num {
+      font-family: var(--font-family-monospace);
+      font-size: 0.75rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: block;
+      font-weight: 700;
+    }
+    .pipeline-step h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .pipeline-step p {
+      font-size: 0.85rem;
+      color: var(--dark-gray);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .setup-steps {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+    .setup-step-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .setup-step-num {
+      font-family: var(--font-family-monospace);
+      font-weight: 900;
+      color: var(--primary);
+      font-size: 1.25rem;
+      width: 45px;
+      flex-shrink: 0;
+      line-height: 1;
+      padding-top: 2px;
+    }
+    .setup-step-content {
+      border-left: 2px solid var(--light-gray);
+      padding-left: 1.5rem;
+    }
+    .setup-step-content h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .setup-step-content p {
+      font-size: 0.95rem;
+      color: #666;
+      margin: 0;
+      line-height: 1.5;
+    }
+    @media (max-width: 991px) {
+      .display-hero {
+        text-align: left;
+        padding: 6rem 1rem 4rem;
+      }
+      .badge-row {
+        justify-content: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .hero-frame {
+        transform: none;
+        box-shadow: 10px 10px 0px var(--albero-pantone);
+      }
+    }
+    @media (max-width: 767px) {
+      .display-hero h1 {
+        font-size: 2.2rem;
+      }
+      .pipeline-flow {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .pipeline-step::after {
+        content: "\2193"; /* Down arrow */
+        right: auto;
+        left: 50%;
+        bottom: -2rem;
+        top: auto;
+        transform: translateX(-50%);
+      }
+    }
+    
+    /* CTA Section - Anti-AI UI/UX layout */
+    .display-cta {
+      margin-top: 5rem;
+      padding: 4rem 1.25rem;
+      border-top: 1px solid var(--light-gray);
+    }
+    .display-cta-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .display-cta h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+    .display-cta .lead {
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      color: var(--dark-gray);
+      font-size: 1.05rem;
+    }
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      text-align: left;
+    }
+    .cta-card {
+      border-top: 2px solid var(--light-gray);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: border-color 0.2s;
+    }
+    .cta-card:hover {
+      border-top-color: var(--primary);
+    }
+    .cta-label {
+      font-family: var(--font-family-monospace);
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .cta-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .cta-card p {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .cta-link {
+      font-family: var(--font-family-monospace);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .cta-link:hover {
+      color: var(--primary);
+    }
+  </style>
+
+  <div class="display-hero">
+    <div class="display-container">
+      <div class="row align-items-center text-start">
+        <div class="col-lg-6">
+          <p class="eyebrow">Pantalla de Acompañamiento para Mixxx</p>
+          <h1>Mixxx Remote Display lleva el descubrimiento musical a la pista de baile.</h1>
+          <p class="lead">
+            Esta pantalla "Now Playing" inalámbrica ayuda a los bailarines a identificar canciones y artistas sin interrumpir al DJ. Funciona en cualquier dispositivo Android mediante Bluetooth.
+          </p>
+          <div class="hero-actions">
+            <a
+              href="https://github.com/alxgom/mixxx-bt-display"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-hero-primary"
+            >
+              Descarga el APK
+            </a>
+            <a href="#como-funciona" class="btn-hero-outline">Cómo funciona</a>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-5 mt-lg-0">
+          <div class="screenshot-frame hero-frame">
+            <Image
+              src={einkAlongside}
+              alt="Mixxx ejecutándose en un portátil junto a la pantalla de descubrimiento remota"
+              class="img-fluid"
+              loading="eager"
+              width={600}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="display-container">
+    <section class="display-section">
+      <div class="row align-items-center">
+        <div class="col-md-7">
+          <h2>Reduciendo la fricción del descubrimiento musical</h2>
+          <p>
+            Cuando alguien escucha una canción que ama en un baile social, a menudo
+            se olvida de preguntar al DJ después. Creé esta aplicación para cerrar 
+            esa brecha. Ofrece una forma pasiva para que la gente aprenda sobre la 
+            música sin romper el flujo social de la fiesta.
+          </p>
+          <div class="story-quote">
+            "Quienes quieran aprender tienen una entrada de baja fricción al 
+            descubrimiento, y quienes solo quieran bailar no necesitan notar 
+            siquiera que existe."
+          </div>
+          <p>
+            La app funciona en <strong>cualquier móvil o tablet Android</strong>. Al usar 
+            Bluetooth, la pantalla puede colocarse en cualquier lugar de la sala sin 
+            depender del Wi-Fi local. Es una herramienta que el DJ configura una vez 
+            y se actualiza sola cada vez que cambia una canción.
+          </p>
+        </div>
+        <div class="col-md-5 mt-4 mt-md-0">
+          <div class="screenshot-frame">
+            <Image
+              src={einkCloseup}
+              alt="Primer plano de la pantalla de descubrimiento mostrando el artista y el título"
+              class="img-fluid"
+              width={500}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="display-section">
+      <h2>Capacidades</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <h3>Conectividad Bluetooth</h3>
+          <p>
+            Usa Bluetooth SPP (RFCOMM) para un enlace directo con el portátil del DJ. 
+            Sin necesidad de internet ni router, asegurando fiabilidad en cualquier local.
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>Ligero y eficiente</h3>
+          <p>
+            Ajustado para enviar el mínimo de datos. Recibe portadas e info ya 
+            redimensionadas, manteniendo la conexión rápida incluso en hardware 
+            de hace 10 años.
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>Hecho para dispositivos antiguos</h3>
+          <p>
+            Funciona con fluidez en móviles, tablets y e-readers Android antiguos. 
+            Incluye modos de refresco de hardware para evitar el efecto fantasma 
+            en pantallas E-ink, logrando una pantalla de alto contraste sin reflejos.
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>Seguimiento automático de canciones</h3>
+          <p>
+            El DJ inicia la transmisión una vez. La pantalla rastrea cada cambio 
+            de canción desde Mixxx automáticamente durante toda la noche.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="display-section">
+      <h2>Cómo funciona</h2>
+      <p class="lead mb-5">
+        Una arquitectura ligera diseñada para conectar la cabina del DJ con la pista de baile sin depender de internet.
+      </p>
+
+      <div class="pipeline-flow">
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">PASO 01</span>
+          <h3>Transmisión</h3>
+          <p>
+            <a href="/es/projects/mixxx-dj-buddy/">Mixxx DJ Buddy</a> en el portátil del DJ monitorea los cambios de pista en vivo y extrae los metadatos y portadas.
+          </p>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">PASO 02</span>
+          <h3>Flujo de datos</h3>
+          <p>
+            El portátil transcodifica y redimensiona la imagen. Luego envía paquetes de metadatos y portadas a través de un enlace Bluetooth SPP.
+          </p>
+        </div>
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">PASO 03</span>
+          <h3>Renderizado</h3>
+          <p>
+            El cliente Android recibe el paquete ligero, dibuja la interfaz y activa ciclos de refresco optimizados para pantallas E-ink.
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-lg-6">
+          <h3 class="mb-4">Primeros Pasos</h3>
+          <ul class="setup-steps">
+            <li class="setup-step-item">
+              <div class="setup-step-num">01</div>
+              <div class="setup-step-content">
+                <h4>Instalar el APK</h4>
+                <p>Instala la aplicación en cualquier dispositivo Android (mínimo Android 4.2.2).</p>
+              </div>
+            </li>
+            <li class="setup-step-item">
+              <div class="setup-step-num">02</div>
+              <div class="setup-step-content">
+                <h4>Vincular Dispositivos</h4>
+                <p>Empareja por Bluetooth el dispositivo Android con el portátil del DJ.</p>
+              </div>
+            </li>
+            <li class="setup-step-item">
+              <div class="setup-step-num">03</div>
+              <div class="setup-step-content">
+                <h4>Ejecutar DJ Buddy</h4>
+                <p>Inicia el servidor de <a href="/es/projects/mixxx-dj-buddy/">Mixxx DJ Buddy</a> en el portátil y activa la transmisión serie.</p>
+              </div>
+            </li>
+            <li class="setup-step-item">
+              <div class="setup-step-num">04</div>
+              <div class="setup-step-content">
+                <h4>Colocar y Conectar</h4>
+                <p>Abre la app, selecciona el portátil vinculado y coloca la pantalla en un lugar visible de la sala.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0 d-flex flex-column justify-content-between">
+          <div>
+            <h3 class="mb-4">Pila Técnica</h3>
+            <p>
+              Al delegar tareas de procesamiento pesado (como el redimensionamiento y la conversión de formatos de imagen) al ordenador emisor, el cliente Android permanece lo suficientemente ligero para funcionar con fluidez en hardware antiguo.
+            </p>
+          </div>
+          <div class="mt-4">
+            <span class="tech-badge">Android (Java)</span>
+            <span class="tech-badge">Bluetooth SPP</span>
+            <span class="tech-badge">Go (Servidor)</span>
+            <span class="tech-badge">Mixxx API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="display-cta">
+    <div class="display-cta-inner">
+      <span class="cta-label">Más herramientas y sesiones de DJ</span>
+      <h2>Explora el panorama completo</h2>
+      <p class="lead">
+        Mixxx Remote Display forma parte de un ecosistema más amplio de herramientas creadas para eventos de baile social.
+      </p>
+
+      <div class="cta-grid">
+        <div class="cta-card">
+          <span class="cta-label">Servidor de Transmisión</span>
+          <h3>Mixxx DJ Buddy</h3>
+          <p>
+            El motor de escritorio que alimenta esta pantalla remota. Rastrea el flujo de BPM en vivo, organiza categorías de carpetas y gestiona el transmisor Bluetooth.
+          </p>
+          <a href="/es/projects/mixxx-dj-buddy/" class="cta-link">Ver la app principal →</a>
+        </div>
+
+        <div class="cta-card">
+          <span class="cta-label">Análisis post-sesión</span>
+          <h3>Dashboard de Análisis de Sets de DJ</h3>
+          <p>
+            Una aplicación web interactiva en Python/Dash que muestra el historial completo de las sesiones de DJ de Alexis bajo el pseudónimo de <strong>Dr. Beat</strong>. Analiza curvas de BPM, transiciones de canciones y elecciones musicales.
+          </p>
+          <a href="https://dj-dashboard.onrender.com/" target="_blank" rel="noopener noreferrer" class="cta-link">Abrir el dashboard →</a>
+        </div>
+
+        <div class="cta-card">
+          <span class="cta-label">La música detrás de las herramientas</span>
+          <h3>Dr. Beat — Sesiones de Swing y Jazz</h3>
+          <p>
+            ¿Curiosidad por escuchar la música real que inspiró estos proyectos? Explora las listas de reproducción y los archivos de sesiones en vivo que Dr. Beat prepara para bailarines sociales.
+          </p>
+          <a href="/es/playlists/" class="cta-link">Escuchar las sesiones →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</MainLayout>
