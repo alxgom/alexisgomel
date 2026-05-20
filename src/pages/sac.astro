@@ -13,6 +13,41 @@ const alternateHref = "/es/sac/"; // Links to Spanish version
   alternateHref={alternateHref}
   image="/assets/imgs/Projects/share_puzzle_logo.svg"
 >
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to split rent fairly with the SAC method",
+      "description": "A step-by-step guide to using the Shared Accommodation Calculator to split rent based on room features.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Identify the base rent",
+          "text": "Determine the total monthly rent for the entire property.",
+          "url": "https://alexisgomel.com/sac/#base-rent"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "List room features",
+          "text": "Identify unique features for each room, such as size, en-suite bathroom, or balcony.",
+          "url": "https://alexisgomel.com/sac/#features"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Assign weights",
+          "text": "Assign a mathematical weight to each feature based on its relative value to the household.",
+          "url": "https://alexisgomel.com/sac/#weights"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Calculate individual shares",
+          "text": "Use the SAC formula to distribute the total rent proportionally across all rooms.",
+          "url": "https://alexisgomel.com/sac/#calculate"
+        }
+      ]
+    }
+  </script>
+
   <link rel="stylesheet" href="/assets/css/sac_styles.css?v=2" slot="head" />
 
   <!-- WebApplication Schema -->
