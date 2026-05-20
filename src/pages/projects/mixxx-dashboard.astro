@@ -63,6 +63,32 @@ const schema = JSON.stringify({
     fetchpriority="high"
   />
   <script type="application/ld+json" set:html={schema} slot="head" />
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://alexisgomel.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Projects",
+          "item": "https://alexisgomel.com/projects/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Mixxx DJ Set Analysis Dashboard",
+          "item": "https://alexisgomel.com/projects/mixxx-dashboard/"
+        }
+      ]
+    }
+  </script>
   <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
 
   <style>

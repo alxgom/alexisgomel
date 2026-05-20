@@ -12,6 +12,32 @@ const alternateHref = "/projects/webanalytics/";
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://alexisgomel.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Projects",
+          "item": "https://alexisgomel.com/projects/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Web Analytics Dashboard",
+          "item": "https://alexisgomel.com/projects/webanalytics/"
+        }
+      ]
+    }
+  </script>
   <!-- SEO: Indexing Enabled -->
   <!-- SEO: Indexing Enabled -->
   <meta

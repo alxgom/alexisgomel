@@ -40,7 +40,34 @@ const schema = JSON.stringify({
     name="keywords"
     content="Mixxx remote display, now playing screen, dancer discovery tool, android dj app, e-ink dj display, artist recognition social dance"
   />
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://alexisgomel.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Projects",
+          "item": "https://alexisgomel.com/projects/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Mixxx Remote Display",
+          "item": "https://alexisgomel.com/projects/mixxx-remote-display/"
+        }
+      ]
+    }
+  </script>
   <script type="application/ld+json" set:html={schema} slot="head" />
+
 
   <style>
     .display-container {
