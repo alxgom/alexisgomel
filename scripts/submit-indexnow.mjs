@@ -15,10 +15,28 @@ const URL_LIST = [
   `https://${HOST}/es/playlists/`,
   `https://${HOST}/contact/`,
   `https://${HOST}/es/contact/`,
+  `https://${HOST}/blog/`,
+  `https://${HOST}/es/blog/`,
   `https://${HOST}/projects/sevilla/`,
   `https://${HOST}/es/projects/sevilla/`,
   `https://${HOST}/projects/webanalytics/`,
-  `https://${HOST}/es/projects/webanalytics/`
+  `https://${HOST}/es/projects/webanalytics/`,
+  `https://${HOST}/projects/mixxx-dj-buddy/`,
+  `https://${HOST}/es/projects/mixxx-dj-buddy/`,
+  `https://${HOST}/projects/mixxx-dashboard/`,
+  `https://${HOST}/projects/mixxx-remote-display/`,
+  `https://${HOST}/es/projects/mixxx-remote-display/`,
+  `https://${HOST}/projects/looker-studio-custom-visuals/`,
+  `https://${HOST}/es/projects/looker-studio-custom-visuals/`,
+  `https://${HOST}/projects/powerbi-custom-visuals/`,
+  `https://${HOST}/es/projects/powerbi-custom-visuals/`,
+  `https://${HOST}/projects/powerbi-lipstick-chart/`,
+  `https://${HOST}/es/projects/powerbi-lipstick-chart/`,
+  `https://${HOST}/blog/barcelona-luxury-hotel-dataset/`,
+  `https://${HOST}/es/blog/barcelona-luxury-hotel-dataset/`,
+  `https://${HOST}/blog/gemini-pagespeed-audit/`,
+  `https://${HOST}/es/blog/gemini-pagespeed-audit/`,
+  `https://${HOST}/es/blog/custom-visuals-workflow-figma-ai/`
 ];
 
 async function submitToIndexNow(endpoint) {

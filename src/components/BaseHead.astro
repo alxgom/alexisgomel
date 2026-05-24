@@ -16,6 +16,7 @@ interface Props {
   // New Multilingual Props
   currentLang: string;
   alternateHref: string;
+  alternateHrefs?: Record<string, string>;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   image = "/assets/imgs/curvy_logo.svg", // Updated to use curvy_logo.svg for social media previews
   currentLang,
   alternateHref,
+  alternateHrefs,
 } = Astro.props;
 
 // 1. Determine the canonical URL for the current page
@@ -32,16 +34,31 @@ const canonicalPath = Astro.url.pathname.endsWith("/")
   : `${Astro.url.pathname}/`;
 const canonicalURL = new URL(canonicalPath, Astro.site);
 
-// 2. Determine the alternate language tag for SEO
-const alternateLang = currentLang === "en" ? "es" : "en";
+// 2. Determine the alternate language tags for SEO
+// We build an array of alternates. If alternateHrefs is provided, we use it.
+// Otherwise, we fall back to the old single alternateHref logic.
+const languageAlternates = [{ href: canonicalURL.href, hrefLang: currentLang }];
+
+if (alternateHrefs) {
+  Object.entries(alternateHrefs).forEach(([lang, href]) => {
+    const path = href.endsWith("/") ? href : `${href}/`;
+    const url = new URL(path, Astro.site);
+    languageAlternates.push({ href: url.href, hrefLang: lang });
+  });
+} else if (alternateHref) {
+  const alternateLang = currentLang === "en" ? "es" : "en";
+  const alternatePath = alternateHref.endsWith("/")
+    ? alternateHref
+    : `${alternateHref}/`;
+  const alternateUrl = new URL(alternatePath, Astro.site);
+  languageAlternates.push({ href: alternateUrl.href, hrefLang: alternateLang });
+}
 
 // 3. Set the base URL for the 'x-default' (fallback) link
-// Ensure alternateHref is absolute and has a trailing slash
-const alternatePath = alternateHref.endsWith("/")
-  ? alternateHref
-  : `${alternateHref}/`;
-const alternateUrl = new URL(alternatePath, Astro.site);
-const enUrl = currentLang === "en" ? canonicalURL.href : alternateUrl.href;
+// Use the 'en' version if available, otherwise use canonical if current is 'en'
+const enAlt = alternateHrefs?.en || (currentLang === "en" ? canonicalPath : alternateHref);
+const enPath = enAlt.endsWith("/") ? enAlt : `${enAlt}/`;
+const enUrl = new URL(enPath, Astro.site);
 
 const schema = {
   "@context": "https://schema.org",
@@ -83,9 +100,8 @@ const schema = {
     image: new URL(image, Astro.url).href,
   }}
   languageAlternates={[
-    { href: canonicalURL.href, hrefLang: currentLang },
-    { href: alternateUrl.href, hrefLang: alternateLang },
-    { href: enUrl, hrefLang: "x-default" },
+    ...languageAlternates,
+    { href: enUrl.href, hrefLang: "x-default" },
   ]}
   extend={{
     meta: [

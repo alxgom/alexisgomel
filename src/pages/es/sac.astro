@@ -3,14 +3,17 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
-const alternateHref = "/sac/"; // Links to English version
+const alternateHrefs = {
+  en: "/sac/",
+  fr: "/fr/sac/",
+};
 ---
 
 <MainLayout
   title="Calculadora de Alquiler Justo por Metros Cuadrados | SHARE"
   description="¿Necesitas dividir el alquiler con compañeros de piso? La Calculadora SHARE te ayuda a estimar un reparto justo basado en los metros cuadrados y las zonas comunes."
   currentLang={currentLang}
-  alternateHref={alternateHref}
+  alternateHrefs={alternateHrefs}
   image="/assets/imgs/Projects/share_puzzle_logo.svg"
 >
   <link rel="stylesheet" href="/assets/css/sac_styles.css?v=2" slot="head" />

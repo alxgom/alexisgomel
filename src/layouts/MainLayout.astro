@@ -8,7 +8,8 @@ interface Props {
   title: string;
   description: string;
   currentLang: string;
-  alternateHref: string;
+  alternateHref?: string;
+  alternateHrefs?: Record<string, string>;
   bodyId?: string;
   bodyClass?: string;
   bodyData?: Record<string, string>;
@@ -20,6 +21,7 @@ const {
   description,
   currentLang,
   alternateHref,
+  alternateHrefs,
   bodyId = "home",
   bodyClass = "",
   bodyData = {},
@@ -37,7 +39,8 @@ const GTM_ID = "GTM-WDZK7ZFX";
       description={description}
       image={image}
       currentLang={currentLang}
-      alternateHref={alternateHref}
+      alternateHref={alternateHref || ""}
+      alternateHrefs={alternateHrefs}
     />
 
     <script is:inline>
@@ -171,7 +174,7 @@ const GTM_ID = "GTM-WDZK7ZFX";
         style="display:none;visibility:hidden"></iframe>
     </noscript>
 
-    <Header />
+    <Header currentLang={currentLang} alternateHrefs={alternateHrefs} />
 
     <main id="main-content">
       <slot />

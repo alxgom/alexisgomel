@@ -3,14 +3,17 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
-const alternateHref = "/es/sac/"; // Links to Spanish version
+const alternateHrefs = {
+  es: "/es/sac/",
+  fr: "/fr/sac/",
+};
 ---
 
 <MainLayout
   title="How to split rent with your flatmate"
   description="Need to split rent with roommates? The SHARE Calculator helps you estimate a fair rent split based on room square footage and shared area. A simple tool to help navigate shared housing."
   currentLang={currentLang}
-  alternateHref={alternateHref}
+  alternateHrefs={alternateHrefs}
   image="/assets/imgs/Projects/share_puzzle_logo.svg"
 >
   <script type="application/ld+json" slot="head">

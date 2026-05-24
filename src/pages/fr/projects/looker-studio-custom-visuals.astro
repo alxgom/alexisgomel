@@ -1,0 +1,504 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import performanceImg from "../../../assets/imgs/Projects/performance.png";
+import bestPracticesImg from "../../../assets/imgs/Projects/best_practices_screenshot.png";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "fr";
+const alternateHrefs = {
+  en: "/projects/looker-studio-custom-visuals/",
+  es: "/es/projects/looker-studio-custom-visuals/",
+};
+---
+
+<MainLayout
+  title="Exemples de Visualisations Personnalisées pour Data Studio (anciennement Looker Studio)"
+  description="Améliorez votre narration de données avec des visualisations interactives personnalisées pour Google Data Studio (anciennement Looker Studio), incluant l'Hiérarchie en Arbre, l'Histogramme et les graphiques Lipstick."
+  currentLang={currentLang}
+  alternateHrefs={alternateHrefs}
+  image="/assets/imgs/Projects/community_visuals_banner.svg"
+>
+  <meta
+    slot="head"
+    name="description"
+    content="Explorez des visualisations personnalisées avancées pour Google Looker Studio. Conçues avec JavaScript et DSCC, ces visualisations de la communauté enrichissent vos rapports avec une interactivité profonde."
+  />
+  <meta
+    slot="head"
+    name="keywords"
+    content="Visualisations Personnalisées Looker Studio, Visualisations de la Communauté, Hiérarchie en Arbre Looker Studio, Graphique Lipstick, Histogramme Personnalisé, API DSCC, Visualisation de Données JavaScript"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Visualisations Personnalisées pour Data Studio (anciennement Looker Studio) | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="Visualisations interactives personnalisées pour Looker Studio. Inclut l'Hiérarchie en Arbre, des Histogrammes et des graphiques Lipstick avancés."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/Projects/tree_hierarchy_viz.png"
+  />
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <!-- FAQ Schema for LLM Context -->
+  <script slot="head" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quels sont des exemples de visualisations de la communauté personnalisées pour Data Studio (Looker Studio) ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Des exemples de visualisations personnalisées pour Data Studio (anciennement Looker Studio) incluent les Hiérarchies en Arbre pour l'analyse multiniveau, les Graphiques Lipstick pour suivre la performance par rapport aux objectifs, les Graphiques Cleveland pour visualiser les distributions sans encombrement, et les tableaux Sparkline. Ces visualisations étendent les capacités natives de Data Studio (Looker Studio)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment sont construites les visualisations de la communauté de Data Studio (Looker Studio) ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les visualisations personnalisées de la communauté pour Data Studio (anciennement Looker Studio) sont construites avec JavaScript, CSS et des bibliothèques comme D3.js. Elles se connectent aux données via l'API DSCC (Data Studio Community Component) de Google, permettant aux développeurs de générer du HTML interactif et entièrement personnalisé dans leurs rapports. Bien que le code source ne soit pas public sur cette page, vous pouvez tester le tableau de bord interactif intégré pour voir comment elles fonctionnent exactement comme les visualisations natives, et me contacter pour en savoir plus."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <style>
+    .looker-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .report-frame {
+      width: 100%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      display: block;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .viz-list {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+
+    .viz-list h3 {
+      margin-bottom: 1rem;
+    }
+
+    .viz-list ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    .viz-list li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .viz-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+  </style>
+
+  <div class="looker-container">
+    <div class="container mt-5 pt-5">
+      <h1 class="section-title">
+        Visualisations de la Communauté pour Data Studio (anciennement Looker Studio)
+      </h1>
+      <p class="lead text-muted">
+        Visualisations personnalisées que j'ai développées pour Google Data Studio (anciennement Looker Studio), étendant ses capacités avec des types de graphiques spécialisés pour une meilleure narration de données.
+      </p>
+
+      <div class="looker-embed-container">
+        <div id="looker-loader" class="looker-loader">
+          <div class="spinner"></div>
+        </div>
+        <iframe
+          id="looker-iframe"
+          class="report-frame"
+          width="100%"
+          height="600"
+          src="https://lookerstudio.google.com/embed/reporting/7f1ad7dc-2ae4-4e72-be31-b588c9890fa9/page/p_8m1usmbk0d"
+          frameborder="0"
+          style="border:0"
+          allowfullscreen
+          loading="lazy"
+          sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        ></iframe>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const iframe = document.getElementById("looker-iframe");
+          const loader = document.getElementById("looker-loader");
+
+          if (iframe && loader) {
+            iframe.addEventListener("load", function () {
+              loader.style.display = "none";
+              iframe.style.visibility = "visible";
+            });
+
+            // Fallback pour les cas où l'événement 'load' ne se déclenche pas
+            setTimeout(() => {
+              if (iframe.style.visibility !== "visible") {
+                loader.style.display = "none";
+                iframe.style.visibility = "visible";
+              }
+            }, 5000); // Masquer le chargeur après 5 secondes si l'iframe n'est pas chargée
+          }
+        });
+      </script>
+
+      <div class="viz-list">
+        <h3>Visualisations Incluses</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-12">
+            <ul>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/lipstick%20icon.svg"
+                  class="viz-icon"
+                  alt="Icône Graphique Lipstick"
+                />
+                <div>
+                  <strong>Graphique Lipstick</strong> - Un type de graphique spécialisé pour comparer les valeurs réelles aux objectifs avec un style visuel distinctif et une haute densité d'information.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/tree%20icon.svg"
+                  class="viz-icon"
+                  alt="Icône Hiérarchie en Arbre"
+                />
+                <div>
+                  <strong>Hiérarchie en Arbre</strong> - Une visualisation hiérarchique pour afficher des structures de données multiniveaux avec des capacités d'exploration intuitive (drill-down).
+                </div>
+              </li>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/Histogram.svg"
+                  class="viz-icon"
+                  alt="Icône Histogramme"
+                />
+                <div>
+                  <strong>Histogramme</strong> - Un histogramme personnalisable avec des options d'orientation, d'échelle logarithmique et de visibilité des axes pour l'analyse de distribution.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/sparkline_table_icon.svg"
+                  class="viz-icon"
+                  alt="Icône Tableau Sparkline"
+                />
+                <div>
+                  <strong>Tableau Sparkline</strong> - Un tableau riche en données avec des sparklines intégrés pour suivre les tendances en un coup d'œil.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/cleveland%20icon.svg"
+                  class="viz-icon"
+                  alt="Icône Graphique Cleveland"
+                />
+                <div>
+                  <strong>Graphique Cleveland</strong> - Une alternative propre aux graphiques à barres pour comparer des valeurs ou afficher des distributions.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/minimal_pause_kpi.svg"
+                  class="viz-icon"
+                  alt="Icône KPI Personnalisé"
+                />
+                <div>
+                  <strong>KPI Personnalisé</strong> - Un design de carte KPI minimaliste avec une esthétique 'minimal pause' pour un impact métrique clair.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="/assets/imgs/Projects/matrix_heatmap_icon.svg"
+                  class="viz-icon"
+                  alt="Icône Heatmap Matricielle"
+                />
+                <div>
+                  <strong>Heatmap Matricielle</strong> - Une visualisation dense pour explorer les corrélations, les distributions et l'intensité à travers deux dimensions avec une échelle personnalisée.
+                </div>
+              </li>
+            </ul>
+            <p class="text-muted mt-3">
+              Vous trouverez ci-dessous des démonstrations détaillées et des explications techniques pour les visualisations principales.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Graphique Lipstick : Analyse Valeur vs Objectif</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+            <div class="video-container">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                class="img-fluid rounded shadow"
+                aria-label="Démo de la visualisation Lipstick"
+              >
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_lipstick_viz.webm"
+                  type="video/webm"
+                />
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_lipstick_viz_optimized.mp4"
+                  type="video/mp4"
+                />
+                Votre navigateur ne supporte pas le format vidéo.
+              </video>
+            </div>
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p>
+              La <strong>Visualisation Lipstick</strong> est un outil puissant conçu pour comparer les performances actuelles par rapport à des objectifs spécifiques. Elle est excellente pour décomposer les métriques à travers plusieurs dimensions ; par exemple, comparer le <em>Revenu Réel</em> de différentes régions avec leurs <em>Objectifs Attendus</em>.
+            </p>
+            <p>
+              En combinant plusieurs points de données dans un seul élément graphique, elle offre une vue complète en un clin d'œil :
+            </p>
+            <ul>
+              <li>
+                <strong>Pourcentage de réalisation :</strong> Progrès visuel vers l'objectif.
+              </li>
+              <li>
+                <strong>Valeur réelle de la métrique :</strong> Le chiffre absolu actuel.
+              </li>
+              <li>
+                <strong>Valeur cible :</strong> Le point de référence ou le budget.
+              </li>
+              <li>
+                <strong>Variation absolue :</strong> L'écart calculé entre les deux.
+              </li>
+            </ul>
+            <p class="text-muted small">
+              Cette visualisation remplace efficacement le besoin de graphiques à barres et de tableaux de données séparés en consolidant tous les indicateurs de performance dans un composant interactif et épuré.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Hiérarchie en Arbre en Action</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="video-container">
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                class="img-fluid rounded shadow"
+                aria-label="Démo de la visualisation de hiérarchie en arbre"
+                poster="/assets/imgs/Projects/tree_hierarchy_viz.png"
+              >
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_tree_hierarchy_viz.webm"
+                  type="video/webm"
+                />
+                <source
+                  src="/assets/imgs/Projects/lookerstudio_tree_hierarchy_viz_optimized.mp4"
+                  type="video/mp4"
+                />
+                Votre navigateur ne supporte pas le format vidéo.
+              </video>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>
+              La visualisation en <strong>Hiérarchie en Arbre</strong> permet aux utilisateurs de naviguer intuitivement à travers des structures de données multiniveaux. En cliquant sur les nœuds, les utilisateurs peuvent explorer des catégories spécifiques, tandis que des transitions fluides aident à conserver le contexte.
+            </p>
+            <p class="text-muted small">
+              Cette vidéo montre les capacités d'exploration (drill-down), la mise en page adaptative et les fonctions interactives de sélection de nœuds de la structure en arbre.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Pourquoi utiliser des visualisations personnalisées ?</h3>
+        <p>
+          Bien que Google Looker Studio propose un ensemble robuste de graphiques par défaut, certaines structures de données complexes nécessitent des approches visuelles spécialisées.
+          <strong>Les visualisations personnalisées de la communauté</strong> comblent cette lacune en permettant aux développeurs de créer des graphiques uniques et interactifs à l'aide de
+          <a href="https://d3js.org/" target="_blank" rel="noopener noreferrer"
+            >D3.js</a
+          >
+          et de
+          <a
+            href="https://developers.google.com/looker-studio/visualization"
+            target="_blank"
+            rel="noopener noreferrer">l'API DSCC</a
+          >.
+        </p>
+        <p>Les principaux avantages incluent :</p>
+        <ul>
+          <li>
+            <strong>Rapports à l'image de votre marque :</strong> Adaptez le style de vos données pour qu'il corresponde à votre identité visuelle.
+          </li>
+          <li>
+            <strong>Interaction Avancée :</strong> Implémentez des comportements complexes d'exploration et de filtrage croisé.
+          </li>
+          <li>
+            <strong>Graphiques Spécialisés :</strong> Utilisez des graphiques non standards comme les Hiérarchies en Arbre ou les graphiques Lipstick pour une communication plus efficace.
+          </li>
+        </ul>
+      </div>
+
+      <div class="viz-list">
+        <h3>Foire Aux Questions</h3>
+        <div class="faq-item mt-4">
+          <h5>
+            1. Qu'est-ce qu'une visualisation de la communauté Data Studio (Looker Studio) ?
+          </h5>
+          <p>
+            C'est un graphique tiers développé à l'aide de l'API de visualisation de la communauté de Google Data Studio (anciennement Looker Studio). Cela permet un rendu et une interaction personnalisés qui vont au-delà des composants intégrés standards.
+          </p>
+        </div>
+        <div class="faq-item mt-3">
+          <h5>2. Comment installer ces visualisations personnalisées ?</h5>
+          <p>
+            Vous pouvez les ajouter à votre rapport à l'aide de l'icône "Visualisations et composants de la communauté" dans la barre d'outils de Data Studio, puis en collant le chemin du manifeste fourni (disponible sur demande).
+          </p>
+        </div>
+        <div class="faq-item mt-3">
+          <h5>3. Ces visualisations sont-elles adaptatives (responsive) ?</h5>
+          <p>
+            Oui, toutes les visualisations présentées ici sont conçues pour être entièrement adaptatives et s'ajuster à la taille du conteneur dans votre rapport Data Studio (Looker Studio).
+          </p>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Détails Techniques</h3>
+        <p>
+          Ces visualisations sont construites à l'aide de
+          <a
+            href="https://developers.google.com/looker-studio/visualization"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            l'API DSCC (Data Studio Community Component)
+          </a>
+          avec JavaScript et D3.js pour le rendu. Elles sont conçues pour être hautement configurables via le panneau de style de Data Studio.
+        </p>
+        <p>
+          <strong>Technologies et compétences :</strong> JavaScript, D3.js, API DSCC, Visualisation de Données, CSS.
+        </p>
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
+<div
+  style="background: linear-gradient(to bottom, #ffffff 0%, #f0eee9 300px, #f0eee9 100%); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 4rem 0;"
+>
+  <div class="looker-container">
+    <div class="container">
+      <h3>Application Concrète : Suivi de Performance</h3>
+      <p
+        class="lead"
+        style="text-align: left; margin: 0 0 1rem 0; color: #212529;"
+      >
+        J'utilise ces composants pour visualiser les données de manière impossible avec les graphiques natifs. Le <strong>Graphique Cleveland</strong>, par exemple, me permet de suivre les distributions de performance dans une vue unique, là où les outils standards nécessiteraient plusieurs graphiques séparés pour transmettre la même information.
+      </p>
+
+      <p>
+        Visualisation des scores quotidiens de <strong>PageSpeed Insights</strong>, permettant une identification rapide des tendances de performance et de la distribution des métriques Core Web Vitals.
+      </p>
+
+      <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+          <figure class="text-center">
+            <div
+              class="shadow rounded overflow-hidden d-inline-block"
+              style="background: white;"
+            >
+              <Image
+                src={performanceImg}
+                alt="Graphique Cleveland montrant la distribution des scores de performance"
+                class="img-fluid"
+              />
+            </div>
+            <figcaption class="text-muted small mt-2">
+              Distribution des scores de performance visualisée avec un graphique Cleveland
+            </figcaption>
+          </figure>
+        </div>
+        <div class="col-md-6 mb-4">
+          <figure class="text-center">
+            <div
+              class="shadow rounded overflow-hidden d-inline-block"
+              style="background: white;"
+            >
+              <Image
+                src={bestPracticesImg}
+                alt="Graphique Cleveland montrant les scores de meilleures pratiques au fil du temps"
+                class="img-fluid"
+              />
+            </div>
+            <figcaption class="text-muted small mt-2">
+              Suivi des métriques de Meilleures Pratiques
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="text-center mt-4 mb-5">
+        <a
+          href="/fr/projects/webanalytics/"
+          class="btn btn-primary btn-lg shadow-sm"
+        >
+          Voir le tableau de bord Web Analytics <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background: #f8f9fa; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 4rem 0; border-top: 1px solid #eee;">
+  <div class="looker-container">
+    <div class="container text-center">
+      <h3 class="mb-3">Vous recherchez des solutions pour Power BI ?</h3>
+      <p class="lead mb-4" style="max-width: 700px; margin: 0 auto; color: #212529;">
+        Je développe également des composants visuels avancés et personnalisés pour l'écosystème Microsoft Power BI. Explorez mes graphiques spécialisés conçus pour élever vos rapports Power BI.
+      </p>
+      <a href="/fr/projects/powerbi-custom-visuals/" class="btn btn-outline-primary btn-lg shadow-sm">
+        Explorer les Visualisations Power BI <i class="fas fa-chart-bar ml-2"></i>
+      </a>
+    </div>
+  </div>
+</div>

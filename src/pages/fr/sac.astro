@@ -1,0 +1,309 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "fr";
+const alternateHrefs = {
+  en: "/sac/",
+  es: "/es/sac/",
+};
+---
+
+<MainLayout
+  title="Comment diviser le loyer équitablement par surface : Calculatrice SHARE"
+  description="Besoin de diviser le loyer avec vos colocataires ? Le calculateur SHARE vous aide à estimer un partage équitable basé sur la surface des chambres et les espaces communs."
+  currentLang={currentLang}
+  alternateHrefs={alternateHrefs}
+  image="/assets/imgs/Projects/share_puzzle_logo.svg"
+>
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Comment diviser le loyer équitablement avec la méthode SAC",
+      "description": "Un guide étape par étape pour utiliser le calculateur de colocation (SHARE) afin de diviser le loyer en fonction des caractéristiques des chambres.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Identifier le loyer de base",
+          "text": "Déterminez le loyer mensuel total pour l'ensemble de la propriété.",
+          "url": "https://alexisgomel.com/fr/sac/#base-rent"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Lister les caractéristiques des chambres",
+          "text": "Identifiez les caractéristiques uniques de chaque chambre, telles que la taille, une salle de bain privée ou un balcon.",
+          "url": "https://alexisgomel.com/fr/sac/#features"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Attribuer des poids",
+          "text": "Attribuez un poids mathématique à chaque caractéristique en fonction de sa valeur relative pour le foyer.",
+          "url": "https://alexisgomel.com/fr/sac/#weights"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Calculer les parts individuelles",
+          "text": "Utilisez la formule SAC pour répartir le loyer total proportionnellement entre toutes les chambres.",
+          "url": "https://alexisgomel.com/fr/sac/#calculate"
+        }
+      ]
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/sac_styles.css?v=2" slot="head" />
+
+  <!-- WebApplication Schema -->
+  <script slot="head" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculatrice SHARE - SHared Appartment REnt Calculator",
+      "description": "Un outil gratuit pour calculer un partage de loyer équitable pour les colocations, basé sur les dimensions des chambres et les espaces partagés.",
+      "url": "https://alexisgomel.com/fr/sac/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "inLanguage": "fr",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Alexis Gomel",
+        "url": "https://alexisgomel.com"
+      },
+      "featureList": [
+        "Calculer le loyer en fonction de la taille de la chambre",
+        "Ajuster la valeur de l'espace partagé",
+        "Inclure les charges mensuelles dans le calcul",
+        "Comparaison visuelle de la taille des chambres"
+      ]
+    }
+  </script>
+
+  <!-- FAQ Schema for better search visibility -->
+  <script slot="head" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment diviser le loyer équitablement dans une colocation ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La manière la plus équitable de diviser le loyer est basée sur la taille des chambres. Calculez la proportion de chaque chambre par rapport à la surface privée totale, puis tenez compte des espaces partagés. Le calculateur SHARE automatise cela en divisant le loyer proportionnellement aux dimensions des chambres et à une valeur d'espace partagé configurable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Les espaces partagés doivent-ils être inclus dans les calculs de loyer ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, les espaces partagés comme le salon et la cuisine doivent être pris en compte. Le calculateur SHARE utilise une 'valeur d'espace partagé' configurable (0-1) pour déterminer le poids des parties communes. Une valeur de 0,75 signifie que l'espace partagé vaut 75 % de la valeur d'une chambre privée."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment les caractéristiques subjectives comme un balcon ou de grandes fenêtres affectent-elles le partage ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le calculateur SHARE se concentre sur les mathématiques objectives de la surface et des espaces partagés pour donner une estimation de base rapide et équitable. Une fois cette base obtenue, vous et vos colocataires pouvez ajuster légèrement le prix final pour tenir compte d'éléments subjectifs comme l'ensoleillement ou une salle de bain attenante, sans complexifier le calcul initial."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <main>
+    <article class="container mt-5 pt-5 mb-5 pb-5">
+      <h1 class="title">
+        Comment diviser le loyer équitablement par surface : Calculatrice SHARE
+      </h1>
+      <p class="subtitle text-center mb-5">
+        Partagez votre loyer équitablement en fonction de la taille des chambres et de l'espace partagé.
+      </p>
+
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <form id="rent-form">
+            <div class="sac-card">
+              <h3 class="h5 mb-3">1. Détails de l'appartement</h3>
+              <div class="inline-inputs mb-3">
+                <div>
+                  <label for="rent">Loyer Total</label>
+                  <input
+                    type="number"
+                    id="rent"
+                    name="rent"
+                    placeholder="ex: 1200"
+                    required
+                  />
+                </div>
+                <div>
+                  <label for="total_area"
+                    >Surface totale de l'appartement
+                    <small class="text-muted d-block font-weight-normal"
+                      >(toute unité)</small
+                    ></label
+                  >
+                  <input
+                    type="number"
+                    id="total_area"
+                    name="total_area"
+                    placeholder="ex: 80"
+                    required
+                  />
+                </div>
+                <div id="price-per-unit-area"></div>
+              </div>
+
+              <div class="form-group mb-0">
+                <label for="bills">
+                  Total des charges / factures (optionnel)
+                  <i
+                    class="fas fa-info-circle"
+                    title="Coûts mensuels non inclus dans le loyer — ex: électricité, internet, assurance. Ils seront divisés également entre tous les locataires."
+                    style="cursor:help; color:var(--highlight-color); font-size:0.8rem; margin-left:3px;"
+                  ></i>
+                </label>
+                <input
+                  type="number"
+                  id="bills"
+                  name="bills"
+                  placeholder="ex: 150"
+                />
+              </div>
+            </div>
+
+            <div class="sac-card mt-4">
+              <h3 class="h5 mb-3">2. Chambres privées</h3>
+              <div class="form-group mb-0">
+                <label for="num_rooms">Nombre de chambres privées</label>
+                <input
+                  type="number"
+                  id="num_rooms"
+                  name="num_rooms"
+                  placeholder="ex: 2"
+                  required
+                />
+              </div>
+              <div id="room-dimensions-container" class="mt-3"></div>
+            </div>
+
+            <div class="sac-card mt-4">
+              <h3 class="h5 mb-3">3. Préférences pour l'espace partagé</h3>
+              <div class="form-group mb-0">
+                <div
+                  class="d-flex justify-content-between align-items-baseline mb-2"
+                >
+                  <label for="alpha" class="mb-0">Valeur de l'espace partagé</label>
+                  <span
+                    id="alpha-value"
+                    class="font-weight-bold"
+                    style="font-size: 1.25rem; color: var(--highlight-color);"
+                    >0.75</span
+                  >
+                </div>
+                <input
+                  type="range"
+                  id="alpha"
+                  name="alpha"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value="0.75"
+                  class="w-100"
+                  style="margin: 0 0 15px 0; padding: 0;"
+                />
+                <small class="form-text text-muted mb-0">
+                  <details>
+                    <summary
+                      style="cursor: pointer; color: var(--highlight-color);"
+                      >Qu'est-ce que c'est ?</summary
+                    >
+                    <div class="mt-2 p-2 bg-light rounded small border">
+                      0 si l'espace partagé n'est pas pris en compte dans le calcul.<br />
+                      1 si la valeur par surface de l'espace partagé est considérée comme identique à celle des chambres.<br />
+                      <strong>Par défaut : 0,75</strong>. La surface de l'espace partagé est considérée comme valant 3/4 de la valeur des chambres privées.
+                    </div>
+                  </details>
+                </small>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary btn-block mt-4 compute-btn"
+              >Calculer le partage équitable <i class="fas fa-calculator ml-2"></i></button
+            >
+            <p class="text-center mt-3 text-muted small">
+              Des suggestions ou un bug ? <a href="/fr/contact/">Contactez-moi !</a>
+            </p>
+          </form>
+        </div>
+
+        <div class="col-lg-6">
+          <div id="warning"></div>
+          <div id="room-visualization"></div>
+          <div id="stacked-bars"></div>
+          <div id="result"></div>
+          <div id="apt-pie"></div>
+        </div>
+      </div>
+
+      <div class="row mt-5 pt-4 border-top">
+        <div class="col-md-8 mx-auto">
+          <h3 class="h4 mb-3">Pourquoi cet outil ?</h3>
+          <p>
+            Cette simple calculatrice est ma petite contribution pour aider ceux qui font face à la crise du logement. Trouver un toit est déjà assez difficile ; diviser le loyer ne devrait pas ajouter de stress.
+          </p>
+          <p>
+            Si vous cherchez à louer un appartement à plusieurs, cet outil offre un point de départ équitable pour diviser les coûts. Il calcule la part de chaque personne en fonction de la taille de sa chambre privée et des espaces communs.
+          </p>
+          <p>
+            Il est conçu pour économiser du temps et de l'énergie dans les villes où trouver un logement est déjà un défi. Si vous le trouvez utile, n'hésitez pas à le partager !
+          </p>
+        </div>
+
+        <!-- Visible FAQ Section for SEO -->
+        <div class="row mt-5">
+          <div class="col-md-8 mx-auto">
+            <h2 class="h4 mb-4 text-center">Foire aux questions</h2>
+
+            <div class="mb-4">
+              <h3 class="h6 font-weight-bold">
+                Comment diviser le loyer équitablement dans une colocation ?
+              </h3>
+              <p class="text-muted">
+                La manière la plus équitable de diviser le loyer est basée sur la taille des chambres. Calculez la proportion de chaque chambre par rapport à la surface privée totale, puis tenez compte des espaces partagés. Le calculateur SHARE automatise cela en divisant le loyer proportionnellement aux dimensions des chambres et à une valeur d'espace partagé configurable.
+              </p>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h6 font-weight-bold">
+                Comment partager le loyer avec des colocataires et les parties communes ?
+              </h3>
+              <p class="text-muted">
+                Lorsqu'on cherche à partager le loyer, les espaces communs comme le salon et la cuisine doivent être pris en compte. Le calculateur SHARE utilise une 'valeur d'espace partagé' configurable (0-1) pour déterminer le poids des parties communes. Une valeur de 0,75 signifie que l'espace partagé vaut 75 % de la valeur d'une chambre privée.
+              </p>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h6 font-weight-bold">
+                Comment les caractéristiques subjectives comme un balcon ou de grandes fenêtres affectent-elles le partage ?
+              </h3>
+              <p class="text-muted">
+                Le calculateur SHARE se concentre intentionnellement sur les mathématiques objectives de la surface et des espaces partagés pour fournir une estimation de base rapide et équitable. Une fois cette base obtenue, vous pouvez facilement ajuster le prix final avec vos colocataires pour tenir compte d'éléments subjectifs (comme l'ensoleillement ou une salle de bain privée) sans complexifier le calcul initial.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <script is:inline defer src="/js/sac_script.js"></script>
+  </main>
+</MainLayout>

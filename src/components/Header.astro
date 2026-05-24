@@ -1,28 +1,58 @@
 ---
+interface Props {
+  currentLang?: string;
+  alternateHrefs?: Record<string, string>;
+}
+
+const { currentLang: propLang, alternateHrefs } = Astro.props;
 const { pathname } = Astro.url;
+
+// Detect language from path if not provided
 const isSpanish = pathname.startsWith("/es/");
+const isFrench = pathname.startsWith("/fr/");
+const currentLang = propLang || (isSpanish ? "es" : isFrench ? "fr" : "en");
 
 // 1. LANGUAGE SWITCHER LOGIC
-let switchUrl;
-if (isSpanish) {
-  switchUrl = pathname.replace(/^\/es/, "") || "/";
+// If alternateHrefs is provided, we use it to show available languages.
+// Otherwise, we fall back to the old EN/ES toggle logic.
+
+let languages = [];
+if (alternateHrefs) {
+  // If we have explicit alternates, show all of them (except current)
+  languages = Object.entries(alternateHrefs).map(([lang, href]) => ({
+    label: lang.toUpperCase(),
+    url: href.endsWith("/") ? href : `${href}/`,
+    lang: lang,
+  }));
 } else {
-  // Fix for root path in English to switch to /es/
-  switchUrl = pathname === "/" ? "/es/" : `/es${pathname}`;
+  // Fallback toggle logic
+  let switchUrl;
+  if (isSpanish) {
+    switchUrl = pathname.replace(/^\/es/, "") || "/";
+  } else if (isFrench) {
+    switchUrl = pathname.replace(/^\/fr/, "") || "/";
+  } else {
+    switchUrl = pathname === "/" ? "/es/" : `/es${pathname}`;
+  }
+
+  // Ensure switchUrl has a trailing slash
+  if (
+    !switchUrl.endsWith("/") &&
+    !switchUrl.includes(".") &&
+    !switchUrl.includes("#")
+  ) {
+    switchUrl += "/";
+  }
+
+  languages.push({
+    label: isSpanish ? "EN" : "ES",
+    url: switchUrl,
+    lang: isSpanish ? "en" : "es",
+  });
 }
-// Ensure switchUrl has a trailing slash if it doesn't have one and doesn't have a dot or hash
-if (
-  !switchUrl.endsWith("/") &&
-  !switchUrl.includes(".") &&
-  !switchUrl.includes("#")
-) {
-  switchUrl += "/";
-}
-const switchLabel = isSpanish ? "EN" : "ES";
-const switchLangAttr = isSpanish ? "en" : "es";
 
 // 2. BASE PATHS
-const homeBase = isSpanish ? "/es" : "";
+const homeBase = currentLang === "es" ? "/es" : currentLang === "fr" ? "/fr" : "";
 
 // 3. TRANSLATIONS
 const t = {
@@ -84,15 +114,21 @@ const isActive = (slug: string) => {
     </a>
 
     <!-- Language Switcher - Always visible, outside burger -->
-    <a
-      class="nav-link-lang-mobile gtm-track-click d-lg-none"
-      href={switchUrl}
-      lang={switchLangAttr}
-      data-event-category="Navigation"
-      data-event-label={`Language Switch - ${switchLabel}`}
-    >
-      {switchLabel}
-    </a>
+    <div class="d-lg-none d-flex align-items-center">
+      {
+        languages.map((lang) => (
+          <a
+            class="nav-link-lang-mobile gtm-track-click"
+            href={lang.url}
+            lang={lang.lang}
+            data-event-category="Navigation"
+            data-event-label={`Language Switch - ${lang.label}`}
+          >
+            {lang.label}
+          </a>
+        ))
+      }
+    </div>
 
     <button
       class="navbar-toggler"
@@ -271,17 +307,21 @@ const isActive = (slug: string) => {
         </li>
 
         <!-- Language Switcher - Desktop only (mobile version is outside burger) -->
-        <li class="nav-item ml-3 d-none d-lg-block">
-          <a
-            class="nav-link nav-link-lang gtm-track-click"
-            href={switchUrl}
-            lang={switchLangAttr}
-            data-event-category="Navigation"
-            data-event-label={`Language Switch - ${switchLabel}`}
-          >
-            {switchLabel}
-          </a>
-        </li>
+        {
+          languages.map((lang) => (
+            <li class="nav-item ml-2 d-none d-lg-block">
+              <a
+                class="nav-link nav-link-lang gtm-track-click"
+                href={lang.url}
+                lang={lang.lang}
+                data-event-category="Navigation"
+                data-event-label={`Language Switch - ${lang.label}`}
+              >
+                {lang.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>

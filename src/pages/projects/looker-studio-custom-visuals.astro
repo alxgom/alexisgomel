@@ -6,14 +6,17 @@ import bestPracticesImg from "../../assets/imgs/Projects/best_practices_screensh
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
-const alternateHref = "/es/projects/looker-studio-custom-visuals/";
+const alternateHrefs = {
+  es: "/es/projects/looker-studio-custom-visuals/",
+  fr: "/fr/projects/looker-studio-custom-visuals/",
+};
 ---
 
 <MainLayout
   title="Data Studio (formerly Looker Studio) Community Visualizations"
   description="Enhance your data storytelling with interactive custom community visualizations for Google Data Studio (formerly Looker Studio), including Tree Hierarchy, Histogram, and Lipstick charts."
   currentLang={currentLang}
-  alternateHref={alternateHref}
+  alternateHrefs={alternateHrefs}
   image="/assets/imgs/Projects/community_visuals_banner.svg"
 >
   <meta
