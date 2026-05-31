@@ -1,0 +1,615 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Lightbox from "../../components/Lightbox.astro";
+import { Image } from "astro:assets";
+import reviewsImg from "../../assets/imgs/Projects/reviews_screenshot.png";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/es/projects/powerbi-text-card/";
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Text Card Grid – Power BI Custom Visual",
+  applicationCategory: "BusinessApplication",
+  description:
+    "A free Power BI custom visual to display qualitative feedback, comments, and changelogs inside structured grids or timelines.",
+  url: "https://alexisgomel.com/projects/powerbi-text-card/",
+  author: {
+    "@type": "Person",
+    name: "Alexis Gomel",
+    url: "https://alexisgomel.com",
+  },
+  keywords:
+    "Power BI custom visual, Text Card Grid, qualitative text Power BI, narrative visual, pbiviz, free Power BI visual, timeline visual Power BI",
+});
+---
+
+<MainLayout
+  title="Text Card Grid: Free Power BI Custom Visual | Alexis Gomel"
+  description="Display qualitative feedback and structured comments inside Power BI dashboards. The Text Card Grid visual organizes narratives, timelines, and changelogs."
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+  image="/assets/imgs/Projects/text_card_icon.svg"
+>
+  <meta
+    slot="head"
+    name="keywords"
+    content="Power BI custom visual, Text Card Power BI, narrative visual Power BI, qualitative data Power BI, free pbiviz download, KPI text dashboard"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Text Card Grid: Free Power BI Custom Visual | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="Add responsive narrative cards, timelines, and qualitative text annotations to your reports with this free custom visual."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/Projects/text_card_icon.svg"
+  />
+  <script type="application/ld+json" set:html={schema} slot="head" />
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://alexisgomel.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Projects",
+          "item": "https://alexisgomel.com/projects/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Text Card Grid",
+          "item": "https://alexisgomel.com/projects/powerbi-text-card/"
+        }
+      ]
+    }
+  </script>
+  <link rel="stylesheet" href="/assets/css/cv.css" slot="head" />
+
+  <style>
+    /* ── Layout ─────────────────────────────────────────── */
+    .pbi-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    /* ── Hero ───────────────────────────────────────────── */
+    .pbi-hero {
+      text-align: center;
+      padding: 5rem 1rem 3.5rem;
+    }
+    .pbi-hero .eyebrow {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e8b231;
+      margin-bottom: 0.75rem;
+    }
+    .pbi-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .pbi-hero .lead {
+      max-width: 640px;
+      margin: 0 auto 2.25rem;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* Hero CTA buttons */
+    .btn-hero-primary {
+      display: inline-block;
+      background: #e8b231;
+      color: #fff;
+      font-weight: 700;
+      padding: 0.8rem 1.9rem;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      margin-right: 0.75rem;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 4px 14px rgba(232, 178, 49, 0.35);
+    }
+    .btn-hero-primary:hover {
+      opacity: 0.88;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .btn-hero-outline {
+      display: inline-block;
+      border: 2px solid #e8b231;
+      color: #e8b231;
+      font-weight: 700;
+      padding: 0.75rem 1.75rem;
+      border-radius: 7px;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-bottom: 0.5rem;
+    }
+    .btn-hero-outline:hover {
+      background: #e8b231;
+      color: #fff;
+    }
+
+    /* ── Sections ───────────────────────────────────────── */
+    .pbi-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid #eee;
+    }
+    .pbi-section h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .pbi-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Screenshot / image frame ───────────────────────── */
+    .screenshot-frame {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.13);
+    }
+    .screenshot-frame img {
+      display: block;
+      width: 100%;
+    }
+
+    /* Image placeholder (used until real assets arrive) */
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #f5f0e8 0%, #ede8dc 100%);
+      border: 2px dashed #d4c9a8;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #a89870;
+      font-size: 0.9rem;
+      gap: 0.5rem;
+    }
+    .img-placeholder .placeholder-icon {
+      font-size: 2.5rem;
+      opacity: 0.5;
+    }
+
+    /* ── Feature cards ──────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid #ede8dc;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.65rem;
+      display: block;
+    }
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .feature-card p {
+      font-size: 0.92rem;
+      color: #555;
+      margin: 0;
+    }
+
+    /* ── Tech badges ────────────────────────────────────── */
+    .tech-badge {
+      display: inline-block;
+      background: #f5f0e8;
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin: 0.25rem 0.2rem;
+      color: #5a4a2a;
+    }
+
+    /* ── Quote / note callout ───────────────────────────── */
+    .pbi-note {
+      background: #fdf8ef;
+      border-left: 4px solid #e8b231;
+      padding: 1rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      color: #5a4a20;
+    }
+
+    /* ── Download card ──────────────────────────────────── */
+    .download-section {
+      background: linear-gradient(135deg, #fdf8ef 0%, #f5f0e8 100%);
+      border: 1px solid #e8d9b0;
+      border-radius: 14px;
+      padding: 2.25rem 2rem;
+      margin-top: 2rem;
+    }
+    .download-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .download-card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e8d9b0;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    .download-card .dl-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #e8b231;
+    }
+    .download-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .download-card p {
+      font-size: 0.88rem;
+      color: #666;
+      margin: 0;
+      flex: 1;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #e8b231;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+    .btn-download:hover {
+      opacity: 0.86;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .btn-download-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 2px solid #e8b231;
+      color: #e8b231;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+      align-self: flex-start;
+      margin-top: 0.25rem;
+    }
+    .btn-download-outline:hover {
+      background: #e8b231;
+      color: #fff;
+    }
+
+    /* ── CTA bottom ─────────────────────────────────────── */
+    .cta-bottom {
+      background: linear-gradient(135deg, #f5f0e8 0%, #ede8dc 100%);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+    .cta-bottom h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+    .cta-bottom p {
+      color: #555;
+      max-width: 520px;
+      margin: 0 auto 1.75rem;
+    }
+
+    @media (max-width: 767px) {
+      .pbi-hero {
+        padding: 4rem 1rem 2rem;
+      }
+      .download-section {
+        padding: 1.75rem 1rem;
+      }
+      .cta-bottom {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <div class="pbi-hero">
+    <p class="eyebrow">Power BI · Custom Visual</p>
+    <h1>The Text Card Grid</h1>
+    <p class="lead">
+      Qualitative data needs structure. This free Power BI custom visual organizes tabular text rows into readable, responsive card grids, timelines, and split readers.
+    </p>
+    <a
+      href="https://github.com/alxgom/PowerBI-viz"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-hero-primary gtm-track-click"
+      data-event-category="PowerBI Text Card"
+      data-event-label="Hero - GitHub Repository"
+    >
+      ⬇ Download on GitHub
+    </a>
+    <a
+      href="https://github.com/alxgom/PowerBI-viz"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-hero-outline gtm-track-click"
+      data-event-category="PowerBI Text Card"
+      data-event-label="Hero - Source Code"
+    >
+      View Source Code
+    </a>
+  </div>
+
+  <div class="pbi-container">
+
+    <!-- ─── WHAT IT LOOKS LIKE ─────────────────── -->
+    <section class="pbi-section">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <div class="screenshot-frame position-relative">
+            <a
+              href="/assets/imgs/Projects/reviews_screenshot.png"
+              data-lightbox="powerbi-textcard"
+              data-title="Text Card Grid showing structured reviews and metrics"
+            >
+              <Image
+                src={reviewsImg}
+                alt="Text Card Grid customer reviews and scores"
+                class="img-fluid"
+              />
+            </a>
+          </div>
+          <p class="text-center text-muted small mt-2">
+            Click to zoom. Text Card Grid presentation layout.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h2>Bridge numbers and narrative text</h2>
+          <p>
+            Power BI handles quantitative charts well but struggles with qualitative datasets like customer feedback, logs, and product notes. 
+          </p>
+          <p>
+            The Text Card Grid visual addresses this gap. It reads raw text fields and restructures them into formatted card containers.
+          </p>
+          <ul>
+            <li>Cards adapt to the canvas width, dynamically switching layout configurations.</li>
+            <li>The visual supports custom grid alignments, chronological timeline streams, and split readers.</li>
+            <li>Insignias and metric labels display alongside the main narrative.</li>
+            <li>Paragraph spacing, lists, and formatting from the source data remain intact.</li>
+          </ul>
+          <div class="mt-3">
+            <span class="tech-badge">TypeScript</span>
+            <span class="tech-badge">D3.js</span>
+            <span class="tech-badge">Power BI SDK</span>
+            <span class="tech-badge">pbiviz</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DESIGN STORY ─────────────────────────────────────── -->
+    <section class="pbi-section">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Visual integration</h2>
+          <p>
+            This visual is built with the TypeScript Power BI SDK. Re-engineering the rendering pipeline allows it to hook directly into the native formatting pane. You can adjust colors, fonts, border radii, and metric labels to match your dashboard theme.
+          </p>
+          <div class="pbi-note">
+            The visual communicates directly with other dashboard elements. Selecting a card filters corresponding charts across your report page.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FEATURE CARDS ────────────────────────────────────── -->
+    <section class="pbi-section">
+      <h2>Key features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">📑</span>
+          <h3>Narrative comments</h3>
+          <p>
+            Displays feedback, changelogs, and notes in clear, structured card containers.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔄</span>
+          <h3>Layout controls</h3>
+          <p>
+            Transitions between responsive column grids, vertical timelines, or reader panes.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🏅</span>
+          <h3>Metric overlays</h3>
+          <p>
+            Adds quantitative tags and status labels alongside qualitative text blocks.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔍</span>
+          <h3>Cross filtering</h3>
+          <p>
+            Updates other dashboard components instantly when you select a card.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⚙️</span>
+          <h3>Formatting options</h3>
+          <p>
+            Controls card spacing, background fills, text fonts, and border styles.
+          </p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🆓</span>
+          <h3>Open source</h3>
+          <p>
+            MIT licensed. The pbiviz package and complete source are open and free.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DOWNLOADS ────────────────────────────────────────── -->
+    <section class="pbi-section">
+      <div class="download-section">
+        <h2>Download and installation</h2>
+        <p class="text-muted">
+          Obtain the compiled package from the GitHub repository to insert the visual into your reports.
+        </p>
+        <div class="download-grid">
+
+          <!-- GitHub source & downloads -->
+          <div class="download-card" style="grid-column: span 2;">
+            <span class="dl-label">Repository and Package</span>
+            <h3>GitHub Power BI Visuals Repository</h3>
+            <p>
+              Contains the TypeScript source code, capabilities JSON, and compiled files for the Text Card Grid. Clone the repo or download the release assets.
+            </p>
+            <a
+              href="https://github.com/alxgom/PowerBI-viz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-download gtm-track-click"
+              data-event-category="PowerBI Text Card"
+              data-event-label="Download - GitHub Repo"
+            >
+              View Repository and Releases <i class="fas fa-external-link-alt ml-2"></i>
+            </a>
+          </div>
+
+          <!-- Looker Studio Version -->
+          <div class="download-card">
+            <span class="dl-label">Google Looker Studio</span>
+            <h3>Looker Studio Version</h3>
+            <p>
+              Explore the Looker Studio edition of this visual, check its documentation, and test the embedded dashboard.
+            </p>
+            <a
+              href="/projects/looker-studio-custom-visuals/"
+              class="btn-download-outline gtm-track-click"
+              data-event-category="PowerBI Text Card"
+              data-event-label="Internal - Looker Studio version"
+            >
+              See Looker Studio Version →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── INSTALL INSTRUCTIONS ─────────────────────────────── -->
+    <section class="pbi-section">
+      <h2>Install in 60 seconds</h2>
+      <ol style="line-height: 2; padding-left: 1.25rem;">
+        <li>Visit the <a href="https://github.com/alxgom/PowerBI-viz" target="_blank" rel="noopener noreferrer">PowerBI-viz GitHub Repository</a>.</li>
+        <li>Download the compiled <code>textCardGrid.pbiviz</code> package.</li>
+        <li>Open Power BI Desktop.</li>
+        <li>
+          In the Visualizations pane, select the three-dot menu icon and choose **Import a visual from a file**.
+        </li>
+        <li>Locate the <code>.pbiviz</code> file and approve the security check.</li>
+        <li>
+          Select the Text Card Grid icon, drag it to the canvas, and map your text columns.
+        </li>
+      </ol>
+    </section>
+
+  </div>
+
+  <!-- ─── CTA BOTTOM ───────────────────────────────────────────── -->
+  <div
+    style="background: linear-gradient(to bottom, #ffffff 0%, #f5f0e8 200px, #f5f0e8 100%); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 4rem 1rem;"
+  >
+    <div class="pbi-container">
+      <div class="cta-bottom">
+        <p
+          style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #e8b231; margin-bottom: 0.5rem;"
+        >
+          More custom visualizations
+        </p>
+        <h2>Explore Other Visuals</h2>
+        <p>
+          Explore other custom visuals like the Intensity Matrix Heatmap and the Lipstick Bullet Chart built for Power BI.
+        </p>
+        <a
+          href="/projects/powerbi-custom-visuals/"
+          class="btn-hero-primary gtm-track-click"
+          data-event-category="PowerBI Text Card"
+          data-event-label="CTA - Power BI visuals"
+        >
+          See All Power BI Visuals →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Lightbox />
+</MainLayout>

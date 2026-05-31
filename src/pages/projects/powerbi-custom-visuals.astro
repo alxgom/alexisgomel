@@ -2,6 +2,7 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import Lightbox from "../../components/Lightbox.astro";
 import { Image } from "astro:assets";
+import reviewsImg from "../../assets/imgs/Projects/reviews_screenshot.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
@@ -192,6 +193,16 @@ const alternateHref = "/es/projects/powerbi-custom-visuals/";
                   and advanced data science capabilities.
                 </div>
               </li>
+              <li>
+                <img
+                  src="/assets/imgs/powerbi/text-card-icon.svg"
+                  class="viz-icon"
+                  alt="Text Card Icon"
+                />
+                <div>
+                  <strong>Text Card Grid</strong> - A highly configurable qualitative visual presenting descriptive text cards with responsive grid structures, version changelogs, timelines, or split readers.
+                </div>
+              </li>
             </ul>
             <p class="text-muted mt-3">
               Below you can see detailed demonstrations and technical
@@ -260,6 +271,36 @@ const alternateHref = "/es/projects/powerbi-custom-visuals/";
             </ul>
             <p class="text-muted small mt-3">
               Built with D3.js and the Power BI SDK for high interactivity including tooltips and cross-filtering.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Text Card Grid</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+            <a href="/projects/powerbi-text-card/">
+              <div class="screenshot-frame position-relative">
+                <Image
+                  src={reviewsImg}
+                  alt="Text Card Grid customer reviews and scores"
+                  class="img-fluid"
+                />
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p>
+              The <strong>Text Card Grid</strong> brings responsive, structured text and qualitative narrative capabilities directly into Power BI dashboards. It perfectly bridges the gap between raw data metrics and textual annotations.
+            </p>
+            <p>
+              It features responsive columns layout, vertical timeline streams, custom metric labels, and robust paragraph preservation.
+            </p>
+            <p>
+              <a href="/projects/powerbi-text-card/" class="btn btn-primary mt-2">
+                Read full documentation
+              </a>
             </p>
           </div>
         </div>

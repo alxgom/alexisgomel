@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none">
+  <!-- Zero Baseline (Top Chart) -->
+  <line x1="20" y1="30" x2="80" y2="30" stroke="#5F6368" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Lollipop 1 (Up) -->
+  <line x1="35" y1="30" x2="35" y2="12" stroke="#1A73E8" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="35" cy="12" r="6" fill="#1A73E8"/>
+  
+  <!-- Lollipop 2 (Down) -->
+  <line x1="65" y1="30" x2="65" y2="46" stroke="#1A73E8" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="65" cy="46" r="6" fill="#1A73E8"/>
+
+  <!-- Base Line (Bottom Chart) -->
+  <line x1="20" y1="84" x2="80" y2="84" stroke="#5F6368" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bar 1 & Target Tick -->
+  <rect x="29" y="58" width="12" height="26" rx="2" fill="#1A73E8" fill-opacity="0.8"/>
+  <line x1="24" y1="62" x2="46" y2="62" stroke="#5F6368" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Bar 2 & Target Tick -->
+  <rect x="59" y="70" width="12" height="14" rx="2" fill="#1A73E8" fill-opacity="0.8"/>
+  <line x1="54" y1="58" x2="76" y2="58" stroke="#5F6368" stroke-width="4" stroke-linecap="round"/>
+</svg>
