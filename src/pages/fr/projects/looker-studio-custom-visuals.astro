@@ -3,6 +3,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import performanceImg from "../../../assets/imgs/Projects/performance.png";
 import bestPracticesImg from "../../../assets/imgs/Projects/best_practices_screenshot.png";
+import reviewsImg from "../../../assets/imgs/Projects/reviews_screenshot.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "fr";
@@ -144,6 +145,9 @@ const alternateHrefs = {
 
     .viz-list li {
       margin-bottom: 0.5rem;
+    }
+
+    .viz-list ul.included-list li {
       display: flex;
       align-items: center;
     }
@@ -207,7 +211,7 @@ const alternateHrefs = {
         <h3>Visualisations Incluses</h3>
         <div class="row align-items-center mt-4">
           <div class="col-md-12">
-            <ul>
+            <ul class="included-list">
               <li>
                 <img
                   src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/lipstick%20icon.svg"
@@ -278,6 +282,26 @@ const alternateHrefs = {
                   <strong>Heatmap Matricielle</strong> - Une visualisation dense pour explorer les corrélations, les distributions et l'intensité à travers deux dimensions avec une échelle personnalisée.
                 </div>
               </li>
+              <li>
+                <img
+                  src="/assets/imgs/Projects/radar_icon.svg"
+                  class="viz-icon"
+                  alt="Icône Graphique Radar"
+                />
+                <div>
+                  <strong>Graphique Radar</strong> - Trace des métriques multidimensionnelles par rapport à des cibles sur des toiles polygonales ou circulaires, prenant en charge les modèles larges ou tabulaires.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="/assets/imgs/Projects/text_card_icon.svg"
+                  class="viz-icon"
+                  alt="Icône Carte de Texte"
+                />
+                <div>
+                  <strong>Carte de Texte</strong> - Affiche des blocs de texte descriptifs à côté de repères métriques dans des structures de grille réactive ou de flux chronologiques de façon sécurisée.
+                </div>
+              </li>
             </ul>
             <p class="text-muted mt-3">
               Vous trouverez ci-dessous des démonstrations détaillées et des explications techniques pour les visualisations principales.
@@ -319,22 +343,14 @@ const alternateHrefs = {
               En combinant plusieurs points de données dans un seul élément graphique, elle offre une vue complète en un clin d'œil :
             </p>
             <ul>
-              <li>
-                <strong>Pourcentage de réalisation :</strong> Progrès visuel vers l'objectif.
-              </li>
-              <li>
-                <strong>Valeur réelle de la métrique :</strong> Le chiffre absolu actuel.
-              </li>
-              <li>
-                <strong>Valeur cible :</strong> Le point de référence ou le budget.
-              </li>
-              <li>
-                <strong>Variation absolue :</strong> L'écart calculé entre les deux.
-              </li>
+              <li><strong>Pourcentage de réalisation :</strong> Progrès visuel vers l'objectif.</li>
+              <li><strong>Valeur réelle de la métrique :</strong> Le chiffre absolu actuel.</li>
+              <li><strong>Valeur cible :</strong> Le point de référence ou le budget.</li>
+              <li><strong>Variation absolue :</strong> L'écart calculé entre les deux.</li>
+              <li><strong>Dimensions Facultatives :</strong> Segmentation dynamique par catégories ou critères secondaires.</li>
+              <li><strong>Objectifs Secondaires :</strong> Lignes pointillées et repères concentriques pour les cibles de dépassement.</li>
+              <li><strong>Affichages Basculables :</strong> Sélecteur d'axe interactif pour alterner instantanément entre valeurs brutes et pourcentages.</li>
             </ul>
-            <p class="text-muted small">
-              Cette visualisation remplace efficacement le besoin de graphiques à barres et de tableaux de données séparés en consolidant tous les indicateurs de performance dans un composant interactif et épuré.
-            </p>
           </div>
         </div>
       </div>
@@ -371,6 +387,35 @@ const alternateHrefs = {
             </p>
             <p class="text-muted small">
               Cette vidéo montre les capacités d'exploration (drill-down), la mise en page adaptative et les fonctions interactives de sélection de nœuds de la structure en arbre.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Grille de Cartes Narratives Qualitatives</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="shadow rounded overflow-hidden d-inline-block" style="background: white;">
+              <Image
+                src={reviewsImg}
+                alt="Grille de cartes de texte affichant des évaluations qualitatives"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>
+              La <strong>Grille de Cartes de Texte</strong> affiche des descriptions narratives à côté d'indicateurs chiffrés. Sa structure s'ajuste selon les besoins de mise en page du rapport :
+            </p>
+            <ul>
+              <li><strong>Mises en Page Variables :</strong> Basculez instantanément entre une grille de cartes responsive, un flux chronologique vertical ou un lecteur en écran scindé.</li>
+              <li><strong>Flexibilité Adaptative :</strong> Adapte automatiquement l'affichage des titres, sous-titres, étiquettes et descriptions en fonction des champs de données disponibles.</li>
+              <li><strong>Indicateurs Chiffrés :</strong> Intègre des données métriques quantitatives à côté de vos textes en conservant vos formats personnalisés.</li>
+              <li><strong>Espacements Naturels :</strong> Préserve les sauts de ligne, listes et retours à la ligne doubles pour conserver la lisibilité du document d'origine.</li>
+            </ul>
+            <p class="text-muted small mt-3">
+              <strong>Cas d'Usage Principaux :</strong> Les applications courantes intègrent des flux interactifs d'avis clients avec filtrage NPS croisé, des portefeuilles et guides de composants pour développeurs, ainsi que des historiques de versions chronologiques.
             </p>
           </div>
         </div>

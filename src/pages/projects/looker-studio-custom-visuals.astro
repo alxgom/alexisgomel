@@ -3,6 +3,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import performanceImg from "../../assets/imgs/Projects/performance.png";
 import bestPracticesImg from "../../assets/imgs/Projects/best_practices_screenshot.png";
+import reviewsImg from "../../assets/imgs/Projects/reviews_screenshot.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "en";
@@ -143,6 +144,9 @@ const alternateHrefs = {
 
     .viz-list li {
       margin-bottom: 0.5rem;
+    }
+
+    .viz-list ul.included-list li {
       display: flex;
       align-items: center;
     }
@@ -206,7 +210,7 @@ const alternateHrefs = {
         <h3>Visualizations Included</h3>
         <div class="row align-items-center mt-4">
           <div class="col-md-12">
-            <ul>
+            <ul class="included-list">
               <li>
                 <img
                   src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/lipstick%20icon.svg"
@@ -286,6 +290,26 @@ const alternateHrefs = {
                   <strong>Matrix Heatmap</strong> - A data-dense visualization for exploring correlations, distributions, and intensity across two dimensions with customizable color scaling.
                 </div>
               </li>
+              <li>
+                <img
+                  src="/assets/imgs/Projects/radar_icon.svg"
+                  class="viz-icon"
+                  alt="Radar Chart Icon"
+                />
+                <div>
+                  <strong>Radar Chart</strong> - Plots multi-dimensional metrics on polygonal or circular webs using tidy or wide data models.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="/assets/imgs/Projects/text_card_icon.svg"
+                  class="viz-icon"
+                  alt="Text Card Icon"
+                />
+                <div>
+                  <strong>Text Card Grid</strong> - Presents descriptive text blocks alongside quantitative metrics in responsive column grids or chronological timelines.
+                </div>
+              </li>
             </ul>
             <p class="text-muted mt-3">
               Below you can see detailed demonstrations and technical
@@ -324,7 +348,7 @@ const alternateHrefs = {
             <p>
               The <strong>Lipstick Visual</strong> is a powerful tool designed to
               compare current performance against specific targets. It excels at breaking
-              down metrics across various dimensions—for example, comparing <em
+              down metrics across various dimensions, for example, comparing <em
                 >Actual Revenue</em
               > from different regions against their <em>Expected Targets</em>.
             </p>
@@ -333,24 +357,14 @@ const alternateHrefs = {
               it provides a comprehensive view at a glance:
             </p>
             <ul>
-              <li>
-                <strong>Completion Percentage:</strong> Visual progress towards the
-                goal.
-              </li>
-              <li>
-                <strong>Real Metric Value:</strong> The absolute current figure.
-              </li>
+              <li><strong>Completion Percentage:</strong> Visual progress towards the goal.</li>
+              <li><strong>Real Metric Value:</strong> The absolute current figure.</li>
               <li><strong>Target Value:</strong> The benchmark or budget.</li>
-              <li>
-                <strong>Absolute Variation:</strong> The calculated gap between both
-                values.
-              </li>
+              <li><strong>Absolute Variation:</strong> The calculated gap between both values.</li>
+              <li><strong>Optional Dimensions:</strong> Dynamic breakdown across secondary details or category grouping levels.</li>
+              <li><strong>Secondary Targets:</strong> Concentric dashed end-caps and straight lines representing stretch goals.</li>
+              <li><strong>Togglable Views:</strong> An interactive axis scale toggle to swap between percentages and absolute metrics on the fly.</li>
             </ul>
-            <p class="text-muted small">
-              This visual effectively replaces the need for separate bar charts
-              and data tables by consolidating all performance indicators into
-              one streamlined, interactive component.
-            </p>
           </div>
         </div>
       </div>
@@ -392,6 +406,35 @@ const alternateHrefs = {
               This video showcases the drill-down capabilities, responsive
               layout, and interactive node selection features of the tree
               structure.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Qualitative Narrative Card Grid</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="shadow rounded overflow-hidden d-inline-block" style="background: white;">
+              <Image
+                src={reviewsImg}
+                alt="Text Card Grid displaying reviews"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>
+              The <strong>Text Card Grid</strong> presents descriptive narrative text fields side-by-side with quantitative indicators. It adapts layout behaviors depending on the user's focus:
+            </p>
+            <ul>
+              <li><strong>Layout Switcher:</strong> Swap dynamically between a responsive card grid, a vertical timeline feed, and a split-screen reader.</li>
+              <li><strong>Design Flexibility:</strong> Automatically restructures the card layout to organize titles, subtitles, category tags, and descriptive text fields.</li>
+              <li><strong>Metric KPI Labels:</strong> Integrates quantitative data fields alongside narrative text blocks using your custom field formatting.</li>
+              <li><strong>Natural Spacing:</strong> Preserves paragraph breaks, spacing, lists, and double carriage-returns to retain original document readability.</li>
+            </ul>
+            <p class="text-muted small mt-3">
+              <strong>Primary Use Cases:</strong> Real-world applications include interactive customer review lists with NPS filtering, centralized developer component portfolios, and chronological version changelogs.
             </p>
           </div>
         </div>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- Radar Web concentric gridlines (grey pentagons) -->
+    <!-- Outer level -->
+    <polygon points="100,20 176.1,75.3 147,164.7 53,164.7 23.9,75.3" fill="none" stroke="#D1D5DB" stroke-width="2.5" />
+    <!-- Middle level -->
+    <polygon points="100,45 152.3,83 132.3,144.5 67.7,144.5 47.7,83" fill="none" stroke="#E5E7EB" stroke-width="2" />
+    <!-- Inner level -->
+    <polygon points="100,70 128.5,90.7 117.6,124.3 82.4,124.3 71.5,90.7" fill="none" stroke="#F3F4F6" stroke-width="1.5" />
+
+    <!-- Spoke axes -->
+    <line x1="100" y1="100" x2="100" y2="20" stroke="#D1D5DB" stroke-width="2" />
+    <line x1="100" y1="100" x2="176.1" y2="75.3" stroke="#D1D5DB" stroke-width="2" />
+    <line x1="100" y1="100" x2="147" y2="164.7" stroke="#D1D5DB" stroke-width="2" />
+    <line x1="100" y1="100" x2="53" y2="164.7" stroke="#D1D5DB" stroke-width="2" />
+    <line x1="100" y1="100" x2="23.9" y2="75.3" stroke="#D1D5DB" stroke-width="2" />
+
+    <!-- The Blue Data Radar Polygon (with increased fill opacity for better small icon contrast) -->
+    <polygon points="100,30 138,87.6 138.2,152.6 70.6,140.5 28.7,76.8" fill="#1A73E8" fill-opacity="0.4" stroke="#1A73E8" stroke-width="6" stroke-linejoin="round" />
+
+    <!-- Vertex Points / Data Markers (blue circles with white boundaries) -->
+    <circle cx="100" cy="30" r="7.5" fill="#1A73E8" stroke="#FFFFFF" stroke-width="2" />
+    <circle cx="138" cy="87.6" r="7.5" fill="#1A73E8" stroke="#FFFFFF" stroke-width="2" />
+    <circle cx="138.2" cy="152.6" r="7.5" fill="#1A73E8" stroke="#FFFFFF" stroke-width="2" />
+    <circle cx="70.6" cy="140.5" r="7.5" fill="#1A73E8" stroke="#FFFFFF" stroke-width="2" />
+    <circle cx="28.7" cy="76.8" r="7.5" fill="#1A73E8" stroke="#FFFFFF" stroke-width="2" />
+</svg>

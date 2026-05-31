@@ -3,6 +3,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import { Image } from "astro:assets";
 import performanceImg from "../../../assets/imgs/Projects/performance.png";
 import bestPracticesImg from "../../../assets/imgs/Projects/best_practices_screenshot.png";
+import reviewsImg from "../../../assets/imgs/Projects/reviews_screenshot.png";
 
 // MULTILINGUAL SETTINGS
 const currentLang = "es";
@@ -144,6 +145,9 @@ const alternateHrefs = {
 
     .viz-list li {
       margin-bottom: 0.5rem;
+    }
+
+    .viz-list ul.included-list li {
       display: flex;
       align-items: center;
     }
@@ -209,7 +213,7 @@ const alternateHrefs = {
         <h3>Visualizaciones Incluidas</h3>
         <div class="row align-items-center mt-4">
           <div class="col-md-12">
-            <ul>
+            <ul class="included-list">
               <li>
                 <img
                   src="https://raw.githubusercontent.com/alxgom/Icons/main/Viz%20icons/lipstick%20icon.svg"
@@ -289,6 +293,26 @@ const alternateHrefs = {
                   <strong>Mapa de Calor Matricial</strong> - Una visualización densa en datos para explorar correlaciones, distribuciones e intensidad a través de dos dimensiones con escalado personalizado.
                 </div>
               </li>
+              <li>
+                <img
+                  src="/assets/imgs/Projects/radar_icon.svg"
+                  class="viz-icon"
+                  alt="Icono Gráfico Radar"
+                />
+                <div>
+                  <strong>Gráfico Radar</strong> - Traza métricas multidimensionales contra objetivos en redes poligonales o circulares, admitiendo modelos tabulares o anchos.
+                </div>
+              </li>
+              <li>
+                <img
+                  src="/assets/imgs/Projects/text_card_icon.svg"
+                  class="viz-icon"
+                  alt="Icono Tarjeta de Texto"
+                />
+                <div>
+                  <strong>Tarjeta de Texto</strong> - Muestra bloques descriptivos junto a métricas métricas en cuadrículas adaptables o líneas de tiempo cronológicas de forma segura.
+                </div>
+              </li>
             </ul>
             <p class="text-muted mt-3">
               A continuación puedes ver demostraciones detalladas y
@@ -336,27 +360,14 @@ const alternateHrefs = {
               proporciona una visión completa de un vistazo:
             </p>
             <ul>
-              <li>
-                <strong>Porcentaje de Cumplimiento:</strong> Progreso visual hacia
-                la meta.
-              </li>
-              <li>
-                <strong>Valor Real de la Métrica:</strong> La cifra absoluta actual.
-              </li>
-              <li>
-                <strong>Valor Objetivo:</strong> El punto de referencia o presupuesto.
-              </li>
-              <li>
-                <strong>Variación Absoluta:</strong> La brecha calculada entre ambos
-                valores.
-              </li>
+              <li><strong>Porcentaje de Cumplimiento:</strong> Progreso visual hacia la meta.</li>
+              <li><strong>Valor Real de la Métrica:</strong> La cifra absoluta actual.</li>
+              <li><strong>Valor Objetivo:</strong> El punto de referencia o presupuesto.</li>
+              <li><strong>Variación Absoluta:</strong> La brecha calculada entre ambos valores.</li>
+              <li><strong>Dimensiones Opcionales:</strong> Desglose dinámico a través de detalles secundarios o niveles de agrupación.</li>
+              <li><strong>Objetivos Secundarios:</strong> Tapas concéntricas discontinuas y líneas rectas para metas adicionales.</li>
+              <li><strong>Vistas Alternables:</strong> Selector interactivo en el eje para alternar entre porcentajes y valores absolutos sobre la marcha.</li>
             </ul>
-            <p class="text-muted small">
-              Esta visualización reemplaza efectivamente la necesidad de tener
-              gráficos de barras y tablas de datos por separado al consolidar
-              todos los indicadores de rendimiento en un componente interactivo
-              y simplificado.
-            </p>
           </div>
         </div>
       </div>
@@ -399,6 +410,35 @@ const alternateHrefs = {
               Este video muestra las capacidades de desglose, el diseño
               adaptable y las funciones interactivas de selección de nodos de la
               estructura de árbol.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-list">
+        <h3>Cuadrícula de Tarjetas Narrativas</h3>
+        <div class="row align-items-center mt-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="shadow rounded overflow-hidden d-inline-block" style="background: white;">
+              <Image
+                src={reviewsImg}
+                alt="Cuadrícula de tarjetas mostrando reseñas de texto"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>
+              La <strong>Cuadrícula de Tarjetas de Texto</strong> presenta campos descriptivos junto con indicadores métricos. Su estructura se adapta de forma flexible según las necesidades del informe:
+            </p>
+            <ul>
+              <li><strong>Selector de Diseño:</strong> Alterna de forma dinámica entre una cuadrícula de tarjetas ajustable, una línea de tiempo cronológica y un lector de pantalla dividida.</li>
+              <li><strong>Flexibilidad Adaptable:</strong> Reestructura automáticamente el diseño de la tarjeta para organizar títulos, subtítulos, etiquetas y bloques descriptivos según los campos asignados.</li>
+              <li><strong>Indicadores Métricos:</strong> Integra datos cuantitativos junto al texto narrativo, respetando el formato y los nombres de tus campos originales.</li>
+              <li><strong>Espaciado Natural:</strong> Mantiene intactos los saltos de párrafo, listas, sangrías y espacios dobles para conservar la legibilidad original.</li>
+            </ul>
+            <p class="text-muted small mt-3">
+              <strong>Casos de Uso Principales:</strong> Aplicaciones reales incluyen listas interactivas de opiniones de clientes con filtrado cruzado, portafolios y repositorios de componentes para desarrolladores, e historiales cronológicos de cambios.
             </p>
           </div>
         </div>
