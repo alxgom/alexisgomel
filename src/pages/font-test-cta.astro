@@ -1,0 +1,212 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const currentLang = "en";
+const alternateHref = "/font-test-cta/";
+---
+
+<MainLayout
+  title="CTA Interaction Test Page"
+  description="Sandbox page to test the animated mobinkakei CTA button from Uiverse.io"
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <meta name="robots" content="noindex, nofollow" slot="head" />
+
+  <style>
+    /* ==========================================
+       CTA Button Styles from Uiverse.io by mobinkakei
+       ========================================== */
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      background: var(--cloud-dance-white, #f0eee9);
+      padding: 40px;
+      border-radius: 16px;
+      margin: 120px auto 40px;
+      max-width: 800px;
+      border: 1px solid var(--light-gray, #d4d4d4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .demo-title {
+      font-family: var(--font-family-sans-serif, sans-serif);
+      font-weight: 700;
+      color: var(--black, #000);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .demo-subtitle {
+      font-family: var(--font-family-sans-serif-system, sans-serif);
+      font-size: 0.95rem;
+      color: var(--gray, #6c757d);
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 500px;
+      line-height: 1.5;
+    }
+
+    /* Uiverse.io mobinkakei CTA styles */
+    .cta {
+      display: flex;
+      padding: 11px 33px;
+      text-decoration: none;
+      font-size: 25px;
+      color: white;
+      background: #6225e6;
+      transition: 1s;
+      box-shadow: 6px 6px 0 black;
+      transform: skewX(-15deg);
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta:focus {
+      outline: none;
+    }
+
+    .cta:hover {
+      transition: 0.5s;
+      box-shadow: 10px 10px 0 #fbc638;
+    }
+
+    .cta .second {
+      transition: 0.5s;
+      margin-right: 0px;
+    }
+
+    .cta:hover .second {
+      transition: 0.5s;
+      margin-right: 45px;
+    }
+
+    .span {
+      transform: skewX(15deg);
+    }
+
+    .second {
+      width: 20px;
+      margin-left: 30px;
+      position: relative;
+      top: 12%;
+      display: inline-block;
+      height: 20px;
+    }
+
+    .one {
+      transition: 0.4s;
+      transform: translateX(-60%);
+    }
+
+    .two {
+      transition: 0.5s;
+      transform: translateX(-30%);
+    }
+
+    .cta:hover .three {
+      animation: color_anim 1s infinite 0.2s;
+    }
+
+    .cta:hover .one {
+      transform: translateX(0%);
+      animation: color_anim 1s infinite 0.6s;
+    }
+
+    .cta:hover .two {
+      transform: translateX(0%);
+      animation: color_anim 1s infinite 0.4s;
+    }
+
+    @keyframes color_anim {
+      0% {
+        fill: white;
+      }
+
+      50% {
+        fill: #fbc638;
+      }
+
+      100% {
+        fill: white;
+      }
+    }
+
+    /* Source code display section */
+    .code-section {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 80px;
+      background: #272822;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid #3e3f3a;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    }
+
+    .code-title {
+      font-family: var(--font-family-sans-serif, sans-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f8f8f2;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #3e3f3a;
+      padding-bottom: 10px;
+    }
+
+    .code-section pre {
+      margin: 0;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .code-section code {
+      color: #f8f8f2;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+    }
+  </style>
+
+  <div class="test-wrapper">
+    <div class="cta-container">
+      <h1 class="demo-title">CTA Interaction Sandbox</h1>
+      <p class="demo-subtitle">
+        Hover over the slanted button below to trigger the sliding chevron translation 
+        and color animation effects.
+      </p>
+
+      <!-- mobinkakei CTA Button -->
+      <button class="cta" aria-label="Next step button">
+        <span class="span">HOVER ME</span>
+        <span class="second">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+            <path d="M1 4 l4 4 l-4 4 h3 l4 -4 l-4 -4 z" class="one" fill="white"></path>
+            <path d="M7 4 l4 4 l-4 4 h3 l4 -4 l-4 -4 z" class="two" fill="white"></path>
+            <path d="M13 4 l4 4 l-4 4 h3 l4 -4 l-4 -4 z" class="three" fill="white"></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+
+    <!-- Markup Guidelines for Reference -->
+    <div class="code-section">
+      <div class="code-title">HTML Structure Used:</div>
+      <pre><code>&lt;button class="cta"&gt;
+  &lt;span class="span"&gt;HOVER ME&lt;/span&gt;
+  &lt;span class="second"&gt;
+    &lt;svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+      &lt;path d="M1 4 l4 4 l-4 4 h3 l4 -4 l-4 -4 z" class="one" fill="white"&gt;&lt;/path&gt;
+      &lt;path d="M7 4 l4 4 l-4 4 h3 l4 -4 l-4 -4 z" class="two" fill="white"&gt;&lt;/path&gt;
+      &lt;path d="M13 4 l4 4 l-4 4 h3 l4 -4 l-4 -4 z" class="three" fill="white"&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+  &lt;/span&gt;
+&lt;/button&gt;</code></pre>
+    </div>
+  </div>
+</MainLayout>
