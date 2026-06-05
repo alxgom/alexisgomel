@@ -22,10 +22,11 @@ The typography system consists of two primary font families served locally via c
 
 ## 2. Design System Styling Rules
 
-### A. General UI & Default State
-* **Inherited Baseline**: All pages default to Montserrat (`--font-family-sans-serif`) via the `body` selector.
-* **UI Text blocks**: Short descriptions in cards, sidebars, alerts, and navigation lists must use Montserrat. Serifs should not be used in narrow columns or UI lists to avoid clutter.
-* **CTAs & Buttons**: All interactive elements (links, buttons, badge components) use Montserrat. Button labels use uppercase text (`text-transform: uppercase`), small font sizes (`0.85rem`–`0.9rem`), and explicit tracking (`letter-spacing: 0.08em`).
+### A. UI Elements, Controls & Headings (Montserrat / System-UI Sans-Serif)
+* **Inherited Baseline**: All pages default to the system-ui sans-serif font stack (`--font-family-sans-serif-system`) via the `body` selector.
+* **Headings**: All `h1` through `h6` headings globally use Montserrat (`--font-family-sans-serif`) to ensure high-impact visual structure and distinction.
+* **UI Elements & Controls**: All interactive elements (buttons, navigation menus, links, tags, and badges) explicitly use Montserrat (`--font-family-sans-serif`) to maintain a clean, geometric brand texture for actions and controls.
+  * *CTA Styling*: Button labels and controls use uppercase text (`text-transform: uppercase`), small sizes (`0.85rem`–`0.9rem`), and explicit tracking (`letter-spacing: 0.08em`).
 
 ### B. Editorial Prose (Serif Content)
 * **Scope**: Long-form editorial text (e.g. blog posts, research abstracts) must be wrapped in a `.prose` or `.blog-wrap` container.
@@ -83,9 +84,16 @@ To match fallback system fonts to the precise geometric proportions of our custo
 ---
 
 ## 5. Review Checklist for Font Integration
-- [ ] Do all text elements default to Montserrat (`--font-family-sans-serif`) unless specifically wrapping long-form articles?
+- [ ] Do general text elements default to the system-ui stack (`--font-family-sans-serif-system`)?
+- [ ] Do headings and UI elements explicitly use Montserrat (`--font-family-sans-serif`)?
 - [ ] Are article/prose blocks wrapped in `.prose` or `.blog-wrap` with a fixed pixel/rem maximum width (e.g. `610px` or `38.125rem`) rather than `ch` units?
 - [ ] Are custom serif columns styled with a `line-height: 1.65`?
 - [ ] Are sitemap generation configurations updated to ignore test pages?
 - [ ] Are critical fonts preloaded inside the head slot of the parent layout?
 - [ ] Are font assets stored locally as `.woff2` files?
+
+---
+
+## 6. Typography To-Do / Future Exploration
+
+- [ ] **Explore a more styled/characteristic heading font**: Investigate pairing the system body sans-serif stack with a more distinctive, stylized brand typeface for headings (e.g. a more expressive sans-serif or a geometric slab-serif) to replace Montserrat and give headings stronger individual character.

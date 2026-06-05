@@ -19,12 +19,11 @@ The website uses a hybrid font system designed to balance modern technical reada
 
 To maintain layout cleanliness and prevent visual clutter, the typography system enforces the following semantic rules:
 
-### A. UI Elements & Layouts (Montserrat)
-* **Default Font Stack**: All pages default to Montserrat (`--font-family-sans-serif`) via the `body` selector.
-* **UI Paragraphs**: Short paragraphs in cards, grid items, sidebar notifications, and layout intros must use Montserrat. Serifs look cluttered and out of place in narrow, grid-based UI blocks.
-* **CTAs & Buttons**: All buttons, links, form inputs, and badges use Montserrat. 
+### A. UI Elements, Controls & Headings (Montserrat / System-UI Sans-Serif)
+* **Default Font Stack**: All pages default to the system-ui sans-serif font stack (`--font-family-sans-serif-system`) via the `body` selector for general body paragraphs and descriptions. This ensures native rendering speed and eliminates layout shifts.
+* **Headings**: All `h1` through `h6` headings globally use Montserrat (`--font-family-sans-serif`), styled with a heavy bold weight (`font-weight: 700`). This provides strong typographic hierarchy and contrast against the body text.
+* **UI Elements & Controls**: Interactive elements (such as buttons, navigation bars, links, tags, and form fields) explicitly use Montserrat (`--font-family-sans-serif`) to maintain a clean, geometric brand identity for interface controls.
   * *CTA Styling*: CTAs use uppercase text (`text-transform: uppercase`), explicit tracking (`letter-spacing: 0.08em`), and smaller size (`0.85rem`–`0.9rem`) to establish a clear structural boundary from prose text.
-* **Headings**: All `h1` through `h6` headings globally use Montserrat, styled with a heavy bold weight (`font-weight: 700`).
 
 ### B. Editorial Prose (Alegreya)
 * **Editorial Wrapper**: Long-form body text is styled with Alegreya by wrapping the article block in the `.prose` or `.blog-wrap` class.
@@ -92,3 +91,9 @@ To prevent any layout shifting while web fonts load, we override system fallback
 ```
 
 *These font stacks are defined inside `/public/assets/css/global.css`.*
+
+---
+
+## 5. Typography To-Do / Future Exploration
+
+- [ ] **Explore a more styled/characteristic heading font**: Investigate pairing the system body sans-serif stack with a more distinctive, stylized brand typeface for headings (e.g. a more expressive sans-serif or a geometric slab-serif) to replace Montserrat and give headings stronger individual character.
