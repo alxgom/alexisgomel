@@ -1,0 +1,419 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+// MULTILINGUAL SETTINGS
+const currentLang = "en";
+const alternateHref = "/font-test-new/";
+---
+
+<MainLayout
+  title="New Typography System Test Page"
+  description="Testing the hybrid Montserrat (UI) + Alegreya (Prose) typography system with CLS overrides"
+  currentLang={currentLang}
+  alternateHref={alternateHref}
+>
+  <meta name="robots" content="noindex, nofollow" slot="head" />
+
+  <!-- Google Fonts import for testing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head" />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+    slot="head"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Montserrat:ital,wght@0,500;0,700&display=swap"
+    rel="stylesheet"
+    slot="head"
+  />
+
+  <style>
+    /* ==========================================
+       Font Faces & Metric Overrides
+       ========================================== */
+
+    /* Montserrat CLS Fallback override using Arial */
+    @font-face {
+      font-family: 'Montserrat-fallback';
+      src: local('Arial');
+      size-adjust: 113.00%;
+      ascent-override: 85.66%;
+      descent-override: 22.21%;
+      line-gap-override: 0.00%;
+    }
+
+    /* Alegreya CLS Fallback override using Georgia */
+    @font-face {
+      font-family: 'Alegreya-fallback';
+      src: local('Georgia'), local('Times New Roman');
+      size-adjust: 90.50%;
+      ascent-override: 112.26%;
+      descent-override: 38.12%;
+      line-gap-override: 0.00%;
+    }
+
+    /* ==========================================
+       Design System Variables
+       ========================================== */
+    :root {
+      --font-sans: 'Montserrat', 'Montserrat-fallback', Arial, sans-serif;
+      --font-serif: 'Alegreya', 'Alegreya-fallback', Georgia, serif;
+    }
+
+    /* Utility to simulate web font loading toggle */
+    .fonts-loaded {
+      --font-sans: 'Montserrat', 'Montserrat-fallback', Arial, sans-serif;
+      --font-serif: 'Alegreya', 'Alegreya-fallback', Georgia, serif;
+    }
+
+    .fonts-fallback {
+      --font-sans: 'Montserrat-fallback', Arial, sans-serif;
+      --font-serif: 'Alegreya-fallback', Georgia, serif;
+    }
+
+    /* ==========================================
+       Layout Styles (Using Montserrat as default)
+       ========================================== */
+    .test-wrapper {
+      font-family: var(--font-sans);
+      max-width: 1000px;
+      margin: 120px auto 60px;
+      padding: 0 20px;
+      color: var(--dark-gray);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .demo-header h1 {
+      font-family: var(--font-sans);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .demo-subtitle {
+      font-size: 1.2rem;
+      color: var(--gray);
+      margin-bottom: 25px;
+    }
+
+    /* Controls Panel */
+    .controls-panel {
+      background: var(--cloud-dance-white);
+      border: 1px solid var(--light-gray);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .control-desc {
+      font-size: 0.9rem;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    .btn-toggle {
+      font-family: var(--font-sans);
+      background-color: var(--highlight-color);
+      color: var(--white);
+      border: none;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-toggle:hover {
+      background-color: var(--hover-color);
+    }
+
+    /* ==========================================
+       UI Elements Section (Montserrat)
+       ========================================== */
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--black);
+      margin-bottom: 25px;
+      border-left: 4px solid var(--highlight-color);
+      padding-left: 12px;
+    }
+
+    .ui-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .ui-card {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .ui-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .ui-card h3 {
+      font-family: var(--font-sans);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    /* Short paragraphs inside UI cards remain clean and modern under Montserrat */
+    .ui-card p {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--dark-gray);
+      margin-bottom: 20px;
+    }
+
+    .ui-meta {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray);
+      display: flex;
+      gap: 15px;
+    }
+
+    /* ==========================================
+       Editorial/Prose Section (Alegreya)
+       ========================================== */
+    .editorial-container {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+
+    /* Prose content wrapper applies Alegreya and specific paragraph styling */
+    .prose {
+      font-family: var(--font-serif);
+      font-size: 1.1rem; /* Slightly larger size is ideal for Alegreya */
+      line-height: 1.65; /* Generous line height for reading comfort */
+      max-width: 610px; /* Fixed width to prevent CLS layout shift on ch-unit variance */
+      margin: 0 auto;
+      color: #2b2b2b; /* Slightly softer than pure black */
+    }
+
+    .prose h1, .prose h2, .prose h3 {
+      font-family: var(--font-sans); /* Headings inside articles still use Montserrat */
+      font-weight: 700;
+      color: var(--black);
+      margin-top: 1.8em;
+      margin-bottom: 0.6em;
+      letter-spacing: -0.01em;
+    }
+
+    .prose h2 {
+      font-size: 1.75rem;
+    }
+
+    .prose h3 {
+      font-size: 1.35rem;
+    }
+
+    .prose p {
+      margin-bottom: 1.4em;
+    }
+
+    /* Lead paragraph style */
+    .prose p.lead {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--dark-gray);
+      margin-bottom: 1.6em;
+    }
+
+    .prose blockquote {
+      border-left: 3px solid var(--highlight-color);
+      padding-left: 20px;
+      margin: 2em 0;
+      font-style: italic;
+      color: var(--dark-gray);
+    }
+
+    .prose code {
+      font-family: var(--font-family-monospace);
+      font-size: 0.9em;
+      background-color: var(--cloud-dance-white);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--highlight-color);
+    }
+
+    .prose ul {
+      margin-bottom: 1.4em;
+      padding-left: 20px;
+    }
+
+    .prose li {
+      margin-bottom: 0.5em;
+    }
+  </style>
+
+  <div class="test-wrapper fonts-loaded" id="test-sandbox">
+    
+    <div class="demo-header">
+      <h1>Hybrid Typography Sandbox</h1>
+      <p class="demo-subtitle">
+        Montserrat for UI & Layout Components | Alegreya for Long-Form Prose
+      </p>
+    </div>
+
+    <!-- Interactive Simulation Controls -->
+    <div class="controls-panel">
+      <div class="control-desc">
+        <strong>CLS Fallback Test Control:</strong> Click the button to toggle between the 
+        <strong>Web Fonts</strong> (Montserrat + Alegreya) and the <strong>Fallback System Fonts</strong> 
+        (Arial + Georgia with custom metric overrides). Observe the layout remains perfectly stable 
+        with zero shifting.
+      </div>
+      <button class="btn-toggle" id="toggle-fonts-btn">Toggle Web Fonts</button>
+    </div>
+
+    <!-- UI Elements Demo (Montserrat) -->
+    <div>
+      <div class="section-title">UI components & Short Paragraphs (Montserrat)</div>
+      
+      <div class="ui-grid">
+        <div class="ui-card">
+          <div class="ui-meta">
+            <span>Project</span> — <span>Active</span>
+          </div>
+          <h3>Nonlinear Dynamic Modeler</h3>
+          <p>
+            An interactive simulator designed to model bifurcation behaviors in complex climatic networks, 
+            written in Python and React. Ideal for analyzing phase transitions in early warning metrics.
+          </p>
+          <button class="btn-toggle" style="padding: 6px 12px; font-size: 0.75rem;">View Details</button>
+        </div>
+
+        <div class="ui-card">
+          <div class="ui-meta">
+            <span>Research Paper</span> — <span>June 2026</span>
+          </div>
+          <h3>Early Warnings in Climate Nodes</h3>
+          <p>
+            An analysis of spatial correlation changes in critical subsystems, highlighting 
+            dynamic indicators of structural stability and localized critical slowing down.
+          </p>
+          <button class="btn-toggle" style="padding: 6px 12px; font-size: 0.75rem;">Read Abstract</button>
+        </div>
+
+        <div class="ui-card">
+          <div class="ui-meta">
+            <span>Photography</span> — <span>Seville, ES</span>
+          </div>
+          <h3>Street Photography Series</h3>
+          <p>
+            Capturing the light play, shadows, and daily rhythm of Seville using monochrome analog film, 
+            with a focus on architectural geometries and dynamic human framing.
+          </p>
+          <button class="btn-toggle" style="padding: 6px 12px; font-size: 0.75rem;">Open Gallery</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial Prose Demo (Alegreya) -->
+    <div class="editorial-container">
+      <div class="section-title" style="margin-bottom: 40px;">Long-Form Reading Prose (Alegreya)</div>
+
+      <article class="prose">
+        <p class="lead">
+          In this mock blog post layout, the text automatically switches to Alegreya. Because Alegreya is 
+          an award-winning serif family designed for book text, it provides a highly readable and warm 
+          academic visual texture. It is set at 1.1rem with a 1.65 line height, restricted to 65 characters wide.
+        </p>
+
+        <p>
+          Welcome to my personal site! As a physicist studying <strong>nonlinear dynamics</strong>, I deal daily 
+          with systems that exhibit sensitive dependence on initial conditions. When explaining complex systems, 
+          typography plays an essential role in keeping the reader engaged. A serif font guides the reader's eye 
+          effortlessly across lines of dense text, preventing fatigue.
+        </p>
+
+        <blockquote>
+          “In complex systems, the whole is greater than the sum of its parts, and the typography must 
+          honor that depth without overwhelming the layout.”
+        </blockquote>
+
+        <h2>Analyzing Critical Slowing Down</h2>
+        <p>
+          Before a dynamical system undergoes a qualitative transition (or bifurcation), its recovery rate 
+          to small perturbations slows down. This phenomenon is known as <code>critical slowing down</code>. 
+          To detect it programmatically, we monitor indicators such as:
+        </p>
+
+        <ul>
+          <li><strong>Autocorrelation at lag 1</strong>: Increases as the system's memory increases near the threshold.</li>
+          <li><strong>Variance</strong>: Flares up due to the accumulating impact of random shocks.</li>
+          <li><strong>Skewness and Kurtosis</strong>: Change as the system's potential well becomes highly asymmetrical.</li>
+        </ul>
+
+        <h2>Coexisting in Harmony</h2>
+        <p>
+          Notice how the heading above ("Coexisting in Harmony") is rendered in Montserrat, providing a clean 
+          contrast to this paragraph text. Meanwhile, short paragraphs in the cards above remain clean and 
+          uncluttered. By separating the roles of sans-serif and serif, we achieve a modern technical look 
+          with classical reading comfort.
+        </p>
+      </article>
+    </div>
+
+  </div>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sandbox = document.getElementById("test-sandbox");
+      const toggleBtn = document.getElementById("toggle-fonts-btn");
+
+      if (toggleBtn && sandbox) {
+        toggleBtn.addEventListener("click", () => {
+          if (sandbox.classList.contains("fonts-loaded")) {
+            sandbox.classList.remove("fonts-loaded");
+            sandbox.classList.add("fonts-fallback");
+            toggleBtn.textContent = "Load Web Fonts";
+            toggleBtn.style.backgroundColor = "var(--triana-green)";
+          } else {
+            sandbox.classList.remove("fonts-fallback");
+            sandbox.classList.add("fonts-loaded");
+            toggleBtn.textContent = "Toggle Web Fonts";
+            toggleBtn.style.backgroundColor = "var(--highlight-color)";
+          }
+        });
+      }
+    });
+  </script>
+</MainLayout>
