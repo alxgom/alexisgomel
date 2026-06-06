@@ -89,18 +89,20 @@ const alternateHref = "/design-proposal/";
       justify-content: center;
       padding: 12px 36px;
       text-decoration: none;
+      --hover-flow-color: var(--albero-pantone, #ffab60);
       font-family: var(--font-family-sans-serif), sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       color: white;
       background: var(--primary, #a50034);
-      border: 2px solid var(--dark-gray, #434343);
-      box-shadow: 6px 6px 0 var(--black, #000);
+      border: none;
+      box-shadow: 6px 6px 0 var(--btn-shadow, #7d0027);
       transform: skewX(-15deg);
       cursor: pointer;
       position: relative;
       letter-spacing: 2px;
       line-height: 1;
+      white-space: nowrap;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
@@ -120,24 +122,47 @@ const alternateHref = "/design-proposal/";
     .cta-link-chevron.state-pressed {
       letter-spacing: 0px;
       transform: scale(0.95) skewX(-15deg);
-      box-shadow: 2px 2px 0 var(--black, #000);
+      box-shadow: 2px 2px 0 var(--btn-shadow, #7d0027);
       transition: all 0.15s ease;
     }
 
-    /* Chevron container inside button */
+    /* Straight Variant Modifier */
+    .cta-link-chevron.cta-straight {
+      transform: none;
+    }
+    .cta-link-chevron.cta-straight .span {
+      transform: none;
+    }
+    .cta-link-chevron.cta-straight:active,
+    .cta-link-chevron.cta-straight.state-pressed {
+      transform: scale(0.95);
+    }
+
+    /* Chevron container inside button - natively centered using flexbox flow */
     .cta-link-chevron .second {
       display: inline-block;
       width: var(--chevron-w, 38px);
       height: var(--chevron-h, 18px);
-      margin-left: 24px;
-      position: relative;
-      top: -1.5px;
-      transition: 0.5s;
+      margin-left: 20px;
       margin-right: 0px;
+      position: relative;
+      top: -0.7px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    .cta-link-chevron:hover .second {
-      margin-right: 45px;
+    .cta-link-chevron .second svg {
+      display: block;
+    }
+
+    .cta-link-chevron .second path {
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    /* Hover & Success: push chevron forward and widen the button */
+    .cta-link-chevron:hover .second,
+    .cta-link-chevron.state-success .second {
+      margin-left: 32px;
     }
 
     .cta-link-chevron .span {
@@ -184,13 +209,57 @@ const alternateHref = "/design-proposal/";
     }
 
     /* Color Palette Variations */
-    .cta-seville-red { background: var(--almegre-red, #a50034); }
-    .cta-seville-green { background: var(--triana-green, #115740); }
-    .cta-seville-blue { background: var(--lapiz-lazuli-blue, #26619c); }
+    .cta-seville-red { 
+      background: var(--almegre-red, #a50034); 
+      --btn-shadow: #7d0027;
+    }
+    .cta-seville-green { 
+      background: var(--triana-green, #115740); 
+      --btn-shadow: #0b392a;
+    }
+    .cta-seville-blue { 
+      background: var(--lapiz-lazuli-blue, #26619c); 
+      --btn-shadow: #1a4670;
+    }
+    .cta-seville-black { 
+      background: var(--black, #000);
+      color: var(--white, #fff);
+      --btn-shadow: var(--dark-gray, #434343);
+      --hover-flow-color: var(--almegre-red, #a50034);
+    }
+    .cta-seville-black:hover {
+      box-shadow: 10px 10px 0 var(--almegre-red, #a50034);
+      color: var(--almegre-red, #a50034);
+    }
+    .cta-seville-black:active,
+    .cta-seville-black.state-pressed {
+      background: var(--black, #000);
+      box-shadow: 2px 2px 0 var(--almegre-red, #a50034);
+      color: var(--almegre-red, #a50034);
+    }
+    .cta-seville-white { 
+      background: var(--white, #fff);
+      color: var(--black, #000);
+      --btn-shadow: var(--black, #000);
+      --hover-flow-color: var(--almegre-red, #a50034);
+    }
+    .cta-seville-white:hover {
+      box-shadow: 10px 10px 0 var(--almegre-red, #a50034);
+      color: var(--almegre-red, #a50034);
+      background: var(--white, #fff);
+    }
+    .cta-seville-white:active,
+    .cta-seville-white.state-pressed {
+      background: var(--white, #fff);
+      box-shadow: 2px 2px 0 var(--almegre-red, #a50034);
+      color: var(--almegre-red, #a50034);
+    }
     
     .cta-seville-albero { 
       background: var(--albero-pantone, #ffab60); 
       color: var(--black, #000);
+      --btn-shadow: #d4863f;
+      --hover-flow-color: var(--triana-green, #115740);
     }
     .cta-seville-albero:hover {
       box-shadow: 10px 10px 0 var(--triana-green, #115740);
@@ -200,8 +269,9 @@ const alternateHref = "/design-proposal/";
     /* Active Animation States */
     .cta-link-chevron.state-success {
       background: var(--triana-green, #115740) !important;
+      border: none !important;
       box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
-      letter-spacing: 4px;
+      letter-spacing: 2px;
       color: var(--albero-pantone, #ffab60) !important;
     }
     .cta-link-chevron.state-success:hover {
@@ -256,14 +326,14 @@ const alternateHref = "/design-proposal/";
 
     @keyframes color_anim {
       0% { fill: currentColor; }
-      50% { fill: #fbc638; }
+      50% { fill: var(--hover-flow-color, #ffab60); }
       100% { fill: currentColor; }
     }
 
     /* Button Showcase Grid */
     .btn-showcase {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
       align-items: center;
       justify-items: center;
@@ -359,15 +429,9 @@ const alternateHref = "/design-proposal/";
        ========================================== */
     .cards-comparison-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
       margin-top: 30px;
-    }
-
-    @media (max-width: 800px) {
-      .cards-comparison-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     .card-column-title {
@@ -426,130 +490,129 @@ const alternateHref = "/design-proposal/";
       color: white;
     }
 
-    /* --- Proposed Card Style (Skewed, Tactile, High-Contrast) --- */
-    .proposed-card {
+    /* --- Proposed Card Style (Tactile, High-Contrast) --- */
+    .cta-link-filled-card {
       display: flex;
       flex-direction: column;
       background: var(--white, #fff);
       border: 2px solid var(--dark-gray, #434343);
       padding: 28px 24px;
       position: relative;
-      min-height: 200px;
-      transform: skewX(-6deg);
-      box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
+      min-height: 180px;
+      box-shadow: 6px 6px 0 var(--black, #000);
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       text-decoration: none;
       color: inherit;
     }
 
-    .proposed-card:hover {
-      transform: translate(-4px, -4px) skewX(-6deg);
-      box-shadow: 10px 10px 0 var(--triana-green, #115740);
+    .cta-link-filled-card:hover {
+      transform: translate(-4px, -4px);
     }
 
     /* Tactile Press Active State */
-    .proposed-card:active,
-    .proposed-card.state-pressed {
-      transform: translate(2px, 2px) skewX(-6deg);
-      box-shadow: 2px 2px 0 var(--triana-green, #115740);
+    .cta-link-filled-card:active,
+    .cta-link-filled-card.state-pressed {
+      transform: translate(2px, 2px);
       transition: all 0.1s ease;
     }
 
-    .proposed-card .card-tag {
-      font-family: var(--font-family-monospace, monospace);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--primary, #a50034);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: block;
-      transform: skewX(6deg);
-    }
-
-    .proposed-card h4 {
+    .cta-link-filled-card h4 {
       font-family: var(--font-family-sans-serif, sans-serif);
       font-weight: 800;
       font-size: 1.25rem;
       line-height: 1.35;
       color: var(--black, #000);
-      margin-bottom: 15px;
-      transform: skewX(6deg);
-      transition: color 0.2s ease;
+      margin-bottom: 12px;
+      transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    .proposed-card:hover h4 {
-      color: var(--primary, #a50034);
-    }
-
-    .proposed-card .card-footer {
-      margin-top: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transform: skewX(6deg);
-    }
-
-    .proposed-card .card-footer-text {
-      font-family: var(--font-family-monospace, monospace);
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .cta-link-filled-card p {
+      font-family: var(--font-family-sans-serif-system, sans-serif);
+      font-size: 0.95rem;
+      line-height: 1.5;
       color: var(--dark-gray, #434343);
-      border-bottom: 2px solid transparent;
-      padding-bottom: 2px;
-      transition: all 0.2s ease;
-    }
-
-    .proposed-card:hover .card-footer-text {
-      color: var(--primary, #a50034);
-      border-color: var(--primary, #a50034);
-    }
-
-    /* Inline chevron integration in proposed card */
-    .proposed-card .card-chevron {
-      width: 38px;
-      height: 18px;
-      position: relative;
-      margin-left: 12px;
-      top: -0.5px;
-    }
-
-    /* Hover animations for nested chevrons inside the proposed card */
-    .proposed-card:hover .one {
-      opacity: 1;
-      transform: translateX(0);
-      animation: color_anim 1s infinite 0.2s;
-    }
-
-    .proposed-card:hover .two {
-      opacity: 1;
-      transform: translateX(0);
-      animation: color_anim 1s infinite 0.4s;
-    }
-
-    .proposed-card:hover .three {
-      opacity: 1;
-      transform: translateX(0);
-      animation: color_anim 1s infinite 0.6s;
+      margin: 0;
+      transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     /* Color variations for the proposed cards */
-    .proposed-card-green {
+    
+    /* 1. CV Card (Red theme) */
+    .cta-link-filled-card-red {
       box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
     }
-    .proposed-card-green:hover {
+    .cta-link-filled-card-red:hover {
+      background: var(--almegre-red, #a50034);
+      box-shadow: 10px 10px 0 var(--black, #000);
+    }
+    .cta-link-filled-card-red:hover h4,
+    .cta-link-filled-card-red:hover p {
+      color: var(--white, #fff);
+    }
+    .cta-link-filled-card-red:active,
+    .cta-link-filled-card-red.state-pressed {
+      background: var(--almegre-red, #a50034);
+      box-shadow: 2px 2px 0 var(--black, #000);
+    }
+    .cta-link-filled-card-red:active h4,
+    .cta-link-filled-card-red.state-pressed h4,
+    .cta-link-filled-card-red:active p,
+    .cta-link-filled-card-red.state-pressed p {
+      color: var(--white, #fff);
+    }
+
+    /* 2. Projects Card (Green theme) */
+    .cta-link-filled-card-green {
+      box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
+    }
+    .cta-link-filled-card-green:hover {
+      background: var(--triana-green, #115740);
       box-shadow: 10px 10px 0 var(--primary, #a50034);
     }
+    .cta-link-filled-card-green:hover h4,
+    .cta-link-filled-card-green:hover p {
+      color: var(--white, #fff);
+    }
+    .cta-link-filled-card-green:active,
+    .cta-link-filled-card-green.state-pressed {
+      background: var(--triana-green, #115740);
+      box-shadow: 2px 2px 0 var(--primary, #a50034);
+    }
+    .cta-link-filled-card-green:active h4,
+    .cta-link-filled-card-green.state-pressed h4,
+    .cta-link-filled-card-green:active p,
+    .cta-link-filled-card-green.state-pressed p {
+      color: var(--white, #fff);
+    }
     
-    .proposed-card-accent {
+    /* 3. Publications Card (Accent/Albero theme) */
+    .cta-link-filled-card-accent {
       background: var(--cloud-dance-white, #f0eee9);
       box-shadow: 6px 6px 0 var(--triana-green, #115740);
     }
-    .proposed-card-accent:hover {
-      box-shadow: 10px 10px 0 var(--albero-pantone, #ffab60);
+    .cta-link-filled-card-accent:hover {
+      background: var(--albero-pantone, #ffab60);
+      box-shadow: 10px 10px 0 var(--triana-green, #115740);
+    }
+    .cta-link-filled-card-accent:hover h4,
+    .cta-link-filled-card-accent:hover p {
+      color: var(--black, #000);
+    }
+    .cta-link-filled-card-accent:active,
+    .cta-link-filled-card-accent.state-pressed {
+      background: var(--albero-pantone, #ffab60);
+      box-shadow: 2px 2px 0 var(--triana-green, #115740);
+    }
+    .cta-link-filled-card-accent:active h4,
+    .cta-link-filled-card-accent.state-pressed h4,
+    .cta-link-filled-card-accent:active p,
+    .cta-link-filled-card-accent.state-pressed p {
+      color: var(--black, #000);
+    }
+
+    .cta-link-filled-card-rounded {
+      border-radius: 12px;
     }
 
     /* ==========================================
@@ -655,16 +718,17 @@ const alternateHref = "/design-proposal/";
     <div class="section-card">
       <div class="section-title">1. The cta-link-chevron Button</div>
       <div class="section-subtitle">
-        The approved default button style. Featuring a slanted body, Montserrat typeface, 1-chevron default, 3-chevron hover sweep, and tactile click compression.
+        The approved default button style. Featuring a slanted body, Montserrat typeface, 1-chevron default, 3-chevron hover sweep, and tactile click compression. We also support a straight (un-slanted) variant.
       </div>
 
-      <div class="btn-showcase">
+      <div style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: var(--gray, #6c757d); margin-bottom: 12px; letter-spacing: 0.05em;">Slanted Variant (Default)</div>
+      <div class="btn-showcase" style="margin-bottom: 32px;">
         <!-- Default Seville Red Button -->
         <div class="btn-box">
           <button class="cta-link-chevron cta-seville-red proposal-btn" id="btn-prop-red" data-name="Seville Red Button">
             <span class="span">SUBMIT</span>
             <span class="second">
-              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
                 <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
                 <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
                 <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
@@ -679,7 +743,7 @@ const alternateHref = "/design-proposal/";
           <button class="cta-link-chevron cta-seville-green proposal-btn" id="btn-prop-green" data-name="Seville Green Button">
             <span class="span">EXPLORE</span>
             <span class="second">
-              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
                 <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
                 <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
                 <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
@@ -689,19 +753,53 @@ const alternateHref = "/design-proposal/";
           <span class="btn-label">Seville Green</span>
         </div>
 
-        <!-- Albero Gold Button -->
+        <!-- Albero Gold Button (Chevron-Free Variant) -->
         <div class="btn-box">
           <button class="cta-link-chevron cta-seville-albero proposal-btn" id="btn-prop-albero" data-name="Albero Gold Button">
             <span class="span">DOWNLOAD CV</span>
+          </button>
+          <span class="btn-label">Albero Gold (Chevron-Free)</span>
+        </div>
+      </div>
+
+      <div style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: var(--gray, #6c757d); margin-bottom: 12px; letter-spacing: 0.05em;">Straight Variant (Alternate)</div>
+      <div class="btn-showcase">
+        <!-- Straight Seville Red Button -->
+        <div class="btn-box">
+          <button class="cta-link-chevron cta-straight cta-seville-red proposal-btn" id="btn-prop-red-straight" data-name="Seville Red Button (Straight)">
+            <span class="span">SUBMIT</span>
             <span class="second">
-              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
                 <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
                 <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
                 <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
               </svg>
             </span>
           </button>
-          <span class="btn-label">Albero Gold (Inverted)</span>
+          <span class="btn-label">Seville Red (Straight)</span>
+        </div>
+
+        <!-- Straight Seville Green Button -->
+        <div class="btn-box">
+          <button class="cta-link-chevron cta-straight cta-seville-green proposal-btn" id="btn-prop-green-straight" data-name="Seville Green Button (Straight)">
+            <span class="span">EXPLORE</span>
+            <span class="second">
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
+              </svg>
+            </span>
+          </button>
+          <span class="btn-label">Seville Green (Straight)</span>
+        </div>
+
+        <!-- Straight Albero Gold Button (Chevron-Free Variant) -->
+        <div class="btn-box">
+          <button class="cta-link-chevron cta-straight cta-seville-albero proposal-btn" id="btn-prop-albero-straight" data-name="Albero Gold Button (Straight)">
+            <span class="span">DOWNLOAD CV</span>
+          </button>
+          <span class="btn-label">Albero Gold (Straight, Chevron-Free)</span>
         </div>
       </div>
       <div style="text-align: center;">
@@ -724,10 +822,10 @@ const alternateHref = "/design-proposal/";
           <p>
             An open-source desktop companion for Mixxx DJs. Tracks BPM trends in real-time, highlights shared playlist crates, and hosts an integrated Bluetooth broadcasting server for wireless secondary displays.
           </p>
-          <a href="https://github.com/alxgom/Mixxx-dj-buddy" target="_blank" rel="noopener noreferrer" class="cta-link-chevron cta-seville-blue proposal-btn" id="btn-hero-link" data-name="GitHub Hero Button">
+          <a href="https://github.com/alxgom/Mixxx-dj-buddy" target="_blank" rel="noopener noreferrer" class="cta-link-chevron cta-seville-white proposal-btn" id="btn-hero-link" data-name="GitHub Hero Button">
             <span class="span">GitHub Code</span>
             <span class="second">
-              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
                 <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
                 <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
                 <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
@@ -752,7 +850,7 @@ const alternateHref = "/design-proposal/";
     <div class="section-card">
       <div class="section-title">3. Homepage Cards Re-thinking Proposal</div>
       <div class="section-subtitle">
-        Comparison between the generic flat card template and the proposed slanted tactile system, featuring monospaced tag descriptors and interactive chevrons.
+        Comparison between the current generic flat card, the proposed sharp tactile card, and the alternate rounded tactile card style. All variants feature color hover transitions and responsive click compression.
       </div>
 
       <div class="cards-comparison-grid">
@@ -780,56 +878,50 @@ const alternateHref = "/design-proposal/";
           </div>
         </div>
 
-        <!-- Proposed Skewed Card Column -->
+        <!-- Proposed Sharp Card Column -->
         <div>
-          <div class="card-column-title">Proposed Tactile Card Style (Interactive)</div>
+          <div class="card-column-title">Proposed Style (Sharp Corners)</div>
           <div class="cards-stack">
             <!-- CV Proposed Card -->
-            <div class="proposed-card proposed-card-red" data-name="Online CV Card">
-              <span class="card-tag">// Profile Metadata</span>
+            <div class="cta-link-filled-card cta-link-filled-card-red" data-name="Online CV Card (Sharp)">
               <h4>Online CV</h4>
-              <div class="card-footer">
-                <span class="card-footer-text">Open CV File</span>
-                <span class="card-chevron">
-                  <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
-                    <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
-                    <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
-                    <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
-                  </svg>
-                </span>
-              </div>
+              <p>Explore my academic background, publications list, and data science history.</p>
             </div>
 
             <!-- Projects Proposed Card -->
-            <div class="proposed-card proposed-card-green" data-name="Projects Card">
-              <span class="card-tag">// Web Application & Viz</span>
+            <div class="cta-link-filled-card cta-link-filled-card-green" data-name="Projects Card (Sharp)">
               <h4>Apps, Visualizations & Other Projects</h4>
-              <div class="card-footer">
-                <span class="card-footer-text">View Gallery</span>
-                <span class="card-chevron">
-                  <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
-                    <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
-                    <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
-                    <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
-                  </svg>
-                </span>
-              </div>
+              <p>Browse live applications, D3 charts, custom visual plugins, and open-source tools.</p>
             </div>
 
             <!-- Publications Proposed Card -->
-            <div class="proposed-card proposed-card-accent" data-name="Publications Card">
-              <span class="card-tag">// Academic & Research Work</span>
+            <div class="cta-link-filled-card cta-link-filled-card-accent" data-name="Publications Card (Sharp)">
               <h4>Publications (G-Scholar)</h4>
-              <div class="card-footer">
-                <span class="card-footer-text">Browse Papers</span>
-                <span class="card-chevron">
-                  <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
-                    <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
-                    <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
-                    <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
-                  </svg>
-                </span>
-              </div>
+              <p>Read peer-reviewed research papers and citations on Google Scholar.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proposed Rounded Card Column -->
+        <div>
+          <div class="card-column-title">Proposed Style (Rounded Corners)</div>
+          <div class="cards-stack">
+            <!-- CV Proposed Card (Rounded) -->
+            <div class="cta-link-filled-card cta-link-filled-card-red cta-link-filled-card-rounded" data-name="Online CV Card (Rounded)">
+              <h4>Online CV</h4>
+              <p>Explore my academic background, publications list, and data science history.</p>
+            </div>
+
+            <!-- Projects Proposed Card (Rounded) -->
+            <div class="cta-link-filled-card cta-link-filled-card-green cta-link-filled-card-rounded" data-name="Projects Card (Rounded)">
+              <h4>Apps, Visualizations & Other Projects</h4>
+              <p>Browse live applications, D3 charts, custom visual plugins, and open-source tools.</p>
+            </div>
+
+            <!-- Publications Proposed Card (Rounded) -->
+            <div class="cta-link-filled-card cta-link-filled-card-accent cta-link-filled-card-rounded" data-name="Publications Card (Rounded)">
+              <h4>Publications (G-Scholar)</h4>
+              <p>Read peer-reviewed research papers and citations on Google Scholar.</p>
             </div>
           </div>
         </div>
@@ -893,7 +985,12 @@ const alternateHref = "/design-proposal/";
         
         button.addEventListener("mouseenter", () => {
           if (!button.classList.contains("state-success") && !button.classList.contains("state-pressed")) {
-            addLog("HOVER", `Hovered: ${name}. Sweeping chevrons (1 to 3).`);
+            const hasChevron = button.querySelector(".second") !== null;
+            if (hasChevron) {
+              addLog("HOVER", `Hovered: ${name}. Sweeping chevrons (1 to 3).`);
+            } else {
+              addLog("HOVER", `Hovered: ${name}. Solid color transition active.`);
+            }
           }
         });
 
@@ -912,12 +1009,12 @@ const alternateHref = "/design-proposal/";
       });
 
       // Proposed Card Interactions
-      const proposedCards = document.querySelectorAll(".proposed-card");
+      const proposedCards = document.querySelectorAll(".cta-link-filled-card");
       proposedCards.forEach(card => {
         const name = card.getAttribute("data-name");
 
         card.addEventListener("mouseenter", () => {
-          addLog("HOVER", `Hovered: ${name}. Card translated - shadow highlighted. Inner chevron expanded.`);
+          addLog("HOVER", `Hovered: ${name}. Card translated & colored - shadow highlighted.`);
         });
 
         const cardPress = () => {
@@ -943,7 +1040,7 @@ const alternateHref = "/design-proposal/";
             
             // Set text to CONFIRMED for submit buttons, or keep text for CV
             const textSpan = button.querySelector(".span");
-            if (button.id !== "btn-hero-link" && button.id !== "btn-prop-albero") {
+            if (button.id !== "btn-hero-link" && button.id !== "btn-prop-albero" && button.id !== "btn-prop-albero-straight") {
               textSpan.textContent = "CONFIRMED";
             }
             
@@ -969,9 +1066,9 @@ const alternateHref = "/design-proposal/";
         propBtns.forEach(button => {
           button.classList.remove("state-success", "state-pressed");
           const textSpan = button.querySelector(".span");
-          if (button.id === "btn-prop-red") textSpan.textContent = "SUBMIT";
-          if (button.id === "btn-prop-green") textSpan.textContent = "EXPLORE";
-          if (button.id === "btn-prop-albero") textSpan.textContent = "DOWNLOAD CV";
+          if (button.id === "btn-prop-red" || button.id === "btn-prop-red-straight") textSpan.textContent = "SUBMIT";
+          if (button.id === "btn-prop-green" || button.id === "btn-prop-green-straight") textSpan.textContent = "EXPLORE";
+          if (button.id === "btn-prop-albero" || button.id === "btn-prop-albero-straight") textSpan.textContent = "DOWNLOAD CV";
           if (button.id === "btn-hero-link") textSpan.textContent = "GitHub Code";
         });
         addLog("SYSTEM", "Button showroom reset to default idle states.");

@@ -12234,3 +12234,528 @@ body {
   color: var(--highlight-color);
 }
 
+/* ==========================================
+   Tactile Design System Buttons (.cta-link-chevron)
+   ========================================== */
+.cta-link-chevron,
+.cta-link-button,
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 36px;
+  text-decoration: none;
+  --hover-flow-color: var(--albero-pantone, #ffab60);
+  font-family: var(--font-family-sans-serif), sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  background: var(--primary, #a50034);
+  border: none;
+  box-shadow: 6px 6px 0 var(--btn-shadow, #7d0027);
+  cursor: pointer;
+  position: relative;
+  letter-spacing: 2px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-chevron:focus,
+.cta-link-button:focus,
+.cta-button:focus {
+  outline: none;
+}
+
+/* Hover State: change box shadow to Albero Gold */
+.cta-link-chevron:hover,
+.cta-link-button:hover,
+.cta-button:hover {
+  box-shadow: 10px 10px 0 var(--albero-pantone, #ffab60);
+  color: white;
+  text-decoration: none;
+}
+
+/* Slanted button transformation rules */
+.cta-link-chevron,
+.cta-link-button {
+  transform: skewX(-15deg);
+}
+
+.cta-link-chevron .span,
+.cta-link-button .span {
+  transform: skewX(15deg);
+  display: inline-block;
+}
+
+/* Active/Pressed States */
+.cta-link-chevron:active,
+.cta-link-chevron.state-pressed,
+.cta-link-button:active,
+.cta-link-button.state-pressed {
+  letter-spacing: 0px;
+  transform: scale(0.95) skewX(-15deg);
+  box-shadow: 2px 2px 0 var(--btn-shadow, #7d0027);
+  transition: all 0.15s ease;
+}
+
+.cta-button:active,
+.cta-button.state-pressed {
+  letter-spacing: 0px;
+  transform: scale(0.95);
+  box-shadow: 2px 2px 0 var(--btn-shadow, #7d0027);
+  transition: all 0.15s ease;
+}
+
+/* Chevron container inside button */
+.cta-link-chevron .second {
+  display: inline-block;
+  width: var(--chevron-w, 38px);
+  height: var(--chevron-h, 18px);
+  margin-left: 20px;
+  margin-right: 0px;
+  position: relative;
+  top: -0.7px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-chevron .second svg {
+  display: block;
+}
+
+.cta-link-chevron .second path {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* Hover & Success: push chevron forward and widen the button */
+.cta-link-chevron:hover .second,
+.cta-link-chevron.state-success .second {
+  margin-left: 32px;
+}
+
+.cta-link-chevron .span {
+  transform: skewX(15deg);
+  display: inline-block;
+}
+
+/* Individual chevrons transitions */
+.cta-link-chevron .one {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-chevron .two {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-chevron .three {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Chevron Hover Flow */
+.cta-link-chevron:hover .one {
+  opacity: 1;
+  transform: translateX(0);
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.cta-link-chevron:hover .two {
+  opacity: 1;
+  transform: translateX(0);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+.cta-link-chevron:hover .three {
+  opacity: 1;
+  transform: translateX(0);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+/* Color Palette Variations */
+.cta-seville-red { 
+  background: var(--almegre-red, #a50034); 
+  --btn-shadow: #7d0027;
+}
+.cta-seville-green { 
+  background: var(--triana-green, #115740); 
+  --btn-shadow: #0b392a;
+}
+.cta-seville-blue { 
+  background: var(--lapiz-lazuli-blue, #26619c); 
+  --btn-shadow: #1a4670;
+}
+.cta-seville-black { 
+  background: var(--black, #000);
+  color: var(--white, #fff);
+  --btn-shadow: var(--dark-gray, #434343);
+  --hover-flow-color: var(--almegre-red, #a50034);
+}
+.cta-seville-black:hover {
+  box-shadow: 10px 10px 0 var(--almegre-red, #a50034);
+  color: var(--almegre-red, #a50034);
+}
+.cta-seville-black:active,
+.cta-seville-black.state-pressed {
+  background: var(--black, #000);
+  box-shadow: 2px 2px 0 var(--almegre-red, #a50034);
+  color: var(--almegre-red, #a50034);
+}
+.cta-seville-white { 
+  background: var(--white, #fff);
+  color: var(--black, #000);
+  --btn-shadow: var(--black, #000);
+  --hover-flow-color: var(--almegre-red, #a50034);
+}
+.cta-seville-white:hover {
+  box-shadow: 10px 10px 0 var(--almegre-red, #a50034);
+  color: var(--almegre-red, #a50034);
+  background: var(--white, #fff);
+}
+.cta-seville-white:active,
+.cta-seville-white.state-pressed {
+  background: var(--white, #fff);
+  box-shadow: 2px 2px 0 var(--almegre-red, #a50034);
+  color: var(--almegre-red, #a50034);
+}
+
+
+.cta-seville-albero { 
+  background: var(--albero-pantone, #ffab60); 
+  color: var(--black, #000);
+  --btn-shadow: #d4863f;
+  --hover-flow-color: var(--triana-green, #115740);
+}
+.cta-seville-albero:hover {
+  box-shadow: 10px 10px 0 var(--triana-green, #115740);
+  color: var(--black, #000);
+}
+
+/* Active/Success State */
+.cta-link-chevron.state-success {
+  background: var(--triana-green, #115740) !important;
+  border: none !important;
+  box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
+  letter-spacing: 2px;
+  color: var(--albero-pantone, #ffab60) !important;
+}
+.cta-link-chevron.state-success:hover {
+  box-shadow: 10px 10px 0 var(--albero-pantone, #ffab60);
+}
+
+.cta-link-chevron.state-success .one {
+  opacity: 1 !important;
+  transform: translateX(-12px) scale(1.2) !important;
+  fill: var(--albero-pantone, #ffab60) !important;
+  animation: none !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+.cta-link-chevron.state-success .two {
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+  fill: var(--albero-pantone, #ffab60) !important;
+  animation: none !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+.cta-link-chevron.state-success .three {
+  opacity: 1 !important;
+  transform: translateX(12px) scale(1.2) !important;
+  fill: var(--albero-pantone, #ffab60) !important;
+  animation: none !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.cta-link-chevron:active .one,
+.cta-link-chevron.state-pressed .one {
+  opacity: 1 !important;
+  transform: translateX(10px) scale(0.85) !important;
+  transition: all 0.1s ease !important;
+  animation: none !important;
+}
+.cta-link-chevron:active .two,
+.cta-link-chevron.state-pressed .two {
+  opacity: 1 !important;
+  transform: scale(0.85) !important;
+  transition: all 0.1s ease !important;
+  animation: none !important;
+}
+.cta-link-chevron:active .three,
+.cta-link-chevron.state-pressed .three {
+  opacity: 1 !important;
+  transform: translateX(-10px) scale(0.85) !important;
+  transition: all 0.1s ease !important;
+  animation: none !important;
+}
+
+@keyframes color_anim {
+  0% { fill: currentColor; }
+  50% { fill: var(--hover-flow-color, #ffab60); }
+  100% { fill: currentColor; }
+}
+
+.cta-link-filled-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--cloud-dance-white, #f0eee9);
+  border: 2px solid var(--dark-gray, #434343);
+  padding: 28px 24px;
+  position: relative;
+  min-height: 180px;
+  box-shadow: 6px 6px 0 var(--dark-gray, #434343);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-decoration: none;
+  color: inherit;
+}
+
+.cta-link-filled-card:hover {
+  background: var(--primary, #a50034);
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0 var(--black, #000);
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Tactile Press Active State */
+.cta-link-filled-card:active,
+.cta-link-filled-card.state-pressed {
+  background: var(--primary, #a50034);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--black, #000);
+  transition: all 0.1s ease;
+}
+
+.cta-link-filled-card h4 {
+  font-family: var(--font-family-sans-serif, sans-serif);
+  font-weight: 800;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  color: var(--black, #000);
+  margin-bottom: 12px;
+  transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-filled-card:hover h4,
+.cta-link-filled-card:active h4,
+.cta-link-filled-card.state-pressed h4 {
+  color: var(--white, #fff);
+}
+
+.cta-link-filled-card p {
+  font-family: var(--font-family-sans-serif-system, sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--dark-gray, #434343);
+  margin: 0;
+  padding-right: 48px;
+  transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-filled-card:hover p,
+.cta-link-filled-card:active p,
+.cta-link-filled-card.state-pressed p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-link-filled-card-label {
+  font-family: var(--font-family-monospace, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary, #a50034);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+  display: block;
+  transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-filled-card:hover .cta-link-filled-card-label,
+.cta-link-filled-card:active .cta-link-filled-card-label,
+.cta-link-filled-card.state-pressed .cta-link-filled-card-label {
+  color: var(--albero-pantone, #ffab60);
+}
+
+/* Chevron indicator */
+.cta-link-filled-card-chevron {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 38px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #a50034);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-filled-card:hover .cta-link-filled-card-chevron,
+.cta-link-filled-card:active .cta-link-filled-card-chevron,
+.cta-link-filled-card.state-pressed .cta-link-filled-card-chevron {
+  color: var(--white, #fff);
+  transform: translateX(4px);
+}
+
+.cta-link-filled-card-chevron svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cta-link-filled-card-chevron path {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* Individual chevrons transitions */
+.cta-link-filled-card-chevron .one {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-filled-card-chevron .two {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cta-link-filled-card-chevron .three {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Chevron Hover Flow */
+.cta-link-filled-card:hover .cta-link-filled-card-chevron .one,
+.cta-link-filled-card:active .cta-link-filled-card-chevron .one,
+.cta-link-filled-card.state-pressed .cta-link-filled-card-chevron .one {
+  opacity: 1;
+  transform: translateX(0);
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.cta-link-filled-card:hover .cta-link-filled-card-chevron .two,
+.cta-link-filled-card:active .cta-link-filled-card-chevron .two,
+.cta-link-filled-card.state-pressed .cta-link-filled-card-chevron .two {
+  opacity: 1;
+  transform: translateX(0);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+.cta-link-filled-card:hover .cta-link-filled-card-chevron .three,
+.cta-link-filled-card:active .cta-link-filled-card-chevron .three,
+.cta-link-filled-card.state-pressed .cta-link-filled-card-chevron .three {
+  opacity: 1;
+  transform: translateX(0);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+/* Color variations for the proposed cards */
+
+/* 1. Red theme */
+.cta-link-filled-card-red {
+  box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
+}
+.cta-link-filled-card-red:hover {
+  background: var(--almegre-red, #a50034);
+  box-shadow: 10px 10px 0 var(--black, #000);
+}
+.cta-link-filled-card-red:hover h4,
+.cta-link-filled-card-red:hover p {
+  color: var(--white, #fff);
+}
+.cta-link-filled-card-red:hover .cta-link-filled-card-label {
+  color: var(--albero-pantone, #ffab60);
+}
+.cta-link-filled-card-red:active,
+.cta-link-filled-card-red.state-pressed {
+  background: var(--almegre-red, #a50034);
+  box-shadow: 2px 2px 0 var(--black, #000);
+}
+.cta-link-filled-card-red:active h4,
+.cta-link-filled-card-red.state-pressed h4,
+.cta-link-filled-card-red:active p,
+.cta-link-filled-card-red.state-pressed p {
+  color: var(--white, #fff);
+}
+.cta-link-filled-card-red:active .cta-link-filled-card-label,
+.cta-link-filled-card-red.state-pressed .cta-link-filled-card-label {
+  color: var(--albero-pantone, #ffab60);
+}
+
+/* 2. Green theme */
+.cta-link-filled-card-green {
+  box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
+}
+.cta-link-filled-card-green:hover {
+  background: var(--triana-green, #115740);
+  box-shadow: 10px 10px 0 var(--primary, #a50034);
+}
+.cta-link-filled-card-green:hover h4,
+.cta-link-filled-card-green:hover p {
+  color: var(--white, #fff);
+}
+.cta-link-filled-card-green:hover .cta-link-filled-card-label {
+  color: var(--albero-pantone, #ffab60);
+}
+.cta-link-filled-card-green:active,
+.cta-link-filled-card-green.state-pressed {
+  background: var(--triana-green, #115740);
+  box-shadow: 2px 2px 0 var(--primary, #a50034);
+}
+.cta-link-filled-card-green:active h4,
+.cta-link-filled-card-green.state-pressed h4,
+.cta-link-filled-card-green:active p,
+.cta-link-filled-card-green.state-pressed p {
+  color: var(--white, #fff);
+}
+.cta-link-filled-card-green:active .cta-link-filled-card-label,
+.cta-link-filled-card-green.state-pressed .cta-link-filled-card-label {
+  color: var(--albero-pantone, #ffab60);
+}
+
+/* 3. Accent/Albero theme */
+.cta-link-filled-card-accent {
+  background: var(--cloud-dance-white, #f0eee9);
+  box-shadow: 6px 6px 0 var(--triana-green, #115740);
+}
+.cta-link-filled-card-accent .cta-link-filled-card-label {
+  color: var(--triana-green, #115740);
+}
+.cta-link-filled-card-accent:hover {
+  background: var(--albero-pantone, #ffab60);
+  box-shadow: 10px 10px 0 var(--triana-green, #115740);
+}
+.cta-link-filled-card-accent:hover h4,
+.cta-link-filled-card-accent:hover p {
+  color: var(--black, #000);
+}
+.cta-link-filled-card-accent:hover .cta-link-filled-card-label {
+  color: var(--triana-green, #115740);
+}
+.cta-link-filled-card-accent:active,
+.cta-link-filled-card-accent.state-pressed {
+  background: var(--albero-pantone, #ffab60);
+  box-shadow: 2px 2px 0 var(--triana-green, #115740);
+}
+.cta-link-filled-card-accent:active h4,
+.cta-link-filled-card-accent.state-pressed h4,
+.cta-link-filled-card-accent:active p,
+.cta-link-filled-card-accent.state-pressed p {
+  color: var(--black, #000);
+}
+.cta-link-filled-card-accent:active .cta-link-filled-card-label,
+.cta-link-filled-card-accent.state-pressed .cta-link-filled-card-label {
+  color: var(--triana-green, #115740);
+}
+
+/* Optional rounded style */
+.cta-link-filled-card-rounded {
+  border-radius: 12px;
+}

@@ -39,7 +39,22 @@ const schema = JSON.stringify({
   <meta
     slot="head"
     name="keywords"
-    content="Mixxx companion app, visualizador set de DJ, gráfico BPM en vivo, herramienta DJ swing blues, software DJ código abierto, app Go escritorio, DJ baile social"
+    content="Mixxx companion app, visualizador de set de DJ, gráfico de BPM en vivo, herramienta de DJ de swing y blues, software de DJ de código abierto, app de Go de escritorio, DJ de baile social, DJ de Lindy Hop, DJ de Balboa, DJ de Salsa, DJ de Tango, DJ de Bachata, DJ de Forró"
+  />
+  <meta
+    slot="head"
+    property="og:title"
+    content="Visualiza el flujo de tu set de DJ en tiempo real con Mixxx DJ Buddy | Alexis Gomel"
+  />
+  <meta
+    slot="head"
+    property="og:description"
+    content="Gráfico de BPM en tiempo real y metadatos de tracks para DJs de Mixxx. Creado en Go con D3.js."
+  />
+  <meta
+    slot="head"
+    property="og:image"
+    content="/assets/imgs/Projects/mixxx_dj_buddy_poster.jpg"
   />
   <link
     rel="preload"
@@ -133,49 +148,11 @@ const schema = JSON.stringify({
       color: var(--dark-gray);
       line-height: 1.6;
     }
-    .btn-hero-primary {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 700;
-      padding: 0.9rem 2rem;
-      border-radius: 0; /* Sharp corner */
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin-right: 1rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.9rem;
-      box-shadow: 6px 6px 0px var(--dark);
-      border: 1px solid var(--dark);
-    }
-    .btn-hero-primary:hover {
-      background: var(--dark);
-      color: #fff;
-      transform: translate(-2px, -2px);
-      box-shadow: 8px 8px 0px var(--primary);
-    }
-    .btn-hero-outline {
-      display: inline-block;
-      border: 1px solid var(--dark-gray);
-      color: var(--dark-gray);
-      font-weight: 700;
-      padding: 0.9rem 2rem;
-      border-radius: 0; /* Sharp corner */
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.9rem;
-      box-shadow: 6px 6px 0px var(--light-gray);
-    }
-    .btn-hero-outline:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translate(-2px, -2px);
-      box-shadow: 8px 8px 0px var(--albero-pantone);
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 1rem;
+      margin-bottom: 2.5rem;
     }
 
     /* ── Section dividers ──────────────────────────── */
@@ -343,21 +320,6 @@ const schema = JSON.stringify({
       gap: 2rem;
       text-align: left;
     }
-    .cta-card {
-      border: 1px solid var(--dark);
-      padding: 2.5rem 2rem;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      box-shadow: 8px 8px 0px var(--light-gray);
-      transition: all 0.3s ease;
-    }
-    .cta-card:hover {
-      transform: translate(-4px, -4px);
-      box-shadow: 12px 12px 0px var(--primary);
-      border-color: var(--dark);
-    }
     .cta-label {
       font-family: var(--font-family-monospace);
       font-size: 0.75rem;
@@ -366,37 +328,6 @@ const schema = JSON.stringify({
       font-weight: 700;
       margin-bottom: 0.5rem;
       display: block;
-    }
-    .cta-card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    .cta-card p {
-      font-size: 0.9rem;
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-    .cta-link {
-      font-family: var(--font-family-monospace);
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--dark);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      display: inline-flex;
-      align-items: center;
-      transition: all 0.2s ease;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 2px;
-      align-self: flex-start;
-    }
-    .cta-link:hover {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
     }
 
     /* ── Future plans list ─────────────────────────── */
@@ -445,7 +376,7 @@ const schema = JSON.stringify({
     /* ── Remote Display callout ─────────────────────── */
     .remote-display-callout {
       background: var(--dark);
-      padding: 5rem 0;
+      padding: 5rem 2rem;
       border-top: none;
     }
     .remote-display-callout h2 {
@@ -461,16 +392,7 @@ const schema = JSON.stringify({
       color: var(--albero-pantone) !important;
       text-decoration: underline;
     }
-    .remote-display-callout .btn-hero-outline {
-      color: #fff;
-      border-color: rgba(255,255,255,0.5);
-      box-shadow: 6px 6px 0px rgba(255,255,255,0.15);
-    }
-    .remote-display-callout .btn-hero-outline:hover {
-      color: var(--albero-pantone);
-      border-color: var(--albero-pantone);
-      box-shadow: 8px 8px 0px rgba(255,255,255,0.1);
-    }
+
 
     @media (max-width: 767px) {
       .buddy-hero {
@@ -505,21 +427,28 @@ const schema = JSON.stringify({
               href="https://github.com/alxgom/Mixxx-dj-buddy/releases"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-hero-primary gtm-track-click"
+              class="cta-link-button cta-seville-red gtm-track-click"
               data-event-category="Mixxx DJ Buddy ES"
               data-event-label="Hero - Descargar"
             >
-              Descargar (.exe)
+              <span class="span">Descargar (.exe)</span>
             </a>
             <a
               href="https://github.com/alxgom/Mixxx-dj-buddy"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-hero-outline gtm-track-click"
+              class="cta-link-chevron cta-seville-white gtm-track-click"
               data-event-category="Mixxx DJ Buddy ES"
               data-event-label="Hero - GitHub"
             >
-              Ver en GitHub
+              <span class="span">Ver en GitHub</span>
+              <span class="second">
+                <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
+                  <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                  <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                  <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
+                </svg>
+              </span>
             </a>
           </div>
         </div>
@@ -683,11 +612,18 @@ const schema = JSON.stringify({
           </p>
           <a
             href="/es/projects/mixxx-remote-display/"
-            class="btn-hero-outline gtm-track-click"
+            class="cta-link-chevron cta-seville-albero gtm-track-click"
             data-event-category="Mixxx DJ Buddy ES"
             data-event-label="Remote Display Callout"
           >
-            Ver Mixxx Remote Display →
+            <span class="span">Ver Mixxx Remote Display</span>
+            <span class="second">
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
+              </svg>
+            </span>
           </a>
         </div>
         <div class="col-md-6 mt-4 mt-md-0">
@@ -743,19 +679,13 @@ const schema = JSON.stringify({
         <div class="col-md-6 mt-4 mt-md-0">
           <h3>¿Para quién es?</h3>
           <p>
-            DJ Buddy está diseñado para DJs que usan
-            <a
-              href="https://mixxx.org/"
-              target="_blank"
-              rel="noopener noreferrer">Mixxx</a
-            >
-            en eventos de baile social — swing, blues, tango, salsa, bachata — donde
-            se seleccionan y reproducen tracks completos en lugar de mezclar en vivo.
+            DJ Buddy está diseñado para DJs que curan música para <strong>eventos de baile social</strong>.
+            Ya sea que pinches Swing (Lindy Hop, Balboa, Shag), Blues, Salsa, Tango, Bachata o Forró,
+            esta herramienta te ayuda a gestionar la energía de la sala donde los tracks se reproducen en su totalidad.
           </p>
           <p>
-            En este formato, leer la pista de baile lo es todo. DJ Buddy te da
-            una segunda perspectiva sobre lo que has reproducido, para planear
-            el próximo movimiento con más confianza.
+            En estos géneros, el rol del DJ se centra en la curaduría y la gestión de la energía más que en el beat-matching.
+            DJ Buddy te da una perspectiva histórica de tu set actual, facilitando la decisión de hacia dónde llevar la pista de baile a continuación.
           </p>
           <h3 class="mt-4">Primeros pasos</h3>
           <ul class="setup-steps">
@@ -842,34 +772,51 @@ const schema = JSON.stringify({
       </p>
 
       <div class="cta-grid">
-        <div class="cta-card">
-          <span class="cta-label">Pantalla de Acompañamiento Inalámbrica</span>
-          <h3>Mixxx Remote Display</h3>
+        <a href="/es/projects/mixxx-remote-display/" class="cta-link-filled-card">
+          <span class="cta-link-filled-card-label">Pantalla de Acompañamiento Inalámbrica</span>
+          <h4>Mixxx Remote Display</h4>
           <p>
             Un cliente Android que se conecta a DJ Buddy vía Bluetooth SPP. Ideal para salas donde los bailarines quieren consultar el tema que está sonando.
           </p>
-          <a href="/es/projects/mixxx-remote-display/" class="cta-link">Ver pantalla remota →</a>
-        </div>
+          <div class="cta-link-filled-card-chevron">
+            <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
+              <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+              <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+              <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
+            </svg>
+          </div>
+        </a>
 
-        <div class="cta-card">
-          <span class="cta-label">Análisis post-set</span>
-          <h3>Dashboard de Análisis de Sets</h3>
+        <a href="https://dj-dashboard.onrender.com/" target="_blank" rel="noopener noreferrer" class="cta-link-filled-card">
+          <span class="cta-link-filled-card-label">Análisis post-set</span>
+          <h4>Dashboard de Análisis de Sets</h4>
           <p>
             Una aplicación web interactiva en Python/Dash que detalla el historial completo de mis sesiones como <strong>Dr. Beat</strong>. Analiza curvas de BPM, transiciones y elecciones de pistas a largo plazo.
           </p>
-          <a href="https://dj-dashboard.onrender.com/" target="_blank" rel="noopener noreferrer" class="cta-link">Abrir dashboard →</a>
-        </div>
+          <div class="cta-link-filled-card-chevron">
+            <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
+              <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+              <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+              <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
+            </svg>
+          </div>
+        </a>
 
-        <div class="cta-card">
-          <span class="cta-label">La música detrás de las herramientas</span>
-          <h3>Dr. Beat: Sets de Swing y Jazz</h3>
+        <a href="/es/playlists/" class="cta-link-filled-card">
+          <span class="cta-link-filled-card-label">La música detrás de las herramientas</span>
+          <h4>Dr. Beat: Sets de Swing y Jazz</h4>
           <p>
             ¿Quieres escuchar la música real que inspiró estos proyectos? Explora las listas de reproducción y archivos de sets que Dr. Beat prepara para los bailarines.
           </p>
-          <a href="/es/playlists/" class="cta-link">Escuchar sets →</a>
-        </div>
+          <div class="cta-link-filled-card-chevron">
+            <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width: 100%; height: 100%; overflow: visible;">
+              <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+              <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+              <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
+            </svg>
+          </div>
+        </a>
       </div>
     </div>
   </div>
 </MainLayout>
-/MainLayout>

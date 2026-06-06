@@ -97,3 +97,5 @@ To prevent any layout shifting while web fonts load, we override system fallback
 ## 5. Typography To-Do / Future Exploration
 
 - [ ] **Explore a more styled/characteristic heading font**: Investigate pairing the system body sans-serif stack with a more distinctive, stylized brand typeface for headings (e.g. a more expressive sans-serif or a geometric slab-serif) to replace Montserrat and give headings stronger individual character.
+- [ ] **Define font styles for pills and eyebrows**: Investigate standardizing font styles and pairings (e.g., Montserrat vs monospace) for metadata badges (pills/tags) and eyebrow text across projects to unify the engineered look.
+
