@@ -6,78 +6,153 @@ const alternateHref = "/font-test-cta/";
 ---
 
 <MainLayout
-  title="CTA Interaction Test Page"
-  description="Sandbox page to test the animated mobinkakei CTA button from Uiverse.io"
+  title="CTA Interaction Playground"
+  description="Playground to test and compare different typography, color palettes, active states, and confirmation animations for the Mobinkakei CTA button."
   currentLang={currentLang}
   alternateHref={alternateHref}
 >
+  <!-- Load original Poppins font for comparison -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" slot="head" />
   <meta name="robots" content="noindex, nofollow" slot="head" />
 
   <style>
     /* ==========================================
-       CTA Button Styles from Uiverse.io by mobinkakei
+       Layout & Page Styling
        ========================================== */
-    .cta-container {
+    .playground-wrapper {
+      max-width: 1100px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+      font-family: var(--font-family-sans-serif-system, sans-serif);
+      color: var(--dark-gray, #434343);
+    }
+
+    .play-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .play-header h1 {
+      font-family: var(--font-family-sans-serif, sans-serif);
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: var(--black, #000);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .play-header p {
+      font-size: 1.1rem;
+      color: var(--gray, #6c757d);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .section-card {
+      background: var(--white, #fff);
+      border: 1px solid var(--light-gray, #d4d4d4);
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .section-title {
+      font-family: var(--font-family-sans-serif, sans-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--black, #000);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-left: 4px solid var(--primary, #a50034);
+      padding-left: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--gray, #6c757d);
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .demo-box {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 60vh;
+      width: 100%;
+      min-height: 160px;
       background: var(--cloud-dance-white, #f0eee9);
-      padding: 40px;
-      border-radius: 16px;
-      margin: 120px auto 40px;
-      max-width: 800px;
-      border: 1px solid var(--light-gray, #d4d4d4);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px dashed var(--light-gray, #d4d4d4);
+      position: relative;
     }
 
-    .demo-title {
-      font-family: var(--font-family-sans-serif, sans-serif);
+    .demo-label {
+      font-size: 0.8rem;
       font-weight: 700;
-      color: var(--black, #000);
-      margin-bottom: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .demo-subtitle {
-      font-family: var(--font-family-sans-serif-system, sans-serif);
-      font-size: 0.95rem;
+      letter-spacing: 0.08em;
       color: var(--gray, #6c757d);
-      margin-bottom: 40px;
-      text-align: center;
-      max-width: 500px;
-      line-height: 1.5;
+      margin-top: 20px;
     }
 
-    /* Uiverse.io mobinkakei CTA styles */
+    /* ==========================================
+       Base CTA Button (mobinkakei Core Styling)
+       ========================================== */
     .cta {
       display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 11px 33px;
       text-decoration: none;
       font-size: 25px;
       color: white;
       background: #6225e6;
-      transition: 1s;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       box-shadow: 6px 6px 0 black;
       transform: skewX(-15deg);
       border: none;
       cursor: pointer;
+      font-weight: 700;
+      position: relative;
     }
 
     .cta:focus {
       outline: none;
     }
 
+    .cta:active {
+      transform: scale(0.95) skewX(-15deg);
+      box-shadow: 2px 2px 0 black;
+    }
+
     .cta:hover {
-      transition: 0.5s;
       box-shadow: 10px 10px 0 #fbc638;
     }
 
     .cta .second {
       transition: 0.5s;
       margin-right: 0px;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-left: 30px;
+      position: relative;
+      top: 12%;
     }
 
     .cta:hover .second {
@@ -87,15 +162,7 @@ const alternateHref = "/font-test-cta/";
 
     .span {
       transform: skewX(15deg);
-    }
-
-    .second {
-      width: 20px;
-      margin-left: 30px;
-      position: relative;
-      top: 12%;
       display: inline-block;
-      height: 20px;
     }
 
     .one {
@@ -123,126 +190,540 @@ const alternateHref = "/font-test-cta/";
     }
 
     @keyframes color_anim {
-      0% {
-        fill: white;
-      }
-
-      50% {
-        fill: #fbc638;
-      }
-
-      100% {
-        fill: white;
-      }
+      0% { fill: white; }
+      50% { fill: #fbc638; }
+      100% { fill: white; }
     }
 
-    /* Source code display section */
-    .code-section {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto 80px;
-      background: #272822;
-      padding: 30px;
-      border-radius: 12px;
-      border: 1px solid #3e3f3a;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    /* ==========================================
+       Font Varieties
+       ========================================== */
+    .font-poppins {
+      font-family: 'Poppins', sans-serif;
+    }
+    .font-montserrat {
+      font-family: var(--font-family-sans-serif);
+    }
+    .font-alegreya {
+      font-family: var(--font-family-serif);
     }
 
-    .code-title {
-      font-family: var(--font-family-sans-serif, sans-serif);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #f8f8f2;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #3e3f3a;
+    /* ==========================================
+       Seville Palette Variants
+       ========================================== */
+    /* 1. Almegre Red */
+    .cta-seville-red {
+      background: var(--almegre-red, #a50034);
+    }
+    .cta-seville-red:hover {
+      box-shadow: 10px 10px 0 var(--albero-pantone, #ffab60);
+    }
+    .cta-seville-red:active {
+      box-shadow: 2px 2px 0 black;
+    }
+    @keyframes color_anim_red {
+      0% { fill: white; }
+      50% { fill: var(--albero-pantone, #ffab60); }
+      100% { fill: white; }
+    }
+    .cta-seville-red:hover .three { animation: color_anim_red 1s infinite 0.2s; }
+    .cta-seville-red:hover .one { animation: color_anim_red 1s infinite 0.6s; }
+    .cta-seville-red:hover .two { animation: color_anim_red 1s infinite 0.4s; }
+
+    /* 2. Triana Green */
+    .cta-seville-green {
+      background: var(--triana-green, #115740);
+    }
+    .cta-seville-green:hover {
+      box-shadow: 10px 10px 0 var(--albero-pantone, #ffab60);
+    }
+    .cta-seville-green:active {
+      box-shadow: 2px 2px 0 black;
+    }
+    .cta-seville-green:hover .three { animation: color_anim_red 1s infinite 0.2s; }
+    .cta-seville-green:hover .one { animation: color_anim_red 1s infinite 0.6s; }
+    .cta-seville-green:hover .two { animation: color_anim_red 1s infinite 0.4s; }
+
+    /* 3. Lapiz Lazuli Blue */
+    .cta-seville-blue {
+      background: var(--lapiz-lazuli-blue, #26619c);
+    }
+    .cta-seville-blue:hover {
+      box-shadow: 10px 10px 0 var(--albero-pantone, #ffab60);
+    }
+    .cta-seville-blue:active {
+      box-shadow: 2px 2px 0 black;
+    }
+    .cta-seville-blue:hover .three { animation: color_anim_red 1s infinite 0.2s; }
+    .cta-seville-blue:hover .one { animation: color_anim_red 1s infinite 0.6s; }
+    .cta-seville-blue:hover .two { animation: color_anim_red 1s infinite 0.4s; }
+
+    /* 4. Albero Pantone */
+    .cta-seville-albero {
+      background: var(--albero-pantone, #ffab60);
+      color: var(--black, #000);
+      box-shadow: 6px 6px 0 var(--dark-gray, #434343);
+    }
+    .cta-seville-albero:active {
+      box-shadow: 2px 2px 0 var(--dark-gray, #434343);
+    }
+    .cta-seville-albero:hover {
+      box-shadow: 10px 10px 0 var(--triana-green, #115740);
+    }
+    .cta-seville-albero svg path {
+      fill: var(--black, #000);
+    }
+    @keyframes color_anim_albero {
+      0% { fill: var(--black, #000); }
+      50% { fill: var(--triana-green, #115740); }
+      100% { fill: var(--black, #000); }
+    }
+    .cta-seville-albero:hover .three { animation: color_anim_albero 1s infinite 0.2s; }
+    .cta-seville-albero:hover .one { animation: color_anim_albero 1s infinite 0.6s; }
+    .cta-seville-albero:hover .two { animation: color_anim_albero 1s infinite 0.4s; }
+
+    /* ==========================================
+       Interactive Animation States
+       ========================================== */
+    .cta.state-loading {
+      background: #888888;
+      box-shadow: 4px 4px 0 #333;
+      cursor: wait;
+    }
+
+    .cta.state-loading:hover {
+      box-shadow: 4px 4px 0 #333;
+    }
+
+    .cta.state-loading .second {
+      transform: rotate(360deg) skewX(15deg);
+      animation: rotate_anim 1s linear infinite;
+      margin-right: 0px !important;
+    }
+
+    @keyframes rotate_anim {
+      0% { transform: rotate(0deg) skewX(15deg); }
+      100% { transform: rotate(360deg) skewX(15deg); }
+    }
+
+    .cta.state-success {
+      background: var(--triana-green, #115740);
+      box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
+    }
+
+    .cta.state-success:hover {
+      box-shadow: 10px 10px 0 var(--albero-pantone, #ffab60);
+    }
+
+    .cta.state-success .second {
+      margin-right: 0px !important;
+      transform: scale(1.2) skewX(15deg);
+    }
+
+    .success-svg {
+      width: 20px;
+      height: 20px;
+      display: none;
+      transform: skewX(15deg);
+      margin-left: 20px;
+    }
+
+    /* ==========================================
+       Real-time Event Logging Console
+       ========================================== */
+    .console-wrapper {
+      margin-top: 30px;
+      background: #1e1e1e;
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid #333;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
       padding-bottom: 10px;
+      margin-bottom: 15px;
     }
 
-    .code-section pre {
-      margin: 0;
-      overflow-x: auto;
+    .console-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #555;
+      display: inline-block;
+    }
+
+    .console-dot.active {
+      background: #00ff00;
+      box-shadow: 0 0 8px #00ff00;
+    }
+
+    .console-title {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .console-clear-btn {
+      background: none;
+      border: 1px solid #444;
+      color: #888;
+      padding: 2px 8px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .console-clear-btn:hover {
+      color: #fff;
+      border-color: #666;
+    }
+
+    .console-screen {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
       font-size: 0.85rem;
+      color: #00ff00;
+      height: 180px;
+      overflow-y: auto;
       line-height: 1.5;
     }
 
-    .code-section code {
-      color: #f8f8f2;
-      background: none;
-      padding: 0;
-      border-radius: 0;
+    .console-log {
+      margin-bottom: 6px;
     }
+
+    .console-time {
+      color: #888;
+      margin-right: 8px;
+    }
+
+    .console-tag {
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 0.75rem;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    .tag-hover { background: #3b82f6; color: white; }
+    .tag-click { background: #eab308; color: black; }
+    .tag-success { background: #22c55e; color: white; }
+    .tag-system { background: #6b7280; color: white; }
   </style>
 
-  <div class="test-wrapper">
-    <div class="cta-container">
-      <h1 class="demo-title">CTA Interaction Sandbox</h1>
-      <p class="demo-subtitle">
-        Hover over the slanted button below to trigger the sliding chevron translation 
-        and color animation effects.
+  <div class="playground-wrapper">
+    <div class="play-header">
+      <h1>CTA Typography & Palette Sandbox</h1>
+      <p>
+        Compare font selections, test Seville color combinations, and trigger the loading-to-success confirmation animation with live telemetry logs.
       </p>
-
-      <!-- mobinkakei CTA Button -->
-      <button class="cta" aria-label="Next step button">
-        <span class="span">NEXT</span>
-        <span class="second">
-          <svg
-            width="50px"
-            height="20px"
-            viewBox="0 0 66 43"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <g
-              id="arrow"
-              stroke="none"
-              stroke-width="1"
-              fill="none"
-              fill-rule="evenodd"
-            >
-              <path
-                class="one"
-                d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z"
-                fill="#FFFFFF"
-              ></path>
-              <path
-                class="two"
-                d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z"
-                fill="#FFFFFF"
-              ></path>
-              <path
-                class="three"
-                d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z"
-                fill="#FFFFFF"
-              ></path>
-            </g>
-          </svg>
-        </span>
-      </button>
     </div>
 
-    <!-- Markup Guidelines for Reference -->
-    <div class="code-section">
-      <div class="code-title">HTML Structure Used:</div>
-      <pre><code>&lt;button class="cta"&gt;
-  &lt;span class="span"&gt;NEXT&lt;/span&gt;
-  &lt;span class="second"&gt;
-    &lt;svg
-      width="50px"
-      height="20px"
-      viewBox="0 0 66 43"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-    &gt;
-      &lt;g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"&gt;
-        &lt;path class="one" d="..." fill="#FFFFFF"&gt;&lt;/path&gt;
-        &lt;path class="two" d="..." fill="#FFFFFF"&gt;&lt;/path&gt;
-        &lt;path class="three" d="..." fill="#FFFFFF"&gt;&lt;/path&gt;
-      &lt;/g&gt;
-    &lt;/svg&gt;
-  &lt;/span&gt;
-&lt;/button&gt;</code></pre>
+    <!-- Font Comparisons Section -->
+    <div class="section-card">
+      <div class="section-title">1. Font Pairings Comparison</div>
+      <div class="section-subtitle">
+        Observe how different typography choices alter the visual character, weight, and hierarchy of the CTA button.
+      </div>
+
+      <div class="demo-grid">
+        <!-- Poppins -->
+        <div class="demo-box">
+          <button class="cta font-poppins demo-log-btn" data-font="Poppins" aria-label="Next step Poppins">
+            <span class="span">NEXT</span>
+            <span class="second">
+              <svg viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="demo-label">Original (Poppins)</div>
+        </div>
+
+        <!-- Montserrat -->
+        <div class="demo-box">
+          <button class="cta font-montserrat demo-log-btn" data-font="Montserrat" aria-label="Next step Montserrat">
+            <span class="span">NEXT</span>
+            <span class="second">
+              <svg viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="demo-label">Our UI Font (Montserrat)</div>
+        </div>
+
+        <!-- Alegreya -->
+        <div class="demo-box">
+          <button class="cta font-alegreya demo-log-btn" data-font="Alegreya" aria-label="Next step Alegreya">
+            <span class="span">NEXT</span>
+            <span class="second">
+              <svg viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="demo-label">Our Serif Font (Alegreya)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seville Color Palette Explorer -->
+    <div class="section-card">
+      <div class="section-title">2. Seville Color Palette Variations</div>
+      <div class="section-subtitle">
+        Explore styled alternatives using color combinations inspired by our Seville brand colors.
+      </div>
+
+      <div class="demo-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+        <!-- Almegre Red -->
+        <div class="demo-box" style="min-height: 120px;">
+          <button class="cta cta-seville-red font-montserrat demo-log-btn" data-color="Almegre Red" aria-label="Next step Seville Red">
+            <span class="span">NEXT</span>
+            <span class="second">
+              <svg viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="demo-label">Almegre Red</div>
+        </div>
+
+        <!-- Triana Green -->
+        <div class="demo-box" style="min-height: 120px;">
+          <button class="cta cta-seville-green font-montserrat demo-log-btn" data-color="Triana Green" aria-label="Next step Seville Green">
+            <span class="span">NEXT</span>
+            <span class="second">
+              <svg viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="demo-label">Triana Green</div>
+        </div>
+
+        <!-- Lapiz Lazuli Blue -->
+        <div class="demo-box" style="min-height: 120px;">
+          <button class="cta cta-seville-blue font-montserrat demo-log-btn" data-color="Lapiz Lazuli" aria-label="Next step Seville Blue">
+            <span class="span">NEXT</span>
+            <span class="second">
+              <svg viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="demo-label">Lapiz Lazuli</div>
+        </div>
+
+        <!-- Albero Gold -->
+        <div class="demo-box" style="min-height: 120px;">
+          <button class="cta cta-seville-albero font-montserrat demo-log-btn" data-color="Albero Gold" aria-label="Next step Seville Albero Gold">
+            <span class="span">NEXT</span>
+            <span class="second">
+              <svg viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#000000"></path>
+                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#000000"></path>
+                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#000000"></path>
+              </svg>
+            </span>
+          </button>
+          <div class="demo-label">Albero Gold</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active State & Confirmation Sandbox -->
+    <div class="section-card">
+      <div class="section-title">3. Interactive Confirmation Sandbox</div>
+      <div class="section-subtitle">
+        Click the button to experience the active feedback and full confirmation transition animation. 
+        All interactions generate real-time feedback in the telemetry console.
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 240px; background: var(--cloud-dance-white, #f0eee9); border-radius: 12px; padding: 40px; border: 1px dashed var(--light-gray, #d4d4d4); position: relative;">
+        <!-- Interactive Button -->
+        <button class="cta font-montserrat" id="interactive-cta-btn" aria-label="Submit confirmation">
+          <span class="span" id="btn-text">SUBMIT</span>
+          
+          <!-- Loading Spinner Wrapper (Reuse Chevron container but rotate/pulse it) -->
+          <span class="second" id="arrow-container">
+            <svg
+              width="50px"
+              height="20px"
+              viewBox="0 0 66 43"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+              </g>
+            </svg>
+          </span>
+
+          <!-- Success Checkmark SVG -->
+          <svg
+            class="success-svg"
+            id="success-checkmark"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </button>
+
+        <button 
+          id="btn-reset" 
+          style="margin-top: 30px; background: none; border: 1px solid var(--light-gray, #d4d4d4); padding: 8px 16px; font-size: 0.85rem; border-radius: 6px; cursor: pointer; display: none;"
+        >
+          Reset Animation
+        </button>
+      </div>
+
+      <!-- Live Log Console -->
+      <div class="console-wrapper">
+        <div class="console-header">
+          <div>
+            <span class="console-dot" id="console-pulse"></span>
+            <span class="console-title" style="margin-left: 8px;">Telemetry Console</span>
+          </div>
+          <button class="console-clear-btn" id="console-clear">Clear Logs</button>
+        </div>
+        <div class="console-screen" id="console-logs-container">
+          <!-- Live events will render here -->
+        </div>
+      </div>
     </div>
   </div>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("interactive-cta-btn");
+      const btnText = document.getElementById("btn-text");
+      const arrowContainer = document.getElementById("arrow-container");
+      const checkmark = document.getElementById("success-checkmark");
+      const resetBtn = document.getElementById("btn-reset");
+      const logsContainer = document.getElementById("console-logs-container");
+      const pulseDot = document.getElementById("console-pulse");
+      const clearBtn = document.getElementById("console-clear");
+
+      // Add log utility
+      function addLog(type, message) {
+        const time = new Date().toLocaleTimeString();
+        const log = document.createElement("div");
+        log.className = "console-log";
+        
+        let tagClass = "tag-system";
+        if (type === "HOVER") tagClass = "tag-hover";
+        if (type === "CLICK") tagClass = "tag-click";
+        if (type === "SUCCESS") tagClass = "tag-success";
+        if (type === "SYSTEM") tagClass = "tag-system";
+
+        log.innerHTML = `<span class="console-time">[${time}]</span><span class="console-tag ${tagClass}">${type}</span>${message}`;
+        logsContainer.appendChild(log);
+        logsContainer.scrollTop = logsContainer.scrollHeight;
+
+        // Flash pulse dot green
+        pulseDot.classList.add("active");
+        setTimeout(() => pulseDot.classList.remove("active"), 150);
+      }
+
+      // Initial Log
+      addLog("SYSTEM", "Interaction console initialized. Standing by for user input.");
+
+      // Hover feedback logs for other buttons
+      const logBtns = document.querySelectorAll(".demo-log-btn");
+      logBtns.forEach(button => {
+        button.addEventListener("mouseenter", () => {
+          const font = button.getAttribute("data-font");
+          const color = button.getAttribute("data-color");
+          if (font) {
+            addLog("HOVER", `Hovered: ${font} font variant. Chevron slide transition active.`);
+          } else if (color) {
+            addLog("HOVER", `Hovered: ${color} Seville palette variant. box-shadow shifted.`);
+          }
+        });
+      });
+
+      // Main Interactive Button States
+      let currentState = "idle"; // idle, loading, success
+
+      btn.addEventListener("mouseenter", () => {
+        if (currentState === "idle") {
+          addLog("HOVER", "Hovered main CTA. Skew state active. Slide-in transition active.");
+        }
+      });
+
+      btn.addEventListener("mouseleave", () => {
+        if (currentState === "idle") {
+          addLog("HOVER", "Mouse left main CTA. Returned to default state.");
+        }
+      });
+
+      btn.addEventListener("click", () => {
+        if (currentState !== "idle") return;
+
+        currentState = "loading";
+        addLog("CLICK", "Primary Click Registered. Transitioning to loading state.");
+        
+        // Change state to loading
+        btn.classList.add("state-loading");
+        btnText.textContent = "PROCESSING...";
+        addLog("SYSTEM", "Simulating asynchronous API confirmation request (1.5s delay)...");
+
+        setTimeout(() => {
+          currentState = "success";
+          btn.classList.remove("state-loading");
+          btn.classList.add("state-success");
+          btnText.textContent = "CONFIRMED";
+          arrowContainer.style.display = "none";
+          checkmark.style.display = "inline-block";
+          resetBtn.style.display = "inline-block";
+          
+          addLog("SUCCESS", "Fidelity checks passed. Success state active. Chevrons morphed to Checkmark.");
+        }, 1500);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        currentState = "idle";
+        btn.classList.remove("state-success");
+        btnText.textContent = "SUBMIT";
+        arrowContainer.style.display = "inline-block";
+        checkmark.style.display = "none";
+        resetBtn.style.display = "none";
+        
+        addLog("SYSTEM", "Testing sandbox reset. Returned to idle state.");
+      });
+
+      clearBtn.addEventListener("click", () => {
+        logsContainer.innerHTML = "";
+        addLog("SYSTEM", "Logs cleared.");
+      });
+    });
+  </script>
 </MainLayout>
