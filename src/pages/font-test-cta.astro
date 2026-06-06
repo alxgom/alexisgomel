@@ -193,18 +193,18 @@ const alternateHref = "/font-test-cta/";
       transform: translateX(-30%);
     }
 
-    .cta:hover .three {
-      animation: color_anim 1s infinite 0.2s;
-    }
-
     .cta:hover .one {
       transform: translateX(0%);
-      animation: color_anim 1s infinite 0.6s;
+      animation: color_anim 1s infinite 0.2s;
     }
 
     .cta:hover .two {
       transform: translateX(0%);
       animation: color_anim 1s infinite 0.4s;
+    }
+
+    .cta:hover .three {
+      animation: color_anim 1s infinite 0.6s;
     }
 
     @keyframes color_anim {
@@ -244,9 +244,9 @@ const alternateHref = "/font-test-cta/";
       50% { fill: var(--albero-pantone, #ffab60); }
       100% { fill: white; }
     }
-    .cta-seville-red:hover .three { animation: color_anim_red 1s infinite 0.2s; }
-    .cta-seville-red:hover .one { animation: color_anim_red 1s infinite 0.6s; }
+    .cta-seville-red:hover .one { animation: color_anim_red 1s infinite 0.2s; }
     .cta-seville-red:hover .two { animation: color_anim_red 1s infinite 0.4s; }
+    .cta-seville-red:hover .three { animation: color_anim_red 1s infinite 0.6s; }
 
     /* 2. Triana Green */
     .cta-seville-green {
@@ -258,9 +258,9 @@ const alternateHref = "/font-test-cta/";
     .cta-seville-green:active {
       box-shadow: 2px 2px 0 black;
     }
-    .cta-seville-green:hover .three { animation: color_anim_red 1s infinite 0.2s; }
-    .cta-seville-green:hover .one { animation: color_anim_red 1s infinite 0.6s; }
+    .cta-seville-green:hover .one { animation: color_anim_red 1s infinite 0.2s; }
     .cta-seville-green:hover .two { animation: color_anim_red 1s infinite 0.4s; }
+    .cta-seville-green:hover .three { animation: color_anim_red 1s infinite 0.6s; }
 
     /* 3. Lapiz Lazuli Blue */
     .cta-seville-blue {
@@ -272,9 +272,9 @@ const alternateHref = "/font-test-cta/";
     .cta-seville-blue:active {
       box-shadow: 2px 2px 0 black;
     }
-    .cta-seville-blue:hover .three { animation: color_anim_red 1s infinite 0.2s; }
-    .cta-seville-blue:hover .one { animation: color_anim_red 1s infinite 0.6s; }
+    .cta-seville-blue:hover .one { animation: color_anim_red 1s infinite 0.2s; }
     .cta-seville-blue:hover .two { animation: color_anim_red 1s infinite 0.4s; }
+    .cta-seville-blue:hover .three { animation: color_anim_red 1s infinite 0.6s; }
 
     /* 4. Albero Pantone */
     .cta-seville-albero {
@@ -296,9 +296,9 @@ const alternateHref = "/font-test-cta/";
       50% { fill: var(--triana-green, #115740); }
       100% { fill: var(--black, #000); }
     }
-    .cta-seville-albero:hover .three { animation: color_anim_albero 1s infinite 0.2s; }
-    .cta-seville-albero:hover .one { animation: color_anim_albero 1s infinite 0.6s; }
+    .cta-seville-albero:hover .one { animation: color_anim_albero 1s infinite 0.2s; }
     .cta-seville-albero:hover .two { animation: color_anim_albero 1s infinite 0.4s; }
+    .cta-seville-albero:hover .three { animation: color_anim_albero 1s infinite 0.6s; }
 
     /* ==========================================
        Interactive Animation States
@@ -314,14 +314,13 @@ const alternateHref = "/font-test-cta/";
     }
 
     .cta.state-loading .second {
-      transform: rotate(360deg) skewX(15deg);
-      animation: rotate_anim 1s linear infinite;
-      margin-right: 0px !important;
+      display: none !important;
     }
 
-    @keyframes rotate_anim {
-      0% { transform: rotate(0deg) skewX(15deg); }
-      100% { transform: rotate(360deg) skewX(15deg); }
+    /* Spinner animation inside unskewed span */
+    @keyframes spin_spinner {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .cta.state-success {
@@ -346,6 +345,132 @@ const alternateHref = "/font-test-cta/";
       margin-left: 24px;
       position: relative;
       top: var(--chevron-top);
+    }
+
+    /* ==========================================
+       Version B: Press & Expand Styles
+       ========================================== */
+    /* Pressed state: contract chevrons */
+    .cta.version-b.state-pressed .one {
+      transform: translateX(15%);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 0.6;
+      transition: all 0.2s ease;
+      animation: none !important;
+    }
+    .cta.version-b.state-pressed .two {
+      transform: scale(0.8);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 0.8;
+      transition: all 0.2s ease;
+      animation: none !important;
+    }
+    .cta.version-b.state-pressed .three {
+      transform: translateX(-15%);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 0.6;
+      transition: all 0.2s ease;
+      animation: none !important;
+    }
+
+    /* Success state: expand and turn solid color */
+    .cta.version-b.state-success .one {
+      transform: translateX(-35%) scale(1.25);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 1;
+      animation: none !important;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .cta.version-b.state-success .two {
+      transform: scale(1.25);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 1;
+      animation: none !important;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .cta.version-b.state-success .three {
+      transform: translateX(35%) scale(1.25);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 1;
+      animation: none !important;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* ==========================================
+       Version C: Chevron Gateway (Portal) Styles
+       ========================================== */
+    .cta.version-c .second {
+      border: 1.5px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      padding: 3px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .cta.version-c:hover .second {
+      border-style: solid;
+      border-color: var(--albero-pantone, #ffab60);
+      box-shadow: 0 0 8px var(--albero-pantone, #ffab60), inset 0 0 4px var(--albero-pantone, #ffab60);
+      background: rgba(255, 171, 96, 0.1);
+    }
+
+    /* Pressed state: spring-load backwards (contract and dim) */
+    .cta.version-c.state-pressed .second {
+      transform: scale(0.9);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: none;
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .cta.version-c.state-pressed .one {
+      transform: translateX(-12px) scale(0.75);
+      opacity: 0.4;
+      fill: #888 !important;
+      transition: all 0.15s ease;
+      animation: none !important;
+    }
+    .cta.version-c.state-pressed .two {
+      transform: translateX(-12px) scale(0.75);
+      opacity: 0.4;
+      fill: #888 !important;
+      transition: all 0.15s ease;
+      animation: none !important;
+    }
+    .cta.version-c.state-pressed .three {
+      transform: translateX(-12px) scale(0.75);
+      opacity: 0.4;
+      fill: #888 !important;
+      transition: all 0.15s ease;
+      animation: none !important;
+    }
+
+    /* Success state: shoot forward, expand, turn solid gold */
+    .cta.version-c.state-success .second {
+      border-style: solid;
+      border-color: var(--albero-pantone, #ffab60);
+      background: rgba(255, 171, 96, 0.2);
+      box-shadow: 0 0 14px var(--albero-pantone, #ffab60);
+    }
+    .cta.version-c.state-success .one {
+      transform: translateX(4px) scale(1.3);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 1;
+      animation: none !important;
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .cta.version-c.state-success .two {
+      transform: translateX(10px) scale(1.3);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 1;
+      animation: none !important;
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .cta.version-c.state-success .three {
+      transform: translateX(16px) scale(1.3);
+      fill: var(--albero-pantone, #ffab60) !important;
+      opacity: 1;
+      animation: none !important;
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     }
 
     /* ==========================================
@@ -615,40 +740,85 @@ const alternateHref = "/font-test-cta/";
         </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 240px; background: var(--cloud-dance-white, #f0eee9); border-radius: 12px; padding: 40px; border: 1px dashed var(--light-gray, #d4d4d4); position: relative;">
-        <!-- Interactive Button -->
-        <button class="cta font-montserrat" id="interactive-cta-btn" aria-label="Submit confirmation">
-          <span class="span" id="btn-text">SUBMIT</span>
-          
-          <!-- Loading Spinner Wrapper (Reuse Chevron container but rotate/pulse it) -->
-          <span class="second" id="arrow-container">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-              <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-              <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-              <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
-            </svg>
-          </span>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 320px; background: var(--cloud-dance-white, #f0eee9); border-radius: 12px; padding: 40px 24px; border: 1px dashed var(--light-gray, #d4d4d4); position: relative;">
+        
+        <div class="interactive-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; width: 100%; margin-bottom: 24px;">
+          <!-- Version A: Morph Confirmation -->
+          <div class="demo-box" style="padding: 24px; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+            <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray, #6c757d); margin-bottom: 16px; text-align: center;">Version A: Morph to Checkmark</div>
+            
+            <button class="cta font-montserrat" id="btn-version-a" aria-label="Submit confirmation A">
+              <span class="span btn-text" id="text-a">SUBMIT</span>
+              <span class="second arrow-container" id="arrow-a">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                  <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
+                  <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
+                  <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+                </svg>
+              </span>
+              <!-- Spinner Container (Unskewed, hidden by default) -->
+              <span class="spinner-container" id="spinner-container-a" style="display: none; transform: skewX(15deg); margin-left: 24px; position: relative; top: var(--chevron-top);">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: var(--chevron-size); height: var(--chevron-size); animation: spin_spinner 0.8s linear infinite;">
+                  <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.2)" stroke-width="3" fill="none"></circle>
+                  <circle cx="12" cy="12" r="10" stroke="white" stroke-width="3" fill="none" stroke-dasharray="30 150" stroke-linecap="round"></circle>
+                </svg>
+              </span>
+              <svg
+                class="success-svg"
+                id="checkmark-a"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+            <div style="height: 10px;"></div>
+          </div>
 
-          <!-- Success Checkmark SVG -->
-          <svg
-            class="success-svg"
-            id="success-checkmark"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </button>
+          <!-- Version B: Press & Expand -->
+          <div class="demo-box" style="padding: 24px; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+            <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray, #6c757d); margin-bottom: 16px; text-align: center;">Version B: Press & Expand</div>
+            
+            <button class="cta font-montserrat version-b" id="btn-version-b" aria-label="Submit confirmation B">
+              <span class="span btn-text" id="text-b">SUBMIT</span>
+              <span class="second arrow-container" id="arrow-b">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                  <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
+                  <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
+                  <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+                </svg>
+              </span>
+            </button>
+            <div style="height: 10px;"></div>
+          </div>
+
+          <!-- Version C: Chevron Gateway -->
+          <div class="demo-box" style="padding: 24px; min-height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+            <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray, #6c757d); margin-bottom: 16px; text-align: center;">Version C: Chevron Gateway (Portal)</div>
+            
+            <button class="cta font-montserrat version-c" id="btn-version-c" aria-label="Submit confirmation C">
+              <span class="span btn-text" id="text-c">SUBMIT</span>
+              <span class="second arrow-container" id="arrow-c">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                  <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
+                  <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
+                  <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+                </svg>
+              </span>
+            </button>
+            <div style="height: 10px;"></div>
+          </div>
+        </div>
 
         <button 
-          id="btn-reset" 
-          style="margin-top: 30px; background: none; border: 1px solid var(--light-gray, #d4d4d4); padding: 8px 16px; font-size: 0.85rem; border-radius: 6px; cursor: pointer; display: none;"
+          id="btn-reset-all" 
+          style="background: none; border: 1px solid var(--light-gray, #d4d4d4); padding: 8px 24px; font-size: 0.85rem; border-radius: 6px; cursor: pointer; color: var(--dark-gray, #434343); transition: all 0.2s;"
         >
-          Reset Animation
+          Reset All Buttons
         </button>
       </div>
 
@@ -670,22 +840,34 @@ const alternateHref = "/font-test-cta/";
 
   <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
-      const btn = document.getElementById("interactive-cta-btn");
-      const btnText = document.getElementById("btn-text");
-      const arrowContainer = document.getElementById("arrow-container");
-      const checkmark = document.getElementById("success-checkmark");
-      const resetBtn = document.getElementById("btn-reset");
+      // Buttons
+      const btnA = document.getElementById("btn-version-a");
+      const btnB = document.getElementById("btn-version-b");
+      const btnC = document.getElementById("btn-version-c");
+
+      // Text elements
+      const textA = document.getElementById("text-a");
+      const textB = document.getElementById("text-b");
+      const textC = document.getElementById("text-c");
+
+      // Containers
+      const arrowA = document.getElementById("arrow-a");
+      const spinnerA = document.getElementById("spinner-container-a");
+      const checkmarkA = document.getElementById("checkmark-a");
+      const resetAllBtn = document.getElementById("btn-reset-all");
+
+      // Telemetry log container
       const logsContainer = document.getElementById("console-logs-container");
       const pulseDot = document.getElementById("console-pulse");
       const clearBtn = document.getElementById("console-clear");
 
-      // Dynamic config controls
+      // Configuration elements
       const selectFont = document.getElementById("select-font");
       const selectColor = document.getElementById("select-color");
       const selectSize = document.getElementById("select-size");
 
-      // Initialize size default
-      btn.classList.add("size-medium");
+      // Apply default font/size to all three buttons
+      const allInteractiveBtns = [btnA, btnB, btnC];
 
       // Add log utility
       function addLog(type, message) {
@@ -718,9 +900,9 @@ const alternateHref = "/font-test-cta/";
           const font = button.getAttribute("data-font");
           const color = button.getAttribute("data-color");
           if (font) {
-            addLog("HOVER", `Hovered: ${font} font variant. Chevron slide transition active.`);
+            addLog("HOVER", `Hovered static: ${font} font. Left-to-right flow active.`);
           } else if (color) {
-            addLog("HOVER", `Hovered: ${color} Seville palette variant. box-shadow shifted.`);
+            addLog("HOVER", `Hovered static: ${color} color. Left-to-right flow active.`);
           }
         });
       });
@@ -728,77 +910,149 @@ const alternateHref = "/font-test-cta/";
       // Config control event listeners
       selectFont.addEventListener("change", (e) => {
         const selectedFont = e.target.value;
-        btn.classList.remove("font-poppins", "font-montserrat", "font-alegreya");
-        btn.classList.add(selectedFont);
-        addLog("SYSTEM", `Config changed: Font family set to ${e.target.options[e.target.selectedIndex].text}.`);
+        allInteractiveBtns.forEach(btn => {
+          btn.classList.remove("font-poppins", "font-montserrat", "font-alegreya");
+          btn.classList.add(selectedFont);
+        });
+        addLog("SYSTEM", `Config: Font family set to ${e.target.options[e.target.selectedIndex].text} on all buttons.`);
       });
 
       selectColor.addEventListener("change", (e) => {
         const selectedColor = e.target.value;
-        btn.classList.remove("cta-seville-red", "cta-seville-green", "cta-seville-blue", "cta-seville-albero");
-        if (selectedColor) {
-          btn.classList.add(selectedColor);
-        }
-        addLog("SYSTEM", `Config changed: Color palette set to ${e.target.options[e.target.selectedIndex].text}.`);
+        allInteractiveBtns.forEach(btn => {
+          btn.classList.remove("cta-seville-red", "cta-seville-green", "cta-seville-blue", "cta-seville-albero");
+          if (selectedColor) {
+            btn.classList.add(selectedColor);
+          }
+        });
+        addLog("SYSTEM", `Config: Color palette set to ${e.target.options[e.target.selectedIndex].text} on all buttons.`);
       });
 
       selectSize.addEventListener("change", (e) => {
         const selectedSize = e.target.value;
-        btn.classList.remove("size-small", "size-medium", "size-large");
-        btn.classList.add(selectedSize);
-        addLog("SYSTEM", `Config changed: Chevron size set to ${e.target.options[e.target.selectedIndex].text}.`);
+        allInteractiveBtns.forEach(btn => {
+          btn.classList.remove("size-small", "size-medium", "size-large");
+          btn.classList.add(selectedSize);
+        });
+        addLog("SYSTEM", `Config: Chevron size set to ${e.target.options[e.target.selectedIndex].text} on all buttons.`);
       });
 
-      // Main Interactive Button States
-      let currentState = "idle"; // idle, loading, success
+      // Independent states
+      let stateA = "idle";
+      let stateB = "idle";
+      let stateC = "idle";
 
-      btn.addEventListener("mouseenter", () => {
-        if (currentState === "idle") {
-          addLog("HOVER", "Hovered main CTA. Skew state active. Slide-in transition active.");
+      // --- Button A (Morph) ---
+      btnA.addEventListener("mouseenter", () => {
+        if (stateA === "idle") {
+          addLog("HOVER", "Hovered Version A (Morph). Left-to-right flow active.");
         }
       });
 
-      btn.addEventListener("mouseleave", () => {
-        if (currentState === "idle") {
-          addLog("HOVER", "Mouse left main CTA. Returned to default state.");
-        }
-      });
-
-      btn.addEventListener("click", () => {
-        if (currentState !== "idle") return;
-
-        currentState = "loading";
-        addLog("CLICK", "Primary Click Registered. Transitioning to loading state.");
-        
-        // Change state to loading
-        btn.classList.add("state-loading");
-        btnText.textContent = "PROCESSING...";
-        addLog("SYSTEM", "Simulating asynchronous API confirmation request (1.5s delay)...");
+      btnA.addEventListener("click", () => {
+        if (stateA !== "idle") return;
+        stateA = "loading";
+        addLog("CLICK", "Version A Clicked. Initiating loading transition.");
+        btnA.classList.add("state-loading");
+        textA.textContent = "PROCESSING...";
+        arrowA.style.display = "none";
+        spinnerA.style.display = "inline-block";
 
         setTimeout(() => {
-          currentState = "success";
-          btn.classList.remove("state-loading");
-          btn.classList.add("state-success");
-          btnText.textContent = "CONFIRMED";
-          arrowContainer.style.display = "none";
-          checkmark.style.display = "inline-block";
-          resetBtn.style.display = "inline-block";
-          
-          addLog("SUCCESS", "Fidelity checks passed. Success state active. Chevrons morphed to Checkmark.");
+          stateA = "success";
+          btnA.classList.remove("state-loading");
+          btnA.classList.add("state-success");
+          textA.textContent = "CONFIRMED";
+          spinnerA.style.display = "none";
+          checkmarkA.style.display = "inline-block";
+          addLog("SUCCESS", "Version A Success: Morphed to Checkmark.");
         }, 1500);
       });
 
-      resetBtn.addEventListener("click", () => {
-        currentState = "idle";
-        btn.classList.remove("state-success");
-        btnText.textContent = "SUBMIT";
-        arrowContainer.style.display = "inline-block";
-        checkmark.style.display = "none";
-        resetBtn.style.display = "none";
-        
-        addLog("SYSTEM", "Testing sandbox reset. Returned to idle state.");
+      // --- Button B (Expansion) ---
+      btnB.addEventListener("mouseenter", () => {
+        if (stateB === "idle") {
+          addLog("HOVER", "Hovered Version B (Expansion). Left-to-right flow active.");
+        }
       });
 
+      // Press down (contract)
+      const pressBtnB = () => {
+        if (stateB !== "idle") return;
+        btnB.classList.add("state-pressed");
+        addLog("CLICK", "Version B Pressed: Chevrons contracted.");
+      };
+      btnB.addEventListener("mousedown", pressBtnB);
+      btnB.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        pressBtnB();
+      });
+
+      // --- Button C (Chevron Gateway / Portal) ---
+      btnC.addEventListener("mouseenter", () => {
+        if (stateC === "idle") {
+          addLog("HOVER", "Hovered Version C (Gateway Portal). Glowing outline active.");
+        }
+      });
+
+      // Press down (contract)
+      const pressBtnC = () => {
+        if (stateC !== "idle") return;
+        btnC.classList.add("state-pressed");
+        addLog("CLICK", "Version C Pressed: Gateway track loaded backwards.");
+      };
+      btnC.addEventListener("mousedown", pressBtnC);
+      btnC.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        pressBtnC();
+      });
+
+      // Global release handler (mouseup & touchend)
+      const handleRelease = () => {
+        if (stateB === "idle" && btnB.classList.contains("state-pressed")) {
+          btnB.classList.remove("state-pressed");
+          stateB = "success";
+          btnB.classList.add("state-success");
+          textB.textContent = "CONFIRMED";
+          addLog("SUCCESS", "Version B Released: Chevrons expanded, solid color locked.");
+        }
+
+        if (stateC === "idle" && btnC.classList.contains("state-pressed")) {
+          btnC.classList.remove("state-pressed");
+          stateC = "success";
+          btnC.classList.add("state-success");
+          textC.textContent = "CONFIRMED";
+          addLog("SUCCESS", "Version C Released: Chevrons shot forward, solid gold gateway locked.");
+        }
+      };
+
+      window.addEventListener("mouseup", handleRelease);
+      window.addEventListener("touchend", handleRelease);
+
+      // --- Reset All ---
+      resetAllBtn.addEventListener("click", () => {
+        // Reset Version A
+        stateA = "idle";
+        btnA.classList.remove("state-success", "state-loading");
+        textA.textContent = "SUBMIT";
+        arrowA.style.display = "inline-block";
+        spinnerA.style.display = "none";
+        checkmarkA.style.display = "none";
+
+        // Reset Version B
+        stateB = "idle";
+        btnB.classList.remove("state-success", "state-pressed");
+        textB.textContent = "SUBMIT";
+
+        // Reset Version C
+        stateC = "idle";
+        btnC.classList.remove("state-success", "state-pressed");
+        textC.textContent = "SUBMIT";
+
+        addLog("SYSTEM", "All sandbox testing states reset to default idle.");
+      });
+
+      // Clear Logs
       clearBtn.addEventListener("click", () => {
         logsContainer.innerHTML = "";
         addLog("SYSTEM", "Logs cleared.");
