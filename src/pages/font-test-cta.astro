@@ -129,23 +129,28 @@ const alternateHref = "/font-test-cta/";
       cursor: pointer;
       font-weight: 700;
       position: relative;
+      letter-spacing: 2px;
 
       /* Dynamic sizing variables (defaults to Medium / Cap-height) */
-      --chevron-size: 22px;
+      --chevron-h: 18px;
+      --chevron-w: 38px;
       --chevron-top: -1.5px;
     }
 
     /* Chevron Sizing Variations */
     .cta.size-small {
-      --chevron-size: 18px;
+      --chevron-h: 14px;
+      --chevron-w: 29px;
       --chevron-top: -1px;
     }
     .cta.size-medium {
-      --chevron-size: 22px;
+      --chevron-h: 18px;
+      --chevron-w: 38px;
       --chevron-top: -1.5px;
     }
     .cta.size-large {
-      --chevron-size: 30px;
+      --chevron-h: 24px;
+      --chevron-w: 50px;
       --chevron-top: -2.5px;
     }
 
@@ -153,9 +158,12 @@ const alternateHref = "/font-test-cta/";
       outline: none;
     }
 
-    .cta:active {
+    .cta:active,
+    .cta.state-pressed {
+      letter-spacing: 0px;
       transform: scale(0.95) skewX(-15deg);
       box-shadow: 2px 2px 0 black;
+      transition: all 0.15s ease;
     }
 
     .cta:hover {
@@ -166,8 +174,8 @@ const alternateHref = "/font-test-cta/";
       transition: 0.5s;
       margin-right: 0px;
       display: inline-block;
-      width: var(--chevron-size);
-      height: var(--chevron-size);
+      width: var(--chevron-w);
+      height: var(--chevron-h);
       margin-left: 24px;
       position: relative;
       top: var(--chevron-top);
@@ -184,33 +192,45 @@ const alternateHref = "/font-test-cta/";
     }
 
     .one {
-      transition: 0.4s;
-      transform: translateX(-60%);
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     .two {
-      transition: 0.5s;
-      transform: translateX(-30%);
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .three {
+      opacity: 1;
+      transform: translateX(0);
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     .cta:hover .one {
-      transform: translateX(0%);
+      opacity: 1;
+      transform: translateX(0);
       animation: color_anim 1s infinite 0.2s;
     }
 
     .cta:hover .two {
-      transform: translateX(0%);
+      opacity: 1;
+      transform: translateX(0);
       animation: color_anim 1s infinite 0.4s;
     }
 
     .cta:hover .three {
+      opacity: 1;
+      transform: translateX(0);
       animation: color_anim 1s infinite 0.6s;
     }
 
     @keyframes color_anim {
-      0% { fill: white; }
+      0% { fill: currentColor; }
       50% { fill: #fbc638; }
-      100% { fill: white; }
+      100% { fill: currentColor; }
     }
 
     /* ==========================================
@@ -240,13 +260,31 @@ const alternateHref = "/font-test-cta/";
       box-shadow: 2px 2px 0 black;
     }
     @keyframes color_anim_red {
-      0% { fill: white; }
+      0% { fill: currentColor; }
       50% { fill: var(--albero-pantone, #ffab60); }
-      100% { fill: white; }
+      100% { fill: currentColor; }
     }
-    .cta-seville-red:hover .one { animation: color_anim_red 1s infinite 0.2s; }
-    .cta-seville-red:hover .two { animation: color_anim_red 1s infinite 0.4s; }
-    .cta-seville-red:hover .three { animation: color_anim_red 1s infinite 0.6s; }
+    .cta-seville-red:hover .one,
+    .cta-seville-green:hover .one,
+    .cta-seville-blue:hover .one {
+      opacity: 1;
+      transform: translateX(0);
+      animation: color_anim_red 1s infinite 0.2s;
+    }
+    .cta-seville-red:hover .two,
+    .cta-seville-green:hover .two,
+    .cta-seville-blue:hover .two {
+      opacity: 1;
+      transform: translateX(0);
+      animation: color_anim_red 1s infinite 0.4s;
+    }
+    .cta-seville-red:hover .three,
+    .cta-seville-green:hover .three,
+    .cta-seville-blue:hover .three {
+      opacity: 1;
+      transform: translateX(0);
+      animation: color_anim_red 1s infinite 0.6s;
+    }
 
     /* 2. Triana Green */
     .cta-seville-green {
@@ -258,9 +296,6 @@ const alternateHref = "/font-test-cta/";
     .cta-seville-green:active {
       box-shadow: 2px 2px 0 black;
     }
-    .cta-seville-green:hover .one { animation: color_anim_red 1s infinite 0.2s; }
-    .cta-seville-green:hover .two { animation: color_anim_red 1s infinite 0.4s; }
-    .cta-seville-green:hover .three { animation: color_anim_red 1s infinite 0.6s; }
 
     /* 3. Lapiz Lazuli Blue */
     .cta-seville-blue {
@@ -272,9 +307,6 @@ const alternateHref = "/font-test-cta/";
     .cta-seville-blue:active {
       box-shadow: 2px 2px 0 black;
     }
-    .cta-seville-blue:hover .one { animation: color_anim_red 1s infinite 0.2s; }
-    .cta-seville-blue:hover .two { animation: color_anim_red 1s infinite 0.4s; }
-    .cta-seville-blue:hover .three { animation: color_anim_red 1s infinite 0.6s; }
 
     /* 4. Albero Pantone */
     .cta-seville-albero {
@@ -288,17 +320,26 @@ const alternateHref = "/font-test-cta/";
     .cta-seville-albero:hover {
       box-shadow: 10px 10px 0 var(--triana-green, #115740);
     }
-    .cta-seville-albero svg path {
-      fill: var(--black, #000);
-    }
     @keyframes color_anim_albero {
-      0% { fill: var(--black, #000); }
+      0% { fill: currentColor; }
       50% { fill: var(--triana-green, #115740); }
-      100% { fill: var(--black, #000); }
+      100% { fill: currentColor; }
     }
-    .cta-seville-albero:hover .one { animation: color_anim_albero 1s infinite 0.2s; }
-    .cta-seville-albero:hover .two { animation: color_anim_albero 1s infinite 0.4s; }
-    .cta-seville-albero:hover .three { animation: color_anim_albero 1s infinite 0.6s; }
+    .cta-seville-albero:hover .one {
+      opacity: 1;
+      transform: translateX(0);
+      animation: color_anim_albero 1s infinite 0.2s;
+    }
+    .cta-seville-albero:hover .two {
+      opacity: 1;
+      transform: translateX(0);
+      animation: color_anim_albero 1s infinite 0.4s;
+    }
+    .cta-seville-albero:hover .three {
+      opacity: 1;
+      transform: translateX(0);
+      animation: color_anim_albero 1s infinite 0.6s;
+    }
 
     /* ==========================================
        Interactive Animation States
@@ -313,19 +354,57 @@ const alternateHref = "/font-test-cta/";
       box-shadow: 4px 4px 0 #333;
     }
 
-    .cta.state-loading .second {
-      display: none !important;
+    /* Version A Loading state: frozen contracted positions with fast flow animation */
+    .cta.state-loading .one {
+      opacity: 1 !important;
+      transform: translateX(10px) scale(0.85) !important;
+      animation: color_anim 0.6s infinite 0.12s !important;
+      transition: all 0.1s ease !important;
+    }
+    .cta.state-loading .two {
+      opacity: 1 !important;
+      transform: scale(0.85) !important;
+      animation: color_anim 0.6s infinite 0.24s !important;
+      transition: all 0.1s ease !important;
+    }
+    .cta.state-loading .three {
+      opacity: 1 !important;
+      transform: translateX(-10px) scale(0.85) !important;
+      animation: color_anim 0.6s infinite 0.36s !important;
+      transition: all 0.1s ease !important;
     }
 
-    /* Spinner animation inside unskewed span */
-    @keyframes spin_spinner {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    /* Fast animation overrides for specific colors in loading state */
+    .cta.state-loading.cta-seville-red .one,
+    .cta.state-loading.cta-seville-green .one,
+    .cta.state-loading.cta-seville-blue .one {
+      animation: color_anim_red 0.6s infinite 0.12s !important;
+    }
+    .cta.state-loading.cta-seville-red .two,
+    .cta.state-loading.cta-seville-green .two,
+    .cta.state-loading.cta-seville-blue .two {
+      animation: color_anim_red 0.6s infinite 0.24s !important;
+    }
+    .cta.state-loading.cta-seville-red .three,
+    .cta.state-loading.cta-seville-green .three,
+    .cta.state-loading.cta-seville-blue .three {
+      animation: color_anim_red 0.6s infinite 0.36s !important;
+    }
+
+    .cta.state-loading.cta-seville-albero .one {
+      animation: color_anim_albero 0.6s infinite 0.12s !important;
+    }
+    .cta.state-loading.cta-seville-albero .two {
+      animation: color_anim_albero 0.6s infinite 0.24s !important;
+    }
+    .cta.state-loading.cta-seville-albero .three {
+      animation: color_anim_albero 0.6s infinite 0.36s !important;
     }
 
     .cta.state-success {
       background: var(--triana-green, #115740);
       box-shadow: 6px 6px 0 var(--albero-pantone, #ffab60);
+      letter-spacing: 4px;
     }
 
     .cta.state-success:hover {
@@ -337,9 +416,13 @@ const alternateHref = "/font-test-cta/";
       transform: scale(1.2) skewX(15deg);
     }
 
+    .cta.state-success #arrow-a {
+      display: none !important;
+    }
+
     .success-svg {
-      width: var(--chevron-size);
-      height: var(--chevron-size);
+      width: var(--chevron-h);
+      height: var(--chevron-h);
       display: none;
       transform: skewX(15deg);
       margin-left: 24px;
@@ -347,53 +430,63 @@ const alternateHref = "/font-test-cta/";
       top: var(--chevron-top);
     }
 
-    /* ==========================================
-       Version B: Press & Expand Styles
-       ========================================== */
-    /* Pressed state: contract chevrons */
-    .cta.version-b.state-pressed .one {
-      transform: translateX(15%);
-      fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 0.6;
-      transition: all 0.2s ease;
+    .cta.state-success .success-svg {
+      display: inline-block !important;
+    }
+
+    /* Pressed state for ALL buttons: contract chevrons */
+    .cta:active .one,
+    .cta.state-pressed .one {
+      opacity: 1 !important;
+      transform: translateX(10px) scale(0.85) !important;
+      transition: all 0.1s ease !important;
       animation: none !important;
     }
-    .cta.version-b.state-pressed .two {
-      transform: scale(0.8);
-      fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 0.8;
-      transition: all 0.2s ease;
+    .cta:active .two,
+    .cta.state-pressed .two {
+      opacity: 1 !important;
+      transform: scale(0.85) !important;
+      transition: all 0.1s ease !important;
       animation: none !important;
     }
-    .cta.version-b.state-pressed .three {
-      transform: translateX(-15%);
-      fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 0.6;
-      transition: all 0.2s ease;
+    .cta:active .three,
+    .cta.state-pressed .three {
+      opacity: 1 !important;
+      transform: translateX(-10px) scale(0.85) !important;
+      transition: all 0.1s ease !important;
       animation: none !important;
     }
 
+    /* ==========================================
+       Version B: Press & Expand Styles
+       ========================================== */
     /* Success state: expand and turn solid color */
     .cta.version-b.state-success .one {
-      transform: translateX(-35%) scale(1.25);
+      opacity: 1 !important;
+      transform: translateX(-12px) scale(1.2) !important;
       fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 1;
       animation: none !important;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
     }
     .cta.version-b.state-success .two {
-      transform: scale(1.25);
+      opacity: 1 !important;
+      transform: scale(1.2) !important;
       fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 1;
       animation: none !important;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
     }
     .cta.version-b.state-success .three {
-      transform: translateX(35%) scale(1.25);
+      opacity: 1 !important;
+      transform: translateX(12px) scale(1.2) !important;
       fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 1;
       animation: none !important;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+
+    .cta.version-b.state-success.cta-seville-albero .one,
+    .cta.version-b.state-success.cta-seville-albero .two,
+    .cta.version-b.state-success.cta-seville-albero .three {
+      fill: var(--triana-green, #115740) !important;
     }
 
     /* ==========================================
@@ -422,27 +515,6 @@ const alternateHref = "/font-test-cta/";
       box-shadow: none;
       background: rgba(0, 0, 0, 0.1);
     }
-    .cta.version-c.state-pressed .one {
-      transform: translateX(-12px) scale(0.75);
-      opacity: 0.4;
-      fill: #888 !important;
-      transition: all 0.15s ease;
-      animation: none !important;
-    }
-    .cta.version-c.state-pressed .two {
-      transform: translateX(-12px) scale(0.75);
-      opacity: 0.4;
-      fill: #888 !important;
-      transition: all 0.15s ease;
-      animation: none !important;
-    }
-    .cta.version-c.state-pressed .three {
-      transform: translateX(-12px) scale(0.75);
-      opacity: 0.4;
-      fill: #888 !important;
-      transition: all 0.15s ease;
-      animation: none !important;
-    }
 
     /* Success state: shoot forward, expand, turn solid gold */
     .cta.version-c.state-success .second {
@@ -452,25 +524,31 @@ const alternateHref = "/font-test-cta/";
       box-shadow: 0 0 14px var(--albero-pantone, #ffab60);
     }
     .cta.version-c.state-success .one {
-      transform: translateX(4px) scale(1.3);
+      opacity: 1 !important;
+      transform: translateX(-4px) scale(1.3) !important;
       fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 1;
       animation: none !important;
-      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1) !important;
     }
     .cta.version-c.state-success .two {
-      transform: translateX(10px) scale(1.3);
+      opacity: 1 !important;
+      transform: translateX(8px) scale(1.3) !important;
       fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 1;
       animation: none !important;
-      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1) !important;
     }
     .cta.version-c.state-success .three {
-      transform: translateX(16px) scale(1.3);
+      opacity: 1 !important;
+      transform: translateX(20px) scale(1.3) !important;
       fill: var(--albero-pantone, #ffab60) !important;
-      opacity: 1;
       animation: none !important;
-      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1) !important;
+    }
+
+    .cta.version-c.state-success.cta-seville-albero .one,
+    .cta.version-c.state-success.cta-seville-albero .two,
+    .cta.version-c.state-success.cta-seville-albero .three {
+      fill: var(--triana-green, #115740) !important;
     }
 
     /* ==========================================
@@ -585,10 +663,10 @@ const alternateHref = "/font-test-cta/";
           <button class="cta font-poppins demo-log-btn" data-font="Poppins" aria-label="Next step Poppins">
             <span class="span">NEXT</span>
             <span class="second">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
               </svg>
             </span>
           </button>
@@ -600,10 +678,10 @@ const alternateHref = "/font-test-cta/";
           <button class="cta font-montserrat demo-log-btn" data-font="Montserrat" aria-label="Next step Montserrat">
             <span class="span">NEXT</span>
             <span class="second">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
               </svg>
             </span>
           </button>
@@ -615,10 +693,10 @@ const alternateHref = "/font-test-cta/";
           <button class="cta font-alegreya demo-log-btn" data-font="Alegreya" aria-label="Next step Alegreya">
             <span class="span">NEXT</span>
             <span class="second">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
               </svg>
             </span>
           </button>
@@ -640,10 +718,10 @@ const alternateHref = "/font-test-cta/";
           <button class="cta cta-seville-red font-montserrat demo-log-btn" data-color="Almegre Red" aria-label="Next step Seville Red">
             <span class="span">NEXT</span>
             <span class="second">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
               </svg>
             </span>
           </button>
@@ -655,10 +733,10 @@ const alternateHref = "/font-test-cta/";
           <button class="cta cta-seville-green font-montserrat demo-log-btn" data-color="Triana Green" aria-label="Next step Seville Green">
             <span class="span">NEXT</span>
             <span class="second">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
               </svg>
             </span>
           </button>
@@ -670,10 +748,10 @@ const alternateHref = "/font-test-cta/";
           <button class="cta cta-seville-blue font-montserrat demo-log-btn" data-color="Lapiz Lazuli" aria-label="Next step Seville Blue">
             <span class="span">NEXT</span>
             <span class="second">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
               </svg>
             </span>
           </button>
@@ -685,10 +763,10 @@ const alternateHref = "/font-test-cta/";
           <button class="cta cta-seville-albero font-montserrat demo-log-btn" data-color="Albero Gold" aria-label="Next step Seville Albero Gold">
             <span class="span">NEXT</span>
             <span class="second">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="#000000"></path>
-                <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="#000000"></path>
-                <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="#000000"></path>
+              <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
               </svg>
             </span>
           </button>
@@ -750,17 +828,10 @@ const alternateHref = "/font-test-cta/";
             <button class="cta font-montserrat" id="btn-version-a" aria-label="Submit confirmation A">
               <span class="span btn-text" id="text-a">SUBMIT</span>
               <span class="second arrow-container" id="arrow-a">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                  <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                  <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                  <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
-                </svg>
-              </span>
-              <!-- Spinner Container (Unskewed, hidden by default) -->
-              <span class="spinner-container" id="spinner-container-a" style="display: none; transform: skewX(15deg); margin-left: 24px; position: relative; top: var(--chevron-top);">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: var(--chevron-size); height: var(--chevron-size); animation: spin_spinner 0.8s linear infinite;">
-                  <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.2)" stroke-width="3" fill="none"></circle>
-                  <circle cx="12" cy="12" r="10" stroke="white" stroke-width="3" fill="none" stroke-dasharray="30 150" stroke-linecap="round"></circle>
+                <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                  <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                  <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                  <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
                 </svg>
               </span>
               <svg
@@ -768,7 +839,7 @@ const alternateHref = "/font-test-cta/";
                 id="checkmark-a"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="white"
+                stroke="currentColor"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -786,10 +857,10 @@ const alternateHref = "/font-test-cta/";
             <button class="cta font-montserrat version-b" id="btn-version-b" aria-label="Submit confirmation B">
               <span class="span btn-text" id="text-b">SUBMIT</span>
               <span class="second arrow-container" id="arrow-b">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                  <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                  <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                  <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+                <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                  <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                  <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                  <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
                 </svg>
               </span>
             </button>
@@ -803,10 +874,10 @@ const alternateHref = "/font-test-cta/";
             <button class="cta font-montserrat version-c" id="btn-version-c" aria-label="Submit confirmation C">
               <span class="span btn-text" id="text-c">SUBMIT</span>
               <span class="second arrow-container" id="arrow-c">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
-                  <path d="M1 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="white"></path>
-                  <path d="M6 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="white"></path>
-                  <path d="M11 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="white"></path>
+                <svg viewBox="0 0 50 24" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; overflow: visible;">
+                  <path d="M3 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="one" fill="currentColor"></path>
+                  <path d="M19 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="two" fill="currentColor"></path>
+                  <path d="M35 2 l10 10 l-10 10 h3 l10 -10 l-10 -10 z" class="three" fill="currentColor"></path>
                 </svg>
               </span>
             </button>
@@ -852,7 +923,6 @@ const alternateHref = "/font-test-cta/";
 
       // Containers
       const arrowA = document.getElementById("arrow-a");
-      const spinnerA = document.getElementById("spinner-container-a");
       const checkmarkA = document.getElementById("checkmark-a");
       const resetAllBtn = document.getElementById("btn-reset-all");
 
@@ -949,24 +1019,16 @@ const alternateHref = "/font-test-cta/";
         }
       });
 
-      btnA.addEventListener("click", () => {
+      // Press down (contract)
+      const pressBtnA = () => {
         if (stateA !== "idle") return;
-        stateA = "loading";
-        addLog("CLICK", "Version A Clicked. Initiating loading transition.");
-        btnA.classList.add("state-loading");
-        textA.textContent = "PROCESSING...";
-        arrowA.style.display = "none";
-        spinnerA.style.display = "inline-block";
-
-        setTimeout(() => {
-          stateA = "success";
-          btnA.classList.remove("state-loading");
-          btnA.classList.add("state-success");
-          textA.textContent = "CONFIRMED";
-          spinnerA.style.display = "none";
-          checkmarkA.style.display = "inline-block";
-          addLog("SUCCESS", "Version A Success: Morphed to Checkmark.");
-        }, 1500);
+        btnA.classList.add("state-pressed");
+        addLog("CLICK", "Version A Pressed: Chevrons contracted.");
+      };
+      btnA.addEventListener("mousedown", pressBtnA);
+      btnA.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        pressBtnA();
       });
 
       // --- Button B (Expansion) ---
@@ -1009,6 +1071,22 @@ const alternateHref = "/font-test-cta/";
 
       // Global release handler (mouseup & touchend)
       const handleRelease = () => {
+        if (stateA === "idle" && btnA.classList.contains("state-pressed")) {
+          btnA.classList.remove("state-pressed");
+          stateA = "loading";
+          btnA.classList.add("state-loading");
+          textA.textContent = "PROCESSING...";
+          addLog("CLICK", "Version A Released: Frozen pressed state + active color flow loading.");
+
+          setTimeout(() => {
+            stateA = "success";
+            btnA.classList.remove("state-loading");
+            btnA.classList.add("state-success");
+            textA.textContent = "CONFIRMED";
+            addLog("SUCCESS", "Version A Success: Morphed to Checkmark.");
+          }, 1500);
+        }
+
         if (stateB === "idle" && btnB.classList.contains("state-pressed")) {
           btnB.classList.remove("state-pressed");
           stateB = "success";
@@ -1033,11 +1111,8 @@ const alternateHref = "/font-test-cta/";
       resetAllBtn.addEventListener("click", () => {
         // Reset Version A
         stateA = "idle";
-        btnA.classList.remove("state-success", "state-loading");
+        btnA.classList.remove("state-success", "state-loading", "state-pressed");
         textA.textContent = "SUBMIT";
-        arrowA.style.display = "inline-block";
-        spinnerA.style.display = "none";
-        checkmarkA.style.display = "none";
 
         // Reset Version B
         stateB = "idle";
